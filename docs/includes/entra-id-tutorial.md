@@ -123,7 +123,7 @@ Select the newly created application, and on the left side menu, select **API Pe
 
    1. Using **Azure role-based access control (recommended)**
 
-      1. The page [Assign Azure roles using the Azure portal](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) has the click sequence to add role assignments.
+      1. The page [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal) has the click sequence to add role assignments.
       1. Add the following roles to your Resource.
 
          1. Key Vault Certificate User
