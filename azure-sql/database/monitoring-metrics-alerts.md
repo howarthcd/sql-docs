@@ -4,7 +4,7 @@ description: An overview of Azure SQL Database monitoring using Azure Monitor me
 author: dimitri-furman
 ms.author: dfurman
 ms.reviewer: wiassaf, mathoma
-ms.date: 05/06/2024
+ms.date: 02/11/2025
 ms.service: azure-sql-database
 ms.subservice: monitoring
 ms.topic: conceptual
@@ -73,7 +73,7 @@ The following table describes commonly used metrics in Azure SQL Database.
 
 #### Availability metric
 
-The Availability metric tracks availability at individual Azure SQL Database level. This feature is currently in preview.
+The Availability metric tracks availability at individual Azure SQL Database level.
 
 Availability is granular to one minute of connection outage. Availability is determined based on the database being operational for connections. A minute is considered as downtime or unavailable if all continuous attempts by users to establish connection to the database within the minute fail due to a service issue. If there is intermittent unavailability, the duration of continuous unavailability must cross the minute boundary to be considered as downtime. Typically, the latency to display availability is less than three minutes.
 
