@@ -6,6 +6,8 @@ ms.author: wiassaf
 ms.date: "03/14/2017"
 ms.service: sql
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "sql13.swb.deletedacwizard.deletedac.f1"
   - "sql13.swb.deletedacwizard.summary.f1"
@@ -16,9 +18,11 @@ helpviewer_keywords:
   - "data-tier application [SQL Server], delete"
   - "wizard [DAC], delete"
   - "delete DAC"
+monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # Delete a Data-tier Application
-[!INCLUDE [SQL Server Azure SQL Database](../../includes/applies-to-version/sql-asdb.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
+
   You can delete a data-tier application by using either the Delete Data-tier Application wizard or a Windows PowerShell script. You can specify whether the associated database is retained, detached, or dropped.  
   
 -   **Before you begin:**  [Limitations and Restrictions](#LimitationsRestrictions), [Permissions](#Permissions)  

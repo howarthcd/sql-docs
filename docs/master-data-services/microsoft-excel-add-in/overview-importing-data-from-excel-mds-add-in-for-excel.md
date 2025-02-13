@@ -21,7 +21,7 @@ ms.custom: microsoft-excel-add-in
 >  Publishing cannot be used to create a new entity. For more information about creating entities, see [Create an Entity &#40;MDS Add-in for Excel&#41;](../../master-data-services/microsoft-excel-add-in/create-an-entity-mds-add-in-for-excel.md).  
   
 ## When Multiple Users Publish at the Same Time  
- Multiple users can publish updates to the same data. As each user publishes, the update is saved to the database. This means that a user who was not working with the most recently-updated data can still change the value when he or she publishes.  
+ Multiple users can publish updates to the same data. As each user publishes, the update is saved to the database. This means that a user who was not working with the most recently-updated data can still change the value when they publish.  
   
  Only the updates you make are published to the database. Any out-of-date data in the worksheet is not published.  
   

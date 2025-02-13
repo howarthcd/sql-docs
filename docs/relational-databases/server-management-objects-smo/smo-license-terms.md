@@ -7,10 +7,12 @@ ms.date: 12/15/2019
 ms.service: sql
 ms.subservice: ssms
 ms.topic: conceptual
-monikerRange: "=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
+ms.custom:
+  - ignite-2024
+monikerRange: "=azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # SQL Server Shared Management Objects (SMO) License Terms
-[!INCLUDE [SQL Server ASDB, ASDBMI, ASDW](../../includes/applies-to-version/sql-asdb-asdbmi-asa.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance Synapse Analytics FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-asa-fabricsqldb.md)]
 
 ## MICROSOFT SOFTWARE LICENSE TERMS
 **MICROSOFT SQL SERVER 2017 SHARED MANAGEMENT OBJECTS**
@@ -97,4 +99,3 @@ It also applies even if Microsoft knew or should have known about the possibilit
 
 > [!NOTE]
 > Section 3 was updated on August 8, 2018.
-

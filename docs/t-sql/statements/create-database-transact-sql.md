@@ -4,7 +4,7 @@ description: Create database syntax for SQL Server, Azure SQL Database, Azure Sy
 author: markingmyname
 ms.author: maghan
 ms.reviewer: wiassaf
-ms.date: 08/26/2024
+ms.date: 12/12/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -37,6 +37,7 @@ dev_langs:
   - "TSQL"
 monikerRange: ">=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-current||=azuresqldb-mi-current||=azure-sqldw-latest||>=aps-pdw-2016"
 ---
+
 # CREATE DATABASE
 
 Creates a new database.
@@ -101,7 +102,7 @@ CREATE DATABASE database_name
     | TWO_DIGIT_YEAR_CUTOFF = <two_digit_year_cutoff>
     | DB_CHAINING { OFF | ON }
     | TRUSTWORTHY { OFF | ON }
-    | PERSISTENT_LOG_BUFFER=ON ( DIRECTORY_NAME='<Filepath to folder on DAX formatted volume>' )
+    | PERSISTENT_LOG_BUFFER=ON ( DIRECTORY_NAME='path-to-directory-on-a-DAX-volume' )
     | LEDGER = {ON | OFF }
 }
 
@@ -286,7 +287,9 @@ The following options are allowable only when CONTAINMENT has been set to PARTIA
 
 #### PERSISTENT_LOG_BUFFER=ON ( DIRECTORY_NAME='' )
 
-  When this option is specified, the transaction log buffer is created on a volume that is located on a disk device backed by Storage Class Memory (NVDIMM-N nonvolatile storage), also known as a persistent log buffer. For more information, see [Transaction Commit latency acceleration using Storage Class Memory](/archive/blogs/sqlserverstorageengine/transaction-commit-latency-acceleration-using-storage-class-memory-in-windows-server-2016sql-server-2016-sp1). **Applies to**: [!INCLUDE[ssSQL17](../../includes/sssql17-md.md)] and newer.
+**Applies to**: [!INCLUDE[ssSQL17](../../includes/sssql17-md.md)] and later.
+
+When this option is specified, the transaction log buffer is created on a volume that is located on a disk device backed by Storage Class Memory (NVDIMM-N nonvolatile storage), also known as a persistent log buffer. For more information, see [Transaction Commit latency acceleration using Storage Class Memory](/archive/blogs/sqlserverstorageengine/transaction-commit-latency-acceleration-using-storage-class-memory-in-windows-server-2016sql-server-2016-sp1) and [Add persistent log buffer to a database](../../relational-databases/databases/add-persisted-log-buffer.md).
 
 #### LEDGER = {ON | OFF }
 
@@ -998,6 +1001,7 @@ CREATE DATABASE database_name [ COLLATE collation_name ]
       | 'GP_S_Gen5_n' 
       | 'HS_DC_n'
       | 'HS_Gen5_n'
+      | 'HS_S_Gen5_n'
       | 'HS_MOPRMS_n' 
       | 'HS_PRMS_n' 
       | { ELASTIC_POOL(name = <elastic_pool_name>) } })
@@ -1018,6 +1022,7 @@ CREATE DATABASE database_name
       | 'BC_Gen5_n'
       | 'BC_M_n'
       | 'HS_Gen5_n'
+      | 'HS_S_Gen5_n'
       | 'HS_PRMS_n'
       | 'HS_MOPRMS_n'
       | { ELASTIC_POOL(name = <elastic_pool_name>) } })
@@ -1133,9 +1138,10 @@ Specifies the compute size and service objective.
 - For DTU purchasing model: `S0`, `S1`, `S2`, `S3`, `S4`, `S6`, `S7`, `S9`, `S12`, `P1`, `P2`, `P4`, `P6`, `P11`, `P15`
 - For the latest vCore purchasing model, choose the tier and provide the number of vCores from a preset list of values, where the number of vCores is `n`. Refer to the [resource limits for single databases](/azure/azure-sql/database/resource-limits-vcore-single-databases) or [resource limits for elastic pools](/azure/azure-sql/database/resource-limits-vcore-elastic-pools).
     - For example: 
-    - `GP_Gen5_8` for General Purpose Standard-series (Gen5) compute, 8 vCores.
-    - `GP_S_Gen5_8` for General Purpose Serverless Standard-series (Gen5) compute, 8 vCores.
-    - `HS_Gen5_8` for Hyperscale - provisioned compute - standard-series (Gen5), 8 vCores.
+    - `GP_Gen5_8` for General Purpose, provisioned compute, Standard-series (Gen5), 8 vCores.
+    - `GP_S_Gen5_8` for General Purpose, serverless compute, Standard-series (Gen5), 8 vCores.
+    - `HS_Gen5_8` for Hyperscale, provisioned compute, Standard-series (Gen5), 8 vCores.
+    - `HS_S_Gen5_8` for Hyperscale, serverless compute, Standard-series (Gen5), 8 vCores.
 
 For service objective descriptions and more information about the size, editions, and the service objectives combinations, see [Azure SQL Database Service Tiers](/azure/sql-database/sql-database-service-tiers). If the specified SERVICE_OBJECTIVE is not supported by the EDITION, you receive an error. To change the SERVICE_OBJECTIVE value from one tier to another (for example from S1 to P1), you must also change the EDITION value. Support for PRS service objectives has been removed.
 
@@ -1362,6 +1368,8 @@ CREATE DATABASE database_name [ COLLATE collation_name ]
 ```
 > [!IMPORTANT]
 > To add files or set containment for a database in a managed instance, use the [ALTER DATABASE](alter-database-transact-sql.md?tabs=sqldbmi) statement.
+>
+> For SQL managed instances, the initial MAXSIZE is implicitly set to the current disk size, and it doesn't change automatically when you extend the disk size from the Azure portal. After extending the disk, you should also extend MAXSIZE with [ALTER DATABASE](alter-database-transact-sql.md?tabs=sqldbmi) to avoid database file full errors.
 
 ## Arguments
 
@@ -1399,7 +1407,7 @@ The following are `CREATE DATABASE` limitations:
 To create a database, a login must be one of the following:
 
 - The server-level principal login
-- The Microsoft Entra administrator for the for the [logical server in Azure](/azure/azure-sql/database/logical-servers)
+- The Microsoft Entra administrator for the [logical server in Azure](/azure/azure-sql/database/logical-servers)
 - A login that is a member of the `dbcreator` database role
 
 ## Examples

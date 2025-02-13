@@ -7,6 +7,8 @@ ms.date: 04/15/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "ROLLBACK TRANSACTION"
   - "ROLLBACK"
@@ -25,7 +27,7 @@ monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >
 ---
 # ROLLBACK TRANSACTION (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricdw-fabricsqldb.md)]
 
 This statement rolls back an explicit or implicit transaction to the beginning of the transaction, or to a savepoint inside the transaction. You can use `ROLLBACK TRANSACTION` to erase all data modifications made from the start of the transaction or to a savepoint. It also frees resources held by the transaction.
 

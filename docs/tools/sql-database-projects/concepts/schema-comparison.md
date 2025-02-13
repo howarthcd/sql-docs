@@ -6,7 +6,10 @@ ms.author: drskwier
 ms.reviewer: maghan, randolphwest
 ms.date: 08/30/2024
 ms.service: sql
+ms.subservice: sql-database-projects
 ms.topic: overview
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "sql.data.tools.schemacompare.SchemaCompareOptionsDialog"
   - "sql.data.tools.schemacompare.watermark.f1"
@@ -18,7 +21,7 @@ zone_pivot_groups: sq1-sql-projects-tools
 
 # Schema comparison overview
 
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 The schema comparison tooling enables you to compare two database definitions, where the source and target of the comparison can be any combination of connected database, SQL database project or `.dacpac` file. Once the comparison is complete, the results of the comparison appear as a set of actions that make the target the same as the source in a similar manner as a source control diff. From a schema compare interface you can update the target directly (if the target is a project or a database) or generate an update script that has the same effect.
 

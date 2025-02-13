@@ -1,10 +1,10 @@
 ---
-title: "Upgrade a failover cluster instance"
+title: "Upgrade a Failover Cluster Instance"
 description: "Steps to upgrade a SQL Server Always On failover cluster instance using the installation media. Learn about rolling upgrades and upgrading a multi-subnet cluster."
 author: MashaMSFT
 ms.author: mathoma
 ms.reviewer: randolphwest
-ms.date: 10/31/2024
+ms.date: 12/16/2024
 ms.service: sql
 ms.subservice: failover-cluster-instance
 ms.topic: conceptual
@@ -62,6 +62,8 @@ By default, [!INCLUDE [ssNoVersion](../../../includes/ssnoversion-md.md)] setup 
 This process results in downtime limited to one failover time and database upgrade script execution time during the whole failover cluster upgrade.
 
 To control the failover behavior of cluster nodes during the upgrade process, run the upgrade operation at the command prompt and use the /FAILOVERCLUSTERROLLOWNERSHIP parameter. For more information, see [Install and configure SQL Server on Windows from the command prompt](../../../database-engine/install-windows/install-sql-server-from-the-command-prompt.md).
+
+For more information about upgrading a Windows Server cluster, see [Cluster OS Rolling Upgrade](/windows-server/failover-clustering/cluster-operating-system-rolling-upgrade).
 
 ## Upgrade with installation media
 

@@ -30,7 +30,7 @@ monikerRange: "=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||
   
 1.  Make sure that the user who wants to use the test server exists on both servers.  
   
-     Before you start, make sure that the user who wants to use the test server to tune a database on the production server exists on both servers. This requires that you create the user and his or her login on the test server. If you are a member of the **sysadmin** fixed server role on both computers, this step is not necessary.  
+     Before you start, make sure that the user who wants to use the test server to tune a database on the production server exists on both servers. This requires that you create the user and their login on the test server. If you are a member of the **sysadmin** fixed server role on both computers, this step is not necessary.  
   
 2.  Tune the workload on the test server.  
   

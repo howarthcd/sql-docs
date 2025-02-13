@@ -1,8 +1,8 @@
 ---
 title: Ad hoc reporting queries across multiple databases
 description: Run ad hoc reporting queries across multiple Azure SQL databases in a multi-tenant app example.
-author: bgavrilMS
-ms.author: bogavril
+author: bgavrilovicMS
+ms.author: bgavrilovic
 ms.reviewer: mathoma, wiassaf
 ms.date: 10/30/2018
 ms.service: azure-sql-database

@@ -20,6 +20,8 @@ This quickstart teaches you to create a deployment of [Azure SQL Managed Instanc
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/)
+- In the general case, your user needs to have the role [SQL Managed Instance Contributor](/azure/role-based-access-control/built-in-roles#sql-managed-instance-contributor) assigned at subscription scope.
+- If provisioning in a subnet that is already delegated to Azure SQL Managed Instance, your user only needs the Microsoft.Sql/managedInstances/write permission assigned at subscription scope.
 - The latest version of the [Az.SQL](https://www.powershellgallery.com/packages/Az.Sql) PowerShell module or the latest version of the [Azure CLI](/cli/azure/install-azure-cli-windows). 
 
 For limitations, see [Supported regions](resource-limits.md#supported-regions) and [Supported subscription types](resource-limits.md#supported-subscription-types).

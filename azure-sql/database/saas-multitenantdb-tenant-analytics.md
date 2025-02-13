@@ -1,8 +1,8 @@
 ---
 title: Run analytics queries
 description: Cross-tenant analytics queries using data extracted from multiple Azure SQL Database databases in a multi-tenant app.
-author: bgavrilMS
-ms.author: bogavril
+author: bgavrilovicMS
+ms.author: bgavrilovic
 ms.reviewer: mathoma, wiassaf
 ms.date: 09/19/2018
 ms.service: azure-sql-database

@@ -59,8 +59,13 @@ authorizationrules
         && [ type=="x-ms-sgx-svn", value>= 2 ]
         && [ type=="x-ms-sgx-mrsigner", value=="e31c9e505f37a58de09335075fc8591254313eb20bb1a27e5443cc450b6e33e5"] 
     => permit();
-};
 
+       [ type=="x-ms-sgx-is-debuggable", value==false ]
+        && [ type=="x-ms-sgx-product-id", value==4639 ]
+        && [ type=="x-ms-sgx-svn", value>= 2 ]
+        && [ type=="x-ms-sgx-mrsigner", value=="a0f8e7f72092fb6a5d5752ffccd47fb3af7027ffb589b24e921e81f5703f3a9a"]
+    => permit();
+};
 ```
 
 The policy verifies:

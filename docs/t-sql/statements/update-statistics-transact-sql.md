@@ -8,6 +8,8 @@ ms.date: 02/13/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "UPDATE STATISTICS"
   - "UPDATE_STATISTICS_TSQL"
@@ -18,12 +20,12 @@ helpviewer_keywords:
   - "statistical information [SQL Server], updating"
 dev_langs:
   - "TSQL"
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current||=fabric"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 
 # UPDATE STATISTICS (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 Updates query optimization [statistics](../../relational-databases/statistics/statistics.md) on a table or indexed view. By default, the query optimizer already updates statistics as necessary to improve the query plan; in some cases you can improve query performance by using `UPDATE STATISTICS` or the stored procedure [sp_updatestats](../../relational-databases/system-stored-procedures/sp-updatestats-transact-sql.md) to update statistics more frequently than the default updates.  
   
@@ -70,7 +72,7 @@ UPDATE STATISTICS table_or_indexed_view_name
 <update_stats_stream_option> ::=  
     [ STATS_STREAM = stats_stream ]  
     [ ROWCOUNT = numeric_constant ]  
-    [ PAGECOUNT = numeric_contant ]  
+    [ PAGECOUNT = numeric_constant ]  
 ```  
  
 ```syntaxsql
@@ -227,7 +229,7 @@ Uses the actual number of processors or fewer based on the current system worklo
 
 Currently, if statistics are created by a third party tool on a customer database, those statistics objects can block or interfere with schema changes the customer may desire.
 
-(Starting with [!INCLUDE[sql-server-2022](../../includes/sssql22-md.md)])| This feature allows the creation of statistics objects in a mode such that a schema change will *not* be blocked by the statistics, but instead the statistics will be droppped. In this way, auto drop statistics behave like auto created statistics.
+(Starting with [!INCLUDE[sql-server-2022](../../includes/sssql22-md.md)])| This feature allows the creation of statistics objects in a mode such that a schema change will *not* be blocked by the statistics, but instead the statistics will be dropped. In this way, auto drop statistics behave like auto created statistics.
 
 > [!NOTE]
 > Trying to set or unset the *Auto_Drop* property on auto created statistics may raise errors - auto created statistics always uses auto drop. Some backups, when restored, may have this property set incorrectly until the next time the statistics object is updated (manually or automatically). However, auto created statistics always behave like auto drop statistics.

@@ -226,7 +226,7 @@ If `IDBSchemaRowset` is supported, `TABLES`, `COLUMNS`, `INDEXES`, and `TABLES_I
 
 - The provider must either support restriction on the `TABLE_SCHEMA` column in both `TABLES` and `COLUMNS` or support them on neither. The provider must either support catalog name restriction on both `TABLES` and `COLUMNS` rowsets or support them on neither.
 
-- If any restrictions are supported on INDEXES, the provider must support schema restriction on both `TABLES` and INDE`XES or support them on neither. The provider must either support catalog name restriction on both `TABLES` and `INDEXES` rowsets or support them on neither.
+- If any restrictions are supported on INDEXES, the provider must support schema restriction on both `TABLES` and INDEXES` or support them on neither. The provider must either support catalog name restriction on both `TABLES` and `INDEXES` rowsets or support them on neither.
 
 From the `TABLES` schema rowset, SQL Server retrieves the `TABLE_CATALOG`, `TABLE_SCHEMA`, `TABLE_NAME`, `TABLE_TYPE`, `TABLE_GUID` columns by setting restrictions according to the above rules.
 
@@ -519,7 +519,7 @@ SQL Server supports specifying a Collation for character data at a per column le
 
 SQL Server delegates string comparisons to the provider only if the character set (for non-Unicode data), sort order, and string comparison semantics used by the linked server are the same as those used by the local server.
 
-In the case of SQL Server linked servers, SQL Server automatically determines collation compatibility. For other providers, the administrator must indicate to SQL Server the collation of character data from a given linked server. In SQL Server, a new linked server option called `Collation Name` is supported. If the administrator determines that the collation semantics adopted by the linked server is the same as one of the SQL Server standard collations, she can set the `Collation Name` option to that collation name. The `Collation Name` option can be set using the `sp_serveroption` system stored procedure. This option should be set only if both of the following conditions are met:
+In the case of SQL Server linked servers, SQL Server automatically determines collation compatibility. For other providers, the administrator must indicate to SQL Server the collation of character data from a given linked server. In SQL Server, a new linked server option called `Collation Name` is supported. If the administrator determines that the collation semantics adopted by the linked server is the same as one of the SQL Server standard collations, they can set the `Collation Name` option to that collation name. The `Collation Name` option can be set using the `sp_serveroption` system stored procedure. This option should be set only if both of the following conditions are met:
 
 - The remote sort order and character set are the same as the specified SQL Server collation.
 

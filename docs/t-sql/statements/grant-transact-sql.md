@@ -8,6 +8,8 @@ ms.date: 01/31/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "GRANT_TSQL"
   - "GRANT"
@@ -27,7 +29,7 @@ monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >
 
 # GRANT (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 Grants permissions on a securable to a principal. The general concept is to `GRANT <some permission> ON <some object> TO <some user, login, or group>`. For a general discussion of permissions, see [Permissions (Database Engine)](../../relational-databases/security/permissions-database-engine.md).
 
@@ -35,7 +37,7 @@ Grants permissions on a securable to a principal. The general concept is to `GRA
 
 ## Syntax
 
-Syntax for SQL Server and Azure SQL Database.
+Syntax for SQL Server, Azure SQL Database, and Fabric SQL database.
 
 ```syntaxsql
 -- Simplified syntax for GRANT
@@ -45,7 +47,7 @@ GRANT { ALL [ PRIVILEGES ] }
       [ WITH GRANT OPTION ] [ AS principal ]
 ```
 
-Syntax for Azure Synapse Analytics and Parallel Data Warehouse and Microsoft Fabric.
+Syntax for Azure Synapse Analytics, Parallel Data Warehouse, and Microsoft Fabric warehouse.
 
 ```syntaxsql
 GRANT
@@ -114,7 +116,7 @@ Indicates that the grantee will also be given the ability to grant the specified
 
 #### AS *principal*
 
-Use the `AS <principal>` clause to indicate that the principal recorded as the grantor of the permission should be a principal other than the person executing the statement. For example, presume that user `Mary` has a `principal_id` of `12`, and user `Raul` is principal `15`. Mary executes `GRANT SELECT ON OBJECT::X TO Steven WITH GRANT OPTION AS Raul;` Now the `sys.database_permissions` table indicates that the `grantor_prinicpal_id` was `15` (`Raul`) even though the statement was actually executed by user `12` (`Mary`).
+Use the `AS <principal>` clause to indicate that the principal recorded as the grantor of the permission should be a principal other than the person executing the statement. For example, presume that user `Mary` has a `principal_id` of `12`, and user `Raul` is principal `15`. Mary executes `GRANT SELECT ON OBJECT::X TO Steven WITH GRANT OPTION AS Raul;` Now the `sys.database_permissions` table indicates that the `grantor_principal_id` was `15` (`Raul`) even though the statement was actually executed by user `12` (`Mary`).
 
 Using the `AS` clause is typically not recommended unless you need to explicitly define the permission chain. For more information, see [Summary of the Permission Check Algorithm](../../relational-databases/security/permissions-database-engine.md#summary-of-the-permission-check-algorithm).
 

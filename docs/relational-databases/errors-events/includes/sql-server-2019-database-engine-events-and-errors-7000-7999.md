@@ -1,7 +1,7 @@
 ---
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 01/11/2024
+ms.date: 12/12/2024
 ms.topic: include
 ---
 | Error | Severity | Event logged | Description |
@@ -166,6 +166,7 @@ ms.topic: include
 | 7438 | 16 | No | The 32-bit OLE DB provider "%ls" cannot be loaded in-process on a 64-bit SQL Server. |
 | 7439 | 16 | No | Failed to read required information about %S_MSG pool %S_MSG. |
 | 7440 | 10 | No | Remote execution status: "%ls" . |
+| 7455 | 16 | Yes | Service Master Key is not generated or access is lost so encryption/decryption of linked server passwords cannot be done. |
 | 7601 | 16 | No | Cannot use a CONTAINS or FREETEXT predicate on %S_MSG '%.\*ls' because it is not full-text indexed. |
 | 7602 | 16 | No | The full-text service (msftesql%ls%ls) is not available. The system administrator must start this service. |
 | 7603 | 10 | No | Inconsistent accent sensitivity of full-text catalog is detected. Full-text catalog for catalog ID '%d', database ID '%d' is reset. |

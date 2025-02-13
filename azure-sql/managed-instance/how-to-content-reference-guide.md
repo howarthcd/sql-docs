@@ -5,7 +5,7 @@ description: A reference guide of content that teaches you how to configure and 
 author: MashaMSFT
 ms.author: mathoma
 ms.reviewer: mathoma, danil
-ms.date: 01/23/2024
+ms.date: 12/06/2024
 ms.service: azure-sql-managed-instance
 ms.subservice: deployment-configuration
 ms.topic: conceptual
@@ -77,6 +77,7 @@ To use the link:
 - [Fail over the link](managed-instance-link-failover-how-to.md)
 - [Migrate with the link](managed-instance-link-migrate.md)
 - [Best practices for maintaining the link](managed-instance-link-best-practices.md)
+- [Troubleshoot issues with the link](managed-instance-link-troubleshoot-how-to.md)
 
 
 ## Monitoring and tuning

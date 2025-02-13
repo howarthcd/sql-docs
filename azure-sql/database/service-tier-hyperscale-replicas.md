@@ -47,7 +47,7 @@ In Hyperscale databases, the `ApplicationIntent` argument in the connection stri
 
 ```csharp
 -- Connection string with application intent
-Server=tcp:<myserver>.database.windows.net;Database=<mydatabase>;ApplicationIntent=ReadOnly;User ID=<myLogin>;Password=<myPassword>;Trusted_Connection=False; Encrypt=True;
+Server=tcp:<myserver>.database.windows.net;Database=<mydatabase>;ApplicationIntent=ReadOnly;User ID=<myLogin>;Password=<password>;Trusted_Connection=False; Encrypt=True;
 ```
 
 All HA replicas are identical in their resource capacity. If more than one HA replica is present, the read-intent workload is distributed arbitrarily across all available HA replicas. When there are multiple HA replicas, keep in mind that each one could have different data latency with respect to data changes made on the primary. Each HA replica uses the same data as the primary on the same set of page servers. However, local data caches on each HA replica reflect the changes made on the primary via the transaction log service, which forward log records from the primary replica to HA replicas. As a result, depending on the workload executing on the HA replica, application of log records can happen at different speeds, and thus different replicas could have different data latency relative to the primary replica.
@@ -84,7 +84,7 @@ In addition, named replicas offer flexibility and elasticity to also satisfy man
 
 ### Zone redundancy for Hyperscale named replicas
 
-Hyperscale named replicas configured for zone redundancy use [Azure Availability Zones](/azure/availability-zones/az-overview#availability-zones) to distribute named replicas compute nodes across different physical locations within an Azure region. By choosing zone redundancy for named replicas, you can enhance the resilience of all layers of your Hyperscale databases to a wider range of failures, including datacenter outages, without any modifications of the application logic. For more information, see [Hyperscale zone redundant availability](high-availability-sla-local-zone-redundancy.md#hyperscale-service-tier-zone-redundant-availability).
+Hyperscale named replicas configured for zone redundancy use [Azure Availability Zones](/azure/reliability/availability-zones-overview) to distribute named replicas compute nodes across different physical locations within an Azure region. By choosing zone redundancy for named replicas, you can enhance the resilience of all layers of your Hyperscale databases to a wider range of failures, including datacenter outages, without any modifications of the application logic. For more information, see [Hyperscale zone redundant availability](high-availability-sla-local-zone-redundancy.md#hyperscale-service-tier-zone-redundant-availability).
 
 For a tutorial to create a zone redundant Hyperscale named replica, see [Create a Hyperscale named replica](hyperscale-named-replica-configure.md#create-a-hyperscale-named-replica).
 

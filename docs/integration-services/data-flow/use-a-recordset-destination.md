@@ -53,7 +53,7 @@ helpviewer_keywords:
 8.  Inside the Foreach Loop container, add and configure tasks to process one row of the recordset at a time by reading the values from the variables.  
   
 ## Example of Using the Recordset Destination  
- In the following example, the Data Flow task loads information about [!INCLUDE[ssSampleDBnormal](../../includes/sssampledbnormal-md.md)] employees from the Sales.SalesPerson table into a Recordset destination. Then, a Foreach Loop container reads one row of data at a time, and calls a Send Mail task. The Send Mail task uses expressions to send a customized e-mail message to each salesperson about the amount of his or her bonus.  
+ In the following example, the Data Flow task loads information about [!INCLUDE[ssSampleDBnormal](../../includes/sssampledbnormal-md.md)] employees from the Sales.SalesPerson table into a Recordset destination. Then, a Foreach Loop container reads one row of data at a time, and calls a Send Mail task. The Send Mail task uses expressions to send a customized e-mail message to each salesperson about the amount of their bonus.  
   
 #### To create the project and configure the variables  
   

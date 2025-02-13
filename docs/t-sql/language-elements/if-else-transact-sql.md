@@ -7,6 +7,8 @@ ms.date: 05/17/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "IF_TSQL"
   - "IF"
@@ -21,7 +23,7 @@ monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >
 ---
 # IF...ELSE (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 Imposes conditions on the execution of a [!INCLUDE [tsql](../../includes/tsql-md.md)] statement. The [!INCLUDE [tsql](../../includes/tsql-md.md)] statement that follows an `IF` keyword and its condition is executed if the condition is satisfied: the Boolean expression returns `TRUE`. The optional `ELSE` keyword introduces another [!INCLUDE [tsql](../../includes/tsql-md.md)] statement that is executed when the `IF` condition isn't satisfied: the Boolean expression returns `FALSE`.
 

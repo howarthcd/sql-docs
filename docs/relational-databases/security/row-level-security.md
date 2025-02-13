@@ -8,6 +8,8 @@ ms.date: 09/16/2024
 ms.service: sql
 ms.subservice: "security"
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 helpviewer_keywords:
   - "access control predicates"
   - "row level security"
@@ -18,7 +20,7 @@ monikerRange: "=azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 |
 ---
 # Row-level security
 
-[!INCLUDE [sql-asdb-asdbmi-asa-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-fabricse-fabricdw-fabricsqldb.md)]
 
 :::image type="content" source="media/row-level-security/row-level-security-graphic.png" alt-text="Decorative graphic of row level security.":::
 

@@ -30,7 +30,7 @@ This article describes how to capture a trace in Database Experimentation Assist
 To start a new workload capture, at a command prompt, run the following command:
 
 ```cmd
-Deacmd.exe -o StartCapture -n <Trace FileName> -x <Trace Format> -h <SQLServerInstance> -f <database name> -e <Encrypt Connection> -m <Authetication Mode> -u <user name> -p <password> -l <Location of Output Folder> -d <duration>
+Deacmd.exe -o StartCapture -n <Trace FileName> -x <Trace Format> -h <SQLServerInstance> -f <database name> -e <Encrypt Connection> -m <Authentication Mode> -u <user name> -p <password> -l <Location of Output Folder> -d <duration>
 ```
 
 For example:
@@ -82,7 +82,7 @@ If you're using Distributed Replay, perform the following steps.
 4. To replay the IRF file against the target SQL Server instance, run the following command:
 
     ```cmd
-    DReplay replay -m "dreplaycontroller" -d "<Folder Path on Dreplay Controller>\IrfFolder" -o -s "SQL2016Target" -w "dreplaychild1,dreplaychild2,dreplaycild3,dreplaychild4"
+    DReplay replay -m "dreplaycontroller" -d "<Folder Path on Dreplay Controller>\IrfFolder" -o -s "SQL2016Target" -w "dreplaychild1,dreplaychild2,dreplaychild3,dreplaychild4"
     ```
 
     a.  To monitor the status, run the following command:

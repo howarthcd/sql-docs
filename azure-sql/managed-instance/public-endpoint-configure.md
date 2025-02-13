@@ -25,7 +25,7 @@ In this article, you learn how to:
 
 ## Permissions
 
-Due to the sensitivity of data that in a managed instance, the configuration to enable managed instance public endpoint requires a two-step process. This security measure adheres to separation of duties (SoD):
+Due to the sensitivity of data in a managed instance, the configuration to enable managed instance public endpoint requires a two-step process. This security measure adheres to separation of duties (SoD):
 
 - The managed instance admin needs to enable the public endpoint on the managed instance. The managed instance admin can be found on the **Overview** page for your managed instance resource.
 - A network admin needs to allow traffic to the managed instance using a network security group (NSG). For more information, review [network security group permissions](/azure/virtual-network/manage-network-security-group#permissions).

@@ -8,6 +8,8 @@ ms.date: 09/25/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "JOIN"
   - "FROM_TSQL"
@@ -33,11 +35,11 @@ helpviewer_keywords:
   - "derived tables"
 dev_langs:
   - "TSQL"
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current||=fabric"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # FROM clause plus JOIN, APPLY, PIVOT (Transact-SQL)
 
-[!INCLUDE [sqlserver2016-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sqlserver2016-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sqlserver2016-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sqlserver2016-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 In Transact-SQL, the FROM clause is available on the following statements:
 
@@ -57,7 +59,7 @@ This article also discusses the following keywords that can be used on the FROM 
 
 ## Syntax
 
-Syntax for SQL Server and Azure SQL Database:
+Syntax for SQL Server, Azure SQL Database, and Fabric SQL database:
 
 ```syntaxsql
 [ FROM { <table_source> } [ , ...n ] ]
@@ -1020,7 +1022,7 @@ SELECT *
 FROM Sales.Customer TABLESAMPLE SYSTEM(10 PERCENT);
 ```
 
-## Related conent
+## Related content
 
 - [CONTAINSTABLE (Transact-SQL)](../../relational-databases/system-functions/containstable-transact-sql.md)
 - [FREETEXTTABLE (Transact-SQL)](../../relational-databases/system-functions/freetexttable-transact-sql.md)

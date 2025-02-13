@@ -8,6 +8,8 @@ ms.date: 06/04/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "concatenation"
   - "string"
@@ -16,12 +18,12 @@ helpviewer_keywords:
   - "||= (string concatenation with compound assignment)"
 dev_langs:
   - "TSQL"
-monikerRange: "=azuresqldb-current"
+monikerRange: "=azuresqldb-current || =fabric"
 ---
 
 # ||= (Compound assignment) (Transact-SQL)
 
-[!INCLUDE [asdb](../../includes/applies-to-version/asdb.md)]
+[!INCLUDE [asdb-fabricsqldb](../../includes/applies-to-version/asdb-fabricsqldb.md)]
 
 The `||=` concatenation with compound assignment operator can be used to [concatenate an expression](string-concatenation-pipes-transact-sql.md) with the value of a character or binary string variable, and then assign the resulting expression to the variable.
 

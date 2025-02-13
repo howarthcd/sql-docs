@@ -25,9 +25,9 @@ This how-to guide outlines the steps to create an [Azure SQL Managed Instance](s
 
 ## Prerequisites
 
-- To provision a SQL Managed Instance with a user-assigned managed identity, the [SQL Managed Instance Contributor](/azure/role-based-access-control/built-in-roles#sql-managed-instance-contributor) role (or a role with greater permissions), along with an Azure RBAC role containing the following action is required:
-  - Microsoft.ManagedIdentity/userAssignedIdentities/*/assign/action - For example, the [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) has this action.
 - Create a user-assigned managed identity and assign it the necessary permission to be a server or managed instance identity. For more information, see [Manage user-assigned managed identities](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) and [user-assigned managed identity permissions for Azure SQL](../database/authentication-azure-ad-user-assigned-managed-identity.md#permissions).
+- In the general case, the managed identity needs to have the role [SQL Managed Instance Contributor](/azure/role-based-access-control/built-in-roles#sql-managed-instance-contributor) assigned at subscription scope. In addition, it needs to have an Azure RBAC role with the permission Microsoft.ManagedIdentity/userAssignedIdentities/\*/assign/action (e.g., [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator)) at subscription scope.
+- If provisioning in a subnet that is already delegated to Azure SQL Managed Instance, the managed identity only needs the Microsoft.Sql/managedInstances/write permission assigned at subscription scope.
 - [Az.Sql module 3.4](https://www.powershellgallery.com/packages/Az.Sql/3.4.0) or higher is required when using PowerShell for user-assigned managed identities.
 - [The Azure CLI 2.26.0](/cli/azure/install-azure-cli) or higher is required to use the Azure CLI with user-assigned managed identities.
 - For a list of limitations and known issues with using user-assigned managed identity, see [User-assigned managed identity in Microsoft Entra for Azure SQL](../database/authentication-azure-ad-user-assigned-managed-identity.md#limitations-and-known-issues)

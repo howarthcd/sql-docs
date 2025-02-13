@@ -7,13 +7,15 @@ ms.date: "08/03/2017"
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 helpviewer_keywords:
   - "CurveToLineWithTolerance method (geometry)"
 dev_langs:
   - "TSQL"
 ---
 # CurveToLineWithTolerance (geometry Data Type)
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 Returns a polygonal approximation of a **geometry** instance that contains circular arc segments.
   
@@ -111,4 +113,3 @@ Returns a polygonal approximation of a **geometry** instance that contains circu
  [STCurveToLine &#40;geometry Data Type&#41;](../../t-sql/spatial-geometry/stcurvetoline-geometry-data-type.md)  
   
   
-

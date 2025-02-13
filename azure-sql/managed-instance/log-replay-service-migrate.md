@@ -4,7 +4,7 @@ description: Learn how to migrate databases from a SQL Server to Azure SQL Manag
 author: danimir
 ms.author: danil
 ms.reviewer: mathoma
-ms.date: 10/30/2024
+ms.date: 12/16/2024
 ms.service: azure-sql-managed-instance
 ms.subservice: migration
 ms.topic: how-to
@@ -13,6 +13,7 @@ ms.collection:
 ms.custom:
   - devx-track-azurepowershell
   - devx-track-azurecli
+  - ignite-2024
 ---
 
 # Migrate databases from SQL Server by using Log Replay Service - Azure SQL Managed Instance 
@@ -31,16 +32,13 @@ The following sources are supported:
 
 ## Prerequisites
 
-Before you begin, consider the following requirements for both your SQL Server instance and Azure. Carefully review the [limitations](#limitations) and [best practices](#best-practices) sections to ensure a successful migration.
-
 > [!IMPORTANT]
 > - Before you migrate databases to the **Business Critical** service tier, consider [these limitations](#limitations-when-migrating-to-the-business-critical-service-tier), which don't apply to the General Purpose service tier.
 > - You can't use databases that are being restored through LRS until the migration process finishes. 
 > - LRS doesn't support read-only access to databases during the migration.
 > - After the migration finishes, the migration process is final and can't be resumed with additional differential backups.
 
-Before you migrate databases to the **Business Critical** service tier, consider [these limitations](#limitations-when-migrating-to-the-business-critical-service-tier), which don't apply to the General Purpose service tier.
-
+Before you begin, consider the requirements in this section for both your SQL Server instance and Azure. Carefully review the [limitations](#limitations) and [best practices](#best-practices) sections to ensure a successful migration. 
 
 ### SQL Server 
 
@@ -84,7 +82,8 @@ When you're using LRS, consider the following best practices:
 - Plan to complete a single LRS migration job within a maximum of 30 days. On expiration of this time frame, the LRS job is automatically canceled.
 - To prevent unintentionally migrating a corrupt database, and for a faster database restore, enable `CHECKSUM` when you're taking your backups. Although SQL Managed Instance performs a basic integrity check on backups without `CHECKSUM`, catching all forms of corruption isn't guaranteed. Taking backups with `CHECKSUM` is the only way to ensure the backup restored to SQL Managed Instance isn't corrupt. The basic integrity check on backups without `CHECKSUM` increases the restore time of a database. 
 - When migrating to the **Business Critical** service tier, account for a [prolonged delay](#longer-cutover-in-the-business-critical-service-tier) in database availability after cutover, while databases are seeded to secondary replicas. For especially large databases with minimal downtime requirements, consider migrating to the General Purpose service tier first and then upgrading to the **Business Critical** service tier, or using the [Managed Instance link](managed-instance-link-migrate.md) to migrate your data. 
-- Uploading thousands of database files to restore can lead to excessive migration times and even failure. Consolidate databases into fewer files to speed up the migration process, and ensure it's success. 
+- Uploading thousands of database files to restore can lead to excessive migration times and even failure. Consolidate databases into fewer files to speed up the migration process, and ensure its success. 
+- To minimize cutover time and reduce the risk of failure, make sure your last backup is as small as possible. 
 
 ### Configure a maintenance window
 
@@ -631,7 +630,11 @@ Consider the following limitations when migrating with LRS:
 - A single LRS job can run for a maximum of 30 days, after which it will be automatically canceled.
 - While it's possible to use an Azure Storage account behind a firewall, extra configuration is necessary, and the storage account and managed instance must either be in the same region, or two paired regions. Review [Configure firewall](log-replay-service-migrate.md#configure-azure-storage-behind-a-firewall) to learn more. 
 - The maximum number of databases you can restore in parallel is 200 per single subscription. In some cases, it's possible to increase this limit by opening a support ticket. 
-- Uploading thousands of database files to restore can lead to excessive migration times and even failure. Consolidate databases into fewer files to speed up the migration process, and ensure it's success. 
+- Uploading thousands of database files to restore can lead to excessive migration times and even failure. Consolidate databases into fewer files to speed up the migration process, and ensure its success. 
+- There are two scenarios, at the beginning and end of the migration process, where a migration is aborted if a failover occurs, and the migration job must be manually restarted from the beginning as the database is dropped from SQL Managed Instance: 
+   - If a failover occurs when the first full database backup is in the process of being restored to SQL Managed Instance when the migration job is first started, then the migration job must be manually restarted from the beginning. 
+   - If a failover occurs after migration cutover is initiated, the migration job must be manually restarted from the beginning. Ensure the last backup file is as small as possible to minimize cutover time and reduce the risk of a failover during the cutover process.
+   
 
 > [!NOTE]
 > If you require a database to be read-only accessible during the migration, with a much longer time frame for performing the migration and with minimal downtime, consider using the [Managed Instance link](managed-instance-link-feature-overview.md) feature as a recommended migration solution.
@@ -654,7 +657,7 @@ If you're migrating to a SQL Managed Instance in the **Business Critical** servi
 Migrating to a SQL Managed Instance in the **Business Critical** service tier takes longer to complete than in the General Purpose service tier. After cutover to Azure completes, databases are unavailable until they've been seeded from the primary replica to the three secondary replicas, which can take a prolonged amount of time depending on your database size. The larger the database, the longer seeding to the secondary replicas takes - up to several hours, potentially.
 
 If it's important that databases are available as soon as cutover completes, then consider the following workarounds: 
-- Migrate to the General Purpose service tier first, and then upgrade to the **Business Critical** service tier during a subsequent maintenance window. Upgrading your service tier is an online operation that keeps your databases online until a short failover as the final step of the upgrade operation. 
+- Migrate to the General Purpose service tier first, and then upgrade to the **Business Critical** service tier. Upgrading your service tier is an online operation that keeps your databases online until a short failover as the final step of the upgrade operation. 
 - Use the [Managed Instance link](managed-instance-link-migrate.md) for an online migration to a **Business Critical** instance without having to wait for databases to be available after the cutover. 
 
 ## Troubleshoot LRS issues

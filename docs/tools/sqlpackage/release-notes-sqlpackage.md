@@ -15,6 +15,41 @@ ms.custom: tools|sos
 
 This article lists the features and fixes delivered by the released versions of SqlPackage.
 
+## 162.5.57 SqlPackage
+
+**Release date:** November 21, 2024
+
+```bash
+dotnet tool install -g microsoft.sqlpackage --version 162.5.57
+```
+
+|Platform|Download|
+|:---|:---|
+|Windows .NET 8 |[.zip file](https://go.microsoft.com/fwlink/?linkid=2297835)|
+|Windows|[.msi file](https://go.microsoft.com/fwlink/?linkid=2297931)|
+|macOS .NET 8 |[.zip file](https://go.microsoft.com/fwlink/?linkid=2297647)|
+|Linux .NET 8 |[.zip file](https://go.microsoft.com/fwlink/?linkid=2297646)|
+
+### Features
+
+|Feature|Details|
+|:---|:---|
+| Dacpacs | System dacpac updates for Synapse Serverless and Azure SQL Database. |
+| Diagnostics | Adds a new command line parameter to specify the logging level. `/DiagnosticsLevel:` |
+| Diagnostics | Adds a new command line parameter to output a `.zip` diagnostics package, containing target and source model information along with diagnostic logging, deploy script, and deploy report. `/DiagnosticPackageFile:` |
+| Fabric Data Warehouse | Adds support for publish to Fabric Data Warehouse databases where table alter statements are required. |
+| SQL database in Fabric | Adds support for [SQL database in Fabric](/fabric/database/sql/overview) in the target platform `SqlDbFabricDatabaseSchemaProvider`. |
+
+### Fixes
+
+|Feature|Details|
+|:---|:---|
+| Deployment | Fixes an issue where a deployment will fail if there's a stored procedure or function referencing memory-optimized system-versioned table and the a database is missing a memory-optimized system-versioned table due to being created by DBCC CLONEDATABASE. [GitHub](https://github.com/microsoft/DacFx/issues/417) |
+| Deployment | Fixes an issue where deployments to Synapse Serverless with role membership changes would fail. |
+| Deployment | Fixes an issue where deployments with a master key would fail if the password on the master key was not set. [DevCom](https://developercommunity.visualstudio.com/t/Error-when-publishing-SQL-DB-locally:-T/10732457) |
+| Import | Fixes an issue with clustered columnstore indexes with nvarchar(max), varchar(max), and varbinary(max) types fail to import. [GitHub](https://github.com/microsoft/DacFx/issues/475) |
+| Import | Fixes an issue where importing a database with DDL triggers fails because the triggers are enabled before the data import is completed. |
+
 ## 162.4.92 SqlPackage
 
 **Release date:** September 18, 2024
@@ -230,7 +265,7 @@ dotnet tool install -g microsoft.sqlpackage --version 162.1.172
 | Azure Synapse Analytics | Fixes an issue where a publish operation fails to parse a statement containing the `filepath()` or `filename()` [functions](/azure/synapse-analytics/sql/query-specific-files). |
 | Import | AUTO_DROP option is excluded from statistics when importing a bacpac to a version of SQL Server that doesn't support AUTO_DROP. |
 | Import | Fixes an issue where imports of databases containing ALTER or CREATE of availability groups would fail to import. |
-| Export | Fixes an issue where dropped ledger columns were inclued in a bacpac export, resulting in an error message during import. |
+| Export | Fixes an issue where dropped ledger columns were included in a bacpac export, resulting in an error message during import. |
 | Export | Fixes an issue where /p:CompressionOption wasn't honored when exporting to a bacpac file. |
 | Extract | Fixes an issue where /p:ExtractTarget options for non-dacpac options still required the target file to have a .dacpac extension. [GitHub issue](https://github.com/microsoft/DacFx/issues/128) |
 | Ledger | Fixes an issue where import or publish of a database containing a dropped ledger table fails due to attempting to create permissions for the dropped table. |

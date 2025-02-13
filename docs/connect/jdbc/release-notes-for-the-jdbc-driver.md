@@ -3,7 +3,7 @@ title: Release notes
 description: This article lists the releases of the Microsoft JDBC Driver for SQL Server. For each release version, the changes are named and described.
 author: David-Engel
 ms.author: davidengel
-ms.date: 08/29/2024
+ms.date: 12/11/2024
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: conceptual
@@ -106,7 +106,7 @@ For the driver in a tar.gz file: [Chinese (Simplified)](https://go.microsoft.com
 | Added token cache map to fix use of unintended auth token for subsequent connections | This fixes an issue where client credentials could be inadvertently reused. While the auth token was correctly cached, the driver was reusing the token with only the client secret changed. [GitHub Issue #2334](https://github.com/microsoft/mssql-jdbc/issues/2334). |
 | Fixed support for `exec` escape syntax in CallableStatements | This fixes an issue where, after removing the wrapped `sp_executesql`/`sp_prepexec` calls in order to execute CallableStatements quickly, `EXEC` calls were no longer working. [GitHub Issue #2325](https://github.com/microsoft/mssql-jdbc/issues/2325). |
 | Fix to ensure `Money` and `SmallMoney` are within the correct ranges for bulk copy | This fixes an issue where, when using bulk copy with `Money` or `SmallMoney` values, conversion to/from the values can cause an `ArithmeticOverflowException`. [GitHub Issue #2309](https://github.com/microsoft/mssql-jdbc/issues/2309). |
-| Fix to ensure `ResultSetMetadata` for  `DataabseMetadata.getColumns()` is correct for all columns | The returned metadata was incorrect for some columns, this change fixes that problem. [GitHub Issue #2232](https://github.com/microsoft/mssql-jdbc/issues/2232). |
+| Fix to ensure `ResultSetMetadata` for  `DatabaseMetadata.getColumns()` is correct for all columns | The returned metadata was incorrect for some columns, this change fixes that problem. [GitHub Issue #2232](https://github.com/microsoft/mssql-jdbc/issues/2232). |
 | Fix to properly turn off connection retries when `connectRetryCount` is set to `0` | This fixes the behavior where, even with `connectRetryCount` set to 0, the driver attempted to retry until `loginTimeout` was reached. [GitHub Issue #2232](https://github.com/microsoft/mssql-jdbc/issues/2232). [GitHub Issue #2188](https://github.com/microsoft/mssql-jdbc/issues/2188).|
 | Fix to address a `ClassLoader` leak of `ActivityCorrelator` `ThreadLocal` | Fixes an issue where, after previous driver changes to `ActivityId`, `ThreadLocal` in `ActivityCorrelator` is never being removed from the thread. |
 | Fix to execute stored procedures directly for RPC calls | RPC calls were using prior logic by being wrapped in `sp_executesql` calls; this change fixes that behavior. |
@@ -244,7 +244,7 @@ For the driver in a tar.gz file: [Chinese (Simplified)](https://go.microsoft.com
 | Fixed a missing null check for e.getCause() | Fix for an issue where, when an exception has no cause, the exception itself is passed along instead, preventing it from being lost. [GitHub Issue #2299](https://github.com/microsoft/mssql-jdbc/issues/2299).|
 | Fixed locks in IOBuffer to prevent deadlock issues that could arise | Fixed implementation of locks in IOBuffer, specifically around disableSSL, to prevent deadlocks that could arise in certain situations. [GitHub Issue #2288](https://github.com/microsoft/mssql-jdbc/issues/2288). [GitHub Issue #2265](https://github.com/microsoft/mssql-jdbc/issues/2265).|
 | Fix for an issue with Timestamps and bulk copy for batch insert | Fixed timezone not being properly applied to Timestamps when inserted using batch insert with bulk copy. [GitHub Issue #2271](https://github.com/microsoft/mssql-jdbc/issues/2271).|
-| Fixed missing getters and setters for `useBulkCopyForBatchInsert` | Fix for an issue where behavior wasn't the same between `SQLServerConnection` and `SQLServerConnnectionPoolProxy`, when it should be, as `useBulkCopyForBatchInsert` was missing a getter and setter in the latter. [GitHub Issue #2245](https://github.com/microsoft/mssql-jdbc/issues/2245).|
+| Fixed missing getters and setters for `useBulkCopyForBatchInsert` | Fix for an issue where behavior wasn't the same between `SQLServerConnection` and `SQLServerConnectionPoolProxy`, when it should be, as `useBulkCopyForBatchInsert` was missing a getter and setter in the latter. [GitHub Issue #2245](https://github.com/microsoft/mssql-jdbc/issues/2245).|
 | Fixed bulk copy metadata query to make use of cached data, if available | Fix for an issue where, despite the data being cached, calls for column metadata were being called each time. [GitHub Issue #2224](https://github.com/microsoft/mssql-jdbc/issues/2224).|
 | Fixed a missing BigDecimal scale check for TVP values | Fix for an issue where, when writing TVP row values, input values weren't properly filtered for BigDecimal scale. [GitHub Issue #2222](https://github.com/microsoft/mssql-jdbc/issues/2222).|
 | Fixed schemaPattern in SQLServerDatabaseMetadata to ensure methods that use the parameter properly escape it. | Fix for an issue where schemaPattern was the only pattern not properly being escaped in SQLServerDatabaseMetadata. [GitHub Issue #2186](https://github.com/microsoft/mssql-jdbc/issues/2186).|
@@ -1364,12 +1364,31 @@ The driver uses a new connection property to facilitate flexibility with Kerbero
 
 ## 4.1
 
+:::image type="icon" source="../../includes/media/download.svg" border="false"::: **[Download Microsoft JDBC Driver 4.1 for SQL Server (self-extracting exe)](https://go.microsoft.com/fwlink/?linkid=2299365)**  
+:::image type="icon" source="../../includes/media/download.svg" border="false"::: **[Download Microsoft JDBC Driver 4.1 for SQL Server (tar.gz)](https://go.microsoft.com/fwlink/?linkid=2299693)**  
+
 Version number: 4.1.8112  
 Released: December 12, 2014
+
+If you need to download the driver in a language other than the one detected for you, you can use these direct links.  
+For the driver in a self-extracting exe file: [Chinese (Simplified)](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x804) | [Chinese (Traditional)](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x404) | [English (United States)](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x409) | [French](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x40c) | [German](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x407) | [Italian](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x410) | [Japanese](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x411) | [Korean](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x412) | [Portuguese (Brazil)](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x416) | [Russian](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x419) | [Spanish](https://go.microsoft.com/fwlink/?linkid=2299365&clcid=0x40a)  
+For the driver in a tar.gz file: [Chinese (Simplified)](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x804) | [Chinese (Traditional)](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x404) | [English (United States)](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x409) | [French](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x40c) | [German](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x407) | [Italian](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x410) | [Japanese](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x411) | [Korean](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x412) | [Portuguese (Brazil)](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x416) | [Russian](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x419) | [Spanish](https://go.microsoft.com/fwlink/?linkid=2299693&clcid=0x40a)
 
 ### Support for JDK 7
 
 The driver supports JDK version 7.0 in addition to JDK 6.0 and 5.0.
+
+## 4.0
+
+:::image type="icon" source="../../includes/media/download.svg" border="false"::: **[Download Microsoft JDBC Driver 4.0 for SQL Server (self-extracting exe)](https://go.microsoft.com/fwlink/?linkid=2299366)**  
+:::image type="icon" source="../../includes/media/download.svg" border="false"::: **[Download Microsoft JDBC Driver 4.0 for SQL Server (tar.gz)](https://go.microsoft.com/fwlink/?linkid=2299694)**  
+
+Version number: 4.0.2206  
+Released: March 6, 2012
+
+If you need to download the driver in a language other than the one detected for you, you can use these direct links.  
+For the driver in a self-extracting exe file: [Chinese (Simplified)](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x804) | [Chinese (Traditional)](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x404) | [English (United States)](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x409) | [French](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x40c) | [German](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x407) | [Italian](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x410) | [Japanese](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x411) | [Korean](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x412) | [Portuguese (Brazil)](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x416) | [Russian](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x419) | [Spanish](https://go.microsoft.com/fwlink/?linkid=2299366&clcid=0x40a)  
+For the driver in a tar.gz file: [Chinese (Simplified)](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x804) | [Chinese (Traditional)](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x404) | [English (United States)](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x409) | [French](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x40c) | [German](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x407) | [Italian](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x410) | [Japanese](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x411) | [Korean](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x412) | [Portuguese (Brazil)](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x416) | [Russian](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x419) | [Spanish](https://go.microsoft.com/fwlink/?linkid=2299694&clcid=0x40a)
 
 ## Itanium not supported for JDBC Driver applications
 

@@ -6,17 +6,20 @@ ms.author: drskwier
 ms.reviewer: maghan, randolphwest
 ms.date: 08/30/2024
 ms.service: sql
+ms.subservice: sql-database-projects
 ms.topic: concept-article
-zone_pivot_groups: sq1-sql-projects-tools
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "sql.data.tools.adddatabasereference.dialog"
   - "sql.data.tools.newdatabase.dialog"
   - "sql.data.tools.criticalerror.dialog"
+zone_pivot_groups: sq1-sql-projects-tools
 ---
 
 # Database references overview
 
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 Database references in SQL projects enable you to incorporate objects that aren't included in a project by linking to another project, `.dacpac` file, or published NuGet package. The database objects added to a project can be part of the same database, a different database on the same server, or a different database on a different server. For SQL Server development, database references can be used to link to another database on the same server for three-part naming, or to link to a different database on a different server for cross-database queries. For databases with a large number of objects in distinct groups, database references can be used to break up a database into smaller, more manageable projects. Smaller project size can help to improve performance and reduce the time required to build a project during iterative local development.
 

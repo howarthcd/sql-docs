@@ -7,6 +7,8 @@ ms.reviewer: wiassaf
 ms.date: 04/25/2024
 ms.service: sql
 ms.topic: concept-article
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "sql13.swb.exportdac.progress.f1"
   - "sql13.swb.exportdac.summary.f1"
@@ -21,12 +23,12 @@ helpviewer_keywords:
   - "wizard [DAC], export"
   - "export DAC"
   - "data-tier application [SQL Server], export"
-monikerRange: "=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
+monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 
 # Export a Data-tier Application
 
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 Exporting a deployed data-tier application (DAC) or database creates an export file that includes the definitions of the objects in the database and all of the data in the tables. The export file can then be imported to another instance of the [!INCLUDE [ssDE](../../includes/ssde-md.md)], or to [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)]. The export-import operations can be combined to migrate a DAC between instances, to create an archive, or to create an on-premises copy of a database deployed in [!INCLUDE [ssSDS](../../includes/sssds-md.md)].
 
@@ -78,7 +80,7 @@ This page describes the steps for the Export Data-tier Application Wizard.
 
 **Cancel** - Cancels the operation and closes the Wizard.
 
-:::image type="content" source="export-a-data-tier-application/introduction.png" alt-text="Screensheet of the export a data-tier application introduction page." lightbox="export-a-data-tier-application/introduction.png":::
+:::image type="content" source="export-a-data-tier-application/introduction.png" alt-text="Screenshot of the export a data-tier application introduction page." lightbox="export-a-data-tier-application/introduction.png":::
 
 ### <a id="Export_settings"></a> Export Settings page
 

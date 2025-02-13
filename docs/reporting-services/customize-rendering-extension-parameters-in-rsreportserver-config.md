@@ -1,8 +1,8 @@
 ---
 title: "Customize rendering extension parameters in RSReportServer.Config"
 description: Specify rendering extension parameters in the RSReportServer configuration file to override default report rendering behavior for Reporting Services reports.
-author: maggiesMSFT
-ms.author: maggies
+author: kfollis
+ms.author: kfollis
 ms.date: 09/25/2024
 ms.service: reporting-services
 ms.subservice: reporting-services
@@ -108,7 +108,7 @@ helpviewer_keywords:
     </Extension>  
     <Extension Name="IMAGE (EMF Portrait)" Type="Microsoft.ReportingServices.Rendering.ImageRenderer.ImageRenderer,Microsoft.ReportingServices.ImageRendering">  
         <OverrideNames>  
-            <Name Language="en-US">EMF in Portait Mode</Name>  
+            <Name Language="en-US">EMF in Portrait Mode</Name>  
         </OverrideNames>  
         <Configuration>  
             <DeviceInfo>  

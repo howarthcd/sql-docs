@@ -1,8 +1,8 @@
 ---
 title: Manage schema in a single-tenant app
 description: Manage Schema for multiple tenants in a single-tenant app that uses Azure SQL Database
-author: bgavrilMS
-ms.author: bogavril
+author: bgavrilovicMS
+ms.author: bgavrilovic
 ms.reviewer: mathoma, wiassaf
 ms.date: 09/19/2018
 ms.service: azure-sql-database

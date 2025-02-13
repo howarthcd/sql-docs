@@ -3,7 +3,7 @@ title: "BACKUP (Transact-SQL)"
 description: BACKUP (Transact-SQL) backs up a SQL database.
 author: MikeRayMSFT
 ms.author: mikeray
-ms.date: 12/28/2023
+ms.date: 12/18/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -542,7 +542,7 @@ The total space used by the buffers is determined by: `BUFFERCOUNT * MAXTRANSFER
 > For important information about using the `BUFFERCOUNT` option, see the [Incorrect BufferCount data transfer option can lead to OOM condition](/archive/blogs/sqlserverfaq/incorrect-buffercount-data-transfer-option-can-lead-to-oom-condition) blog.
 
 #### MAXTRANSFERSIZE = { *maxtransfersize* | _@ maxtransfersize\_variable_ }
-Specifies the largest unit of transfer in bytes to be used between [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] and the backup media. The possible values are multiples of 65536 bytes (64 KB) ranging up to 4194304 bytes (4 MB).
+Specifies the largest unit of transfer in bytes to be used between [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] and the backup media. The possible values are multiples of 65536 bytes (64 KB) ranging up to 4194304 bytes (4 MB). In a specific case of backup to URL to S3-compatible object storage, `MAXTRANSFERSIZE` is 10 MB. For more information, see [Remarks](#remarks).
 
 When creating backups by using the SQL Writer Service, if the database has configured [FILESTREAM](../../relational-databases/blob/filestream-sql-server.md), or includes [memory optimized filegroups](../../relational-databases/in-memory-oltp/the-memory-optimized-filegroup.md), then the `MAXTRANSFERSIZE` at the time of a restore should be greater than or equal to the `MAXTRANSFERSIZE` that was used when the backup was created.
 

@@ -119,9 +119,9 @@ To set the Microsoft Entra administrator:
     :::image type="content" source="media\secure-database-tutorial\admin-settings.png" alt-text="Screenshot of the Azure portal Microsoft Entra ID page for a logical server." lightbox="media\secure-database-tutorial\admin-settings.png":::
 
     > [!IMPORTANT]
-    > You need to be a "Global Administrator" to perform this task.
+    > You need to be a Privileged Role Administrator or higher role to perform this task.
 
-1. On the **Microsoft Entra ID** pane, search and select the Microsoft Entra user or group and choose **Select**. All members and groups of your Microsoft Entra organization are listed, and entries grayed out are [not supported as Microsoft Entra administrators](authentication-aad-overview.md#microsoft-entra-administrator). 
+1. On the **Microsoft Entra ID** pane, search and select the Microsoft Entra user or group and choose **Select**. All members and groups of your Microsoft Entra organization are listed, and entries grayed out are [not supported as Microsoft Entra administrators](authentication-aad-overview.md#microsoft-entra-administrator).
 
     :::image type="content" source="media\secure-database-tutorial\admin-select.png" alt-text="Screenshot of the Azure portal page to add a Microsoft Entra admin.":::
 
@@ -340,7 +340,7 @@ To enable or verify encryption:
 
 ## Related content
 
-- [Try Azure SQL Database for free (preview)](free-offer.md)
+- [Deploy Azure SQL Database for free](free-offer.md)
 - [What's new in Azure SQL Database?](doc-changes-updates-release-notes-whats-new.md)
 - [Configure and manage content reference - Azure SQL Database](how-to-content-reference-guide.md)
 - [Plan and manage costs for Azure SQL Database](cost-management.md)

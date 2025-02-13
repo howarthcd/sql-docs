@@ -63,7 +63,7 @@ When the application is connecting to Azure SQL data sources by using Microsoft 
 // Use your own server, database, user ID, and password.
 string ConnectionString = @"Server=demo.database.windows.net;"
    + "Authentication=Active Directory Password; Encrypt=True; Database=testdb;"
-   + "User Id=user@domain.com; Password=***";
+   + "User Id=user@domain.com; Password=<password>";
 
 using (SqlConnection conn = new SqlConnection(ConnectionString)) {
     conn.Open();
@@ -140,7 +140,7 @@ The following example shows how to use `Active Directory Service Principal` auth
 // Use your own server, database, app ID, and secret.
 string ConnectionString = @"Server=demo.database.windows.net;"
   + "Authentication=Active Directory Service Principal; Encrypt=True;"
-  + "Database=testdb; User Id=AppId; Password=secret";
+  + "Database=testdb; User Id=AppId; Password=<password>";
 
 using (SqlConnection conn = new SqlConnection(ConnectionString)) {
     conn.Open();
@@ -387,8 +387,8 @@ public class ActiveDirectoryAuthenticationProvider
     public void SetIWin32WindowFunc(Func<IWin32Window> iWin32WindowFunc);
 
     // For .NET Standard targeted applications only
-    // Sets a reference to the ViewController (if using Xamarin.iOS), Activity
-    // (if using Xamarin.Android) IWin32Window, or IntPtr (if using .NET Framework). 
+    // Sets a reference to the ViewController (if using .NET for iOS), Activity
+    // (if using .NET for Android) IWin32Window, or IntPtr (if using .NET Framework). 
     // Used for invoking the browser for Active Directory Interactive authentication.
     public void SetParentActivityOrWindowFunc(Func<object> parentActivityOrWindowFunc);
 

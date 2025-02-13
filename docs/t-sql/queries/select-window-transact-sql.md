@@ -8,6 +8,8 @@ ms.date: 07/26/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "WINDOW"
 helpviewer_keywords:
@@ -20,12 +22,12 @@ helpviewer_keywords:
   - "summary values [SQL Server]"
 dev_langs:
   - "TSQL"
-monikerRange: ">=sql-server-ver16 || >=sql-server-linux-ver16"
+monikerRange: "=azuresqldb-current || >=sql-server-ver16 || =azuresqldb-mi-current || >=sql-server-linux-ver16 || =fabric"
 ---
 
 # SELECT - WINDOW clause (Transact-SQL)
 
-[!INCLUDE [sqlserver2022](../../includes/applies-to-version/sqlserver2022-asdb-asmi.md)]
+[!INCLUDE [sqlserver2022-asdb-asmi-fabricsqldb](../../includes/applies-to-version/sqlserver2022-asdb-asmi-fabricsqldb.md)]
 
 The named window definition in the `WINDOW` clause determines the partitioning and ordering of a rowset before the window function, which uses the window in an `OVER` clause.
 

@@ -82,13 +82,13 @@ Examples of connection strings enabling enclave computations for a database conn
 - [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)]:
   
    ```cpp
-   "Driver=ODBC Driver 18 for SQL Server;Server=myServer.database.windows.net;Database=myDataBase;Uid=myUsername;Pwd=myPassword;Encrypt=yes;ColumnEncryption=SGX-AAS,https://myAttestationProvider.uks.attest.azure.net/"
+   "Driver=ODBC Driver 18 for SQL Server;Server=myServer.database.windows.net;Database=myDataBase;Uid=myUsername;Pwd=<password>;Encrypt=yes;ColumnEncryption=SGX-AAS,https://myAttestationProvider.uks.attest.azure.net/"
    ```
 
 - No attestation (v18.1+):
   
    ```cpp
-   "Driver=ODBC Driver 18 for SQL Server;Server=myServer.database.windows.net;Database=myDataBase;Uid=myUsername;Pwd=myPassword;Encrypt=yes;ColumnEncryption=VBS-NONE"
+   "Driver=ODBC Driver 18 for SQL Server;Server=myServer.database.windows.net;Database=myDataBase;Uid=myUsername;Pwd=<password>;Encrypt=yes;ColumnEncryption=VBS-NONE"
    ```
 
 If the server and attestation service are configured correctly along with enclave-enabled CMKs and CEKs for the encrypted columns, you can execute queries that use the enclave such as in-place encryption and rich computations, in addition to the existing functionality provided by Always Encrypted. For more information, see [Configure Always Encrypted with secure enclaves](../../relational-databases/security/encryption/configure-always-encrypted-enclaves.md).
@@ -704,7 +704,7 @@ For more information, see [Migrate Sensitive Data Protected by Always Encrypted]
 |--|--|
 | `ColumnEncryption` | Accepted values are `Enabled`/`Disabled`.<br>`Enabled` - enables Always Encrypted functionality for the connection.<br>`Disabled` - disable Always Encrypted functionality for the connection.<br>*attestation protocol*, *attestation URL* - (version 17.4 and later) enables Always Encrypted with secure enclave using the specified attestation protocol and the attestation URL. <br><br>The default is `Disabled`. |
 | `KeyStoreAuthentication` | Valid Values: `KeyVaultPassword`, `KeyVaultClientSecret`, `KeyVaultInteractive`, `KeyVaultManagedIdentity` |
-| `KeyStorePrincipalId` | When `KeyStoreAuthentication` = `KeyVaultPassword`, set this value to a valid Microsoft Entra user principal name. <br>When `KeyStoreAuthetication` = `KeyVaultClientSecret` set this value to a valid Microsoft Entra application client ID <br>When `KeyStoreAuthetication` = `KeyVaultManagedIdentity`, set this value to the object ID of a user-assigned managed identity. If no value is provided, the system-assigned managed identity is used. |
+| `KeyStorePrincipalId` | When `KeyStoreAuthentication` = `KeyVaultPassword`, set this value to a valid Microsoft Entra user principal name. <br>When `KeyStoreAuthentication` = `KeyVaultClientSecret` set this value to a valid Microsoft Entra application client ID <br>When `KeyStoreAuthentication` = `KeyVaultManagedIdentity`, set this value to the object ID of a user-assigned managed identity. If no value is provided, the system-assigned managed identity is used. |
 | `KeyStoreSecret` | When `KeyStoreAuthentication` = `KeyVaultPassword` set this value to the password for the corresponding user name. <br>When `KeyStoreAuthentication` = `KeyVaultClientSecret` set this value to the application secret associated with a valid Microsoft Entra application client ID |
 
 ### Connection attributes

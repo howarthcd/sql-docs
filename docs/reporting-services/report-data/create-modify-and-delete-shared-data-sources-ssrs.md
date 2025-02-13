@@ -1,8 +1,8 @@
 ---
 title: "Create, Modify, and Delete Shared Data Sources"
 description: Learn to manage data sources that can be referenced by multiple reports, models, and data-driven subscriptions that run on a Reporting Services report server.
-author: maggiesMSFT
-ms.author: maggies
+author: kfollis
+ms.author: kfollis
 ms.date: 09/25/2024
 ms.service: reporting-services
 ms.subservice: report-data
@@ -168,7 +168,7 @@ Deleting a shared data source deactivates any report, model, or data-driven subs
   
     -   Select **Windows authentication (integrated)** if you want to access the data using the credentials of the user who opened the report. Do not select this option if the SharePoint site or farm uses forms authentication or connects to the report server through a trusted account. Do not select this option if you want to schedule subscription or data processing for this report. This option works best when Kerberos authentication is enabled for your domain, or when the data source is on the same computer as the report server. If Kerberos authentication is not enabled, Windows credentials can only be passed to one other computer. This means that if the external data source is on another computer, requiring an additional connection, you will get an error instead of the data you expect.  
   
-    -   Select **Prompt for credentials** if you want the user to enter his or her credentials each time he or she runs the report. Do not select this option if you want to schedule subscription or data processing for this report.  
+    -   Select **Prompt for credentials** if you want the user to enter their credentials each time they run the report. Do not select this option if you want to schedule subscription or data processing for this report.  
   
     -   Select **Stored credentials** if you want to access the data using a single set of credentials. The credentials are encrypted before they are stored. You can select options that determine how the stored credentials are authenticated. Select Use as Windows credentials if the stored credentials belong to a Windows user account. Select **Set execution context to this account** if you want to set the execution context on the database server. For [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] databases, this option sets the SETUSER function. For more information, see [SETUSER &#40;Transact-SQL&#41;](../../t-sql/statements/setuser-transact-sql.md).  
   

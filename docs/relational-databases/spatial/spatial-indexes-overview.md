@@ -11,7 +11,9 @@ helpviewer_keywords:
 monikerRange: "=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
 ---
 # Spatial Indexes Overview
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]  
+
   [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] supports spatial data and spatial indexes. A *spatial index* is a type of extended index that allows you to index a spatial column. A spatial column is a table column that contains data of a spatial data type, such as **geometry** or **geography**.
 
 > [!TIP]
@@ -220,7 +222,7 @@ monikerRange: "=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||
 [spatial object].SpatialMethod([reference spatial object]) [ = | < ] [const literal or variable]  
 ```  
   
- The query optimizer understands the commutativity of spatial operations (that `@a.STIntersects(@b) = @b.STInterestcs(@a)` ). However, the spatial index will not be used if the beginning of a comparison does not contain the spatial operator (for example `WHERE 1 = spatial op` will not use the spatial index). To use the spatial index, rewrite the comparison (for example `WHERE spatial op = 1`).  
+ The query optimizer understands the commutativity of spatial operations (that `@a.STIntersects(@b) = @b.STIntersects(@a)` ). However, the spatial index will not be used if the beginning of a comparison does not contain the spatial operator (for example `WHERE 1 = spatial op` will not use the spatial index). To use the spatial index, rewrite the comparison (for example `WHERE spatial op = 1`).  
   
  As with any other index, when a spatial index is supported, the use of the spatial index is chosen based on cost, so the query optimizer might not choose to use the spatial index even though all requirements for using it are met. Use showplan to see if the spatial index was used and if necessary provide query hints to force a desired query plan.  
   

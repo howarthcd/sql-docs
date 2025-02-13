@@ -6,12 +6,15 @@ ms.author: drskwier
 ms.reviewer: maghan, randolphwest
 ms.date: 08/30/2024
 ms.service: sql
+ms.subservice: sql-database-projects
 ms.topic: overview
+ms.custom:
+  - ignite-2024
 ---
 
 # What are SQL database projects?
 
-[!INCLUDE [SQL Server 2022 Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sqlserver2022-asdb-asmi.md)]
+[!INCLUDE [SQL Server 2022 Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sqlserver2022-asdb-asmi-fabricsqldb.md)]
 
 A SQL database project is a local representation of SQL objects that comprise the schema for a single database, such as tables, stored procedures, or functions. The development cycle of a SQL database project enables database development to be integrated into a continuous integration and continuous deployment (CI/CD) workflows familiar as a development best practice.
 
@@ -84,13 +87,16 @@ New development work should consider using the SDK-style project format, as it's
 - NuGet [package references](concepts/package-references.md) for database references
 - Default globbing pattern for .sql files in the project
 
-SDK-style projects have a superset of functionality from original SQL projects and existing SQL projects can be converted to SDK-style projects through [modification of the project file](howto/convert-original-sql-project.md). The exception to the functionality coverage is support for SQLCLR objects, which require .NET Framework and aren't supported in SDK-style projects.
+SDK-style projects have a superset of functionality from original SQL projects and existing SQL projects can be converted to SDK-style projects through [modification of the project file](howto/convert-original-sql-project.md).
+
+The exception to the functionality coverage is support for SQLCLR objects, which require .NET Framework. A project that contains SQLCLR objects can be converted to an SDK-style project, but the project requires .NET Framework and must be built in Visual Studio on Windows. Once the project with the SQLCLR object is built, the `.dacpac` can be deployed with SqlPackage on .NET and .NET Framework and can be used as a `.dacpac` reference in a project (both same database or same server different database).
 
 ## Related content
 
 - [Project-Oriented Offline Database Development](../../ssdt/project-oriented-offline-database-development.md)
 - [SQL Database Projects extension](/azure-data-studio/extensions/sql-database-project-extension)
 - [SqlPackage](../sqlpackage/sqlpackage.md)
+- [Sample CI/CD pipelines for SQL projects](https://github.com/Azure-Samples/sql-projects-devops-samples)
 - [GitHub sql-action](https://github.com/azure/sql-action)
 - [Azure DevOps SQL deployments](/azure/devops/pipelines/targets/azure-sqldb)
 - [Data-tier applications (DAC)](../../relational-databases/data-tier-applications/data-tier-applications.md)

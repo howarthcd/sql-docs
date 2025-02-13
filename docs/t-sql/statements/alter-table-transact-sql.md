@@ -8,6 +8,8 @@ ms.date: 07/05/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "WAIT_AT_LOW_PRIORITY"
   - "ABORT_AFTER_WAIT"
@@ -57,7 +59,7 @@ helpviewer_keywords:
   - "table changes [SQL Server]"
 dev_langs:
   - "TSQL"
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current||=fabric"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 
 # ALTER TABLE (Transact-SQL)
@@ -971,7 +973,7 @@ For complete descriptions of the rebuild options, see [ALTER TABLE index_option]
 
 #### DATA_COMPRESSION
 
-**Applies to**: [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] ([!INCLUDE[sql2008-md](../../includes/sql2008-md.md)] and later) and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)].
+**Applies to**: [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] ([!INCLUDE[sql2008-md](../../includes/sql2008-md.md)] and later) and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)]. 
 
 Specifies the data compression option for the specified table, partition number, or range of partitions. The options are as follows:
 
@@ -995,6 +997,8 @@ COLUMNSTORE_ARCHIVE
 Applies only to columnstore tables, which are tables stored with a clustered columnstore index. COLUMNSTORE_ARCHIVE will further compress the specified partition to a smaller size. Use this option for archival or other situations that require less storage and can afford more time for storage and retrieval.
 
 To rebuild multiple partitions at the same time, see [index_option](../../t-sql/statements/alter-table-index-option-transact-sql.md). If the table doesn't have a clustered index, changing the data compression rebuilds the heap and the nonclustered indexes. For more information about compression, see [Data Compression](../../relational-databases/data-compression/data-compression.md).
+
+`ALTER TABLE REBUILD PARTITION WITH DATA COMPRESSION = ROW` or `PAGE` is not allowed on [!INCLUDE [fabric-sqldb](../../includes/fabric-sqldb.md)].
 
 #### XML_COMPRESSION
 
@@ -1154,6 +1158,8 @@ To add new rows of data, use [INSERT](../../t-sql/statements/insert-transact-sql
 
 If there are any execution plans in the procedure cache that reference the table, ALTER TABLE marks them to be recompiled on their next execution.
 
+In [!INCLUDE [fabric-sqldb](../../includes/fabric-sqldb.md)], some table features can be created but will not be [mirrored into the Fabric OneLake](/fabric/database/sql/mirroring-overview). For more information, see [Limitations of Fabric SQL database mirroring](/fabric/database/sql/mirroring-limitations).
+
 ## Change the size of a column
 
 You can change the length, precision, or scale of a column by specifying a new size for the column data type. Use the ALTER COLUMN clause. If data exists in the column, the new size can't be smaller than the maximum size of the data. Also, you can't define the column in an index, unless the column is a **varchar**, **nvarchar**, or **varbinary** data type and the index isn't the result of a PRIMARY KEY constraint. See the example in the short section titled [Altering a Column Definition](#alter_column).
@@ -1164,7 +1170,7 @@ Changes you specify in ALTER TABLE implement immediately. If the changes require
 
 **Applies to** [!INCLUDE [fabricdw](../../includes/fabric-dw.md)] in [!INCLUDE [fabric](../../includes/fabric.md)].
 
-ALTER TABLE cannot be part of an explict transaction.
+ALTER TABLE cannot be part of an explicit transaction.
 
 ### XEvents for partition switch
 

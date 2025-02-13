@@ -9,12 +9,15 @@ ms.date: "04/06/2022"
 ms.service: azure-sql-database
 ms.subservice: performance
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 dev_langs:
   - "TSQL"
 ms.devlang: tsql
+monikerRange: "=azuresql || =azuresql-db || =fabricsql"
 ---
 # Configure the max degree of parallelism (MAXDOP) in Azure SQL Database
-[!INCLUDE[appliesto-sqldb](../includes/appliesto-sqldb.md)]
+[!INCLUDE [appliesto-sqldb-fabricsqldb](../includes/appliesto-sqldb-fabricsqldb.md)]
 
   This article describes the **max degree of parallelism (MAXDOP)** configuration setting in Azure SQL Database. 
 

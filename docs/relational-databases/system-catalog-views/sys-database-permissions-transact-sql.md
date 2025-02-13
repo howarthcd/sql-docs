@@ -1,12 +1,14 @@
 ---
 title: "sys.database_permissions (Transact-SQL)"
-description: sys.database_permissions returns a row for every permission or column-exception permission in the database. 
+description: sys.database_permissions returns a row for every permission or column-exception permission in the database.
 author: VanMSFT
 ms.author: vanto
 ms.date: 06/16/2023
 ms.service: sql
 ms.subservice: system-objects
 ms.topic: "reference"
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "database_permissions"
   - "sys.database_permissions_TSQL"
@@ -16,10 +18,10 @@ helpviewer_keywords:
   - "sys.database_permissions catalog view"
 dev_langs:
   - "TSQL"
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current||=fabric"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # sys.database_permissions (Transact-SQL)
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
   Returns a row for every permission or column-exception permission in the database. For columns, there is a row for every permission that is different from the corresponding object-level permission. If the column permission is the same as the corresponding object permission, there is no row for it and the permission applied is that of the object.  
   
@@ -119,7 +121,24 @@ The following types of permissions are possible.
 |VWCM |VIEW ANY COLUMN MASTER KEY DEFINITION|DATABASE |  
 |VWCT|VIEW CHANGE TRACKING|TABLE, SCHEMA|  
 |VWDS|VIEW DATABASE STATE|DATABASE|  
-  
+
+## REVOKE and column-exception permissions
+
+In most cases, the REVOKE command will remove the GRANT or DENY entry from sys.database_permissions.
+
+However, it is possible to GRANT or DENY permissions on a object and then REVOKE that permission on a column. This column-exception permission will show up as REVOKE in sys.database_permissions. Consider the following example:
+
+```sql
+GRANT SELECT ON Person.Person TO [Sales];
+
+REVOKE SELECT ON Person.Person(AdditionalContactInfo) FROM [Sales];
+```
+
+These permissions will show up in sys.database_permissions as one GRANT (on the table) and one REVOKE (on the column).
+
+> [!IMPORTANT]  
+> REVOKE is different from DENY, as the `Sales` principal may still have access to the column through other permissions. Had we denied permissions rather than revoking them, `Sales` would not be able to view the contents of the column because DENY always supersedes GRANT. 
+
 ## Permissions
 
  Any user can see their own permissions. To see permissions for other users, requires VIEW DEFINITION, ALTER ANY USER, or any permission on a user. To see user-defined roles, requires ALTER ANY ROLE, or membership in the role (such as public).  

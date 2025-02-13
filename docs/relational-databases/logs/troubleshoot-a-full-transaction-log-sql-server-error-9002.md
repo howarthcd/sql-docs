@@ -112,7 +112,7 @@ BEGIN
     used_log_space_in_bytes,
     used_log_space_in_percent,
     log_space_in_bytes_since_last_backup
-    from ' + @dbname +'.sys.dm_db_log_space_usage'
+    from [' + @dbname +'].sys.dm_db_log_space_usage'
 
     BEGIN TRY
         exec (@SQL)
@@ -137,7 +137,7 @@ SELECT
         WHEN log_reuse_wait = 1 THEN 'No checkpoint has occurred since the last log truncation, or the head of the log has not yet moved beyond'
         WHEN log_reuse_wait = 2 THEN 'A log backup is required before the transaction log can be truncated.'
         WHEN log_reuse_wait = 3 THEN 'A data backup or a restore is in progress (all recovery models). Please wait or cancel backup'
-        WHEN log_reuse_wait = 4 THEN 'A long-running active transaction or a defferred transaction is keeping log from being truncated. You can attempt a log backup to free space or complete/rollback long transaction'
+        WHEN log_reuse_wait = 4 THEN 'A long-running active transaction or a deferred transaction is keeping log from being truncated. You can attempt a log backup to free space or complete/rollback long transaction'
         WHEN log_reuse_wait = 5 THEN 'Database mirroring is paused, or under high-performance mode, the mirror database is significantly behind the principal database. (Full recovery model only)'
         WHEN log_reuse_wait = 6 THEN 'During transactional replication, transactions relevant to the publications are still undelivered to the distribution database. Investigate the status of agents involved in replication or Changed Data Capture (CDC). (Full recovery model only.)'
         WHEN log_reuse_wait = 7 THEN 'A database snapshot is being created. This is a routine, and typically brief, cause of delayed log truncation.'
@@ -173,7 +173,7 @@ BEGIN
     if (@log_reuse_wait = 1)
     BEGIN
         select 'Consider running the checkpoint command to attempt resolving this issue or further t-shooting may be required on the checkpoint process. Also, examine the log for active VLFs at the end of file' as Recommendation
-        select 'USE ''' + @dbname+ '''; CHECKPOINT' as CheckpointCommand
+        select 'USE ' + QUOTENAME(@dbname) + '; CHECKPOINT' as CheckpointCommand
         select 'select * from sys.dm_db_log_info(' + CONVERT(varchar,@database_id)+ ')' as VLF_LogInfo
     END
     else if (@log_reuse_wait = 2)
@@ -205,7 +205,7 @@ BEGIN
 
     else if (@log_reuse_wait = 6)
     BEGIN
-        select 'Replication transactions still undelivered from publisher database ''' +@dbname+ ''' to Distribution database. Check the oldest non-distributed replication transaction. Also check if the Log Reader Agent is running and if it has encoutered any errors' as Recommendation
+        select 'Replication transactions still undelivered from publisher database ''' +@dbname+ ''' to Distribution database. Check the oldest non-distributed replication transaction. Also check if the Log Reader Agent is running and if it has encountered any errors' as Recommendation
         select 'DBCC OPENTRAN  (''' + @dbname + ''')' as CheckOldestNonDistributedTran
         select 'select top 5 * from distribution..MSlogreader_history where runstatus in (6, 5) or error_id <> 0 and agent_id = find_in_mslogreader_agents_table  order by time desc ' as LogReaderAgentState
     END
@@ -232,7 +232,7 @@ BEGIN
     BEGIN
         select 'For memory-optimized tables, an automatic checkpoint is taken when transaction log file becomes bigger than 1.5 GB since the last checkpoint (includes both disk-based and memory-optimized tables)' as Finding
         select 'Review https://blogs.msdn.microsoft.com/sqlcat/2016/05/20/logging-and-checkpoint-process-for-memory-optimized-tables-2/' as ReviewBlog
-        select 'use ' +@dbname+ ' CHECKPOINT' as RunCheckpoint
+        select 'use [' +@dbname+ '] CHECKPOINT' as RunCheckpoint
     END
 
     FETCH NEXT FROM no_truncate_db into @log_reuse_wait, @log_reuse_wait_desc, @dbname, @database_id, @recovery_model_desc

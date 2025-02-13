@@ -45,10 +45,10 @@ In this tutorial, you learn how to:
    > The first Microsoft Entra login must be created by the Microsoft Entra admin. The Microsoft Entra admin can be a Microsoft Entra user or group. A SQL login cannot create Microsoft Entra logins.
 
 1. Using [SQL Server Management Studio (SSMS)](/sql/ssms/download-sql-server-management-studio-ssms), log into your SQL Database with the Microsoft Entra admin account set up for the server.
+1. Expand **Databases** > **System Databases**. Right-click the `master` database and select **New Query** to open a new query window in the context of the `master` database. 
 1. Run the following query:
 
    ```sql
-   Use master
    CREATE LOGIN [bob@contoso.com] FROM EXTERNAL PROVIDER
    GO
    ```
@@ -76,10 +76,9 @@ In this tutorial, you learn how to:
 
 1. Now that we've created a Microsoft Entra login, we can create a database-level Microsoft Entra user that is mapped to the Microsoft Entra login in the virtual `master` database. We'll continue to use our example, `bob@contoso.com` to create a user in the virtual `master` database, as we want to demonstrate adding the user to special roles. Only a Microsoft Entra admin or SQL server admin can create users in the virtual `master` database.
 
-1. We're using the virtual `master` database, but you can switch to a database of your choice if you want to create users in other databases. Run the following query.
+1. We're still using the virtual `master` database, but you can reconnect to a database of your choice if you want to create users in other databases. Run the following query.
 
    ```sql
-   Use master
    CREATE USER [bob@contoso.com] FROM LOGIN [bob@contoso.com]
    ```
 
@@ -112,7 +111,7 @@ In this tutorial, you learn how to:
 
 ## Grant server-level roles to Microsoft Entra logins
 
-You can add logins to the [fixed server-level roles](security-server-roles.md#fixed-server-level-roles), such as the **##MS_DefinitionReader##**, **##MS_ServerStateReader##**, or **##MS_ServerStateManager##** role.
+You can add logins to the [fixed server-level roles](security-server-roles.md#fixed-server-level-roles), such as the **##MS_DefinitionReader##**, **##MS_ServerStateReader##**, or **##MS_ServerStateManager##** role in the `master` database.
 
 > [!NOTE]  
 > The server-level roles mentioned here are not supported for Microsoft Entra groups.

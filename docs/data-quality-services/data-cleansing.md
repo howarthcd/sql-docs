@@ -70,7 +70,7 @@ ms.topic: conceptual
 > [!NOTE]  
 >  In the **Suggested**, **Corrected**, and **Correct** tabs, DQS displays the leading value for a domain, if applicable, in the **Correct To** column against the respective domain value.  
   
- The data steward uses [!INCLUDE[ssDQSClient](../includes/ssdqsclient-md.md)] to see the changes that DQS has proposed and to decide whether to implement them or not. He or she can verify that values DQS has designated as correct are in fact correct. He or she can verify that changes already made by DQS, with a high confidence level, should be made. He or she can decide whether to approve auto-suggested changes. And he or she can review values that have not been changed, just in case they want to make a change not found by the computer-assisted process.  
+ The data steward uses [!INCLUDE[ssDQSClient](../includes/ssdqsclient-md.md)] to see the changes that DQS has proposed and to decide whether to implement them or not. They can verify that the values DQS has designated as correct are in fact correct. They can verify that changes already made by DQS, with a high confidence level, should be made. The steward can decide whether to approve auto-suggested changes. And they can review values that have not been changed, just in case they want to make a change not found by the computer-assisted process.  
   
  DQS will merge any changes that the data steward has made with the results of the computer-assisted data cleansing. These changes will stay with the project; however, they will not be added to the knowledge base. During data cleansing, the associated knowledge base is read-only.  
   

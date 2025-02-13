@@ -5,7 +5,7 @@ description: Learn how to rotate the Transparent data encryption (TDE) protector
 author: GithubMirek
 ms.author: mireks
 ms.reviewer: wiassaf, vanto, mathoma
-ms.date: 01/16/2024
+ms.date: 07/03/2024
 ms.service: azure-sql
 ms.subservice: security
 ms.topic: how-to
@@ -52,7 +52,7 @@ Go to the [Azure portal](https://portal.azure.com)
 
 # [PowerShell](#tab/azure-powershell)
 
-For Az PowerShell module installation instructions, see [Install Azure PowerShell](/powershell/azure/install-az-ps). For specific cmdlets, see [AzureRM.Sql](/powershell/module/AzureRM.Sql/). Use [the new Azure PowerShell Az module](/powershell/azure/new-azureps-module-az).
+For Az PowerShell module installation instructions, see [Install Azure PowerShell](/powershell/azure/install-az-ps). Use [the new Azure PowerShell Az module](/powershell/azure/new-azureps-module-az).
 
 # [The Azure CLI](#tab/azure-cli)
 
@@ -82,7 +82,7 @@ Using the [Azure portal](https://portal.azure.com):
 
 # [PowerShell](#tab/azure-powershell)
 
-For Az PowerShell module installation instructions, see [Install Azure PowerShell](/powershell/azure/install-az-ps). For specific cmdlets, see [AzureRM.Sql](/powershell/module/AzureRM.Sql/).
+For Az PowerShell module installation instructions, see [Install Azure PowerShell](/powershell/azure/install-az-ps).
 
 To enable automatic rotation for the TDE protector using PowerShell, see the following script. The `<keyVaultKeyId>` can be [retrieved from Key Vault](/azure/key-vault/keys/quick-create-portal#retrieve-a-key-from-key-vault).
 
@@ -187,6 +187,9 @@ Using the [Azure portal](https://portal.azure.com):
    :::image type="content" source="media/transparent-data-encryption-byok-key-rotation/auto-rotate-key-secondary.png" alt-text="Screenshot of auto rotate key configuration for transparent data encryption in a geo-replication scenario on the secondary server." lightbox="media/transparent-data-encryption-byok-key-rotation/auto-rotate-key-secondary.png":::
 
 When the key is rotated on the primary server, it's automatically transferred to the secondary server.
+
+> [!NOTE]
+> If the same key vault key on the primary server is used as the default TDE protector on the secondary server, ensure **Auto-rotate key** is enabled for **both** servers. Failure to do so may lead to the auto-rotation workflows entering an error state and prevent further manual key rotation operations.  
 
 # [PowerShell](#tab/azure-powershell-geo)
 

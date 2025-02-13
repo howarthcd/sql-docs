@@ -140,7 +140,7 @@ CREATE SEQUENCE Test.CountBy1 ;
 SELECT NEXT VALUE FOR Test.CountBy1  
 ```  
   
- The value returned of -9,223,372,036,854,775,808 is the lowest possible value for the **bigint** data type. The owner realizes he wanted the sequence to start with 1, but did not indicate the **START WITH** clause when he created the sequence. To correct this error, the owner executes the following statement.  
+ The value returned of -9,223,372,036,854,775,808 is the lowest possible value for the **bigint** data type. The owner realizes they wanted the sequence to start with 1, but did not indicate the **START WITH** clause when they created the sequence. To correct this error, the owner executes the following statement.  
   
 ```sql  
 ALTER SEQUENCE Test.CountBy1 RESTART WITH 1 ;  

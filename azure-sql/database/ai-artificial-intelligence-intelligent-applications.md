@@ -1,21 +1,23 @@
 ---
-title: Intelligent applications
-description: "Use AI options such as OpenAI and vectors to build intelligent applications with Azure SQL Database."
-author: damauri
-ms.author: damauri
+title: Intelligent Applications
+description: "Use AI options such as OpenAI and vectors to build intelligent applications with Azure SQL Database and Fabric SQL database."
+author: WilliamDAssafMSFT
+ms.author: wiassaf
 ms.reviewer: damauri, josephsack, randolphwest, mathoma
-ms.date: 10/15/2024
+ms.date: 12/09/2024
 ms.service: azure-sql-database
 ms.topic: conceptual
-ms.collection: ce-skilling-ai-copilot
-monikerRange: "=azuresql||=azuresql-db"
+ms.collection:
+  - ce-skilling-ai-copilot
+ms.custom:
+  - ignite-2024
+monikerRange: "=azuresql || =azuresql-db || =fabricsql"
 ---
+# Intelligent applications
 
-# Intelligent applications with Azure SQL Database
+[!INCLUDE [asdb-fabricsqldb](../includes/appliesto-sqldb-fabricsqldb.md)]
 
-[!INCLUDE [asdb](../includes/appliesto-sqldb.md)]
-
-This article provides an overview of using artificial intelligence (AI) options, such as OpenAI and vectors, to build intelligent applications with Azure SQL Database.
+This article provides an overview of using artificial intelligence (AI) options, such as OpenAI and vectors, to build intelligent applications with Azure SQL Database and [Fabric SQL database](/fabric/database/sql/overview), which shares many of these features of Azure SQL Database.
 
 For samples and examples, please visit the [SQL AI Samples repository](https://aka.ms/sqlaisamples).
 
@@ -26,32 +28,37 @@ Watch this video in the [Azure SQL Database essentials series](/shows/azure-sql-
 
 Large language models (LLMs) enable developers to create AI-powered applications with a familiar user experience.
 
-Using LLMs in applications brings greater value and an improved user experience when the models can access the right data, at the right time, from your application's database. This process is known as Retrieval Augmented Generation (RAG) and Azure SQL Database has many features that support this new pattern, making it a great database to build intelligent applications.
+Using LLMs in applications brings greater value and an improved user experience when the models can access the right data, at the right time, from your application's database. This process is known as Retrieval Augmented Generation (RAG) and Azure SQL Database and Fabric SQL database have many features that support this new pattern, making it a great database to build intelligent applications.
 
-The following links provide sample code of various Azure SQL Database options to build intelligent applications:
+The following links provide sample code of various options to build intelligent applications:
 
 | AI Option | Description |
 | --- | --- |
 | **[Azure OpenAI](#azure-openai)** | Generate embeddings for RAG and integrate with any model supported by Azure OpenAI. |
-| **[Vectors](#vectors)** | Learn how to store and query vectors in Azure SQL Database. |
-| **[Azure AI Search](#azure-ai-search)** | Use Azure SQL Database together with Azure AI Search to train LLM on your data. |
+| **[Vectors](#vectors)** | Learn how to store and query vectors the database. |
+| **[Azure AI Search](#azure-ai-search)** | Use your database together with Azure AI Search to train LLM on your data. |
 | **[Intelligent applications](#intelligent-applications)** | Learn how to create an end-to-end solution using a common pattern that can be replicated in any scenario. |
 | **[Copilot skills in Azure SQL Database](#microsoft-copilot-skills-in-azure-sql-database)** | Learn about the set of AI-assisted experiences designed to streamline the design, operation, optimization, and health of Azure SQL Database-driven applications. |
+| **[Copilot skills in Fabric SQL database](#microsoft-copilot-skills-in-fabric-sql-database-preview)** | Learn about the set of AI-assisted experiences designed to streamline the design, operation, optimization, and health of Fabric SQL database-driven applications. |
 
-## Key concepts for implementing RAG with Azure SQL Database and Azure OpenAI
+<a id="key-concepts-for-implementing-rag-with-azure-sql-database-and-azure-openai"></a>
 
-This section includes key concepts that are critical for implementing RAG with Azure SQL Database and Azure OpenAI.
+## Key concepts for implementing RAG with Azure OpenAI
 
-### <a id="retrieval-augmented-generation"></a> Retrieval Augmented Generation (RAG)
+This section includes key concepts that are critical for implementing RAG with Azure OpenAI in Azure SQL Database or Fabric SQL database.
+
+<a id="retrieval-augmented-generation"></a>
+
+### Retrieval Augmented Generation (RAG)
 
 RAG is a technique that enhances the LLM's ability to produce relevant and informative responses by retrieving additional data from external sources. For example, RAG can query articles or documents that contain domain-specific knowledge related to the user's question or prompt. The LLM can then use this retrieved data as a reference when generating its response. For example, a simple RAG pattern using Azure SQL Database could be:
 
-1. Insert data into an Azure SQL Database table.
+1. Insert data into a table.
 1. Link Azure SQL Database to Azure AI Search.
 1. Create an Azure OpenAI GPT4 model and connect it to Azure AI Search.
 1. Chat and ask questions about your data using the trained Azure OpenAI model from your application and from Azure SQL Database.
 
-The RAG pattern, with prompt engineering, serves the purpose of enhancing response quality by offering more contextual information to the model. RAG enables the model to apply a broader knowledgebase by incorporating relevant external sources into the generation process, resulting in more comprehensive and informed responses. For more information on *grounding* LLMs, see [Grounding LLMs - Microsoft Community Hub](https://techcommunity.microsoft.com/t5/fasttrack-for-azure/grounding-llms/ba-p/3843857).
+The RAG pattern, with prompt engineering, serves the purpose of enhancing response quality by offering more contextual information to the model. RAG enables the model to apply a broader knowledgebase by incorporating relevant external sources into the generation process, resulting in more comprehensive and informed responses. For more information on *grounding* LLMs, see [Grounding LLMs - Microsoft Community Hub](https://techcommunity.microsoft.com/blog/fasttrackforazureblog/grounding-llms/3843857).
 
 ### Prompts and prompt engineering
 
@@ -197,16 +204,27 @@ For an end-to-end sample to build a AI-enabled application using sessions abstra
 
 LangChain is a well-known framework for developing applications powered by language models. For examples that show how LangChain can be used to create a Chatbot on your own data, see:
 
+- [langchain-sqlserver](https://pypi.org/project/langchain-sqlserver/) PyPI Package
+
+A few of samples on using Azure SQL with LangChain:
+
+- [LangChain samples with langchain_sqlserver](https://github.com/Azure-Samples/azure-sql-langchain)
+- [Getting Started with LangChain and Azure SQL Database](https://github.com/Azure-Samples/SQL-AI-samples/tree/main/AzureSQLDatabase/LangChain)
+
+End-to-end examples:
+
 - [Build a chatbot on your own data in 1 hour with Azure SQL, Langchain and Chainlit](https://devblogs.microsoft.com/azure-sql/build-a-chatbot-on-your-own-data-in-1-hour-with-azure-sql-langchain-and-chainlit/): Build a chatbot using the RAG pattern on your own data using Langchain for orchestrating LLM calls and Chainlit for the UI.
 - [Building your own DB Copilot for Azure SQL with Azure OpenAI GPT-4](https://devblogs.microsoft.com/azure-sql/building-your-own-db-copilot-for-azure-sql-with-azure-openai-gpt-4/): Build a copilot-like experience to query your databases using natural language.
 
 ### Semantic Kernel integration
 
-[Semantic Kernel is an open-source SDK](/semantic-kernel/overview/) that lets you easily build agents that can call your existing code. As a highly extensible SDK, you can use Semantic Kernel with models from OpenAI, Azure OpenAI, Hugging Face, and more! By combining your existing C#, Python, and Java code with these models, you can build agents that answer questions and automate processes.
+[Semantic Kernel is an open-source SDK](/semantic-kernel/overview/) that lets you easily build agents that can call your existing code. As a highly extensible SDK, you can use Semantic Kernel with models from OpenAI, Azure OpenAI, Hugging Face, and more. By combining your existing C#, Python, and Java code with these models, you can build agents that answer questions and automate processes. 
+
+- [Microsoft.SemanticKernel.Connectors.SqlServer](https://github.com/microsoft/semantic-kernel/tree/main/dotnet/src/Connectors/Connectors.Memory.SqlServer)
+
+An example of how easily Semantic Kernel helps to build AI-enabled solution is here:
 
 - [The ultimate chatbot?](https://devblogs.microsoft.com/azure-sql/the-ultimate-chatbot/): Build a chatbot on your own data using both NL2SQL and RAG patterns for the ultimate user experience. 
-- [OpenAI Embeddings Sample](https://github.com/marcominerva/OpenAIEmbeddingSample): An example that shows how to use Semantic Kernel and Kernel Memory to work with embeddings in a .NET application using SQL Server as Vector Database.
-- [Semantic Kernel & Kernel Memory - SQL Connector](https://github.com/kbeaugrand/SemanticKernel.Connectors.Memory.SqlServer) - Provides a connection to a SQL database for the Semantic Kernel for the memories.
 
 ## Microsoft Copilot skills in Azure SQL Database
 
@@ -224,10 +242,30 @@ The preview of Copilot for Azure SQL Database includes two Azure portal experien
 
 | Portal location | Experiences |
 | :-- |:-- |
-| **Azure portal Query Editor** | [Natural language to SQL](../copilot/copilot-azure-sql-overview.md?view=azuresql-db&preserve-view=true#natural-language-to-sql-query): This experience within the [Azure portal query editor for Azure SQL Database](../database/query-editor.md) translates natural language queries into SQL, making database interactions more intuitive. For a tutorial and examples of natural language to SQL capabilities, see [Natural language to SQL in the Azure portal Query editor (preview)](../copilot/query-editor-natural-language-to-sql-copilot.md). |
+| **Azure portal Query Editor** | [Natural language to SQL](../copilot/copilot-azure-sql-overview.md?view=azuresql-db&preserve-view=true#natural-language-to-sql-query): This experience within the [Azure portal query editor for Azure SQL Database](query-editor.md) translates natural language queries into SQL, making database interactions more intuitive. For a tutorial and examples of natural language to SQL capabilities, see [Natural language to SQL in the Azure portal query editor (preview)](../copilot/query-editor-natural-language-to-sql-copilot.md). |
 | **Microsoft Copilot for Azure** | [Azure Copilot integration](../copilot/copilot-azure-sql-overview.md?view=azuresql-db&preserve-view=true#microsoft-copilot-in-azure-enhanced-scenarios): This experience adds Azure SQL skills into [Microsoft Copilot for Azure](/azure/copilot/overview), providing customers with self-guided assistance, empowering them to manage their databases and solve issues independently.|
 
 For more information, see [Frequently asked questions about Microsoft Copilot skills in Azure SQL Database (preview)](../copilot/copilot-azure-sql-faq.yml).
+
+## Microsoft Copilot skills in Fabric SQL database (preview)
+
+[Copilot for SQL database in Microsoft Fabric (preview)](/fabric/database/sql/copilot) includes integrated AI assistance with the following features:
+
+- [**Code completion**](/fabric/database/sql/copilot-code-completion): Start writing T-SQL in the SQL query editor and Copilot will automatically generate a code suggestion to help complete your query. The **Tab** key accepts the code suggestion or keeps typing to ignore the suggestion. 
+
+- **[Quick actions](/fabric/database/sql/copilot-quick-actions)**: In the ribbon of the SQL query editor, the **Fix** and **Explain** options are quick actions. Highlight a SQL query of your choice and select one of the quick action buttons to perform the selected action on your query.
+
+  - **Fix:** Copilot can fix errors in your code as error messages arise. Error scenarios can include incorrect/unsupported T-SQL code, wrong spellings, and more. Copilot will also provide comments that explain the changes and suggest SQL best practices.
+  
+  - **Explain:** Copilot can provide natural language explanations of your SQL query and database schema in comments format.
+  
+- **[Chat pane](/fabric/database/sql/copilot-chat-pane)**: Use the chat pane to ask questions to Copilot through natural language. Copilot responds with a generated SQL query or natural language based on the question asked.
+
+  - **Natural Language to SQL**: Generate T-SQL code from plain text requests, and get suggestions of questions to ask to accelerate your workflow.
+    
+  - **Document-based Q&A**: Ask Copilot questions about general SQL database capabilities, and it responds in natural language. Copilot also helps find documentation related to your request.
+
+Copilot for SQL database utilizes table and view names, column names, primary key, and foreign key metadata to generate T-SQL code. Copilot for SQL database does not use data in tables to generate T-SQL suggestions.
 
 ## Related content
 

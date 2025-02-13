@@ -91,10 +91,10 @@ Specifies the units for *@freq_subday_interval*. *@freq_subday_type* is **int**,
 
 | Value | Description (unit) |
 | --- | --- |
-| `0x1` | At the specified time |
-| `0x2` | Seconds |
-| `0x4` | Minutes |
-| `0x8` | Hours |
+| `1` | At the specified time |
+| `2` | Seconds |
+| `4` | Minutes |
+| `8` | Hours |
 
 #### [ @freq_subday_interval = ] *freq_subday_interval*
 

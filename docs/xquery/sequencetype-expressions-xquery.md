@@ -102,7 +102,7 @@ WHERE ProductModelID = 19
   
  For more information, see [Compare Typed XML to Untyped XML](../relational-databases/xml/compare-typed-xml-to-untyped-xml.md).  
   
- The following queries usetheBoolean `instance of` expression to determine whether the LocationID attribute is of xs:integer type:  
+ The following queries use the Boolean `instance of` expression to determine whether the LocationID attribute is of xs:integer type:  
   
 ```  
 SELECT Instructions.query('  
@@ -229,7 +229,7 @@ go
   
 -   Creates a typed **xml** variable and assigns a sample XML instance to it.  
   
--   Specifies a query against the variable. The query expression retrieves the first order ID value from the OrderList IDRERS type attribute of the first <`Customer`>. The value retrieved is IDREF type. Therefore, `instance of` returns True.  
+-   Specifies a query against the variable. The query expression retrieves the first order ID value from the OrderList IDREFS type attribute of the first <`Customer`>. The value retrieved is IDREF type. Therefore, `instance of` returns True.  
   
 ```  
 create xml schema collection SC as  

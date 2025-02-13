@@ -408,7 +408,7 @@ GO
 
 -- TestLogin2 moves the collection from dbo to myOtherDBSchema relational schema.
 -- TestLogin2 already has all necessary permissions.
--- 1) TestLogin2 owns the destination relational schema so he can alter it.
+-- 1) TestLogin2 owns the destination relational schema so they can alter it.
 -- 2) TestLogin2 owns the XML schema collection (therefore, has CONTROL permission).
 ALTER SCHEMA myOtherDBSchema
 TRANSFER XML SCHEMA COLLECTION::dbo.myTestSchemaCollection;

@@ -7,6 +7,8 @@ ms.date: "10/23/2017"
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "UPDATETEXT"
   - "UPDATETEXT_TSQL"
@@ -19,7 +21,7 @@ dev_langs:
   - "TSQL"
 ---
 # UPDATETEXT (Transact-SQL)
-[!INCLUDE [SQL Server](../../includes/applies-to-version/sql-asdbmi.md)]
+[!INCLUDE [SQL Server SQL MI](../../includes/applies-to-version/sql-asdbmi.md)]
 
   Updates an existing **text**, **ntext**, or **image** field. Use UPDATETEXT to change only a part of a **text**, **ntext**, or **image** column in place. Use WRITETEXT to update and replace a whole **text**, **ntext**, or **image** field.  
   

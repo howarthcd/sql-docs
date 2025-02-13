@@ -15,8 +15,10 @@ helpviewer_keywords:
   - "FORMAT function"
 dev_langs:
   - "TSQL"
+ai.usage: ai-assisted
 monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azure-sqldw-latest || =fabric"
 ---
+
 # FORMAT (Transact-SQL)
 
 [!INCLUDE [sql-asdb-asdbmi-asa-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-fabricse-fabricdw.md)]
@@ -97,7 +99,7 @@ The following table lists the acceptable data types for the *value* argument tog
 The following example returns a simple date formatted for different cultures.
 
 ```sql
-DECLARE @d AS DATE = '11/22/2020';
+DECLARE @d AS DATE = '08/09/2024';
 
 SELECT FORMAT(@d, 'd', 'en-US') AS 'US English',
        FORMAT(@d, 'd', 'en-gb') AS 'British English',
@@ -230,6 +232,40 @@ Format returns the specified time in 24-hour format.
 
 ```sql
 SELECT FORMAT(CAST('2018-01-01 14:00' AS DATETIME2), N'HH:mm'); --> returns 14:00
+```
+
+### E. Format with comma separators for large numbers
+
+The following example shows how to format large numbers with comma separators.
+
+```sql
+SELECT FORMAT(1234567.89, 'N0') AS FormattedNumber;
+```
+
+[!INCLUDE [ssResult](../../includes/ssresult-md.md)]
+
+```output
+1,234,568
+```
+
+This example uses the `N` format specifier. The `N` specifier is used for numeric values, and the number of decimal places can be adjusted by changing the format string (for example, `N2` for two decimal places).
+
+```syntaxsql
+FORMAT ( value, format_string [, culture ] )
+```
+
+#### Parameters
+
+- `value`: The value to format.
+- `format_string`: A string that specifies the format to apply.
+- `culture`: (Optional) A string that specifies the culture to use for formatting.
+
+```sql
+SELECT FORMAT(1234567.89, 'N0') AS FormattedNumber; 
+```
+
+```output
+1,234,568
 ```
 
 ## Related content

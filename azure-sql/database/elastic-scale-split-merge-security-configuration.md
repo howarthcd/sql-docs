@@ -1,8 +1,8 @@
 ---
 title: Split-merge security configuration
 description: Set up x409 certificates for encryption with the split/merge service for elastic scale.
-author: bgavrilMS
-ms.author: bogavril
+author: bgavrilovicMS
+ms.author: bgavrilovic
 ms.reviewer: wiassaf, mathoma
 ms.date: 12/18/2018
 ms.service: azure-sql-database
@@ -131,7 +131,7 @@ The format is explained in Network Access Control Lists documentation.
 For example, to allow only IPs in the range 100.100.0.0 to 100.100.255.255 to access the HTTPS endpoint, the rules would look like this:
 
 ```xml
-<AccessControl name="Retricted">
+<AccessControl name="Restricted">
     <Rule action="permit" description="Some" order="1" remoteSubnet="100.100.0.0/16"/>
     <Rule action="deny" description="None" order="2" remoteSubnet="0.0.0.0/0" />
 </AccessControl>

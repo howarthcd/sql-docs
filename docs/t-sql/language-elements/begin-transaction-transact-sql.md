@@ -7,6 +7,8 @@ ms.date: 05/10/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "BEGIN_TRANSACTION_TSQL"
   - "TRANSACTION_TSQL"
@@ -30,7 +32,7 @@ monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >
 ---
 # BEGIN TRANSACTION (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricdw-fabricsqldb.md)]
 
 Marks the starting point of an explicit, local transaction. Explicit transactions start with the `BEGIN TRANSACTION` statement and end with the `COMMIT` or `ROLLBACK` statement.
 

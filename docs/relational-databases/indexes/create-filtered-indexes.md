@@ -8,17 +8,20 @@ ms.date: 10/14/2022
 ms.service: sql
 ms.subservice: table-view-index
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 helpviewer_keywords:
   - "filtered indexes [SQL Server], about filtered indexes"
   - "designing indexes [SQL Server], filtered"
   - "filtered indexes [SQL Server]"
   - "nonclustered indexes [SQL Server], filtered"
   - "indexes [SQL Server], filtered"
-monikerRange: "=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
+monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # Create filtered indexes
 
-[!INCLUDE[SQL Server Azure SQL Database](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
+
 
 This article describes how to create a filtered index using [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] (SSMS) or [!INCLUDE[tsql](../../includes/tsql-md.md)]. A filtered index is an optimized disk-based rowstore nonclustered index especially suited to cover queries that select from a well-defined subset of data. It uses a filter predicate to index a portion of rows in the table. A well-designed filtered index can improve query performance and reduce index maintenance and storage costs compared with full-table indexes.
 

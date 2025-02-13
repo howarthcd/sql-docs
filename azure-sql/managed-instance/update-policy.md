@@ -5,7 +5,7 @@ description: Use the update policy setting in Azure SQL Managed Instance to cont
 author: MladjoA
 ms.author: mlandzic
 ms.reviewer: mathoma
-ms.date: 08/20/2024
+ms.date: 12/09/2024
 ms.service: azure-sql-managed-instance
 ms.subservice: deployment-configuration
 ms.topic: how-to
@@ -107,6 +107,9 @@ Set `databaseFormat` = `AlwaysUpToDate` when you update an existing SQL managed 
 ## New instances
 
 Although the **SQL Server 2022** update policy is enabled by default, you can choose the **Always-up-to-date** policy when you create your instance by using the Azure portal, PowerShell, Azure CLI and REST API. 
+
+> [!IMPORTANT]
+> Make sure to add update policy configuration to your deployment templates, so that you don’t rely on system defaults that may change over time. 
 
 ### [Azure portal](#tab/azure-portal)
 

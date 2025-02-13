@@ -115,6 +115,17 @@ Each rule has an error code in its title. If you don't need rules and want to ig
 </workflowSettings>
 ```
 
+## Post migration steps
+
+After migration, you should remove the configuration file that contain usernames. You can find the configuration file in the following location:
+
+```output
+C:\Users\<username>\AppData\Local\DataMigrationAssistant\Servers.xml
+```
+
+> [!NOTE]  
+> This file only contains usernames, not passwords.
+
 ## Related content
 
 - [Data Migration Assistant Download](https://www.microsoft.com/download/details.aspx?id=53595)

@@ -7,6 +7,8 @@ ms.date: "05/25/2022"
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "GRANT DATABASE SCOPED CREDENTIAL"
   - "GRANT_DATABASE_SCOPED_CREDENTIAL_TSQL"
@@ -17,11 +19,11 @@ helpviewer_keywords:
   - "GRANT statement, database scoped credentials"
 dev_langs:
   - "TSQL"
-monikerRange: "=azuresqldb-current||>=sql-server-2017||>=sql-server-linux-2017||=azuresqldb-mi-current||=azure-sqldw-latest"
+monikerRange: "=azuresqldb-current || >=sql-server-2017 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =azure-sqldw-latest || =fabric"
 ---
 
 # GRANT Database Scoped Credential permissions (Transact-SQL) 
-[!INCLUDE[sqlserver2017-asdb-asdbmi-asa](../../includes/applies-to-version/sqlserver2017-asdb-asdbmi-asa.md)]
+[!INCLUDE [sqlserver2017-asdb-asdbmi-asa-fabricsqldb](../../includes/applies-to-version/sqlserver2017-asdb-asdbmi-asa-fabricsqldb.md)]
 
 Grants permissions on a database scoped credential. 
 

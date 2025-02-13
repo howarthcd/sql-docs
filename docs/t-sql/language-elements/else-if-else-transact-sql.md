@@ -7,6 +7,8 @@ ms.date: 05/17/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "ELSE"
   - "ELSE_TSQL"
@@ -20,7 +22,7 @@ monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >
 ---
 # ELSE (IF...ELSE) (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 Imposes conditions on the execution of a [!INCLUDE [tsql](../../includes/tsql-md.md)] statement. The [!INCLUDE [tsql](../../includes/tsql-md.md)] statement (*sql_statement*) following the *boolean_expression* is executed if the *boolean_expression* evaluates to `TRUE`. The optional `ELSE` keyword is an alternate [!INCLUDE [tsql](../../includes/tsql-md.md)] statement that is executed when *boolean_expression* evaluates to `FALSE` or `NULL`.
 

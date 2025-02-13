@@ -4,20 +4,22 @@ description: "How to add the contents of a dacpac or SQL scripts to a project."
 author: dzsquared
 ms.author: drskwier
 ms.reviewer: maghan
-ms.service: sql
-ms.topic: how-to 
 ms.date: 09/10/2024
+ms.service: sql
+ms.subservice: sql-database-projects
+ms.topic: how-to
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "SQL.DATA.TOOLS.SQLPROJECTIMPORTDATABASESUMMARYDIALOG.DIALOG"
   - "SQL.DATA.TOOLS.IMPORTSCRIPTWIZARD.SUMMARY"
   - "sql.data.tools.importscriptwizard.welcome"
   - "sql.data.tools.importscriptwizard.fileselection"
-
 ---
 
 # Add existing files to a SQL project
 
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 As a concept, once a SQL project is created, objects can be added to it one at a time or in bulk. Adding objects one at a time is straightforward, while adding objects in bulk can be done from the contents of a `.dacpac` file or one or more SQL scripts. This article explains how to add the contents of a dacpac or SQL scripts to a SQL project and the tradeoffs between the sources.
 

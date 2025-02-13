@@ -109,7 +109,7 @@ FROM source_cube_name (<param list>)
  Valid specification for derived dimension definition only.  
   
 ## Remarks  
- A local cube is definedin terms of the measures and definitions that define it. There are two types of dimensions.  
+ A local cube is defined in terms of the measures and definitions that define it. There are two types of dimensions.  
   
 -   Source dimensions - These are dimensions that were part of one of more source cubes  
   

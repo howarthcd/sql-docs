@@ -36,11 +36,11 @@ The following sample console script files covering different scenarios have been
   
     For more information on Variable Value File, see [Creating Variable Value Files &#40;AccessToSQL&#41;](../../ssma/access/creating-variable-value-files-accesstosql.md).  
   
--   **AssessmentReportGenerationSample.xml:** This sample enables the user to generate an xml assessment report which can be used by the user for analysis before he begins to convert and migrate data.  
+-   **AssessmentReportGenerationSample.xml:** This sample enables the user to generate an xml assessment report which can be used by the user for analysis before they begin to convert and migrate data.  
   
     In the `generate-assessment-report` command the user has to mandatorily change the variable value (refer **VariableValueFileSample.xml**) in the `object-name` attribute to the database name being in use by the user. Depending on the kind of object specified, the `object-type` value will also have to be changed.  
   
-    If the user has to assess multiple objects / databases he can specify multiple `metabase-object` nodes as illustrated in the `generate-assessment-report` command's Example 4 of the sample console script file.  
+    If the user has to assess multiple objects / databases, they can specify multiple `metabase-object` nodes as illustrated in the `generate-assessment-report` command's Example 4 of the sample console script file.  
   
     For more information on generating reports, see [Generating Reports &#40;AccessToSQL&#41;](../../ssma/access/generating-reports-accesstosql.md).  
   
@@ -53,9 +53,9 @@ The following sample console script files covering different scenarios have been
     |Command Name|Description|Attribute|  
     |----------------|---------------|-------------|  
     |`map-schema`|Schema mapping of source database to the target schema.|`source-schema:` Specifies the source database that requires to be converted.<br /><br />`sql-server-schema`: Specifies the target database that is to be migrated to|  
-    |`convert-schema`|Performs schema conversion from source to the target schema.<br /><br />If the user has to assess multiple objects / databases he can specify multiple `metabase-object` nodes as illustrated in the `convert-schema` command's Example 4 of the sample console script file.|`object-name`: Specify the source database / object name that requires to be converted. Ensure that the corresponding `object-type` is changed based on the type of object that is specified in the `object-name`|  
-    |`synchronize-target`|Synchronizes the target objects with the target database.<br /><br />If the user has to assess multiple objects / databases he can specify multiple `metabase-object` nodes as illustrated in the `synchronize-target` command's Example 3 of the sample console script file.|`object-name:` Specify the sql server database / object name that requires to be created. Ensure that the corresponding `object-type` is changed based on the type of object that is specified in the `object-name`|  
-    |`migrate-data`|Migrates the source data to the target.<br /><br />If the user has to assess multiple objects / databases he can specify multiple `metabase-object` nodes as illustrated in the `migrate-data` command's Example 2 of the sample console script file.|`object-name:` Specifies the source database / tables name that requires to be migrated. Ensure that the corresponding `object-type` is changed based on the type of object that is specified in the `object-name`|  
+    |`convert-schema`|Performs schema conversion from source to the target schema.<br /><br />If the user has to assess multiple objects / databases, they can specify multiple `metabase-object` nodes as illustrated in the `convert-schema` command's Example 4 of the sample console script file.|`object-name`: Specify the source database / object name that requires to be converted. Ensure that the corresponding `object-type` is changed based on the type of object that is specified in the `object-name`|  
+    |`synchronize-target`|Synchronizes the target objects with the target database.<br /><br />If the user has to assess multiple objects / databases, they can specify multiple `metabase-object` nodes as illustrated in the `synchronize-target` command's Example 3 of the sample console script file.|`object-name:` Specify the sql server database / object name that requires to be created. Ensure that the corresponding `object-type` is changed based on the type of object that is specified in the `object-name`|  
+    |`migrate-data`|Migrates the source data to the target.<br /><br />If the user has to assess multiple objects / databases, they can specify multiple `metabase-object` nodes as illustrated in the `migrate-data` command's Example 2 of the sample console script file.|`object-name:` Specifies the source database / tables name that requires to be migrated. Ensure that the corresponding `object-type` is changed based on the type of object that is specified in the `object-name`|  
   
 ## See Also  
 [Creating Variable Value Files &#40;AccessToSQL&#41;](../../ssma/access/creating-variable-value-files-accesstosql.md)  

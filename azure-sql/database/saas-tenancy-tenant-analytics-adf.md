@@ -1,8 +1,8 @@
 ---
 title: Run analytics queries against tenant databases
 description: Cross-tenant analytics queries using data extracted from Azure SQL Database, Azure Synapse Analytics, Azure Data Factory, or Power BI.
-author: bgavrilMS
-ms.author: bogavril
+author: bgavrilovicMS
+ms.author: bgavrilovic
 ms.reviewer: mathoma, wiassaf
 ms.date: 12/18/2018
 ms.service: azure-sql-database

@@ -58,7 +58,7 @@ ms.topic: conceptual
   
         6.  **Locked Date**: date when locked  
   
-        7.  **Created By**: the name of the user who created the knowledge base, with the network that he or she belongs to  
+        7.  **Created By**: the name of the user who created the knowledge base, with the network that they belong to  
   
         8.  **Created Date**: date when created  
   

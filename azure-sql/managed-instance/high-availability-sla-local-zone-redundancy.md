@@ -33,7 +33,7 @@ By default, Azure SQL Managed Instance achieves *availability* through local red
 
 - Customer initiated [management operations](management-operations-overview.md) that result in a brief downtime
 - Service maintenance operations
-- Issues and datacenter outages with the:
+- Issues and data center outages with the:
     - Rack where the machines that power your service are running.
     - Physical machine that hosts the VM that runs the SQL database engine.
     - Virtual machine that runs the SQL database engine
@@ -46,8 +46,7 @@ However, to minimize impact to your data in the event of an outage to an entire 
 
 High availability increases the reliability of your service by protecting you from impact on the: 
 
-- Availability zone that forms the datacenter
-
+- Availability zone that forms the data center
 
 There are two different availability architectural models based on the service tier: 
 
@@ -95,7 +94,7 @@ As an extra benefit, the local storage availability model includes the ability t
 
 Zone-redundant availability is based on placing replicas across three Azure availability zones in the primary region. Each availability zone is a separate physical location with independent power, cooling, and networking.
 
-By default, the cluster of nodes for the local storage availability model are created in the same datacenter. With the introduction of [Azure Availability Zones](/azure/availability-zones/az-overview), SQL Managed Instance places different replicas in different availability zones in the same region. To eliminate a single point of failure, the control ring is also duplicated across multiple zones. The control plane traffic is then routed to a load balancer that is also deployed across availability zones. Traffic routing from the control plane to the load balancer is controlled by [Azure Traffic Manager (ATM)](/azure/traffic-manager/traffic-manager-overview). 
+By default, the cluster of nodes for the local storage availability model are created in the same datacenter. With the introduction of [Azure Availability Zones](/azure/reliability/availability-zones-overview), SQL Managed Instance places different replicas in different availability zones in the same region. To eliminate a single point of failure, the control ring is also duplicated across multiple zones. The control plane traffic is then routed to a load balancer that is also deployed across availability zones. Traffic routing from the control plane to the load balancer is controlled by [Azure Traffic Manager (ATM)](/azure/traffic-manager/traffic-manager-overview). 
 
 By using a zone-redundant configuration, you can make your Business Critical or General Purpose instances resilient to a much larger set of failures, including catastrophic datacenter outages, without any changes to the application logic. You can convert any existing Business Critical or General Purpose instances to the zone-redundant configuration.
 
@@ -144,7 +143,7 @@ Azure SQL Managed Instance features a built-in high availability solution that i
 ## Next steps
 
 - [Enable zone redundancy](instance-zone-redundancy-configure.md) for Azure SQL Managed Instance. 
-- Learn about [Azure Availability Zones](/azure/availability-zones/az-overview)
+- Learn about [Azure Availability Zones](/azure/reliability/availability-zones-overview)
 - Learn about [Service Fabric](/azure/service-fabric/service-fabric-overview)
 - Learn about [Azure Traffic Manager](/azure/traffic-manager/traffic-manager-overview)
 - Learn [How to initiate a manual failover on SQL Managed Instance](user-initiated-failover.md)

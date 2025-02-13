@@ -1,10 +1,10 @@
 ---
 title: What is the Hyperscale service tier?
 description: This article describes the Hyperscale service tier in the vCore-based purchasing model in Azure SQL Database and explains how it's different from the General Purpose and Business Critical service tiers.
-author: dimitri-furman
-ms.author: dfurman
-ms.reviewer: wiassaf, mathoma, oslake, randolphwest
-ms.date: 10/16/2024
+author: WilliamDAssafMSFT
+ms.author: wiassaf
+ms.reviewer: dfurman, mathoma, oslake, randolphwest, blakhani
+ms.date: 02/10/2025
 ms.service: azure-sql-database
 ms.subservice: service-overview
 ms.topic: conceptual
@@ -115,7 +115,7 @@ Back up and restore operations for Hyperscale databases are file-snapshot based.
 
 ### Disaster recovery for Hyperscale databases
 
-If you need to restore a Hyperscale database in Azure SQL Database to a region other than the one it's currently hosted in, as part of a disaster recovery operation or drill, relocation, or any other reason, the primary method is to do a geo-restore of the database. Geo-restore is only available when geo-redundant storage (RA-GRS) has been chosen for storage redundancy.
+If you need to restore a Hyperscale database in Azure SQL Database to a region other than the one it's currently hosted in, as part of a disaster recovery operation or drill, relocation, or any other reason, the primary method is to do a [geo-restore](recovery-using-backups.md#geo-restore) of the database. Geo-restore is only available when geo-redundant storage (RA-GRS) has been chosen for storage redundancy.
 
 Learn more in [restoring a Hyperscale database to a different region](hyperscale-automated-backups-overview.md#restore-a-hyperscale-database-to-a-different-region).
 
@@ -145,7 +145,7 @@ The vCore-based service tiers are differentiated based on database availability,
 | **Availability** | One replica, no read scale-out, zone-redundant HA | Three replicas, one read scale-out, zone-redundant HA | Multiple replicas, up to four read scale-out, zone-redundant HA |
 | **Backups** | A choice of locally redundant (LRS), zone-redundant (ZRS), or geo-redundant (GRS) storage<br />1-35 days (seven days by default) retention, with up to 10 years of long-term retention available | A choice of locally redundant (LRS), zone-redundant (ZRS), or geo-redundant (GRS) storage<br />1-35 days (seven days by default) retention, with up to 10 years of long-term retention available | A choice of locally redundant (LRS), zone-redundant (ZRS), or geo-redundant (GRS) storage<br />1-35 days (seven days by default) retention, with up to 10 years of long-term retention available |
 | **Pricing/billing** | [vCore, reserved storage, and backup storage](https://azure.microsoft.com/pricing/details/sql-database/single/) are charged.<br />IOPS aren't charged. | [vCore, reserved storage, and backup storage](https://azure.microsoft.com/pricing/details/sql-database/single/) are charged.<br />IOPS aren't charged. | [vCore for each replica, allocated data storage, and backup storage](https://azure.microsoft.com/pricing/details/sql-database/single/) are charged.<br />IOPS aren't charged. |
-| **Discount models**<sup>1</sup>| [Reserved instances](reserved-capacity-overview.md)<br/>[Azure Hybrid Benefit](../azure-hybrid-benefit.md)<sup>2</sup><br/>[Enterprise](https://azure.microsoft.com/offers/ms-azr-0148p/) and [Pay-As-You-Go Dev/Test offer](https://azure.microsoft.com/offers/ms-azr-0023p/) subscriptions|[Reserved instances](reserved-capacity-overview.md)<br/>[Azure Hybrid Benefit](../azure-hybrid-benefit.md)<sup>2</sup><br/>[Enterprise](https://azure.microsoft.com/offers/ms-azr-0148p/) and [Pay-As-You-Go Dev/Test offer](https://azure.microsoft.com/offers/ms-azr-0023p/) subscriptions | [Reserved instances](reserved-capacity-overview.md)<br/>[Azure Hybrid Benefit](../azure-hybrid-benefit.md)<sup>2</sup><br/>[Enterprise](https://azure.microsoft.com/offers/ms-azr-0148p/) and [Pay-As-You-Go Dev/Test offer](https://azure.microsoft.com/offers/ms-azr-0023p/) subscriptions |
+| **Discount models**<sup>1</sup>| [Reserved instances](reservations-discount-overview.md)<br/>[Azure Hybrid Benefit](../azure-hybrid-benefit.md)<sup>2</sup><br/>[Enterprise](https://azure.microsoft.com/offers/ms-azr-0148p/) and [Pay-As-You-Go Dev/Test offer](https://azure.microsoft.com/offers/ms-azr-0023p/) subscriptions|[Reserved instances](reservations-discount-overview.md)<br/>[Azure Hybrid Benefit](../azure-hybrid-benefit.md)<sup>2</sup><br/>[Enterprise](https://azure.microsoft.com/offers/ms-azr-0148p/) and [Pay-As-You-Go Dev/Test offer](https://azure.microsoft.com/offers/ms-azr-0023p/) subscriptions | [Reserved instances](reservations-discount-overview.md)<br/>[Azure Hybrid Benefit](../azure-hybrid-benefit.md)<sup>2</sup><br/>[Enterprise](https://azure.microsoft.com/offers/ms-azr-0148p/) and [Pay-As-You-Go Dev/Test offer](https://azure.microsoft.com/offers/ms-azr-0023p/) subscriptions |
 
 <sup>1</sup> Simplified pricing for SQL Database Hyperscale arrived in December 2023. Review the [Hyperscale pricing blog](https://aka.ms/hsignite2023) for details.
 
@@ -170,14 +170,12 @@ You can create and manage Hyperscale databases using the Azure portal, Transact-
 | **Operation** | **Details** | **Learn more** |
 | :--- | :--- | :--- |
 | **Create a Hyperscale database** | Hyperscale databases are available only using the [vCore-based purchasing model](service-tiers-vcore.md). | Find examples to create a Hyperscale database in [Quickstart: Create a Hyperscale database in Azure SQL Database](hyperscale-database-create-quickstart.md). |
-| **Upgrade an existing database to Hyperscale** | Migrating an existing database in Azure SQL Database to the Hyperscale tier is a size of data operation. | Learn [how to migrate an existing database to Hyperscale](manage-hyperscale-database.md#migrate-an-existing-database-to-hyperscale). |
-| **Reverse migrate a Hyperscale database to the General Purpose service tier** | If you previously migrated an existing Azure SQL Database to the Hyperscale service tier, you can reverse migrate the database to the General Purpose service tier within 45 days of the original migration to Hyperscale.<br /><br />If you wish to migrate the database to another service tier, such as Business Critical, first reverse migrate to the General Purpose service tier, then change the service tier. | Learn [how to reverse migrate from Hyperscale](manage-hyperscale-database.md#reverse-migrate-from-hyperscale), including the [limitations for reverse migration](manage-hyperscale-database.md#limitations-for-reverse-migration). |
+| **Upgrade an existing database to Hyperscale** | Migrating an existing database in Azure SQL Database to the Hyperscale tier is a size of data operation. | Learn [how to migrate an existing database to Hyperscale](convert-to-hyperscale.md). |
+| **Reverse migrate a Hyperscale database to the General Purpose service tier** | If you previously migrated an existing Azure SQL Database to Hyperscale, you can reverse migrate the database to the General Purpose service tier within 45 days of the original migration to Hyperscale.<br /><br />If you wish to migrate the database to another service tier, such as Business Critical, first reverse migrate to the General Purpose service tier, then change the service tier. | Learn [how to reverse migrate from Hyperscale](reverse-migrate-from-hyperscale.md), including the [limitations for reverse migration](reverse-migrate-from-hyperscale.md#limitations-for-reverse-migration). |
 
-## Shrink
+<a id="known-limitations"></a>
 
-[Database and file shrink operations](file-space-manage.md) are currently in preview for Azure SQL Database Hyperscale. For more information on the preview, see [Shrink for Azure SQL Database Hyperscale](https://aka.ms/hs-shrink-preview).
-
-## Known limitations
+## Limitations
 
 These are the current limitations of the Hyperscale service tier. We're actively working to remove as many of these limitations as possible.
 

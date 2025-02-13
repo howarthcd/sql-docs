@@ -8,6 +8,8 @@ ms.date: 10/24/2023
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "IDENTITY_TSQL"
   - "IDENTITY"
@@ -18,11 +20,11 @@ helpviewer_keywords:
   - "autonumbers, identity numbers"
 dev_langs:
   - "TSQL"
-monikerRange: "=azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current"
+monikerRange: "=azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # CREATE TABLE (Transact-SQL) IDENTITY (Property)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-fabricsqldb.md)]
 
 Creates an identity column in a table. This property is used with the CREATE TABLE and ALTER TABLE [!INCLUDE [tsql](../../includes/tsql-md.md)] statements.
 

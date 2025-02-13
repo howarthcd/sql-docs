@@ -3,7 +3,7 @@ title: "Modify columns"
 description: "This article shows you how to modify columns using SQL Server Management Studio and Transact-SQL."
 author: WilliamDAssafMSFT
 ms.author: wiassaf
-ms.date: 07/19/2024
+ms.date: 01/03/2025
 ms.service: sql
 ms.subservice: table-view-index
 ms.topic: conceptual
@@ -11,11 +11,11 @@ helpviewer_keywords:
   - "modifying data types"
   - "column data types [SQL Server]"
   - "data types [SQL Server], columns"
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
+monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current||=fabric"
 ---
 # Modify columns
 
-[!INCLUDE [sqlserver2016-asdb-asdbmi-asa-pdw](../../includes/applies-to-version/sqlserver2016-asdb-asdbmi-asa-pdw.md)]
+[!INCLUDE [sqlserver2016-asdb-asdbmi-asa-pdw-fabricsqldb](../../includes/applies-to-version/sqlserver2016-asdb-asdbmi-asa-pdw-fabricsqldb.md)]
 
   You can modify the data type of a column in [!INCLUDE [ssnoversion](../../includes/ssnoversion-md.md)] by using [!INCLUDE [ssManStudioFull](../../includes/ssmanstudiofull-md.md)] or [!INCLUDE [tsql](../../includes/tsql-md.md)].  
   
@@ -62,6 +62,8 @@ Requires ALTER permission on the table.
     ALTER TABLE dbo.doc_exy ALTER COLUMN column_a DECIMAL (5, 2);  
     GO  
     ```  
+
+For more information on using `ALTER TABLE` to modify columns, see [ALTER TABLE column_definition](../../t-sql/statements/alter-table-column-definition-transact-sql.md).
 
 ## Next step
 

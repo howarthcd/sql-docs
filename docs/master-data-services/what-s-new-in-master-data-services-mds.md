@@ -54,9 +54,9 @@ monikerRange: ">=sql-server-ver16"
   
 -   The following new SQL Server Agent jobs do index and log maintenance.  
   
-    -   MDS_MDM_Sample_Index_Maintenace  
+    -   MDS_MDM_Sample_Index_maintenance  
   
-    -   MDS_MDM_Sample_Log_Maintenace  
+    -   MDS_MDM_Sample_Log_maintenance  
   
  By default the MDS_MDM_Sample_Index_Maintenance job runs weekly. You can modify the schedule. You can also manually run the job at any time by using the udpDefragmentation stored procedure. When you insert or update a large volume of master data, or after you create a new version from the existing version, it is recommended that you run the store procure.
   
@@ -68,7 +68,7 @@ monikerRange: ">=sql-server-ver16"
   
  The new Super User function permission gives a user or group the same permissions as the Server Admin in the previous release of [!INCLUDE[ssMDSshort](../includes/ssmdsshort-md.md)]. The Super User permission can be assigned to multiple users and groups. In the previous release, the user who originally installed [!INCLUDE[ssMDSshort](../includes/ssmdsshort-md.md)] was the server admin, and it was difficult to transfer this permission to another user or a group. For more information, see [Functional Area Permissions &#40;Master Data Services&#41;](../master-data-services/functional-area-permissions-master-data-services.md).  
   
- A user can now explicitly be assigned the Admin permission at the model level. This means that if the user is assigned permissions in the model subtree, such as the entity level, he still has this Admin permission.
+ A user can now explicitly be assigned the Admin permission at the model level. This means that if the user is assigned permissions in the model subtree, such as the entity level, they still have this Admin permission.
   
  In this release of [!INCLUDE[ssMDSshort](../includes/ssmdsshort-md.md)], we're providing more levels of permissions by introducing the following new permissions: Read, Create, Update, and Delete. For example, a user that has only the Update permission can now update the master data without creating or deleting the data. When you give a user the Create, Update or Delete permission, the user is automatically assigned the Read permission. You can also combine the Read, Create, Update, and Delete permissions.  
   
@@ -98,7 +98,7 @@ monikerRange: ">=sql-server-ver16"
   
  You can configure the frequency that data is removed from the transaction logs, using the System settings and at the model level. For more information, see [System Settings &#40;Master Data Services&#41;](../master-data-services/system-settings-master-data-services.md) and [Create a Model &#40;Master Data Services&#41;](../master-data-services/create-a-model-master-data-services.md). For more information about transactions, see [Transactions &#40;Master Data Services&#41;](../master-data-services/transactions-master-data-services.md).  
   
- The SQL Server Agent job, MDS_MDM_Sample_Log_Maintenace, triggers cleanup of the transaction logs and runs every night. You can use SQL Server Agent to modify the schedule for this job.  
+ The SQL Server Agent job, MDS_MDM_Sample_Log_maintenance, triggers cleanup of the transaction logs and runs every night. You can use SQL Server Agent to modify the schedule for this job.  
   
  You can also call stored procedures to clean the transaction logs. For more information, see [Transactions &#40;Master Data Services&#41;](../master-data-services/transactions-master-data-services.md).  
   

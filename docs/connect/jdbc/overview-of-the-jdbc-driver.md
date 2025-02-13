@@ -7,12 +7,14 @@ ms.date: 08/06/2020
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 ---
 # Overview of the JDBC driver
 
 [!INCLUDE[Driver_JDBC_Download](../../includes/driver_jdbc_download.md)]
 
-The Microsoft JDBC Driver for SQL Server is a Type 4 Java Database Connectivity (JDBC) 4.2 compliant driver that provides robust data access to SQL Server and Azure SQL databases.
+The Microsoft JDBC Driver for SQL Server is a Type 4 Java Database Connectivity (JDBC) 4.2 compliant driver that provides robust data access to SQL Server, Azure SQL databases. and SQL database in Fabric.
 
 ## Redistribution
 

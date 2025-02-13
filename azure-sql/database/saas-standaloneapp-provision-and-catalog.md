@@ -1,8 +1,8 @@
 ---
 title: Multi-tenant SaaS tutorial
 description: Provision and catalog new tenants using the standalone application pattern
-author: bgavrilMS
-ms.author: bogavril
+author: bgavrilovicMS
+ms.author: bgavrilovic
 ms.reviewer: mathoma, wiassaf
 ms.date: 09/24/2018
 ms.service: azure-sql-database

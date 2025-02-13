@@ -7,6 +7,8 @@ ms.date: "05/11/2017"
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "DROP ROLE"
   - "DROP_ROLE_TSQL"
@@ -19,10 +21,10 @@ helpviewer_keywords:
   - "dropping roles"
 dev_langs:
   - "TSQL"
-monikerRange: ">=aps-pdw-2016||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
+monikerRange: ">=aps-pdw-2016 || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current"
 ---
 # DROP ROLE (Transact-SQL)
-[!INCLUDE [sql-asdbmi-asa-pdw](../../includes/applies-to-version/sql-asdbmi-asa-pdw.md)]
+[!INCLUDE [sql-asdbmi-asa-pdw-fabricsqldb](../../includes/applies-to-version/sql-asdbmi-asa-pdw-fabricsqldb.md)]
 
   Removes a role from the database.  
   
@@ -30,18 +32,17 @@ monikerRange: ">=aps-pdw-2016||=azure-sqldw-latest||>=sql-server-2016||>=sql-ser
   
 ## Syntax  
   
-```syntaxsql  
--- Syntax for SQL Server  
-  
-DROP ROLE [ IF EXISTS ] role_name  
-```  
-  
+Syntax for SQL Server, Azure SQL Database, Azure SQL Managed Instance, and Fabric SQL database
 
-```syntaxsql  
--- Syntax for Azure Synapse Analytics and Parallel Data Warehouse  
+```syntaxsql
+DROP ROLE [ IF EXISTS ] role_name
+```
 
-DROP ROLE role_name  
-```  
+Syntax for Azure Synapse Analytics and Parallel Data Warehouse
+
+```syntaxsql
+DROP ROLE role_name
+```
   
 ## Arguments
  *IF EXISTS*  

@@ -98,7 +98,7 @@ For more information about creating the secondary SQL Managed Instance in the sa
 
 ## Use paired regions
 
-Deploy both managed instances to [paired regions](/azure/availability-zones/cross-region-replication-azure) for performance reasons. SQL Managed Instance failover groups in paired regions have better performance compared to unpaired regions.
+Deploy both managed instances to [paired regions](/azure/reliability/cross-region-replication-azure) for performance reasons. SQL Managed Instance failover groups in paired regions have better performance compared to unpaired regions.
 
 Azure SQL Managed Instance follows a safe deployment practice where Azure paired regions are generally not deployed to at the same time. However, it's not possible to predict which region will be upgraded first, so the order of deployment isn't guaranteed. Sometimes, your primary instance is upgraded first, and sometimes the secondary instance is upgraded first.
 
@@ -274,10 +274,12 @@ Performing a drill using forced failover is **not recommended**, as this operati
 
 Please ensure the two managed instances have switched roles and that the failover group status has switched from 'Failover in progress' to 'Synchronizing' before optionally establishing connections to the new primary managed instance and starting read-write workload.
 
-To perform a data lossless failback to the original managed instance roles, using manual planned failover instead of forced failover is **strongly recommended**. To proceed with forced failback:
+To perform a data lossless failback to the original managed instance roles, using manual planned failover instead of forced failover is **strongly recommended**. If forced failback is used:
 
 - Follow the same steps as for the data lossless failover.
 - Longer failback execution time is expected if the forced failback is executed **shortly after** the initial forced failover is completed, as it has to wait for completion of outstanding automatic backup operations on the former primary managed instance.
+- Any outstanding automatic backup operations on the managed instance transitioning from the primary to the secondary role will impact database availability on this instance.
+- Please use the failover group status to determine whether both instances have successfully changed their roles and are ready to accept client connections.
 
 ## Related content
 

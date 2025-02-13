@@ -131,7 +131,7 @@ The following code snippet can be used to create a self-signed certificate on a 
 $certificateParams = @{
     Type = "SSLServerAuthentication"
     Subject = "CN=$env:COMPUTERNAME"
-    DnsName = @("{0}" -f [System.Net.Dns]::GetHostByName($env:computerName).HostName, 'localhost')
+    DnsName = @("$($env:COMPUTERNAME)", $([System.Net.Dns]::GetHostEntry('').HostName), 'localhost')
     KeyAlgorithm = "RSA"
     KeyLength = 2048
     HashAlgorithm = "SHA256"
@@ -155,7 +155,8 @@ USE [master];
 GO
 
 SELECT DISTINCT (encrypt_option)
-FROM sys.dm_exec_connections;
+FROM sys.dm_exec_connections
+WHERE net_transport <> 'Shared memory';
 GO
 ```
 

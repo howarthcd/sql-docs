@@ -3,7 +3,7 @@ title: "Release notes for Reporting Services 2017 and later"
 description: Learn details about the changes in SQL Server Reporting Services (SSRS), for versions 2017 and later.
 author: casualoak
 ms.author: petebro
-ms.reviewer: maggies
+ms.reviewer: kfollis
 ms.date: 09/25/2024
 ms.service: reporting-services
 ms.subservice: reporting-services
@@ -50,6 +50,15 @@ GeneMi, DevOps = 1467988 (MsEng > TechnicalContent) , 2019/03/19
 
 ::: moniker range="=sql-server-ver16"
 ## SQL Server 2022 Reporting Services
+
+## 16.0.9101.19239, 2025/01/06
+*(Product Version: 16.0.1116.38)*
+
+- Changed default SupportedHyperlinkSchemes advanced server property value to disallow JavaScript
+- Changed default TrustedFileFormat advanced server property value to disallow pdf content viewing
+- Fixed performance issue with email subscriptions
+- Fixed issue with image attachments when posting comments
+- Fixed issue changing service account password in RSConfig tool.
 
 ## 16.0.8969.32906, 2024/07/23
 *(Product Version: 16.0.1116.12)*
@@ -136,8 +145,19 @@ Release Candidate 0 (RC0)
 
 ## SQL Server 2019 Reporting Services
 
+## 15.0.9098.6826, 2025/01/06
+*(Product Version: 15.0.1103.41)*
+
+- Added Mobile Report support back to SSRS 2019
+- Updated SSRS to use Microsoft.Data.SqlClient in place of (now deprecated) System.Data.SqlClient
+- Changed default SupportedHyperlinkSchemes advanced server property value to disallow javascript
+- Changed default TrustedFileFormat advanced server property value to disallow pdf content viewing
+- Fixed performance issue with email subscriptions
+- Fixed issue with image attachments when posting comments
+- Fixed issue changing service account password in RSConfig tool.
+
 ## 15.0.8969.33375, 2024/07/23
-*(Product Version: 15.0.1103.12 )*
+*(Product Version: 15.0.1103.12)*
 
 - Fixed error faced when editing data driven subscriptions
 - Fixed verbose log causing RDL reports to not render

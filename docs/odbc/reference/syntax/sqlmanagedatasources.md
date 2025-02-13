@@ -80,7 +80,7 @@ BOOL SQLManageDataSources(
   
  A data source set up with a system data source name (DSN) can be used by more than one user on the same machine. It can also be used by a systemwide service, which can then gain access to the data source even if no user is logged on to the machine.  
   
- A System DSN is registered in the HKEY_LOCAL_MACHINE entry in the system information rather than in the HKEY_CURRENT_USER entry. It is not tied to one user who logs on with his or her particular user name and password but can be used by any user of that machine or by an automatic systemwide service. The System DSN is, however, tied to one machine. It does not support the capability of using remote DSNs between machines. System DSNs are registered as follows in the system information:  
+ A System DSN is registered in the HKEY_LOCAL_MACHINE entry in the system information rather than in the HKEY_CURRENT_USER entry. It is not tied to one user who logs on with their particular user name and password but can be used by any user of that machine or by an automatic systemwide service. The System DSN is, however, tied to one machine. It does not support the capability of using remote DSNs between machines. System DSNs are registered as follows in the system information:  
   
  HKEY_LOCAL_MACHINE    SOFTWARE       ODBC          Odbc.ini  
   

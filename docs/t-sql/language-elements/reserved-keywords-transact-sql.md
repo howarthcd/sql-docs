@@ -7,6 +7,8 @@ ms.date: "03/14/2017"
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 helpviewer_keywords:
   - "ODBC function calls"
   - "keywords [SQL Server], reserved"
@@ -14,11 +16,11 @@ helpviewer_keywords:
   - "keywords [SQL Server]"
 dev_langs:
   - "TSQL"
-monikerRange: ">= aps-pdw-2016 || = azuresqldb-current || = azure-sqldw-latest || >= sql-server-2016 || >= sql-server-linux-2017 || = azuresqldb-mi-current ||=fabric"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 
 # Reserved Keywords (Transact-SQL)
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
   [!INCLUDE[msCoName](../../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] uses reserved keywords for defining, manipulating, and accessing databases. Reserved keywords are part of the grammar of the [!INCLUDE[tsql](../../includes/tsql-md.md)] language that is used by [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] to parse and understand [!INCLUDE[tsql](../../includes/tsql-md.md)] statements and batches. Although it is syntactically possible to use [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] reserved keywords as identifiers and object names in [!INCLUDE[tsql](../../includes/tsql-md.md)] scripts, you can do this only by using delimited identifiers.  
   

@@ -1,8 +1,8 @@
 ---
 title: "Use a Notification class for a delivery extension"
 description: Find out how delivery extensions can use the Notification class. This class stores subscription information that is used when delivering reports.
-author: maggiesMSFT
-ms.author: maggies
+author: kfollis
+ms.author: kfollis
 ms.date: 09/25/2024
 ms.service: reporting-services
 ms.subservice: extensions
@@ -13,7 +13,7 @@ helpviewer_keywords:
   - "delivery extensions [Reporting Services], notifications"
   - "notifications [Reporting Services]"
   - "retry queues"
-  - "Nofication class"
+  - "Notification class"
 ---
 # Use a Notification class for a delivery extension
   The <xref:Microsoft.ReportingServices.Interfaces.Notification> class is located in the <xref:Microsoft.ReportingServices.Interfaces> namespace and represents subscription information that delivery extensions use for delivering reports. The <xref:Microsoft.ReportingServices.Interfaces.Notification> class provides many properties that can be used to render the reports for delivery, determine the status of the notification, and set user data.  

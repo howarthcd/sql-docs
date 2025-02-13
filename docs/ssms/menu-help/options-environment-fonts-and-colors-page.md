@@ -43,7 +43,7 @@ Lists available point sizes for the selected font. Changing the size of the font
 Lists the items for which you can modify the foreground and background color.  
   
 > [!NOTE]  
-> **T**he default display item is Text. As such, properties assigned to Text will be overridden by properties assigned to other display items. For example, if you assign the color blue to **Text** and the color green to Identifier, all identifiers will appear in green. In this example, Identifier properties override Text properties.  
+> The default display item is Text. As such, properties assigned to Text will be overridden by properties assigned to other display items. For example, if you assign the color blue to **Text** and the color green to Identifier, all identifiers will appear in green. In this example, Identifier properties override Text properties.  
   
 Some display items include:  
   

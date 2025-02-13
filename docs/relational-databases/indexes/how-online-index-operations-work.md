@@ -7,6 +7,8 @@ ms.date: 02/17/2017
 ms.service: sql
 ms.subservice: table-view-index
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 helpviewer_keywords:
   - "online index operations"
   - "source indexes [SQL Server]"
@@ -14,10 +16,10 @@ helpviewer_keywords:
   - "target indexes [SQL Server]"
   - "temporary mapping index [SQL Server]"
   - "index temporary mappings [SQL Server]"
-monikerRange: "=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
+monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # How Online Index Operations Work
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sql-asdb-asdbmi.md)] 
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)] 
 
   This topic defines the structures that exist during an online index operation and shows the activities associated with these structures.  
   

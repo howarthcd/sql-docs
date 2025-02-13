@@ -5,7 +5,7 @@ description: Learn how to fail over a link between SQL Server and Azure SQL Mana
 author: djordje-jeremic
 ms.author: djjeremi
 ms.reviewer: mathoma, danil
-ms.date: 10/09/2024
+ms.date: 12/06/2024
 ms.service: azure-sql-managed-instance
 ms.subservice: data-movement
 ms.custom: ignite-2023
@@ -293,55 +293,7 @@ GO
 
 Following a forced failover, you might encounter a split-brain scenario where both replicas are in the primary role, leaving the link in an inconsistent state. This can happen if you fail over to the secondary replica during a disaster, and then the primary replica comes back online.
 
-First, confirm you're in a split-brain scenario. You can do so by using SQL Server Management Studio (SSMS) or Transact-SQL (T-SQL).
-
-Connect to both SQL Server and SQL managed instance in SSMS, and then in **Object Explorer**, expand **Availability replicas** under the **Availability group** node in **Always On High Availability**.  If two different replicas are listed as **(Primary)**, you're in a split-brain scenario. 
-
-Alternatively, you can run the following T-SQL script on *both* SQL Server and SQL Managed Instance to check the role of the replicas:
-
-```sql
--- Execute on SQL Server and SQL Managed Instance 
-
-declare @link_name varchar(max) = '<DAGName>' 
-USE MASTER 
-GO
-
-SELECT
-   ag.name [Link name], 
-   rs.role_desc [Link role] 
-FROM
-   sys.availability_groups ag 
-   join sys.dm_hadr_availability_replica_states rs 
-   on ag.group_id = rs.group_id 
-WHERE 
-   rs.is_local = 1 and ag.name = @link_name 
-GO
-```
-
-If both instances list a different **Primary** in the **Link role** column, you're in a split-brain scenario.
-
-To resolve the split brain state, first take a backup on whichever replica was the original primary. If the original primary was SQL Server, then take a [tail log backup](/sql/relational-databases/backup-restore/tail-log-backups-sql-server). If the original primary was SQL Managed Instance, then take a [copy-only full backup](/sql/relational-databases/backup-restore/copy-only-backups-sql-server). After the backup completes, set the distributed availability group to the secondary role for the replica that used to be the original primary but will now be the new secondary.
- 
-For example, in the event of a true disaster, assuming you've forced a failover of your SQL Server workload to Azure SQL Managed Instance, and you intend to continue running your workload on SQL Managed Instance, take a tail log backup on SQL Server, and then set the distributed availability group to the secondary role on SQL Server such as the following example:
-
-```sql
---Execute on SQL Server 
-USE MASTER
-
-ALTER availability group [<DAGName>] 
-SET (role = secondary) 
-GO 
-```
-
-Next, execute a planned manual failover from SQL Managed Instance to SQL Server by using the link, such as the following example: 
-
-```sql
---Execute on SQL Managed Instance 
-USE MASTER
-
-ALTER availability group [<DAGName>] FAILOVER 
-GO 
-```
+To resolve this issue, see [Fix split-brain scenario](managed-instance-link-troubleshoot-how-to.md#inconsistent-state-after-forced-failover).
 
 
 ## Related content
@@ -352,6 +304,7 @@ To use the link:
 - [Configure link between SQL Server and SQL Managed instance with scripts](managed-instance-link-configure-how-to-scripts.md)
 - [Migrate with the link](managed-instance-link-migrate.md)
 - [Best practices for maintaining the link](managed-instance-link-best-practices.md)
+- [Troubleshoot issues with the link](managed-instance-link-troubleshoot-how-to.md)
 
 To learn more about the link: 
 - [Managed Instance link overview](managed-instance-link-feature-overview.md)
@@ -361,3 +314,4 @@ For other replication and migration scenarios, consider:
 
 - [Transactional replication with SQL Managed Instance](replication-transactional-overview.md)
 - [Log Replay Service (LRS)](log-replay-service-overview.md)
+

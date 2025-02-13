@@ -1,32 +1,33 @@
 ---
 title: Availability through local and zone redundancy
 titleSuffix: Azure SQL Database
-description: Learn about the architecture of Azure SQL Database that achieves availability through local redundancy, and high availability through zone redundancy. 
-author: rajeshsetlem
-ms.author: rsetlem   
-ms.reviewer: wiassaf, mathoma, randolphwest
-ms.date: 06/25/2024
+description: Learn about the architecture of Azure SQL Database that achieves availability through local redundancy, and high availability through zone redundancy.
+author: WilliamDAssafMSFT
+ms.author: wiassaf
+ms.reviewer: rsetlem, mathoma, randolphwest
+ms.date: 11/19/2024
 ms.service: azure-sql-database
 ms.subservice: high-availability
 ms.topic: conceptual
 ms.custom:
-  - "references_regions"
-  - "azure-sql-split"
-monikerRange: "=azuresql||=azuresql-db"
+  - references_regions
+  - azure-sql-split
+  - ignite-2024
+monikerRange: "=azuresql || =azuresql-db || =fabricsql"
 ---
 
 # Availability through redundancy -  Azure SQL Database
-[!INCLUDE [appliesto-sqldb](../includes/appliesto-sqldb.md)]
+[!INCLUDE [appliesto-sqldb-fabricsqldb](../includes/appliesto-sqldb-fabricsqldb.md)]
 
 > [!div class="op_single_selector"]
 > * [Azure SQL Database](high-availability-sla-local-zone-redundancy.md?view=azuresql-db&preserve-view=true)
 > * [Azure SQL Managed Instance](../managed-instance/high-availability-sla-local-zone-redundancy.md?view=azuresql-mi&preserve-view=true)
 
-This article describes the architecture of Azure SQL Database that achieves availability through local redundancy, and high availability through zone redundancy. 
+This article describes the architecture of Azure SQL Database and SQL database in Fabric that achieves availability through local redundancy, and high availability through zone redundancy.
 
 ## Overview
 
-SQL Database runs on the latest stable version of the SQL Server Database Engine on the Windows operating system with all applicable patches. SQL Database automatically handles critical servicing tasks, such as patching, backups, Windows and SQL engine upgrades, and unplanned events such as underlying hardware, software, or network failures. When a database or elastic pool in SQL Database is patched or fails over, the downtime isn't impactful if you [employ retry logic](develop-overview.md#resiliency) in your app. SQL Database can quickly recover even in the most critical circumstances, ensuring that your data is always available. Most users don't notice that upgrades are performed continuously.
+Azure SQL Database and SQL database in Fabric both run on the latest stable version of the SQL Server Database Engine on the Windows operating system with all applicable patches. SQL Database automatically handles critical servicing tasks, such as patching, backups, Windows and SQL engine upgrades, and unplanned events such as underlying hardware, software, or network failures. When a database or elastic pool in SQL Database is patched or fails over, the downtime isn't impactful if you [employ retry logic](develop-overview.md#resiliency) in your app. SQL Database can quickly recover even in the most critical circumstances, ensuring that your data is always available. Most users don't notice that upgrades are performed continuously.
 
 By default, Azure SQL Database achieves *availability* through local redundancy, making your database available during:
 
@@ -71,7 +72,7 @@ Locally redundant availability is based on storing your database to [locally red
 
 Locally redundant availability is available to all databases in all service tiers and Recovery Point Objective (RPO) which indicates the amount of data loss is zero. 
 
-### <a id="general-purpose-service-tier-zone-redundant-availability"></a> Basic, Standard, and General Purpose service tiers
+### Basic, Standard, and General Purpose service tiers
 
 The Basic, and Standard service tiers of the [DTU-based purchasing model](service-tiers-dtu.md), and the General Purpose service tier of the [vCore-based purchasing model](service-tiers-sql-database-vcore.md) use the remote storage availability model for both serverless and provisioned compute. The following figure shows four different nodes with the separated compute and storage layers.
 
@@ -119,10 +120,11 @@ Zone-redundant availability is available to databases in the Business Critical, 
 
 While each service tier implements zone-redundancy differently, All implementations ensure a Recovery Point Objective (RPO) with zero loss of committed data upon failover.
 
+<a id="general-purpose-service-tier-zone-redundant-availability"></a>
 
-### <a id="general-purpose-service-tier-zone-redundant-availability"></a> General Purpose service tier
+### General Purpose service tier
 
-Zone-redundant configuration for the General Purpose service tier is offered for both serverless and provisioned compute for databases in vCore purchasing model. This configuration utilizes [Azure Availability Zones](/azure/availability-zones/az-overview)  to replicate databases across multiple physical locations within an Azure region. By selecting zone-redundancy, you can make your new and existing serverless and provisioned general purpose single databases and elastic pools resilient to a much larger set of failures, including catastrophic datacenter outages, without any changes of the application logic.
+Zone-redundant configuration for the General Purpose service tier is offered for both serverless and provisioned compute for databases in vCore purchasing model. This configuration utilizes [Azure Availability Zones](/azure/reliability/availability-zones-overview)  to replicate databases across multiple physical locations within an Azure region. By selecting zone-redundancy, you can make your new and existing serverless and provisioned general purpose single databases and elastic pools resilient to a much larger set of failures, including catastrophic datacenter outages, without any changes of the application logic.
 
 Zone-redundant configuration for the General Purpose tier has two layers:
 
@@ -158,6 +160,7 @@ Consider the following when configuring your General Purpose databases with zone
   - (Middle East) Israel Central
   - (Middle East) Qatar Central
   - (North America) Canada Central
+  - (North America) Central US
   - (North America) East US
   - (North America) East US 2
   - (North America) South Central US
@@ -178,14 +181,14 @@ The zone-redundant version of the high availability architecture is illustrated 
 
 Consider the following when configuring your Premium or Business Critical databases with zone-redundancy: 
 
-- For up to date information about the regions that support zone-redundant databases, see [Services support by region](/azure/availability-zones/az-region).
+- For up to date information about the regions that support zone-redundant databases, see [Services support by region](/azure/reliability/availability-zones-region-support).
 - For zone redundant availability, choosing a [maintenance window](./maintenance-window.md) other than the default is currently available in [select regions](maintenance-window.md#azure-sql-database-region-support-for-maintenance-windows).
 
 ### <a id="hyperscale-service-tier-zone-redundant-availability"></a> Hyperscale service tier
 
 It's possible to configure zone-redundancy for databases in the Hyperscale service tier. To learn more, review [Create zone-redundant Hyperscale database](hyperscale-create-zone-redundant-database.md). 
 
-Enabling this configuration ensures zone-level resiliency through replication across Availability Zones for all Hyperscale layers. By selecting zone-redundancy, you can make your Hyperscale databases resilient to a much larger set of failures, including catastrophic datacenter outages, without any changes to the application logic. All Azure regions that have [Availability Zones](/azure/availability-zones/az-overview#azure-regions-with-availability-zones) support zone redundant Hyperscale database. Zone redundancy support for Hyperscale PRMS and MOPRMS hardware is available in regions listed [here](service-tiers-sql-database-vcore.md#hyperscale-premium-series-availability).
+Enabling this configuration ensures zone-level resiliency through replication across Availability Zones for all Hyperscale layers. By selecting zone-redundancy, you can make your Hyperscale databases resilient to a much larger set of failures, including catastrophic datacenter outages, without any changes to the application logic. All Azure regions that have [Availability Zones](/azure/reliability/availability-zones-overview#azure-regions-with-availability-zones) support zone redundant Hyperscale database. Zone redundancy support for Hyperscale PRMS and MOPRMS hardware is available in regions listed [here](service-tiers-sql-database-vcore.md#hyperscale-premium-series-availability).
 
 Zone-redundant availability is supported in both Hyperscale standalone databases and Hyperscale elastic pools. For more information, see [Hyperscale elastic pools](hyperscale-elastic-pool-overview.md).
 
@@ -245,7 +248,7 @@ A failover can be initiated using PowerShell, REST API, or Azure CLI:
 | Deployment type | PowerShell | REST API | Azure CLI |
 | :--- | :--- | :--- | :--- |
 | Database | [Invoke-AzSqlDatabaseFailover](/powershell/module/az.sql/invoke-azsqldatabasefailover) | [Database failover](/rest/api/sql/databases/failover) | [az rest](/cli/azure/reference-index#az-rest) might be used to invoke a REST API call from Azure CLI |
-| Elastic pool | [Invoke-AzSqlElasticPoolFailover](/powershell/module/az.sql/invoke-azsqlelasticpoolfailover) | [Elastic pool failover](/javascript/api/@azure/arm-sql/elasticpools) | [az rest](/cli/azure/reference-index#az-rest) might be used to invoke a REST API call from Azure CLI |
+| Elastic pool | [Invoke-AzSqlElasticPoolFailover](/powershell/module/az.sql/invoke-azsqlelasticpoolfailover) | [Elastic pool failover](/rest/api/sql/elastic-pools/failover) | [az rest](/cli/azure/reference-index#az-rest) might be used to invoke a REST API call from Azure CLI |
 
 > [!IMPORTANT]  
 > The Failover command is not available for readable secondary replicas of Hyperscale databases.
@@ -258,7 +261,7 @@ Azure SQL Database features a built-in high availability solution that is deeply
 
 To learn more, review: 
 
-- [Azure Availability Zones](/azure/availability-zones/az-overview)
+- [Azure Availability Zones](/azure/reliability/availability-zones-overview)
 - [Service Fabric](/azure/service-fabric/service-fabric-overview)
 - [Azure Traffic Manager](/azure/traffic-manager/traffic-manager-overview)
 - [Overview of business continuity with Azure SQL Database](business-continuity-high-availability-disaster-recover-hadr-overview.md)

@@ -1,20 +1,24 @@
 ---
 title: "View the Dependencies of a Stored Procedure"
-description: Learn  how to view stored procedure dependencies in SQL Server 2019 (15.x) by using SQL Server Management Studio or Transact-SQL.
+description: Learn how to view stored procedure dependencies in the SQL Database Engine by using SQL Server Management Studio or Transact-SQL.
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.date: "03/14/2017"
 ms.service: sql
 ms.subservice: stored-procedures
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 helpviewer_keywords:
   - "stored procedures [SQL Server], dependencies"
   - "displaying stored procedure dependencies"
   - "viewing stored procedure dependencies"
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # View the Dependencies of a Stored Procedure
-[!INCLUDE[appliesto-ss-asdb-xxxx-pdw-md](../../includes/appliesto-ss-asdb-xxxx-pdw-md.md)]
+
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance Azure Synapse Analytics PDW FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricsqldb.md)]
+
   This topic describes how to view stored procedure dependencies in [!INCLUDE[ssnoversion](../../includes/ssnoversion-md.md)] by using [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] or [!INCLUDE[tsql](../../includes/tsql-md.md)].  
   
 ##  <a name="Top"></a>   
@@ -196,7 +200,7 @@ monikerRange: ">=aps-pdw-2016||=azuresqldb-current||>=sql-server-2016||>=sql-ser
     GO  
     SELECT OBJECT_SCHEMA_NAME ( referencing_id ) AS referencing_schema_name,  
         OBJECT_NAME(referencing_id) AS referencing_entity_name,   
-        o.type_desc AS referencing_desciption,   
+        o.type_desc AS referencing_description,   
         COALESCE(COL_NAME(referencing_id, referencing_minor_id), '(n/a)') AS referencing_minor_id,   
         referencing_class_desc, referenced_class_desc,  
         referenced_server_name, referenced_database_name, referenced_schema_name,  
@@ -246,7 +250,7 @@ monikerRange: ">=aps-pdw-2016||=azuresqldb-current||>=sql-server-2016||>=sql-ser
     USE AdventureWorks2022;  
     GO  
     SELECT OBJECT_NAME(referencing_id) AS referencing_entity_name,   
-        o.type_desc AS referencing_desciption,   
+        o.type_desc AS referencing_description,   
         COALESCE(COL_NAME(referencing_id, referencing_minor_id), '(n/a)') AS referencing_minor_id,   
         referencing_class_desc, referenced_class_desc,  
         referenced_server_name, referenced_database_name, referenced_schema_name,  

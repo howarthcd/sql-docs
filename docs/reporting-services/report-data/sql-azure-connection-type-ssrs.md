@@ -1,8 +1,8 @@
 ---
 title: "Azure SQL Connection Type"
 description: The Azure SQL Connection data extension supports multivalued parameters, server aggregates, and credentials managed separately from the connection string.
-author: maggiesMSFT
-ms.author: maggies
+author: kfollis
+ms.author: kfollis
 ms.date: 09/25/2024
 ms.service: reporting-services
 ms.subservice: report-data
@@ -147,23 +147,6 @@ For more information, see [ODBC Connection Type &#40;SSRS&#41;](../../reporting-
 ###### Platform and Version Information
 
 For more information about platform and version support, see [Data Sources Supported by Reporting Services &#40;SSRS&#41;](../../reporting-services/report-data/data-sources-supported-by-reporting-services-ssrs.md).  
-
-::: moniker range=">=sql-server-2016"
-
-<a name='azure-sql-database-and-aad'></a>
-
-## Azure SQL Database and Microsoft Entra ID
-
-You can use Azure SQL Database with Microsoft Entra ID ([formerly Azure Active Directory](/entra/fundamentals/new-name)).
-
-This scenario is supported when you set up the following items properly:
-
-- Active Directory Authentication Library for SQL Server (ADALSQL) is installed on the report server.
-- [Active Directory Federation Services (ADFS)](/windows-server/identity/active-directory-federation-services) is configured to federate across on-premises Active Directory (AD) and Microsoft Entra ID.
-- [Kerberos Constrained Delegation (KCD)](/windows-server/security/kerberos/kerberos-constrained-delegation-overview) is configured from the report server to the ADFS server.
-- Configure the report/data source to authenticate to [Azure SQL Database](/azure/sql-database/sql-database-technical-overview) as the user viewing the report.
-
-::: moniker-end
 
 ## <a name="HowTo"></a> How-To Topics
 

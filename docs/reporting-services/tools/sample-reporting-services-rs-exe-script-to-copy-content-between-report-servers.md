@@ -1,8 +1,8 @@
 ---
 title: "Sample Reporting Services rs.exe script to copy content between report servers"
 description: Learn how to copy content items and settings from one SQL Server Reporting Services report server to another by using the RS.exe utility to run a Reporting Services RSS script.
-author: maggiesMSFT
-ms.author: maggies
+author: kfollis
+ms.author: kfollis
 ms.date: 09/25/2024
 ms.service: reporting-services
 ms.subservice: tools
@@ -235,7 +235,7 @@ rs.exe -i ssrs_migration.rss -e Mgmt2010 -s https://SourceServer/ReportServer -u
 ###  <a name="bkmk_native_2_sharepoint_root"></a> Native mode to SharePoint mode - root site  
  The following example migrates content from a native mode **SourceServer** to the "root site " on a SharePoint mode server **TargetServer**. The "Reports" and "Data Sources" folders on the native mode server are migrated as new libraries on the SharePoint deployment.  
    
- :::image type="content" source="../../reporting-services/tools/media/ssrs-rss-migrate-root-site.gif" alt-text="Screenshoh that shows the highlighted Data Sources and Reports menu options.":::
+ :::image type="content" source="../../reporting-services/tools/media/ssrs-rss-migrate-root-site.gif" alt-text="Screenshot that shows the highlighted Data Sources and Reports menu options.":::
  
   
 ```  

@@ -7,6 +7,8 @@ ms.date: 10/04/2023
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "SECURITY_POLICY_TSQL"
   - "CREATE SECURITY"
@@ -22,11 +24,11 @@ helpviewer_keywords:
   - "Row-Level Security"
 dev_langs:
   - "TSQL"
-monikerRange: "=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current||=fabric"
+monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # CREATE SECURITY POLICY (Transact-SQL)
 
-[!INCLUDE [sqlserver2016-asdb-asdbmi-fabricse-fabricdw](../../includes/applies-to-version/sqlserver2016-asdb-asdbmi-fabricse-fabricdw.md)]
+[!INCLUDE [sqlserver2016-asdb-asdbmi-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sqlserver2016-asdb-asdbmi-fabricse-fabricdw-fabricsqldb.md)]
 
   Creates a security policy for [row-level security](../../relational-databases/security/row-level-security.md).
   

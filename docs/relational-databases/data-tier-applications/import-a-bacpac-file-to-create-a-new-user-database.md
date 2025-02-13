@@ -6,6 +6,8 @@ ms.author: wiassaf
 ms.date: 04/12/2023
 ms.service: sql
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "sql13.swb. importdac.results.f1"
   - "sql13.swb.importdac.settings.f1"
@@ -22,12 +24,12 @@ helpviewer_keywords:
   - "SQL Server DAC"
   - "Migrate database"
   - "DAC"
-monikerRange: "=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
+monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 
 # Import a BACPAC File to Create a New User Database
 
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 Import a data-tier application (DAC) file - a .bacpac file - to create a copy of the original database, with the data, on a new instance of the Database Engine, or to Azure SQL Database. Export-import operations can be combined to migrate a DAC or database between instances, or to create a logical backup, such as creating an on-premises copy of a database deployed in SQL Database.
 

@@ -8,6 +8,8 @@ ms.date: 11/04/2022
 ms.service: sql
 ms.subservice: system-objects
 ms.topic: "reference"
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "database_automatic_tuning_options_tsql"
   - "database_automatic_tuning_options"
@@ -18,11 +20,11 @@ helpviewer_keywords:
   - "sys.database_automatic_tuning_options catalog view"
 dev_langs:
   - "TSQL"
-monikerRange: "=azuresqldb-current||>=sql-server-2017||>=sql-server-linux-2017||=azuresqldb-mi-current"
+monikerRange: "=azuresqldb-current || >=sql-server-2017 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # sys.database_automatic_tuning_options (Transact-SQL)
 
-[!INCLUDE[sqlserver2017-asdb-asdbmi](../../includes/applies-to-version/sqlserver2017-asdb-asdbmi.md)]
+[!INCLUDE[SQL Server 2016 Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sqlserver2017-asdb-asdbmi-fabricsqldb.md)]
 
   Returns the automatic tuning options for this database.
 

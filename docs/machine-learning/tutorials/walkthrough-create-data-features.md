@@ -102,7 +102,7 @@ First, let's do it the way R users are accustomed to: get the data onto your lap
     print(paste("It takes CPU Time=", round(used.time[1]+used.time[2],2)," seconds, Elapsed Time=", round(used.time[3],2), " seconds to generate features.", sep=""));
     ```
 
-    + The rxDataStep function supports various methods for modifying data in place. For more information, see this article:  [How to transform and subset data in Microsft R](/r-server/r/how-to-revoscaler-data-transform)
+    + The rxDataStep function supports various methods for modifying data in place. For more information, see this article:  [How to transform and subset data in Microsoft R](/r-server/r/how-to-revoscaler-data-transform)
     
     However, a couple of points worth noting regarding rxDataStep: 
     
@@ -183,7 +183,7 @@ Switch to [SQL Server Management Studio](../../ssms/download-sql-server-manageme
     ```
   
     > [!TIP]
-    > This query has been modified to get a smaller sample of data, to make this walkthrough faster. You can remove the TABLESAMPLE clause if you want to get all the data; however, depending on your environment, it might not be possible to load the full datset into R, resulting in an error.
+    > This query has been modified to get a smaller sample of data, to make this walkthrough faster. You can remove the TABLESAMPLE clause if you want to get all the data; however, depending on your environment, it might not be possible to load the full dataset into R, resulting in an error.
   
 5. Use the following lines of code to call the [!INCLUDE[tsql](../../includes/tsql-md.md)] function from your R environment and apply it to the data defined in *featureEngineeringQuery*.
   

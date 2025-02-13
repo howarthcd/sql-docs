@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI example: Copy database to new server"
-description: Use this Azure CLI example script to copy a database in Azure SQL Database to a new server
+title: "Azure CLI example: Copy database to new logical server"
+description: Use this Azure CLI example script to copy a database in Azure SQL Database to a new logical server
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: mathoma
@@ -12,11 +12,11 @@ ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ---
 
-# Copy a database in Azure SQL Database to a new server using the Azure CLI
+# Copy a database in Azure SQL Database to a new logical server using the Azure CLI
 
 [!INCLUDE[appliesto-sqldb](../../includes/appliesto-sqldb.md)]
 
-This Azure CLI script example creates a copy of an existing database in a new server.
+This Azure CLI script example creates a copy of an existing database in a new Azure SQL Database logical server.
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 

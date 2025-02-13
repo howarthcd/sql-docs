@@ -1,8 +1,8 @@
 ---
 title: Use ExecutionLog and the ExecutionLog3 view in Reporting Services
 description: See the report server execution log that's in Reporting Services, which contains information about reports on servers in native mode or a SharePoint farm.
-author: maggiesMSFT
-ms.author: maggies
+author: kfollis
+ms.author: kfollis
 ms.date: 09/25/2024
 ms.service: reporting-services
 ms.subservice: report-server
@@ -126,9 +126,9 @@ The following table describes the data that's captured in the report execution l
 
 The **AdditionalInfo** field is an XML property bag or structure containing additional information about the execution. The contents can be different for each row in the log.  
   
-The following are examples of the contents of the **AddtionalInfo** field for both standard and verbose logging:  
+The following are examples of the contents of the **AdditionalInfo** field for both standard and verbose logging:  
   
-### Standard logging example of AddtionalInfo  
+### Standard logging example of AdditionalInfo  
   
 ``` xml
 <AdditionalInfo>  

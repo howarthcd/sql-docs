@@ -7,6 +7,8 @@ ms.date: "10/23/2017"
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "WRITETEXT_TSQL"
   - "WRITETEXT"
@@ -22,7 +24,7 @@ dev_langs:
   - "TSQL"
 ---
 # WRITETEXT (Transact-SQL)
-[!INCLUDE [SQL Server](../../includes/applies-to-version/sql-asdbmi.md)]
+[!INCLUDE [SQL Server SQLMI](../../includes/applies-to-version/sql-asdbmi.md)]
 
   Permits minimally logged, interactive updating of an existing **text**, **ntext**, or **image** column. WRITETEXT overwrites any existing data in the column it affects. WRITETEXT cannot be used on **text**, **ntext**, and **image** columns in views.  
   

@@ -1,8 +1,8 @@
 ---
 title: "Custom code and assembly references in expressions in a paginated report in Report Designer"
 description: Find out how to add references to custom code embedded in a paginated report. Build and save to your computer and deploy to the report server in Report Builder.
-author: maggiesMSFT
-ms.author: maggies
+author: kfollis
+ms.author: kfollis
 ms.date: 09/25/2024
 ms.service: reporting-services
 ms.subservice: report-design
@@ -167,7 +167,7 @@ End Function
  Instance-based methods are available through a globally defined **Code** member. You access these by referring to the **Code** member, followed by the instance and method name. The following example calls the instance method **ToEUR**, which converts the value of **StandardCost** from dollar to euro:  
   
 ```  
-=Code.m_myDollarCoversion.ToEUR(Fields!StandardCost.Value)  
+=Code.m_myDollarConversion.ToEUR(Fields!StandardCost.Value)  
 ```  
   
 > [!NOTE]  

@@ -7,6 +7,8 @@ ms.date: 04/15/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "COMMIT"
   - "COMMIT TRANSACTION"
@@ -29,7 +31,7 @@ monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >
 ---
 # COMMIT TRANSACTION (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricdw-fabricsqldb.md)]
 
 Marks the end of a successful implicit or explicit transaction. If `@@TRANCOUNT` is 1, `COMMIT TRANSACTION` makes all data modifications since the start of the transaction a permanent part of the database, frees the transaction's resources, and decrements `@@TRANCOUNT` to 0. When `@@TRANCOUNT` is greater than 1, `COMMIT TRANSACTION` decrements `@@TRANCOUNT` only by 1 and the transaction stays active.
 

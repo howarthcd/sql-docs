@@ -61,7 +61,6 @@ For Azure SQL Managed Instance, you should be a member of the [SQL Managed Insta
 |Microsoft.Sql/managedInstances/hybridLink| /read, /write, /delete|
 |Microsoft.Sql/managedInstances/serverTrustCertificates | /write, /delete, /read | 
 
-
 ## One-way failover (SQL Server 2016 - 2022)
 
 For SQL Server 2016 and SQL Server 2019, failover to Azure SQL Managed Instance from SQL Server is one way. Failing back, or restoring your database to SQL Server isn't possible. However, you can recover your data back to SQL Server by using data movement options such as [transactional replication](replication-transactional-overview.md) or [exporting a bacpac](../database/database-export.md). Failing over to Azure SQL Managed Instance breaks the link and drops the distributed availability group. 
@@ -133,6 +132,9 @@ To use the link:
 - [Configure link between SQL Server and SQL Managed instance with scripts](managed-instance-link-configure-how-to-scripts.md)
 - [Fail over the link](managed-instance-link-failover-how-to.md)
 - [Migrate with the link](managed-instance-link-migrate.md)
+- [Best practices for maintaining the link](managed-instance-link-best-practices.md)
+- [Troubleshoot issues with the link](managed-instance-link-troubleshoot-how-to.md)
+
 
 To learn more about the link: 
 - [Managed Instance link overview](managed-instance-link-feature-overview.md)
@@ -141,3 +143,6 @@ For other replication and migration scenarios, consider:
 
 - [Transactional replication with SQL Managed Instance](replication-transactional-overview.md)
 - [Log Replay Service (LRS)](log-replay-service-overview.md)
+
+
+

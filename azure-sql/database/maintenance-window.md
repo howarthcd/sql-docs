@@ -62,7 +62,7 @@ Once the maintenance window selection is made and service configuration complete
 > - In situations where your database is enabled for [geo-replication](active-geo-replication-overview.md) or [failover groups](failover-group-sql-db.md), and the geo-replication does not align with the [Azure region pairing](/azure/reliability/cross-region-replication-azure#azure-cross-region-replication-pairings-for-all-geographies), you should different maintenance window schedules for your primary and secondary database. For example, you can select **Weekday** maintenance window for your geo-secondary database and **Weekend** maintenance window for your geo-primary database.
 
 > [!Important]
-> In very rare circumstances where any postponement of action could cause serious impact, like applying critical security patch, configured maintenance window might be temporarily overriden.
+> In very rare circumstances where any postponement of action could cause serious impact, like applying critical security patch, configured maintenance window might be temporarily overridden.
 
 ## Advance notifications
 
@@ -126,7 +126,7 @@ The following table is for databases that are not [zone-redundant](high-availabi
 | South Africa North | | Yes | Yes |
 | South Central US | Yes | Yes | Yes |
 | South India | | Yes | Yes |
-| Southeast Asia | | Yes | Yes |
+| Southeast Asia | Yes | Yes | Yes |
 | Switzerland North | | Yes | Yes |
 | UAE North | | Yes | Yes |
 | UK South | Yes | Yes | Yes |
@@ -154,8 +154,8 @@ The following table is for [zone-redundant](high-availability-sla-local-zone-red
 | Japan East | | | Yes |
 | North Europe |  Yes | Yes | Yes |
 | South Central US  | | | Yes |
-| Southeast Asia | | |  Yes |
-| UK South | | | Yes |
+| Southeast Asia | Yes | Yes |  Yes |
+| UK South | Yes | Yes | Yes |
 | West Europe |  Yes | Yes | Yes |
 | West US 2 | | | Yes |
 | West US 3 | Yes | Yes | Yes |

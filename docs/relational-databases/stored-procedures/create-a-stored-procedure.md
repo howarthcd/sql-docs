@@ -3,20 +3,23 @@ title: Create a stored procedure
 description: Learn how to create a Transact-SQL stored procedure by using SQL Server Management Studio and by using the Transact-SQL CREATE PROCEDURE statement.
 author: WilliamDAssafMSFT
 ms.author: wiassaf
-ms.date: 01/25/2024
+ms.date: 01/22/2025
 ms.service: sql
 ms.subservice: stored-procedures
 ms.topic: quickstart
-ms.custom: intro-quickstart
+ms.custom:
+  - intro-quickstart
+  - ignite-2024
 helpviewer_keywords:
   - "new stored procedures"
   - "stored procedures [SQL Server], creating"
   - "creating stored procedures"
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # Create a stored procedure
 
-[!INCLUDE[SQL Server Azure SQL Database Synapse Analytics PDW](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance Azure Synapse Analytics PDW FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricsqldb.md)]
+
 
 This article describes how to create a [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] stored procedure by using [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)] and by using the [!INCLUDE[tsql](../../includes/tsql-md.md)] CREATE PROCEDURE statement.
   
@@ -81,11 +84,7 @@ To create a stored procedure in SSMS:
    GO
    SET QUOTED_IDENTIFIER ON
    GO
-   -- =============================================
-   -- Author:      My Name
-   -- Create Date: 01/23/2024
-   -- Description: Returns the customer's company name.
-   -- =============================================
+ 
    CREATE PROCEDURE SalesLT.uspGetCustomerCompany
    (
        -- Add the parameters for the stored procedure here
@@ -93,6 +92,13 @@ To create a stored procedure in SSMS:
        @FirstName nvarchar(50) = NULL
    )
    AS
+   /*
+   -- =============================================
+   -- Author:      My Name
+   -- Create Date: 01/23/2024
+   -- Description: Returns the customer's company name.
+   -- =============================================
+   */
    BEGIN
        -- SET NOCOUNT ON added to prevent extra result sets from
        -- interfering with SELECT statements.

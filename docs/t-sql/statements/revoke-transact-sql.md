@@ -7,6 +7,8 @@ ms.date: "07/26/2017"
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "REVOKE_TSQL"
   - "REVOKE"
@@ -25,20 +27,20 @@ helpviewer_keywords:
   - "dropping permissions"
 dev_langs:
   - "TSQL"
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current||=fabric"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # REVOKE (Transact-SQL)
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
   Removes a previously granted or denied permission.  
   
  :::image type="icon" source="../../includes/media/topic-link-icon.svg" border="false"::: [Transact-SQL syntax conventions](../../t-sql/language-elements/transact-sql-syntax-conventions-transact-sql.md)  
   
 ## Syntax  
-  
+
+Syntax for SQL Server, Azure SQL Database, and Fabric SQL database
+
 ```syntaxsql
--- Syntax for SQL Server and Azure SQL Database  
-  
 -- Simplified syntax for REVOKE  
 REVOKE [ GRANT OPTION FOR ]  
       {   
@@ -49,12 +51,12 @@ REVOKE [ GRANT OPTION FOR ]
       [ ON [ class :: ] securable ]   
       { TO | FROM } principal [ ,...n ]   
       [ CASCADE] [ AS principal ]  
-```  
-  
+```
+
+Syntax for Azure Synapse Analytics, Parallel Data Warehouse, and Microsoft Fabric warehouse
+
 ```syntaxsql
--- Syntax for Azure Synapse Analytics and Parallel Data Warehouse and Microsoft Fabric
-  
-REVOKE   
+REVOKE
     <permission> [ ,...n ]  
     [ ON [ <class_type> :: ] securable ]   
     [ FROM | TO ] principal [ ,...n ]  
@@ -73,7 +75,7 @@ REVOKE
     | SCHEMA  
     | USER  
 }  
-```  
+```
   
 ## Arguments
  GRANT OPTION FOR  

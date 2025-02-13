@@ -8,8 +8,10 @@ ms.date: 03/15/2024
 ms.service: sql
 ms.subservice: ssdt
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 keywords: ssdt dacfx
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||=azuresqldb-mi-current"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || =azuresqldb-mi-current || =fabric"
 ---
 
 # Alter DacFx used by SQL Server Data Tools (SSDT)
@@ -36,7 +38,7 @@ DacFx is published to [NuGet](https://www.nuget.org/packages/Microsoft.SqlServer
    - Microsoft.SqlServer.Dac.dll
    - Microsoft.SqlServer.Dac.Extensions.dll
    - Microsoft.SqlServer.Dac.Extensions.xml
-   - Micrososft.SqlServer.Dac.xml
+   - Microsoft.SqlServer.Dac.xml
    - Microsoft.SqlServer.TransactSql.ScriptDom.dll
    - Microsoft.SqlServer.Types.dll
 

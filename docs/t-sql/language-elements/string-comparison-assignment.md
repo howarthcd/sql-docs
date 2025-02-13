@@ -8,15 +8,18 @@ ms.date: 06/07/2023
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 helpviewer_keywords:
   - "string comparison [Transact-SQL], string compare"
   - "string comparison, string assignment"
 dev_langs:
   - "TSQL"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # = (String comparison or assignment)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 Compares two strings in a `WHERE` or `HAVING` clause or sets a variable or column to string or result of a string operation on the right side of the equation. For example, if a variable `@x` equals `'Adventure'`, then `WHERE @x = 'Adventure'` compares original value of `@x` is equal to the string value `'Adventure'` exactly. Also you can use the `=` operator as an assignment operator. For example, you can call `SET @a = 'AdventureWorks'`.
 

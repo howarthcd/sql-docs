@@ -5,7 +5,7 @@ description: Learn about automated backups for Hyperscale databases in Azure SQL
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: dinethi, mathoma, danil, randolphwest, 
-ms.date: 10/04/2023
+ms.date: 02/03/2025
 ms.service: azure-sql-database
 ms.subservice: backup-restore
 ms.topic: conceptual
@@ -22,7 +22,7 @@ This article explains the [automated backup](automated-backups-overview.md) feat
 
 Hyperscale databases use a [unique architecture](service-tier-hyperscale.md#distributed-functions-architecture) with highly scalable storage and compute performance tiers. Hyperscale backups are snapshot-based and are nearly instantaneous. Log backups are stored in long-term Azure storage for the backup retention period.
 
-A Hyperscale architecture doesn't require full, differential, or log backups. As such, backup frequency, storage costs, scheduling, storage redundancy, and restore capabilities differ from other databases in Azure SQL Database.
+A Hyperscale architecture doesn't require the same backup chain as file-based backups used in SQL Server and other SQL Database tiers, but still meets the same RTO and RPO requirements. The transaction log behaves the same way, and allows for the same point-in-time restore capability. In Hyperscale, backup frequency, storage costs, scheduling, storage redundancy, and restore capabilities differ from other databases in Azure SQL Database.
 
 ## Backup and restore performance
 
@@ -77,13 +77,13 @@ Backup storage consumption for a Hyperscale database depends on the retention pe
 - Avoid doing large write operations, such as index maintenance, more frequently than you need to. For index maintenance recommendations, see [Optimize index maintenance to improve query performance and reduce resource consumption](/sql/relational-databases/indexes/reorganize-and-rebuild-indexes).
 - For large data-load operations, consider using data compression when appropriate.
 - Use the `tempdb` database instead of permanent tables in your application logic to store temporary results and/or transient data.
-- Use locally redundant or zone-redundant backup storage when geo-restore capability is unnecessary (for example, dev/test environments).
+- Use locally redundant or zone-redundant backup storage when [geo-restore](recovery-using-backups.md#geo-restore) capability is unnecessary (for example, dev/test environments).
 
 ## Backup storage costs
 
 Hyperscale backup storage cost depends on the choice of region and backup storage redundancy. It also depends on the workload type.
 
-Write-heavy workloads are more likely to change data pages frequently, which results in larger storage snapshots. Such workloads also generate more transaction logs, contributing to the overall backup costs. Backup storage is charged based on gigabytes consumed per month. For pricing details, see the [Azure SQL Database pricing](https://azure.microsoft.com/pricing/details/sql-database/single/) page.
+Write-heavy workloads are more likely to change data pages frequently, which results in larger storage snapshots. Such workloads also generate more transaction logs, contributing to the overall backup costs. Backup storage is charged based on gigabytes consumed per month. The backup storage amount equal to the database size is provided at no extra charge. For pricing details, see the [Azure SQL Database pricing](https://azure.microsoft.com/pricing/details/sql-database/single/) page.
 
 For Hyperscale, billable backup storage is calculated as follows:
 
@@ -121,7 +121,7 @@ The following screenshot shows an example cost analysis.
 
 Hyperscale supports configurable storage redundancy. When you're creating a Hyperscale database, you can choose your preferred storage type:  read-access geo-zone-redundant storage (RA-GZRS), read-access geo-redundant storage (RA-GRS), zone-redundant storage (ZRS), or locally redundant storage (LRS).
 
-- **Geo-zone-redundant storage**: Copies your backups synchronously across three Azure availability zones in the primary region. similar to zone-redundant storage(ZRS). In addition, it copies your data asynchronously to a single physical location in the [paired](/azure/availability-zones/cross-region-replication-azure#azure-cross-region-replication-pairings-for-all-geographies) secondary region. It's currently available in only [certain regions](/azure/storage/common/storage-redundancy#geo-zone-redundant-storage).
+- **Geo-zone-redundant storage**: Copies your backups synchronously across three Azure availability zones in the primary region. similar to zone-redundant storage(ZRS). In addition, it copies your data asynchronously to a single physical location in the [paired](/azure/reliability/cross-region-replication-azure#azure-cross-region-replication-pairings-for-all-geographies) secondary region. It's currently available in only [certain regions](/azure/storage/common/storage-redundancy#geo-zone-redundant-storage).
 
 For more information about how the backups are replicated for other storage types, see [backup storage redundancy](automated-backups-overview.md#backup-storage-redundancy).
 
@@ -147,8 +147,8 @@ You might need to restore your Hyperscale database to a region that's different 
 > [!NOTE]  
 > Because the source and target are in separate regions, the database can't share snapshot storage with the source database as it does in non-geo restores. Non-geo restores finish quickly regardless of database size.  
 >  
-> A geo-restore of a Hyperscale database is a size-of-data operation, even if the target is in the paired region of the geo-replicated storage. Therefore, a geo-restore will take a significantly longer time compared to a point-in-time restore in the same region.
->  
+> A [geo-restore](recovery-using-backups.md#geo-restore) of a Hyperscale database is a size-of-data operation, even if the target is in the paired region of the geo-replicated storage. Therefore, a geo-restore will take a significantly longer time compared to a point-in-time restore in the same region.
+>
 > If the target is in the paired region, data transfer will be within a region. That transfer will be significantly faster than a cross-region data transfer. But it will still be a size-of-data operation.
 
 If you prefer, you can copy the database to a different region. Use this method if geo-restore isn't available because it's not supported with the selected storage redundancy type. For details, see [Database copy for Hyperscale](database-copy.md#database-copy-for-hyperscale-databases).

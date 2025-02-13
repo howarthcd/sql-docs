@@ -7,6 +7,8 @@ ms.date: "03/14/2017"
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "Z (geography Data Type)"
   - "Z_(geography_Data_Type)_TSQL"
@@ -16,7 +18,7 @@ dev_langs:
   - "TSQL"
 ---
 # Z (geography Data Type)
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
   The Z (elevation) value of the instance. The semantics of the elevation value are user-defined.  
   

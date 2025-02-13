@@ -125,7 +125,7 @@ To complete the steps in this article, you need the following tools:
 
 To verify that your SQL Server enabled by Azure Arc is configured to run with least privilege:
 
-1. In the Windows services, locate **Microsoft SQL Server Extension Service** service. Verify that the service is running under the as the service account `NT Service\SqlServerExtension`.  
+1. In the Windows services, locate **Microsoft SQL Server Extension Service** service. Verify that the service is running as the service account `NT Service\SqlServerExtension`.  
 
 1. Open task scheduler in the server and check that an event driven task with name `SqlServerExtensionPermissionProvider` is created under `Microsoft\SqlServerExtension`.
 
@@ -146,7 +146,7 @@ To verify that your SQL Server enabled by Azure Arc is configured to run with le
 
    ```sql  
    EXECUTE AS LOGIN = 'NT Service\SqlServerExtension'  
-   SELECT * FROM fn_my_permissions (NULL, 'SERVER");
+   SELECT * FROM fn_my_permissions (NULL, 'SERVER');
    ```
 
    To verify database level permissions, replace `<database name>` with the name of one of your databases, and run the following query:
@@ -154,7 +154,7 @@ To verify that your SQL Server enabled by Azure Arc is configured to run with le
    ```sql
    EXECUTE AS LOGIN = 'NT Service\SqlServerExtension'  
    USE <database name>; 
-   SELECT * FROM fn_my_permissions (NULL, 'database");
+   SELECT * FROM fn_my_permissions (NULL, 'database');
 
 ## Related content
 

@@ -10,6 +10,7 @@ ms.subservice: t-sql
 ms.topic: "reference"
 ms.custom:
   - build-2024
+  - ignite-2024
 helpviewer_keywords:
   - "precedence [SQL Server]"
   - "data types [SQL Server], converting"
@@ -22,7 +23,7 @@ monikerRange: "=azuresqldb-current || =azuresqldb-mi-current || >=sql-server-201
 ---
 # Data type precedence (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 When an operator combines expressions of different data types, the data type with the lower precedence is first converted to the data type with the higher precedence. If the conversion isn't a supported implicit conversion, an error is returned. For an operator combining operand expressions having the same data type, the result of the operation has that data type.
 

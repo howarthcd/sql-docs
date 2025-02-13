@@ -7,6 +7,8 @@ ms.reviewer: maghan
 ms.date: 04/21/2023
 ms.service: sql
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "sql13.swb.registerdacwizard.summary.f1"
   - "sql13.swb.registerdacwizard.introduction.f1"
@@ -17,11 +19,12 @@ helpviewer_keywords:
   - "How to [DAC], register"
   - "register DAC"
   - "data-tier application [SQL Server], register"
+monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 
 # Register a Database As a DAC
 
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 Use either the **Register Data-tier Application Wizard** or a Windows PowerShell script to build a data-tier application (DAC) definition that describes the objects in an existing database, and register the DAC definition in the `msdb` system database (`master` in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)]).
 

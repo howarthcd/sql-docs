@@ -53,6 +53,9 @@ The system databases in a newly created contained AG aren't copies from the inst
 
 If you create local users or configurations in your instance, they don't automatically appear when you create your contained system databases, and they aren't visible when you connect to the contained AG. Once the user database has been joined to a contained AG, it will immediately become inaccessible to these users. You need to manually re-create them in the contained system databases within the context of the contained AG, by connecting directly to the database or by using the listener endpoint. The exception to this is that all of the logins in the sysadmin role in the parent instance are copied into the new AG specific `master` database.
 
+> [!NOTE]  
+> Because the `master` database is separate for each contained availability group, server-scope activities performed in the context of the contained AG are only persisted in the contained system database. This includes auditing. If you audit server level activity with SQL Server Auditing, you must create the same server audits within each contained AG.
+
 #### Restore a contained system database
 
 You can restore a contained system database using one of two different ways.
@@ -70,6 +73,10 @@ You can restore a contained system database using one of two different ways.
   1. Restore the contained `master` and `msdb` database in each of the instances participating in the contained AG.
 
   1. Recreate the contained AG using original nodes and name, using `WITH (CONTAINED, REUSE_SYSTEM_DATABASES)` syntax.
+
+### Contained availability group jobs
+
+Jobs that belong to a contained availability group run on the primary replica only. They do not run on secondary replicas.
 
 ### Connect (contained environment)
 
@@ -121,13 +128,21 @@ This connection string would get you connected to the readable secondary that is
 
 There are additional considerations when using certain features with contained AGs, and there are some features that are currently unsupported.
 
-### Not supported
+### Back up
 
-Currently, the following [!INCLUDE [ssnoversion-md](../../../includes/ssnoversion-md.md)] features aren't supported with a contained AG:
+Procedures to back up databases in a contained AG are the same as any user database backup procedures. This is true for both the contained AG user databases and the contained AG system databases.
 
-- [!INCLUDE [ssnoversion-md](../../../includes/ssnoversion-md.md)] Replication of any type (transactional, merge, snapshot, and so on).
-- Distributed availability groups.
-- Log shipping where the target database is in the contained AG. Log shipping with the source database in the contained AG is supported.
+If the backup location is local, the backup files are placed on the server that runs the backup job. This means your backup files may be in different locations.
+
+If the backup location is on a network resource, all servers that host replicas need access to that resource.
+
+### Resource governor
+
+Resource governor works at the instance level. Resource governor with a contained availability group isn't applicable.
+
+Resource governor configuration DDL commands have no effect when executed on a contained availability group connection.
+
+If resource governor is enabled via an instance connection, it has no effect on the contained availability group connections.
 
 ### Change data capture
 
@@ -156,6 +171,14 @@ To transfer the DMK from the `master` database of the instance, to the contained
 ### SSIS packages & maintenance plans
 
 Using SSIS packages, including maintenance plans, is not supported with contained availability groups.
+
+## Not supported
+
+Currently, the following [!INCLUDE [ssnoversion-md](../../../includes/ssnoversion-md.md)] features aren't supported with a contained AG:
+
+- [!INCLUDE [ssnoversion-md](../../../includes/ssnoversion-md.md)] Replication of any type (transactional, merge, snapshot, and so on).
+- Distributed availability groups.
+- Log shipping where the target database is in the contained AG. Log shipping with the source database in the contained AG is supported.
 
 ## DDL changes
 

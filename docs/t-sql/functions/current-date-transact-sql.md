@@ -8,6 +8,8 @@ ms.date: 08/08/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "CURRENT_DATE"
   - "CURRENT_DATE_TSQL"
@@ -28,7 +30,7 @@ helpviewer_keywords:
   - "time [SQL Server], system"
 dev_langs:
   - "TSQL"
-monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || =azuresqldb-mi-current || =fabric"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azuresqldb-mi-current"
 ---
 # CURRENT_DATE (Transact-SQL)
 

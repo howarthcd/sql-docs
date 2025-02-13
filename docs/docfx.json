@@ -120,11 +120,11 @@
         "**/*.md": "~/breadcrumb/toc.yml"
       },
       "layout": {
-          "**/*.md": "Conceptual",
-          "**/*.yml": "Conceptual",
-          "**/toc.md": null,
-          "**/toc.yml": null,
-          "**/index.yml": "LandingPage"
+        "**/*.md": "Conceptual",
+        "**/*.yml": "Conceptual",
+        "**/toc.md": null,
+        "**/toc.yml": null,
+        "**/index.yml": "LandingPage"
       },
       "monikerRange": {
         "ado/**/*.md": ">= sql-server-2016 || >= sql-server-linux-2017 || = azuresqldb-current || = azuresqldb-mi-current || = azure-sqldw-latest || >= aps-pdw-2016",
@@ -187,9 +187,11 @@
         "ssma/**/*.md": ">= sql-server-2016 || >= sql-server-linux-2017 || = azuresqldb-current || = azuresqldb-mi-current || = azure-sqldw-latest || >= aps-pdw-2016",
         "ssms/**/*.md": ">= aps-pdw-2016 || = azure-sqldw-latest || = azuresqldb-current || = azuresqldb-mi-current || >= sql-server-2016 || = fabric",
         "toc/**/*.md": "=azuresqldb-current||=azuresqldb-mi-current||=azure-sqldw-latest||>=aps-pdw-2016||>=sql-server-2016||>=sql-server-linux-2017 || = fabric",
-        "tools/**/*.md": ">= sql-server-2016 || >= sql-server-linux-2017",
+        "tools/**/*.md": ">=aps-pdw-2016 || >=sql-server-2016 || >=sql-server-linux-2017 || =azure-sqldw-latest || =azuresql || =azuresql-db || =azuresqldb-mi-current || =azuresqldb-current || =fabric",
         "tools/distributed-replay/*.md": "= sql-server-2016 || = sql-server-2017 || = sql-server-ver15 || = sql-server-linux-2017 || = sql-server-linux-ver15",
         "t-sql/**/*.md": "= azuresqldb-current || = azuresqldb-mi-current || >= sql-server-2016 || >= sql-server-linux-2017 || = azuresqledge-current",
+        "t-sql/spatial-geography/*.md": "= azuresqldb-current || >= sql-server-2016 || >= sql-server-linux-2017 || = azuresqldb-mi-current || =fabric",
+        "t-sql/spatial-geometry/*.md": "= azuresqldb-current || >= sql-server-2016 || >= sql-server-linux-2017 || = azuresqldb-mi-current || =fabric",
         "xquery/**/*.md": ">= sql-server-2016 || >= sql-server-linux-2017"
       },
       "zone_pivot_group_filename": {
@@ -210,7 +212,8 @@
         "azdata/**/*.md": "reference"
       },
       "ms.service": {
-        "sql-server/azure-arc/**/*.md": "sql"
+        "sql-server/azure-arc/**/*.md": "sql",
+        "sql-server/azure-arc/**/*.yml": "sql"
       },
       "ms.subservice": {
         "sql-server/azure-arc/**/*.md": "azure-arc-sql-server",
@@ -409,6 +412,9 @@
         ],
         "relational-databases/system-stored-procedures/sys-sp-rda-test-connection-transact-sql.md": [
           "sql-server-ver16"
+        ],
+        "ado/**/*.md": [
+          "sql-server-ver15"
         ]
       }
     },

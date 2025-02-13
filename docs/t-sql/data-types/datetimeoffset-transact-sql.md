@@ -4,10 +4,12 @@ description: "Defines a date that is combined with a time of a day based on a 24
 author: MikeRayMSFT
 ms.author: mikeray
 ms.reviewer: randolphwest, wiassaf
-ms.date: 05/03/2024
+ms.date: 09/24/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: "reference"
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "datetimeoffset_TSQL"
   - "datetimeoffset"
@@ -20,11 +22,11 @@ helpviewer_keywords:
   - "time zones [SQL Server]"
 dev_langs:
   - "TSQL"
-monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current ||=fabric"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # datetimeoffset (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 Defines a date that is combined with a time of a day based on a 24-hour clock like [datetime2](datetime2-transact-sql.md), and adds time zone awareness based on Coordinated Universal Time (UTC).
 
@@ -141,6 +143,8 @@ In Microsoft Fabric, currently you cannot create columns with the **datetimeoffs
 SELECT
 CAST(CAST('2024-07-03 00:00:00' AS DATETIMEOFFSET) AT TIME ZONE 'Pacific Standard Time' AS datetime2) AS PST
 ```
+
+In Microsoft Fabric SQL database: precision of 7 digits can be used, but mirrored data into Fabric OneLake would have the time zone and seventh time decimal trimmed. This column type cannot be used as a primary key in tables in Fabric SQL database.
 
 ## Convert date and time data
 

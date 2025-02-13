@@ -8,6 +8,8 @@ ms.date: 11/30/2023
 ms.service: sql
 ms.subservice: table-view-index
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 helpviewer_keywords:
   - "clustered indexes, online operations"
   - "online index operations"
@@ -15,11 +17,11 @@ helpviewer_keywords:
   - "disk space [SQL Server], indexes"
   - "nonclustered indexes [SQL Server], online operations"
   - "transaction logs [SQL Server], indexes"
-monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current"
+monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # Guidelines for online index operations
 
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Database MI](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 When you perform online index operations, the following guidelines apply:
 
@@ -121,7 +123,7 @@ Generally, there's no difference in defragmentation quality between resumable an
 You can set default options for online or resumable at a database level by setting the `ELEVATE_ONLINE` or `ELEVATE_RESUMABLE` database scoped configuration options. With these default options, you can avoid accidentally performing an operation that takes your database table offline. Both options cause the engine to automatically elevate certain operations to online or resumable execution.  
 You can set either option as `FAIL_UNSUPPORTED`, `WHEN_SUPPORTED`, or `OFF` using the [ALTER DATABASE SCOPED CONFIGURATION](../../t-sql/statements/alter-database-scoped-configuration-transact-sql.md) command. You can set different values for online and resumable.
 
-Both `ELEVATE_ONLINE` and `ELEVATE_RESUMABLE` only apply to DDL statements that support the online and resumable syntax respectively. For example, if you attempt to create an XML index with `ELEVATE_ONLINE=FAIL_UNSUPORTED`, the operation will run offline since XML indexes don't support the `ONLINE=` syntax. The options only affect DDL statements that are submitted without specifying an ONLINE or RESUMABLE option. For example, by submitting a statement with `ONLINE=OFF` or `RESUMABLE=OFF`, the user can override a `FAIL_UNSUPPORTED` setting and run a statement offline and/or nonresumably.
+Both `ELEVATE_ONLINE` and `ELEVATE_RESUMABLE` only apply to DDL statements that support the online and resumable syntax respectively. For example, if you attempt to create an XML index with `ELEVATE_ONLINE=FAIL_UNSUPPORTED`, the operation will run offline since XML indexes don't support the `ONLINE=` syntax. The options only affect DDL statements that are submitted without specifying an ONLINE or RESUMABLE option. For example, by submitting a statement with `ONLINE=OFF` or `RESUMABLE=OFF`, the user can override a `FAIL_UNSUPPORTED` setting and run a statement offline and/or nonresumably.
 
 > [!NOTE]  
 > `ELEVATE_ONLINE` and `ELEVATE_RESUMABLE` don't apply to XML index operations.

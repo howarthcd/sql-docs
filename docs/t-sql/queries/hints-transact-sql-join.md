@@ -8,6 +8,8 @@ ms.date: 06/07/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "Join Hint"
   - "Join_Hint_TSQL"
@@ -20,10 +22,11 @@ helpviewer_keywords:
   - "hints [SQL Server], join"
 dev_langs:
   - "TSQL"
+monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # Join hints (Transact-SQL)
 
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 Join hints specify that the query optimizer enforce a join strategy between two tables in [!INCLUDE [ssnoversion](../../includes/ssnoversion-md.md)]. For general information about joins and join syntax, see [FROM clause plus JOIN, APPLY, PIVOT](from-transact-sql.md).
 

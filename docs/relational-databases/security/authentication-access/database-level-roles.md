@@ -8,6 +8,8 @@ ms.date: 07/18/2024
 ms.service: sql
 ms.subservice: security
 ms.topic: conceptual
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "sql13.swb.roleproperties.database.f1"
   - "sql13.swb.roleproperties.object.f1"
@@ -35,11 +37,11 @@ helpviewer_keywords:
   - "fixed database roles [SQL Server]"
   - "authentication [SQL Server], roles"
   - "groups [SQL Server], roles"
-monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # Database-level roles
 
-[!INCLUDE [SQL Server](../../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricsqldb](../../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricsqldb.md)]
 
 To easily manage the permissions in your databases, [!INCLUDE [ssNoVersion](../../../includes/ssnoversion-md.md)] provides several roles that are security principals that group other principals. They are like *groups* in the Windows operating system. Database-level roles are database-wide in their permissions scope.
 

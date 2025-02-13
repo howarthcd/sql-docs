@@ -4,7 +4,7 @@ description: The vector data type stores vector data optimized for machine learn
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: damauri, pookam
-ms.date: 10/29/2024
+ms.date: 01/21/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: quickstart
@@ -16,20 +16,22 @@ helpviewer_keywords:
   - "vector, data type"
 dev_langs:
   - "TSQL"
-monikerRange: "= azuresqldb-current"
+ms.collection: ce-skilling-ai-copilot
+monikerRange: "=azuresqldb-current||=fabric"
 ---
 # Vector data type (preview)
 
-[!INCLUDE [Azure SQL Database](../../includes/applies-to-version/asdb.md)]
+[!INCLUDE [Azure SQL Database FabricSQLDB](../../includes/applies-to-version/asdb-fabricsqldb.md)]
 
 The **vector** data type is designed to store vector data optimized for operations such as similarity search and machine learning applications. Vectors are stored in an optimized binary format but are exposed as JSON arrays for convenience. Each element of the vector is stored as a single-precision (4-byte) floating-point value.
 
 > [!NOTE]
 > This data type is in preview and is subject to change. Make sure to read preview usage terms in the [Service Level Agreements (SLA) for Online Services](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services) document. For limitations of the current preview, see [Limitations](#limitations) and [Known issues](#known-issues).
 
-For more information on working with Vector data in SQL Database, see:
+For more information on working with vector data, see:
 
-- [Intelligent applications with Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications#vector-search)
+- [Overview of vectors in the SQL Database Engine](../../relational-databases/vectors/vectors-sql-server.md)
+- [Intelligent applications](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications#vector-search)
 
 ## Sample syntax
 
@@ -92,8 +94,6 @@ END
 ```
 
 ## Feature availability
-
-The native support for vectors is currently in preview in Azure SQL Database.
 
 The new **vector** type is available under all database compatibility levels.
 
@@ -160,6 +160,10 @@ conn.close()
 ```
 
 For more information on the `get_conn` function, see [Migrate a Python application to use passwordless connections with Azure SQL Database](/azure/azure-sql/database/azure-sql-passwordless-migration-python?view=azuresql&preserve-view=true&tabs=sign-in-azure-cli%2Cazure-portal-create%2Cazure-portal-assign%2Capp-service-identity#update-the-local-connection-configuration).
+
+> [!WARNING]
+> Make sure to add `LongAsMax=yes` in the connection string used with Python to send data using the **nvarchar(max)** type instead of the obsolete **ntext** to avoid any conversion error message, for example: "DataError: ('22018', '[22018] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Operand type clash: ntext is incompatible with vector (206) (SQLExecDirectW)')". For more information, see [PyODBC - LongAsMax](https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Windows#longasmax).
+
 
 ---
 
@@ -231,11 +235,13 @@ In the ongoing preview there are the following known issues:
 - Column encryption doesn't currently support the **vector** type.
 - Always Encrypted doesn't currently support the **vector** type.
 - Data Masking currently shows **vector** data as **varbinary** data type in the portal.
+- When passing a **vector** type to `LEN` and `DATALENGTH` error 8116 (Argument data type vector is invalid for argument 1 of datalength function) is returned.
+- In some cases when you pass a vector to a stored procedure or a function you, may get error 42211 (Truncation of vector is not allowed during the conversion). A workaround is to use **nvarchar(max)** instead **vector** type.
 
 These issues will be fixed in future updates and documentation will be updated accordingly.
 
 ## Related content
 
 - [Overview of vectors in the SQL Database Engine](../../relational-databases/vectors/vectors-sql-server.md)
-- [Intelligent applications with Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)
+- [Intelligent applications](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)
 - [Vector functions](../functions/vector-functions-transact-sql.md)

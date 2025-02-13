@@ -50,13 +50,13 @@ SETUSER [ 'username' [ WITH NORESET ] ]
  SETUSER remains in effect until another SETUSER statement is issued or until the current database is changed with the USE statement.  
   
 > [!NOTE]  
->  If SETUSER WITH NORESET is used, the database owner or system administrator must log off and then log on again to reestablish his or her own rights.  
+>  If SETUSER WITH NORESET is used, the database owner or system administrator must log off and then log on again to reestablish their own rights.  
   
 ## Permissions  
  Requires membership in the **sysadmin** fixed server role or must be the owner of the database. Membership in the **db_owner** fixed database role is not sufficient  
   
 ## Examples  
- The following example shows how the database owner can adopt the identity of another user. User `mary` has created a table called `computer_types`. By using SETUSER, the database owner impersonates `mary` to grant user `joe` access to the `computer_types` table, and then resets his or her own identity.  
+ The following example shows how the database owner can adopt the identity of another user. User `mary` has created a table called `computer_types`. By using SETUSER, the database owner impersonates `mary` to grant user `joe` access to the `computer_types` table, and then resets their own identity.  
   
 ```sql
 SETUSER 'mary';  

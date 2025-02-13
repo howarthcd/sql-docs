@@ -8,7 +8,9 @@ ms.date: 03/08/2024
 ms.service: sql
 ms.subservice: data-movement
 ms.topic: conceptual
-monikerRange: ">=sql-server-ver16||=azuresqldb-current||=azure-sqldw-latest"
+ms.custom:
+  - ignite-2024
+monikerRange: ">=sql-server-ver16 || =azuresqldb-current || =azure-sqldw-latest"
 ---
 # Azure Synapse Link for SQL change feed
 
@@ -68,7 +70,7 @@ If an initial snapshot was in progress and is interrupted for any reason, the in
 
 The Fabric Mirrored Database feature uses similar change feed technology as the Azure Synapse Link, and shares some system objects. For more information, see:
 
-- [Microsoft Fabric mirrored databases (Preview)](/fabric/database/mirrored-database/overview)
+- [Microsoft Fabric mirrored databases](/fabric/database/mirrored-database/overview)
 - [Microsoft Fabric mirrored databases monitoring](/fabric/database/mirrored-database/monitor)
 - [Explore data in your Mirrored database using Microsoft Fabric](/fabric/database/mirrored-database/explore)
 

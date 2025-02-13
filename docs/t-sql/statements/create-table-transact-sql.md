@@ -1,13 +1,15 @@
 ---
-title: CREATE TABLE (Transact-SQL)
-description: CREATE TABLE (Transact-SQL)
+title: "CREATE TABLE (Transact-SQL)"
+description: CREATE TABLE creates a new table in the database.
 author: markingmyname
 ms.author: maghan
 ms.reviewer: randolphwest
-ms.date: 03/06/2024
+ms.date: 01/22/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "FILESTREAM_TSQL"
   - "TABLE"
@@ -45,15 +47,17 @@ helpviewer_keywords:
   - "data retention policy"
 dev_langs:
   - "TSQL"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # CREATE TABLE (Transact-SQL)
 
-[!INCLUDE [SQL Server SQL Database](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [sql-asdb-asdbmi-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
-Creates a new table in [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)].
+Creates a new table in the database.
 
 > [!NOTE]  
-> For [!INCLUDE[ssazuresynapse-md](../../includes/ssazuresynapse-md.md)] syntax, see [CREATE TABLE ([!INCLUDE[ssazuresynapse-md](../../includes/ssazuresynapse-md.md)])](../../t-sql/statements/create-table-azure-sql-data-warehouse.md).
+> For reference to [!INCLUDE [fabricdw](../../includes/fabric-dw.md)] in [!INCLUDE [fabric](../../includes/fabric.md)], visit [CREATE TABLE (Fabric Data Warehouse)](create-table-azure-sql-data-warehouse.md?view=fabric&preserve-view=true).
+> For reference to [!INCLUDE[ssazuresynapse-md](../../includes/ssazuresynapse-md.md)] and [!INCLUDE[ssPDW](../../includes/sspdw-md.md)], visit [CREATE TABLE (Azure Synapse Analytics)](create-table-azure-sql-data-warehouse.md?view=azure-sqldw-latest&preserve-view=true).
 
 :::image type="icon" source="../../includes/media/topic-link-icon.svg" border="false"::: [Transact-SQL syntax conventions](../../t-sql/language-elements/transact-sql-syntax-conventions-transact-sql.md)
 
@@ -104,7 +108,7 @@ column_name <data_type>
     [ SPARSE ]
     [ MASKED WITH ( FUNCTION = 'mask_function' ) ]
     [ [ CONSTRAINT constraint_name ] DEFAULT constant_expression ]
-    [ IDENTITY [ ( seed , increment ) ]
+    [ IDENTITY [ ( seed , increment ) ] ]
     [ NOT FOR REPLICATION ]
     [ GENERATED ALWAYS AS { ROW | TRANSACTION_ID | SEQUENCE_NUMBER } { START | END } [ HIDDEN ] ]
     [ [ CONSTRAINT constraint_name ] {NULL | NOT NULL} ]
@@ -248,7 +252,7 @@ column_set_name XML COLUMN_SET FOR ALL_SPARSE_COLUMNS
           { (
              FILTER_COLUMN = column_name,
              RETENTION_PERIOD = { INFINITE | number { DAY | DAYS | WEEK | WEEKS
-                              | MONTH | MONTHS | YEAR | YEARS }
+                              | MONTH | MONTHS | YEAR | YEARS } }
         ) }
     ]
     [ LEDGER = ON [ ( <ledger_option> [ ,... n ] ) ]
@@ -409,12 +413,12 @@ Computed columns can be used in select lists, WHERE clauses, ORDER BY clauses, o
 - Computed columns must be marked PERSISTED to participate in a FOREIGN KEY or CHECK constraint.
 - A computed column can be used as a key column in an index or as part of any PRIMARY KEY or UNIQUE constraint, if the computed column value is defined by a deterministic expression and the data type of the result is allowed in index columns.
 
-  For example, if the table has integer columns `a` and `b`, the computed column `a + b` may be indexed, but computed column `a + DATEPART(dd, GETDATE())` can't be indexed because the value may change in subsequent invocations.
+  For example, if the table has integer columns `a` and `b`, the computed column `a + b` might be indexed, but computed column `a + DATEPART(dd, GETDATE())` can't be indexed because the value might change in subsequent invocations.
 
 - A computed column can't be the target of an INSERT or UPDATE statement.
 
 > [!NOTE]  
-> Each row in a table can have different values for columns that are involved in a computed column; therefore, the computed column may not have the same value for each row.
+> Each row in a table can have different values for columns that are involved in a computed column; therefore, the computed column might not have the same value for each row.
 
 Based on the expressions that are used, the nullability of computed columns is determined automatically by the [!INCLUDE[ssDE](../../includes/ssde-md.md)]. The result of most expressions is considered nullable even if only nonnullable columns are present, because possible underflows or overflows also produce NULL results. Use the `COLUMNPROPERTY` function with the **AllowsNull** property to investigate the nullability of any computed column in a table. An expression that is nullable can be turned into a nonnullable one by specifying `ISNULL` with the *check_expression* constant, where the constant is a nonnull value substituted for any NULL result. REFERENCES permission on the type is required for computed columns based on common language runtime (CLR) user-defined type expressions.
 
@@ -1013,7 +1017,7 @@ Specifies the name to be used for the unique constraint that is automatically cr
 
 **Applies to**: [!INCLUDE[sssql16-md](../../includes/sssql16-md.md)] and later, [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE[ssazuremi](../../includes/ssazuremi-md.md)].
 
-Enables system versioning of the table if the datatype, nullability constraint, and primary key constraint requirements are met. The system will record the history of each record in the system-versioned table in a separate history table. If the `HISTORY_TABLE` argument isn't used, the name of this history table will be `MSSQL_TemporalHistoryFor<primary_table_object_id>`. If the name of a history table is specified during history table creation, you must specify the schema and table name.
+Enables system versioning of the table if the data type, nullability constraint, and primary key constraint requirements are met. The system will record the history of each record in the system-versioned table in a separate history table. If the `HISTORY_TABLE` argument isn't used, the name of this history table will be `MSSQL_TemporalHistoryFor<primary_table_object_id>`. If the name of a history table is specified during history table creation, you must specify the schema and table name.
 
 If the history table doesn't exist, the system generates a new history table matching the schema of the current table in the same filegroup as the current table, creating a link between the two tables and enables the system to record the history of each record in the current table in the history table. By default, the history table is `PAGE` compressed.
 
@@ -1123,7 +1127,9 @@ Column and table indexes can be specified as part of the CREATE TABLE statement.
 
   Hash indexes are supported only on memory-optimized tables.
 
-#### <a id="generate-always-columns"></a> LEDGER = ON ( <ledger_option> [ ,... *n* ] ) | OFF
+<a id="generate-always-columns"></a>
+
+#### LEDGER = ON ( <ledger_option> [ ,... *n* ] ) | OFF
 
 **Applies to:** [!INCLUDE [sssql22-md](../../includes/sssql22-md.md)], [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE[ssazuremi](../../includes/ssazuremi-md.md)].
 
@@ -1180,7 +1186,9 @@ Specifies the name of the ledger view and the names of additional columns the sy
 
 Specifies whether the ledger table being created is append-only or updatable. The default is `OFF`.
 
-#### <a id="ledger-view-option"></a> *<ledger_view_option>* ::=
+<a id="ledger-view-option"></a>
+
+#### *<ledger_view_option>* ::=
 
 Specifies one or more ledger view options. Each of the ledger view option specifies a name of a column, the system will add to the view, in addition to the columns defined in the ledger table.
 
@@ -1210,6 +1218,8 @@ The [!INCLUDE[ssDE](../../includes/ssde-md.md)] doesn't enforce an order in whic
 
 When a table is created, the QUOTED IDENTIFIER option is always stored as ON in the metadata for the table, even if the option is set to OFF when the table is created.
 
+In [!INCLUDE [fabric-sqldb](../../includes/fabric-sqldb.md)], some table features can be created but will not be [mirrored into the Fabric OneLake](/fabric/database/sql/mirroring-overview). For more information, see [Limitations of Fabric SQL database mirroring](/fabric/database/sql/mirroring-limitations).
+
 ## Temporary tables
 
 You can create local and global temporary tables. Local temporary tables are visible only in the current session, and global temporary tables are visible to all sessions. Temporary tables can't be partitioned.
@@ -1219,7 +1229,8 @@ Prefix local temporary table names with single number sign (`#table_name`), and 
 [!INCLUDE[tsql](../../includes/tsql-md.md)] statements reference the temporary table by using the value specified for *table_name* in the `CREATE TABLE` statement, for example:
 
 ```sql
-CREATE TABLE #MyTempTable (
+CREATE TABLE #MyTempTable
+(
     col1 INT PRIMARY KEY
 );
 
@@ -1229,39 +1240,57 @@ VALUES (1);
 
 If more than one temporary table is created inside a single stored procedure or batch, they must have different names.
 
-If you include a *schema_name* when you create or access a temporary table, it is ignored. All temporary tables are created in the dbo schema.
+If you include a *schema_name* when you create or access a temporary table, it is ignored. All temporary tables are created in the `dbo` schema.
 
-If a local temporary table is created in a stored procedure or application that can be executed at the same time by several sessions, the [!INCLUDE[ssDE](../../includes/ssde-md.md)] must be able to distinguish the tables created by the different sessions. The [!INCLUDE[ssDE](../../includes/ssde-md.md)] does this by internally appending a numeric suffix to each local temporary table name. The full name of a temporary table as stored in the `sys.sysobjects` table in `tempdb` is made up of the table name specified in the CREATE TABLE statement and the system-generated numeric suffix. To allow for the suffix, *table_name* specified for a local temporary name can't exceed 116 characters.
+If a local temporary table is created in a stored procedure or a SQL module that can be executed at the same time by several sessions, the [!INCLUDE[ssDE](../../includes/ssde-md.md)] must be able to distinguish the tables created by the different sessions. The [!INCLUDE[ssDE](../../includes/ssde-md.md)] does this by internally appending a unique suffix to each local temporary table name. The full name of a temporary table as stored in the `sys.objects` table in `tempdb` is made up of the table name specified in the `CREATE TABLE` statement and the system-generated unique suffix. To allow for the suffix, *table_name* specified for a local temporary name can't exceed 116 characters.
 
-Temporary tables are automatically dropped when they go out of scope, unless explicitly dropped by using DROP TABLE:
+Temporary tables are automatically dropped when they go out of scope, unless explicitly dropped earlier by using `DROP TABLE`:
 
 - A local temporary table created in a stored procedure is dropped automatically when the stored procedure is finished. The table can be referenced by any nested stored procedures executed by the stored procedure that created the table. The table can't be referenced by the process that called the stored procedure that created the table.
 - All other local temporary tables are dropped automatically at the end of the current session.
-- Global temporary tables are automatically dropped when the session that created the table ends and all other tasks have stopped referencing them. The association between a task and a table is maintained only for the life of a single [!INCLUDE[tsql](../../includes/tsql-md.md)] statement. This means that a global temporary table is dropped at the completion of the last [!INCLUDE[tsql](../../includes/tsql-md.md)] statement that was actively referencing the table when the creating session ended.
+- If the `GLOBAL_TEMPORARY_TABLE_AUTO_DROP` database-scoped configuration is set to **ON** (default), then global temporary tables are automatically dropped when the session that created the table ends and all other tasks have stopped referencing them. The association between a task and a table is maintained only for the life of a single [!INCLUDE[tsql](../../includes/tsql-md.md)] statement. This means that a global temporary table is dropped at the completion of the last [!INCLUDE[tsql](../../includes/tsql-md.md)] statement that was actively referencing the table when the creating session ended.
+- If the `GLOBAL_TEMPORARY_TABLE_AUTO_DROP` database-scoped configuration is set to **OFF**, then global temporary tables are only dropped using `DROP TABLE`, or when the [!INCLUDE[ssDE](../../includes/ssde-md.md)] instance restarts. For more information, see [GLOBAL_TEMPORARY_TABLE_AUTO_DROP](alter-database-scoped-configuration-transact-sql.md#global_temporary_table_auto_drop---on--off-).
 
-A local temporary table created within a stored procedure or trigger can have the same name as a temporary table that was created before the stored procedure or trigger is called. However, if a query references a temporary table and two temporary tables with the same name exist at that time, it isn't defined which table the query is resolved against. Nested stored procedures can also create temporary tables with the same name as a temporary table that was created by the stored procedure that called it. However, for modifications to resolve to the table that was created in the nested procedure, the table must have the same structure, with the same column names, as the table created in the calling procedure. This is shown in the following example.
+A local temporary table created within a stored procedure or trigger can have the same name as a temporary table that was created before the stored procedure or trigger is called. However, if a query references a temporary table and two temporary tables with the same name exist at that time, it isn't defined which table the query is resolved against. Nested stored procedures can also create temporary tables with the same name as a temporary table that was created by the calling stored procedure. However, for modifications to resolve to the table that was created in the nested procedure, the table must have the same structure, with the same column names, as the table created in the calling procedure. This is shown in the following example.
 
 ```sql
 CREATE PROCEDURE dbo.Test2
 AS
-    CREATE TABLE #t (x INT PRIMARY KEY);
-    INSERT INTO #t VALUES (2);
-    SELECT Test2Col = x FROM #t;
+CREATE TABLE #t
+(
+    x INT PRIMARY KEY
+);
+INSERT INTO #t
+VALUES (2);
+SELECT x AS Test2Col
+FROM #t;
 GO
 
 CREATE PROCEDURE dbo.Test1
 AS
-    CREATE TABLE #t (x INT PRIMARY KEY);
-    INSERT INTO #t VALUES (1);
-    SELECT Test1Col = x FROM #t;
-    EXEC Test2;
+CREATE TABLE #t
+(
+    x INT PRIMARY KEY
+);
+
+INSERT INTO #t
+VALUES (1);
+SELECT x AS Test1Col
+FROM #t;
+
+EXECUTE Test2;
 GO
 
-CREATE TABLE #t(x INT PRIMARY KEY);
-INSERT INTO #t VALUES (99);
+CREATE TABLE #t
+(
+    x INT PRIMARY KEY
+);
+
+INSERT INTO #t
+VALUES (99);
 GO
 
-EXEC Test1;
+EXECUTE Test1;
 GO
 ```
 
@@ -1274,36 +1303,28 @@ Test1Col
 1
 
 (1 row(s) affected)
- Test2Col
- -----------
- 2
- ```
+Test2Col
+-----------
+2
+```
 
-When you create local or global temporary tables, the `CREATE TABLE` syntax supports constraint definitions except for FOREIGN KEY constraints. If a FOREIGN KEY constraint is specified in a temporary table, the statement returns a warning message that states the constraint was skipped. The table is still created without the FOREIGN KEY constraints. Temporary tables can't be referenced in FOREIGN KEY constraints.
+When you create local or global temporary tables, the `CREATE TABLE` syntax supports constraint definitions except for `FOREIGN KEY` constraints. If a `FOREIGN KEY` constraint is specified in a temporary table, the statement returns a warning message that states the constraint was skipped. The table is still created without the `FOREIGN KEY` constraint. Temporary tables can't be referenced in `FOREIGN KEY` constraints.
 
 If a temporary table is created with a named constraint and the temporary table is created within the scope of a user-defined transaction, only one user at a time can execute the statement that creates the temp table. For example, if a stored procedure creates a temporary table with a named primary key constraint, the stored procedure can't be executed simultaneously by multiple users.
 
-## Database scoped global temporary tables (Azure SQL Database)
+### Database scoped global temporary tables in Azure SQL Database
 
-Global temporary tables for [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] (initiated with ## table name) are stored in `tempdb` and shared among all users' sessions across the whole [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] instance. For information on SQL table types, see the above section on Create Tables.
+Global temporary tables in [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] (table names prefixed with `##`) are stored in `tempdb` and shared among all user sessions across the entire [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] instance.
 
-[!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] supports global temporary tables that are also stored in `tempdb` and scoped to the database level. This means that global temporary tables are shared for all users' sessions within the same [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)]. User sessions from other databases can't access global temporary tables.
+[!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] supports global temporary tables that are also stored in `tempdb` but are scoped to the database level. This means that global temporary tables are shared among all user sessions within the same database. User sessions from other databases can't access global temporary tables. Otherwise, global temporary tables for [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] follow the same syntax and semantics that [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] uses.
 
-Global temporary tables for [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] follow the same syntax and semantics that [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] uses for temporary tables. Similarly, global temporary stored procedures are also scoped to the database level in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)]. Local temporary tables (initiated with # table name) are also supported for [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and follow the same syntax and semantics that [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] uses. See the above section on [Temporary Tables](#temporary-tables).
+Similarly, global temporary stored procedures are also scoped to the database level in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)].
 
-> [!IMPORTANT]  
-> This feature is available for [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)].
+Local temporary tables (table names prefixed with `#`) are also supported for [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and follow the same syntax and semantics that [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] uses. For more information, see [Temporary tables](#temporary-tables).
 
-### Troubleshoot global temporary tables for Azure SQL Database
+### Permissions for temporary objects
 
-For troubleshooting `tempdb`, see [How to Monitor tempdb use](../../relational-databases/databases/tempdb-database.md#monitoring-tempdb-use).
-
-> [!NOTE]  
-> Only a server admin can access the troubleshooting DMVs in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)].
-
-### Permissions
-
-Any user can create global temporary objects. Users can only access their own objects, unless they receive additional permissions.
+Any user can create and access temporary objects.
 
 ## Partitioned tables
 
@@ -1347,7 +1368,7 @@ Before creating a partitioned table by using CREATE TABLE, you must first create
 
 - The [!INCLUDE[ssDE](../../includes/ssde-md.md)] doesn't have a predefined limit on either the number of FOREIGN KEY constraints a table can contain that reference other tables, or the number of FOREIGN KEY constraints that are owned by other tables that reference a specific table.
 
-  Nevertheless, the actual number of FOREIGN KEY constraints that can be used is limited by the hardware configuration and by the design of the database and application. We recommend that a table contain no more than 253 FOREIGN KEY constraints, and that it be referenced by no more than 253 FOREIGN KEY constraints. The effective limit for you may be more or less depending on the application and hardware. Consider the cost of enforcing FOREIGN KEY constraints when you design your database and applications.
+  Nevertheless, the actual number of FOREIGN KEY constraints that can be used is limited by the hardware configuration and by the design of the database and application. We recommend that a table contain no more than 253 FOREIGN KEY constraints, and that it be referenced by no more than 253 FOREIGN KEY constraints. The effective limit for you might be more or less depending on the application and hardware. Consider the cost of enforcing FOREIGN KEY constraints when you design your database and applications.
 
 - FOREIGN KEY constraints aren't enforced on temporary tables.
 
@@ -1360,15 +1381,15 @@ Before creating a partitioned table by using CREATE TABLE, you must first create
 ## DEFAULT definitions
 
 - A column can have only one DEFAULT definition.
-- A DEFAULT definition can contain constant values, functions, SQL standard niladic functions, or NULL. The following table shows the niladic functions and the values they return for the default during an INSERT statement.
+- A DEFAULT definition can contain constant values, functions, SQL standard niladic functions, or `NULL`. The following table shows the niladic functions and the values they return for the default during an INSERT statement.
 
     | SQL-92 niladic function | Value returned |
     | --- | --- |
-    | CURRENT_TIMESTAMP | Current date and time. |
-    | CURRENT_USER | Name of user performing an insert. |
-    | SESSION_USER | Name of user performing an insert. |
-    | SYSTEM_USER | Name of user performing an insert. |
-    | USER | Name of user performing an insert. |
+    | `CURRENT_TIMESTAMP` | Current date and time. |
+    | `CURRENT_USER` | Name of user performing an insert. |
+    | `SESSION_USER` | Name of user performing an insert. |
+    | `SYSTEM_USER` | Name of user performing an insert. |
+    | `USER` | Name of user performing an insert. |
 - *constant_expression* in a DEFAULT definition can't refer to another column in the table, or to other tables, views, or stored procedures.
 - DEFAULT definitions can't be created on columns with a **timestamp** data type or columns with an IDENTITY property.
 - DEFAULT definitions can't be created for columns with alias data types if the alias data type is bound to a default object.
@@ -1445,7 +1466,8 @@ If the statement creates a ledger table, `ENABLE LEDGER` permission is required.
 The following example shows the column definition for a PRIMARY KEY constraint with a clustered index on the `EmployeeID` column of the `Employee` table. Because a constraint name isn't specified, the system supplies the constraint name.
 
 ```sql
-CREATE TABLE dbo.Employee (
+CREATE TABLE dbo.Employee
+(
     EmployeeID INT PRIMARY KEY CLUSTERED
 );
 ```
@@ -1534,27 +1556,20 @@ The following example shows the complete table definitions with all constraint d
 ```sql
 CREATE TABLE dbo.PurchaseOrderDetail
 (
-    PurchaseOrderID int NOT NULL
-        REFERENCES Purchasing.PurchaseOrderHeader(PurchaseOrderID),
-    LineNumber smallint NOT NULL,
-    ProductID int NULL
-        REFERENCES Production.Product(ProductID),
-    UnitPrice money NULL,
-    OrderQty smallint NULL,
-    ReceivedQty float NULL,
-    RejectedQty float NULL,
-    DueDate datetime NULL,
-    rowguid uniqueidentifier ROWGUIDCOL NOT NULL
-        CONSTRAINT DF_PurchaseOrderDetail_rowguid DEFAULT (NEWID()),
-    ModifiedDate datetime NOT NULL
-        CONSTRAINT DF_PurchaseOrderDetail_ModifiedDate DEFAULT (GETDATE()),
-    LineTotal AS ((UnitPrice*OrderQty)),
-    StockedQty AS ((ReceivedQty-RejectedQty)),
-    CONSTRAINT PK_PurchaseOrderDetail_PurchaseOrderID_LineNumber
-               PRIMARY KEY CLUSTERED (PurchaseOrderID, LineNumber)
-               WITH (IGNORE_DUP_KEY = OFF)
-)
-ON [PRIMARY];
+    PurchaseOrderID INT NOT NULL FOREIGN KEY REFERENCES Purchasing.PurchaseOrderHeader (PurchaseOrderID),
+    LineNumber SMALLINT NOT NULL,
+    ProductID INT NULL FOREIGN KEY REFERENCES Production.Product (ProductID),
+    UnitPrice MONEY NULL,
+    OrderQty SMALLINT NULL,
+    ReceivedQty FLOAT NULL,
+    RejectedQty FLOAT NULL,
+    DueDate DATETIME NULL,
+    rowguid UNIQUEIDENTIFIER CONSTRAINT DF_PurchaseOrderDetail_rowguid DEFAULT (NEWID()) ROWGUIDCOL NOT NULL,
+    ModifiedDate DATETIME CONSTRAINT DF_PurchaseOrderDetail_ModifiedDate DEFAULT (GETDATE()) NOT NULL,
+    LineTotal AS ((UnitPrice * OrderQty)),
+    StockedQty AS ((ReceivedQty - RejectedQty)),
+    CONSTRAINT PK_PurchaseOrderDetail_PurchaseOrderID_LineNumber PRIMARY KEY CLUSTERED (PurchaseOrderID, LineNumber) WITH (IGNORE_DUP_KEY = OFF)
+) ON [PRIMARY];
 ```
 
 ### G. Create a table with an xml column typed to an XML schema collection
@@ -1564,9 +1579,9 @@ The following example creates a table with an `xml` column that is typed to XML 
 ```sql
 CREATE TABLE HumanResources.EmployeeResumes
 (
-    LName nvarchar(25),
-    FName nvarchar(25),
-    Resume xml(DOCUMENT HumanResources.HRResumeSchemaCollection)
+    LName NVARCHAR (25),
+    FName NVARCHAR (25),
+    Resume XML(DOCUMENT HumanResources.HRResumeSchemaCollection)
 );
 ```
 
@@ -1575,8 +1590,9 @@ CREATE TABLE HumanResources.EmployeeResumes
 The following example creates a partition function to partition a table or index into four partitions. Then, the example creates a partition scheme that specifies the filegroups in which to hold each of the four partitions. Finally, the example creates a table that uses the partition scheme. This example assumes the filegroups already exist in the database.
 
 ```sql
-CREATE PARTITION FUNCTION myRangePF1 (int)
-    AS RANGE LEFT FOR VALUES (1, 100, 1000);
+CREATE PARTITION FUNCTION myRangePF1(INT)
+    AS RANGE LEFT
+    FOR VALUES (1, 100, 1000);
 GO
 
 CREATE PARTITION SCHEME myRangePS1
@@ -1584,8 +1600,11 @@ CREATE PARTITION SCHEME myRangePS1
     TO (test1fg, test2fg, test3fg, test4fg);
 GO
 
-CREATE TABLE PartitionTable (col1 int, col2 char(10))
-    ON myRangePS1 (col1);
+CREATE TABLE PartitionTable
+(
+    col1 INT,
+    col2 CHAR (10)
+) ON myRangePS1 (col1);
 GO
 ```
 
@@ -1603,12 +1622,10 @@ The following example creates a table with a `uniqueidentifier` column. The exam
 ```sql
 CREATE TABLE dbo.Globally_Unique_Data
 (
-    GUID UNIQUEIDENTIFIER
-        CONSTRAINT Guid_Default DEFAULT
-        NEWSEQUENTIALID() ROWGUIDCOL,
-    Employee_Name VARCHAR(60)
-    CONSTRAINT Guid_PK PRIMARY KEY (GUID)
+    GUID UNIQUEIDENTIFIER CONSTRAINT Guid_Default DEFAULT NEWSEQUENTIALID() ROWGUIDCOL,
+    Employee_Name VARCHAR (60) CONSTRAINT Guid_PK PRIMARY KEY (GUID)
 );
+
 ```
 
 ### J. Use an expression for a computed column
@@ -1620,7 +1637,7 @@ CREATE TABLE dbo.mytable
 (
     low INT,
     high INT,
-    myavg AS (low + high)/2
+    myavg AS (low + high) / 2
 );
 ```
 
@@ -1634,6 +1651,7 @@ CREATE TABLE UDTypeTable
     u UTF8STRING,
     ustr AS u.ToString() PERSISTED
 );
+
 ```
 
 ### L. Use the USER_NAME function for a computed column
@@ -1657,12 +1675,14 @@ The following example creates a table that has a `FILESTREAM` column `Photo`. If
 CREATE TABLE dbo.EmployeePhoto
 (
     EmployeeId INT NOT NULL PRIMARY KEY,
-    Photo VARBINARY(MAX) FILESTREAM NULL,
-    MyRowGuidColumn UNIQUEIDENTIFIER NOT NULL ROWGUIDCOL UNIQUE DEFAULT NEWID()
+    Photo VARBINARY (MAX) FILESTREAM NULL,
+    MyRowGuidColumn UNIQUEIDENTIFIER DEFAULT NEWID() ROWGUIDCOL NOT NULL UNIQUE
 );
 ```
 
-### <a id="n-creating-a-table-that-uses-row-compression"></a> N. Create a table that uses row compression
+<a id="n-creating-a-table-that-uses-row-compression"></a>
+
+### N. Create a table that uses row compression
 
 The following example creates a table that uses row compression.
 
@@ -1670,7 +1690,7 @@ The following example creates a table that uses row compression.
 CREATE TABLE dbo.T1
 (
     c1 INT,
-    c2 NVARCHAR(200)
+    c2 NVARCHAR (200)
 )
 WITH (DATA_COMPRESSION = ROW);
 ```
@@ -1702,7 +1722,7 @@ This example creates a table that has a sparse column.
 CREATE TABLE dbo.T1
 (
     c1 INT PRIMARY KEY,
-    c2 VARCHAR(50) SPARSE NULL
+    c2 VARCHAR (50) SPARSE NULL
 );
 ```
 
@@ -1712,7 +1732,7 @@ This example creates a table that has two sparse columns and a column set named 
 CREATE TABLE T1
 (
     c1 INT PRIMARY KEY,
-    c2 VARCHAR(50) SPARSE NULL,
+    c2 VARCHAR (50) SPARSE NULL,
     c3 INT SPARSE NULL,
     CSet XML COLUMN_SET FOR ALL_SPARSE_COLUMNS
 );
@@ -1729,10 +1749,10 @@ This example creates a new temporal table linked to a new history table.
 ```sql
 CREATE TABLE Department
 (
-    DepartmentNumber CHAR(10) NOT NULL PRIMARY KEY CLUSTERED,
-    DepartmentName VARCHAR(50) NOT NULL,
+    DepartmentNumber CHAR (10) NOT NULL PRIMARY KEY CLUSTERED,
+    DepartmentName VARCHAR (50) NOT NULL,
     ManagerID INT NULL,
-    ParentDepartmentNumber CHAR(10) NULL,
+    ParentDepartmentNumber CHAR (10) NULL,
     ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL,
     ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL,
     PERIOD FOR SYSTEM_TIME (ValidFrom, ValidTo)
@@ -1746,10 +1766,10 @@ This example creates a new temporal table linked to an existing history table.
 -- Existing table
 CREATE TABLE Department_History
 (
-    DepartmentNumber CHAR(10) NOT NULL,
-    DepartmentName VARCHAR(50) NOT NULL,
+    DepartmentNumber CHAR (10) NOT NULL,
+    DepartmentName VARCHAR (50) NOT NULL,
     ManagerID INT NULL,
-    ParentDepartmentNumber CHAR(10) NULL,
+    ParentDepartmentNumber CHAR (10) NULL,
     ValidFrom DATETIME2 NOT NULL,
     ValidTo DATETIME2 NOT NULL
 );
@@ -1757,15 +1777,15 @@ CREATE TABLE Department_History
 -- Temporal table
 CREATE TABLE Department
 (
-    DepartmentNumber CHAR(10) NOT NULL PRIMARY KEY CLUSTERED,
-    DepartmentName VARCHAR(50) NOT NULL,
+    DepartmentNumber CHAR (10) NOT NULL PRIMARY KEY CLUSTERED,
+    DepartmentName VARCHAR (50) NOT NULL,
     ManagerID INT NULL,
-    ParentDepartmentNumber CHAR(10) NULL,
+    ParentDepartmentNumber CHAR (10) NULL,
     ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL,
     ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL,
     PERIOD FOR SYSTEM_TIME (ValidFrom, ValidTo)
 )
-WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.Department_History, DATA_CONSISTENCY_CHECK = ON));
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=dbo.Department_History, DATA_CONSISTENCY_CHECK=ON));
 ```
 
 ### R. Create a system-versioned memory-optimized temporal table
@@ -1782,20 +1802,15 @@ GO
 
 CREATE TABLE dbo.Department
 (
-    DepartmentNumber CHAR(10) NOT NULL PRIMARY KEY NONCLUSTERED,
-    DepartmentName VARCHAR(50) NOT NULL,
+    DepartmentNumber CHAR (10) NOT NULL PRIMARY KEY NONCLUSTERED,
+    DepartmentName VARCHAR (50) NOT NULL,
     ManagerID INT NULL,
-    ParentDepartmentNumber CHAR(10) NULL,
+    ParentDepartmentNumber CHAR (10) NULL,
     ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL,
     ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL,
     PERIOD FOR SYSTEM_TIME (ValidFrom, ValidTo)
 )
-WITH
-(
-    MEMORY_OPTIMIZED = ON,
-    DURABILITY = SCHEMA_AND_DATA,
-    SYSTEM_VERSIONING = ON (HISTORY_TABLE = History.DepartmentHistory)
-);
+WITH (MEMORY_OPTIMIZED = ON, DURABILITY = SCHEMA_AND_DATA, SYSTEM_VERSIONING = ON (HISTORY_TABLE=History.DepartmentHistory));
 ```
 
 This example creates a new temporal table linked to an existing history table.
@@ -1804,10 +1819,10 @@ This example creates a new temporal table linked to an existing history table.
 -- Existing table
 CREATE TABLE Department_History
 (
-    DepartmentNumber CHAR(10) NOT NULL,
-    DepartmentName VARCHAR(50) NOT NULL,
+    DepartmentNumber CHAR (10) NOT NULL,
+    DepartmentName VARCHAR (50) NOT NULL,
     ManagerID INT NULL,
-    ParentDepartmentNumber CHAR(10) NULL,
+    ParentDepartmentNumber CHAR (10) NULL,
     ValidFrom DATETIME2 NOT NULL,
     ValidTo DATETIME2 NOT NULL
 );
@@ -1815,18 +1830,15 @@ CREATE TABLE Department_History
 -- Temporal table
 CREATE TABLE Department
 (
-    DepartmentNumber CHAR(10) NOT NULL PRIMARY KEY CLUSTERED,
-    DepartmentName VARCHAR(50) NOT NULL,
+    DepartmentNumber CHAR (10) NOT NULL PRIMARY KEY CLUSTERED,
+    DepartmentName VARCHAR (50) NOT NULL,
     ManagerID INT NULL,
-    ParentDepartmentNumber CHAR(10) NULL,
+    ParentDepartmentNumber CHAR (10) NULL,
     ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL,
     ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL,
     PERIOD FOR SYSTEM_TIME (ValidFrom, ValidTo)
 )
-WITH
-(
-    SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.Department_History, DATA_CONSISTENCY_CHECK = ON)
-);
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=dbo.Department_History, DATA_CONSISTENCY_CHECK=ON));
 ```
 
 ### S. Create a table with encrypted columns
@@ -1834,19 +1846,18 @@ WITH
 The following example creates a table with two encrypted columns. For more information, see [Always Encrypted](../../relational-databases/security/encryption/always-encrypted-database-engine.md).
 
 ```sql
-CREATE TABLE Customers (
-    CustName NVARCHAR(60)
-        ENCRYPTED WITH (
-            COLUMN_ENCRYPTION_KEY = MyCEK,
-            ENCRYPTION_TYPE = RANDOMIZED,
-            ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256'
-        ),
-    SSN VARCHAR(11) COLLATE Latin1_General_BIN2
-        ENCRYPTED WITH (
-            COLUMN_ENCRYPTION_KEY = MyCEK,
-            ENCRYPTION_TYPE = DETERMINISTIC ,
-            ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256'
-        ),
+CREATE TABLE Customers
+(
+    CustName NVARCHAR (60)  ENCRYPTED WITH (
+       COLUMN_ENCRYPTION_KEY = MyCEK,
+       ENCRYPTION_TYPE = RANDOMIZED,
+       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256'
+    ),
+    SSN VARCHAR (11) COLLATE Latin1_General_BIN2  ENCRYPTED WITH (
+       COLUMN_ENCRYPTION_KEY = MyCEK,
+       ENCRYPTION_TYPE = DETERMINISTIC,
+       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256'
+    ),
     Age INT NULL
 );
 ```
@@ -1859,7 +1870,7 @@ Creates a table with an inline filtered index.
 CREATE TABLE t1
 (
     c1 INT,
-    index IX1 (c1) WHERE c1 > 0
+    INDEX IX1 (c1) WHERE c1 > 0
 );
 ```
 
@@ -1884,7 +1895,7 @@ CREATE TABLE t3
 (
     c1 INT,
     c2 INT,
-    INDEX ix_1 NONCLUSTERED (c1,c2)
+    INDEX ix_1 NONCLUSTERED (c1, c2)
 );
 ```
 
@@ -1918,7 +1929,8 @@ The problem arises from the fact that while the temp table name is unique, the c
 Session A creates a global temp table ##test in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] testdb1 and adds one row
 
 ```sql
-CREATE TABLE ##test (
+CREATE TABLE ##test
+(
     a INT,
     b INT
 );
@@ -1939,7 +1951,9 @@ SELECT OBJECT_ID('tempdb.dbo.##test') AS 'Object ID';
 Obtain global temp table name for a given object ID 1253579504 in `tempdb` (2)
 
 ```sql
-SELECT name FROM tempdb.sys.objects WHERE object_id = 1253579504;
+SELECT name
+FROM tempdb.sys.objects
+WHERE object_id = 1253579504;
 ```
 
 [!INCLUDE[ssResult](../../includes/ssresult-md.md)]
@@ -1951,7 +1965,8 @@ SELECT name FROM tempdb.sys.objects WHERE object_id = 1253579504;
 Session B connects to [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] testdb1 and can access table ##test created by session A
 
 ```sql
-SELECT * FROM ##test;
+SELECT *
+FROM ##test;
 ```
 
 [!INCLUDE[ssResult](../../includes/ssresult-md.md)]
@@ -1963,7 +1978,8 @@ SELECT * FROM ##test;
 Session C connects to another database in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] testdb2 and wants to access ##test created in testdb1. This select fails due to the database scope for the global temp tables
 
 ```sql
-SELECT * FROM ##test
+SELECT *
+FROM ##test;
 ```
 
 Which generates the following error:
@@ -1976,9 +1992,14 @@ Invalid object name '##test'
 Addressing system object in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] `tempdb` from current user database testdb1
 
 ```sql
-SELECT * FROM tempdb.sys.objects;
-SELECT * FROM tempdb.sys.columns;
-SELECT * FROM tempdb.sys.database_files;
+SELECT *
+FROM tempdb.sys.objects;
+
+SELECT *
+FROM tempdb.sys.columns;
+
+SELECT *
+FROM tempdb.sys.database_files;
 ```
 
 ### X. Enable Data Retention Policy on a table
@@ -1988,24 +2009,27 @@ The following example creates a table with data retention enabled and a retentio
 ```sql
 CREATE TABLE [dbo].[data_retention_table]
 (
-  [dbdatetime2] datetime2(7),
-  [product_code] int,
-  [value] char(10)
+    [dbdatetime2] DATETIME2 (7),
+    [product_code] INT,
+    [value] CHAR (10)
 )
-WITH (DATA_DELETION = ON ( FILTER_COLUMN = [dbdatetime2], RETENTION_PERIOD = 1 WEEKS ))
+WITH (DATA_DELETION = ON ( FILTER_COLUMN = [dbdatetime2], RETENTION_PERIOD = 1 WEEKS ) );
 ```
 
-### <a id="y-creating-an-updatable-ledger-table"></a> Y. Create an updatable ledger table
+<a id="y-creating-an-updatable-ledger-table"></a>
+
+### Y. Create an updatable ledger table
 
 The following example creates an updatable ledger table that isn't a temporal table with an anonymous history table (the system will generate the name of the history table) and the generated ledger view name. As the names of the required generated always columns and the additional columns in the ledger view aren't specified, the columns will have the default names.
 
 ```sql
 CREATE SCHEMA [HR];
 GO
+
 CREATE TABLE [HR].[Employees]
 (
     EmployeeID INT NOT NULL,
-    Salary Money NOT NULL
+    Salary MONEY NOT NULL
 )
 WITH (SYSTEM_VERSIONING = ON, LEDGER = ON);
 GO
@@ -2016,10 +2040,11 @@ The following example creates a table that is both a temporal table and an updat
 ```sql
 CREATE SCHEMA [HR];
 GO
+
 CREATE TABLE [HR].[Employees]
 (
     EmployeeID INT NOT NULL PRIMARY KEY,
-    Salary Money NOT NULL,
+    Salary MONEY NOT NULL,
     ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL,
     ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL,
     PERIOD FOR SYSTEM_TIME (ValidFrom, ValidTo)
@@ -2033,10 +2058,11 @@ The following example creates a table that is both a temporal table and an updat
 ```sql
 CREATE SCHEMA [HR];
 GO
+
 CREATE TABLE [HR].[Employees]
 (
     EmployeeID INT NOT NULL PRIMARY KEY,
-    Salary Money NOT NULL,
+    Salary MONEY NOT NULL,
     StartTransactionId BIGINT GENERATED ALWAYS AS TRANSACTION_ID START HIDDEN NOT NULL,
     EndTransactionId BIGINT GENERATED ALWAYS AS TRANSACTION_ID END HIDDEN NULL,
     StartSequenceNumber BIGINT GENERATED ALWAYS AS SEQUENCE_NUMBER START HIDDEN NOT NULL,
@@ -2045,17 +2071,7 @@ CREATE TABLE [HR].[Employees]
     ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL,
     PERIOD FOR SYSTEM_TIME (ValidFrom, ValidTo)
 )
-WITH (
-    SYSTEM_VERSIONING = ON (HISTORY_TABLE = [HR].[EmployeesHistory]),
-    LEDGER = ON (
-        LEDGER_VIEW = [HR].[EmployeesLedger] (
-            TRANSACTION_ID_COLUMN_NAME = TransactionId,
-            SEQUENCE_NUMBER_COLUMN_NAME = SequenceNumber,
-            OPERATION_TYPE_COLUMN_NAME = OperationId,
-            OPERATION_TYPE_DESC_COLUMN_NAME = OperationTypeDescription
-        )
-    )
-);
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[HR].[EmployeesHistory]), LEDGER = ON (LEDGER_VIEW=[HR].[EmployeesLedger] (TRANSACTION_ID_COLUMN_NAME=TransactionId,SEQUENCE_NUMBER_COLUMN_NAME=SequenceNumber,OPERATION_TYPE_COLUMN_NAME=OperationId,OPERATION_TYPE_DESC_COLUMN_NAME=OperationTypeDescription)));
 GO
 ```
 
@@ -2064,32 +2080,25 @@ The following example creates an append-only ledger table with the generated nam
 ```sql
 CREATE SCHEMA [AccessControl];
 GO
+
 CREATE TABLE [AccessControl].[KeyCardEvents]
 (
     EmployeeID INT NOT NULL,
     AccessOperationDescription NVARCHAR (MAX) NOT NULL,
-    [Timestamp] Datetime2 NOT NULL,
+    [Timestamp] DATETIME2 NOT NULL,
     StartTransactionId BIGINT GENERATED ALWAYS AS TRANSACTION_ID START HIDDEN NOT NULL,
     StartSequenceNumber BIGINT GENERATED ALWAYS AS SEQUENCE_NUMBER START HIDDEN NOT NULL
 )
-WITH (
-    LEDGER = ON (
-        LEDGER_VIEW = [AccessControl].[KeyCardEventsLedger] (
-            TRANSACTION_ID_COLUMN_NAME = TransactionId,
-            SEQUENCE_NUMBER_COLUMN_NAME = SequenceNumber,
-            OPERATION_TYPE_COLUMN_NAME = OperationId,
-            OPERATION_TYPE_DESC_COLUMN_NAME = OperationTypeDescription
-        ),
-        APPEND_ONLY = ON
-    )
-);
+WITH (LEDGER = ON (LEDGER_VIEW=[AccessControl].[KeyCardEventsLedger] (TRANSACTION_ID_COLUMN_NAME=TransactionId,SEQUENCE_NUMBER_COLUMN_NAME=SequenceNumber,OPERATION_TYPE_COLUMN_NAME=OperationId,OPERATION_TYPE_DESC_COLUMN_NAME=OperationTypeDescription),APPEND_ONLY= ON));
 GO
 ```
 
 The following example creates a ledger database in Azure SQL Database and an updatable ledger table using the default settings. Creating an updatable ledger table in a ledger database doesn't require using `WITH (SYSTEM_VERSIONING = ON, LEDGER = ON);`.
 
 ```sql
-CREATE DATABASE MyLedgerDB ( EDITION = 'GeneralPurpose' ) WITH LEDGER = ON;
+CREATE DATABASE MyLedgerDB
+    (EDITION = 'GeneralPurpose')
+    WITH LEDGER = ON;
 GO
 
 CREATE SCHEMA [HR];
@@ -2098,8 +2107,8 @@ GO
 CREATE TABLE [HR].[Employees]
 (
     EmployeeID INT NOT NULL,
-    Salary Money NOT NULL
-)
+    Salary MONEY NOT NULL
+);
 GO
 ```
 

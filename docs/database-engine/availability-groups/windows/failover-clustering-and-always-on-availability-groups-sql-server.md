@@ -81,9 +81,9 @@ monikerRange: ">=sql-server-2016"
   
  The following example scenario illustrates how this configuration could lead to problems:  
   
- Marcel configures a WSFC with two nodes, `NODE01` and `NODE02`. He installs a [!INCLUDE[ssNoVersion](../../../includes/ssnoversion-md.md)] failover cluster instance, `fciInstance1`, on both `NODE01` and `NODE02` where `NODE01` is the current owner for `fciInstance1`.  
- On `NODE02`, Marcel installs another instance of [!INCLUDE[ssNoVersion](../../../includes/ssnoversion-md.md)], `Instance3`, which is a stand-alone instance.  
- On `NODE01`, Marcel enables fciInstance1 for [!INCLUDE[ssHADR](../../../includes/sshadr-md.md)]. On `NODE02`, he enables `Instance3` for [!INCLUDE[ssHADR](../../../includes/sshadr-md.md)]. Then he sets up an availability group for which `fciInstance1` hosts the primary replica, and `Instance3` hosts the secondary replica.  
+ You configure a WSFC with two nodes, `NODE01` and `NODE02`. You install a [!INCLUDE[ssNoVersion](../../../includes/ssnoversion-md.md)] failover cluster instance, `fciInstance1`, on both `NODE01` and `NODE02` where `NODE01` is the current owner for `fciInstance1`.  
+ On `NODE02`, you install another instance of [!INCLUDE[ssNoVersion](../../../includes/ssnoversion-md.md)], `Instance3`, which is a stand-alone instance.  
+ On `NODE01`, you enable fciInstance1 for [!INCLUDE[ssHADR](../../../includes/sshadr-md.md)]. On `NODE02`, you enable `Instance3` for [!INCLUDE[ssHADR](../../../includes/sshadr-md.md)]. Then you set up an availability group for which `fciInstance1` hosts the primary replica, and `Instance3` hosts the secondary replica.  
  At some point `fciInstance1` becomes unavailable on `NODE01`, and the WSFC causes a failover of `fciInstance1` to `NODE02`. After the failover, `fciInstance1` is a [!INCLUDE[ssHADR](../../../includes/sshadr-md.md)]-enabled instance running under the primary role on `NODE02`. However, `Instance3` now resides on the same WSFC node as `fciInstance1`. This violates the [!INCLUDE[ssHADR](../../../includes/sshadr-md.md)] constraint.  
  To correct the problem that this scenario presents, the stand-alone instance, `Instance3`, must reside on another node in the same WSFC as `NODE01` and `NODE02`.  
   

@@ -182,7 +182,7 @@ You don't want attackers to easily guess account names or passwords. Use the fol
 
 Close management ports on your machine - Open remote management ports are exposing your VM to a high level of risk from internet-based attacks. These attacks attempt to brute force credentials to gain admin access to the machine.
 - Turn on [Just-in-time (JIT) access](/azure/security-center/security-center-just-in-time?tabs=jit-config-asc%2Cjit-request-asc) for Azure virtual machines.
-- Leverage [Azure Bastion](/azure/bastion/bastion-overview) over Remote Desktop Protocol (RDP).
+- Use [Azure Bastion](/azure/bastion/bastion-overview) over Remote Desktop Protocol (RDP).
 
 ## Virtual Machine extensions
 
@@ -199,7 +199,9 @@ Azure Virtual Machine extensions are trusted Microsoft or 3rd party extensions t
 
 ## FIPS compliance
 
-[FIPS](/azure/compliance/offerings/offering-fips-140-2) is a US government standard that defines minimum security requirements for cryptographic modules in information technology products and systems. SQL Server is capable of being FIPS compliant in [SQL Server 2016 and later](/troubleshoot/sql/database-engine/security/sql-2016-fips-140-2-compliant-mode) or [SQL Server 2014](/troubleshoot/sql/database-engine/security/sql-2014-fips-140-2-compliant-mode) with [Extended Security Updates](/sql/sql-server/end-of-support/sql-server-extended-security-updates). 
+[FIPS](/azure/compliance/offerings/offering-fips-140-2) is a US government standard that defines minimum security requirements for cryptographic modules in information technology products and systems. Some US government compliance programs such as FedRAMP or the Department of Defense Security Requirement Guide require the use of FIPS validated encryption. 
+
+SQL Server is capable of being FIPS compliant in [SQL Server 2016 and later](/troubleshoot/sql/database-engine/security/sql-2016-fips-140-2-compliant-mode) or [SQL Server 2014](/troubleshoot/sql/database-engine/security/sql-2014-fips-140-2-compliant-mode) with [Extended Security Updates](/sql/sql-server/end-of-support/sql-server-extended-security-updates). 
 
 To be FIPS compliant with SQL Server on Azure VMs, you should be on Windows Server 2022, which has FIPS enabled by default. Windows Server 2019 can also be FIPS compliant if FIPS is manually enabled using the policy specified in Security Technical Implementation Guide (STIG) finding V-93511.  
 

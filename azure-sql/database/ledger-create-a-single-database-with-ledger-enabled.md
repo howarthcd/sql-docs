@@ -114,7 +114,7 @@ databaseName="myLedgerDatabase"
 storageAccountName="mystorage"$RANDOM
 subscription="<your subscription ID>"
 adminLogin=azureuser
-adminPassword=Azure1234567!
+adminPassword=<password>
 serverResourceId="/subscriptions/$subscription/resourceGroups/$resourceGroupName/providers/Microsoft.Sql/servers/$serverName"
 
 # The ip address range that you want to allow to access your server
@@ -432,14 +432,14 @@ For more information about time-based retention policy for containers, see [Conf
 
 ```azurepowershell-interactive
 Write-host "Configuring a time-based retention policy..." 
-$immutabilityPerdiod = 1
+$immutabilityPeriod = 1
 $containerName = "sqldbledgerdigests"
 $policy = Set-AzRmStorageContainerImmutabilityPolicy `
    -ResourceGroupName $resourceGroupName `
     -StorageAccountName $storageAccountName `
     -ContainerName $containerName `
     -AllowProtectedAppendWrite $true `
-    -ImmutabilityPeriod $immutabilityPerdiod
+    -ImmutabilityPeriod $immutabilityPeriod
 
 Lock-AzRmStorageContainerImmutabilityPolicy `
    -ResourceGroupName $resourceGroupName `

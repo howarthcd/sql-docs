@@ -1,6 +1,6 @@
 ---
-title: "PowerShell: Copy a database to new server"
-description: Azure PowerShell example script to copy a database to a new server
+title: "PowerShell: Copy a database to new logical server"
+description: Azure PowerShell example script to copy a database to a new logical server
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: wiassaf, mathoma
@@ -13,10 +13,10 @@ ms.custom:
   - devx-track-azurepowershell
 ms.devlang: powershell
 ---
-# Use PowerShell to copy a database to a new server
+# Use PowerShell to copy a database to a new logical server
 [!INCLUDE[appliesto-sqldb](../../includes/appliesto-sqldb.md)]
 
-This Azure PowerShell script example creates a copy of an existing database in Azure SQL Database in a new server.
+This Azure PowerShell script example creates a copy of an existing database in Azure SQL Database in a new logical server.
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
@@ -24,7 +24,7 @@ This Azure PowerShell script example creates a copy of an existing database in A
 
 If you choose to install and use PowerShell locally, this tutorial requires Az PowerShell 1.4.0 or later. If you need to upgrade, see [Install Azure PowerShell module](/powershell/azure/install-az-ps). If you are running PowerShell locally, you also need to run `Connect-AzAccount` to create a connection with Azure.
 
-## Copy a database to a new server
+## Copy a database to a new logical server
 
 [!code-powershell-interactive[main](~/../powershell_scripts/sql-database/copy-database-to-new-server/copy-database-to-new-server.ps1?highlight=20-23 "Copy database to new server")]
 
@@ -44,13 +44,12 @@ This script uses the following commands. Each command in the table links to comm
 | Command | Notes |
 |---|---|
 | [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup) | Creates a resource group in which all resources are stored. |
-| [New-AzSqlServer](/powershell/module/az.sql/new-azsqlserver) | Creates a server that hosts databases and elastic pools. |
+| [New-AzSqlServer](/powershell/module/az.sql/new-azsqlserver) | Creates a new logical server that hosts databases and elastic pools. |
 | [New-AzSqlDatabase](/powershell/module/az.sql/new-azsqldatabase) | Creates a database or elastic pool. |
 | [New-AzSqlDatabaseCopy](/powershell/module/az.sql/new-azsqldatabasecopy) | Creates a copy of a database that uses the snapshot at the current time. |
 | [Remove-AzResourceGroup](/powershell/module/az.resources/remove-azresourcegroup) | Deletes a resource group including all nested resources. |
 
-
-## Next steps
+## Related content
 
 For more information on Azure PowerShell, see [Azure PowerShell documentation](/powershell/azure/).
 

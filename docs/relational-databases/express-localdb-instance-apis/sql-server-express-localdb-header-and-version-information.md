@@ -13,7 +13,7 @@ apilocation: "sqluserinstance.dll"
   There is no separate header file for the SQL Server Express LocalDB instance API; the LocalDB function signatures and error codes are defined in the Microsoft OLE DB Driver for SQL Server header file (msoledbsql.h). To use the LocalDB instance API, you must include the msoledbsql.h header file in your project. This doc has recently been updated and no longer references the SQL Server Native Client header file (sqlncli.h).
   
 ## LocalDB Versioning  
- The LocalDB installation uses a single set of binaries per major SQL Server version. These LocalDB versions are maintained and patched independently. This means that the user has to specify which LocalDB baseline release (that is, major SQL Server version) he or she will be using. The version is specified in the standard version format defined by the .NET Framework **System.Version** class:  
+ The LocalDB installation uses a single set of binaries per major SQL Server version. These LocalDB versions are maintained and patched independently. This means that the user has to specify which LocalDB baseline release (that is, major SQL Server version) they will be using. The version is specified in the standard version format defined by the .NET Framework **System.Version** class:  
   
  *major.minor[.build[.revision]]*  
   

@@ -3,10 +3,12 @@ title: "RAISERROR (Transact-SQL)"
 description: RAISERROR generates an error message and initiates error processing for the session.
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 07/26/2024
+ms.date: 11/22/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "RAISERROR"
   - "RAISERROR_TSQL"
@@ -30,7 +32,7 @@ monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >
 
 # RAISERROR (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 > [!NOTE]  
 > The `RAISERROR` statement doesn't honor `SET XACT_ABORT`. New applications should use `THROW` instead of `RAISERROR`.
@@ -63,7 +65,10 @@ RAISERROR ( { msg_str | @local_variable }
 
 #### *msg_id*
 
-A user-defined error message number stored in the `sys.messages` catalog view using `sp_addmessage`. Error numbers for user-defined error messages should be greater than `50000`. When *msg_id* isn't specified, `RAISERROR` raises an error message with an error number of `50000`.
+A user-defined error message number stored in the `sys.messages` catalog view using [sp_addmessage](../../relational-databases/system-stored-procedures/sp-addmessage-transact-sql.md). Error numbers for user-defined error messages should be greater than `50000`. When *msg_id* isn't specified, `RAISERROR` raises an error message with an error number of `50000`.
+
+> [!NOTE]  
+> On [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [ssazuremi-md](../../includes/ssazuremi-md.md)], `sp_addmessage` isn't supported, so you can't reference a *msg_id* greater than `50000`.
 
 #### *msg_str*
 

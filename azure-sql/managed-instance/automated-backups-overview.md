@@ -50,7 +50,7 @@ The frequency of transaction log backups depends on the compute size and the amo
 
 ### Backup storage redundancy
 
-By default, Azure SQL Managed Instance stores backups in geo-redundant [storage blobs](/azure/storage/common/storage-redundancy) that are replicated to a [paired region](/azure/availability-zones/cross-region-replication-azure). Geo-redundancy helps protect against outages that affect backup storage in the primary region. It also allows you to restore your instance to a different region in the event of a disaster.
+By default, Azure SQL Managed Instance stores backups in geo-redundant [storage blobs](/azure/storage/common/storage-redundancy) that are replicated to a [paired region](/azure/reliability/cross-region-replication-azure). Geo-redundancy helps protect against outages that affect backup storage in the primary region. It also allows you to restore your instance to a different region in the event of a disaster.
 
 The storage redundancy mechanism stores multiple copies of your data so that it's protected from planned and unplanned events. Those events might include transient hardware failures, network or power outages, or massive natural disasters.
 
@@ -71,7 +71,7 @@ You can choose one of the following storage redundancies for backups:
 
    :::image type="content" source="../database/media/automated-backups-overview/multi-paired-zrs.svg" alt-text="Diagram showing the zone-redundant storage (ZRS) option.":::
 
-- **Geo-redundant storage (GRS)**: Copies your backups synchronously three times within a single physical location in the primary region by using LRS. Then it copies your data asynchronously three times to a single physical location in the [paired](/azure/availability-zones/cross-region-replication-azure#azure-cross-region-replication-pairings-for-all-geographies) secondary region.
+- **Geo-redundant storage (GRS)**: Copies your backups synchronously three times within a single physical location in the primary region by using LRS. Then it copies your data asynchronously three times to a single physical location in the [paired](/azure/reliability/cross-region-replication-azure#azure-cross-region-replication-pairings-for-all-geographies) secondary region.
 
   The result is:
   
@@ -146,12 +146,10 @@ To perform a restore, see [Restore a database from backups](recovery-using-backu
 Azure SQL Managed Instance automatically manages backups by creating full, differential, and transaction log backups. This process is governed by an internal schedule.
 
 ### Initial backup
-- **New databases**: Immediately after a database is created, restored, or undergoes backup redundancy changes, the first full backup is initiated. This backup typically completes within 30 minutes, though it may take longer for larger databases.
-
-- **Restored databases**: The duration of the initial backup for restored databases varies and depends on the database size. Restored databases or database copies, which are often larger, may require more time for the initial backup.
+Immediately after a database is created, restored, or undergoes backup redundancy changes, the first full backup is initiated. This backup typically completes within 30 minutes, though it may take longer. The duration of the initial backup for restored databases varies and depends on the database size. Larger restored databases or database copies, may require more time for the initial backup.
 
 > [!IMPORTANT]
-> The first full backup for a *new* database takes priority over other database backups, so it's the first backup taken during the first full backup window. If the full backup window is already active and other databases are being backed up, the first full backup for the new database is taken immediately after the full back up of another database completes.
+> The first full backup for a *new* database takes priority over other database backups, so it's the first backup taken during the first full backup window. If the full backup window is already active and other databases are being backed up, the first full backup for the new database is taken immediately after the full backup of another database completes.
 
 ### Scheduled full backups
 - **Weekly Schedule**: The system sets a weekly full backup window for the entire instance.
@@ -228,10 +226,8 @@ The price for backup storage varies. It depends on your chosen backup storage re
 
 Backup storage redundancy affects backup costs in the following way:
 
-- `Locally redundant price = published price`
-- `Zone-redundant price = published price x 1.25`
-- `Geo-redundant price = published price x 2`
-- `Geo-zone-redundant price = published price x 3.4`
+- `Locally-redundant price (LRS) = Zone-redundant price (ZRS) = published price`
+- `Geo-redundant price (GRS) = Geo-zone-redundant price (GZRS) = published price x 2`
 
 For pricing, review the [Azure SQL Managed Instance pricing](https://azure.microsoft.com/pricing/details/azure-sql/sql-managed-instance/single/) page.
 

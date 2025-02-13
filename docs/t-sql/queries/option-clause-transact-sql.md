@@ -10,6 +10,7 @@ ms.subservice: t-sql
 ms.topic: reference
 ms.custom:
   - build-2024
+  - ignite-2024
 f1_keywords:
   - "OPTION clause"
   - "OPTION_TSQL"
@@ -24,7 +25,7 @@ monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >
 ---
 # OPTION clause (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricse-FabricDW-fabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricse-fabricdw-fabricsqldb.md)]
 
 Specifies that the indicated query hint should be used throughout the entire query. Each query hint can be specified only one time, although multiple query hints are permitted. Only one `OPTION` clause can be specified with the statement.
 

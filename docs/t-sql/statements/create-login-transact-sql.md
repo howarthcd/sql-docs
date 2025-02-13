@@ -293,7 +293,7 @@ The following example shows how to create SQL Logins with the same password as e
 ```sql
 -- run this to retrieve the password hash for an individual Login:
 SELECT LOGINPROPERTY('Andreas','PASSWORDHASH') AS password_hash;
--- as an alternative, the catalog view sys.sql_logins can be used to retrieve the password hashes for multiple accounts at once. (This could be used to create a dynamic sql statemnt from the result set)
+-- as an alternative, the catalog view sys.sql_logins can be used to retrieve the password hashes for multiple accounts at once. (This could be used to create a dynamic sql statement from the result set
 SELECT name, password_hash
 FROM sys.sql_logins
   WHERE
@@ -414,7 +414,7 @@ Specifies that the login is for Microsoft Entra authentication.
 Specifies the Microsoft Entra Object ID. If the `OBJECT_ID` is specified, the login_name isn't required to match the Microsoft Entra display name. The login_name must be a unique name in the `sys.server_principals` view and adhere to all other `sysname` limitations. For more information on using the `WITH OBJECT_ID` option, see [Microsoft Entra logins and users with nonunique display names](/azure/azure-sql/database/authentication-microsoft-entra-create-users-with-nonunique-names).
 
 > [!NOTE]
-> If the service principal display name is not a duplicate, the default `CREATE LOGIN` or `CREATE USER` statement should be used. The `WITH OBJECT_ID` extension is in **public preview**, and is a troubleshooting repair item implemented for use with nonunique service principals. Using it with a unique service principal is not recommended. Using the `WITH OBJECT_ID` extension for a service principal without adding a suffix will run successfully, but it will not be obvious which service principal the login or user was created for. It's recommended to create an alias using a suffix to uniquely identify the service principal. The `WITH OBJECT_ID` extension is not supported for SQL Server.
+> If the service principal display name is not a duplicate, the default `CREATE LOGIN` or `CREATE USER` statement should be used. The `WITH OBJECT_ID` extension is a troubleshooting repair item implemented for use with nonunique service principals. Using it with a unique service principal is not recommended. Using the `WITH OBJECT_ID` extension for a service principal without adding a suffix will run successfully, but it will not be obvious which service principal the login or user was created for. It's recommended to create an alias using a suffix to uniquely identify the service principal. The `WITH OBJECT_ID` extension is not supported for SQL Server.
 
 #### PASSWORD ='password'
 Specifies the password for the SQL login that is being created. Use a strong password. For more information, see [Strong Passwords](../../relational-databases/security/strong-passwords.md) and [Password Policy](../../relational-databases/security/password-policy.md). Beginning with [!INCLUDE [ssSQL11](../../includes/sssql11-md.md)], stored password information is calculated using SHA-512 of the salted password.
@@ -502,7 +502,7 @@ You can create an alias for your *login_name* by specifying the Object ID of the
 
 ```sql
 CREATE LOGIN [myapp4466e] FROM EXTERNAL PROVIDER 
-  WITH OBJECT_ID='4466e2f8-0fea-4c61-a470-xxxxxxxxxxxx';
+  WITH OBJECT_ID='aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb';
 ```
 
 For more information on obtaining the Object ID of a service principal, see [service principal objects in Microsoft Entra ID](/entra/identity-platform/app-objects-and-service-principals#service-principal-object).

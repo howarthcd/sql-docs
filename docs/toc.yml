@@ -669,8 +669,6 @@ items:
           href: database-engine/availability-groups/windows/availability-group-is-not-ready-for-automatic-failover.md
         - name: Availability replica does not have a healthy role
           href: database-engine/availability-groups/windows/availability-replica-does-not-have-a-healthy-role.md
-        - name: Availability replica is disconnected
-          href: database-engine/availability-groups/windows/availability-replica-is-disconnected.md
         - name: Availability replica is not joined
           href: database-engine/availability-groups/windows/availability-replica-is-not-joined.md
         - name: Data synchronization state of availability database is not healthy
@@ -1164,6 +1162,8 @@ items:
             href: relational-databases/databases/database-properties-filegroups-page.md
           - name: Options page
             href: relational-databases/databases/database-properties-options-page.md
+          - name: Configurations page
+            href: relational-databases/databases/database-properties-configurations-page.md
           - name: Change Tracking page
             href: relational-databases/databases/database-properties-changetracking-page.md
           - name: Transaction log shipping page
@@ -1320,8 +1320,6 @@ items:
           href: relational-databases/indexes/columnstore-indexes-design-guidance.md
         - name: Data loading Guidance
           href: relational-databases/indexes/columnstore-indexes-data-loading-guidance.md
-        - name: Ordered clustered columnstore index performance
-          href: relational-databases/indexes/ordered-columnstore-indexes.md
         - name: Query performance
           href: relational-databases/indexes/columnstore-indexes-query-performance.md
         - name: Real-time operational analytics
@@ -2262,21 +2260,21 @@ items:
         href: relational-databases/clr-integration-data-access-in-process-ado-net/sqlpipe-object.md
       - name: SqlTriggerContext Object
         href: relational-databases/clr-integration-data-access-in-process-ado-net/sqltriggercontext-object.md
-    - name: User-Defined Functions
+    - name: User-defined functions
       href: relational-databases/clr-integration-database-objects-user-defined-functions/clr-user-defined-functions.md
       items:
-      - name: Scalar-Valued
+      - name: Scalar-valued
         href: relational-databases/clr-integration-database-objects-user-defined-functions/clr-scalar-valued-functions.md
-      - name: Table-Valued
+      - name: Table-valued
         href: relational-databases/clr-integration-database-objects-user-defined-functions/clr-table-valued-functions.md
-      - name: User-Defined Aggregates
+      - name: User-defined aggregates
         href: relational-databases/clr-integration-database-objects-user-defined-functions/clr-user-defined-aggregates.md
         items:
         - name: Requirements
           href: relational-databases/clr-integration-database-objects-user-defined-functions/clr-user-defined-aggregates-requirements.md
-        - name: Invoking Functions
+        - name: Invoking functions
           href: relational-databases/clr-integration-database-objects-user-defined-functions/clr-user-defined-aggregate-invoking-functions.md
-    - name: User-Defined Types
+    - name: User-defined types
       href: relational-databases/clr-integration-database-objects-user-defined-types/clr-user-defined-types.md
       items:
       - name: Create
@@ -2291,18 +2289,18 @@ items:
       - name: Working with
         href: relational-databases/clr-integration-database-objects-user-defined-types/working-with-user-defined-types-in-sql-server.md
         items:
-        - name: Defining UDT Tables & Columns
+        - name: Defining UDT tables & columns
           href: relational-databases/clr-integration-database-objects-user-defined-types/working-with-user-defined-types-defining-udt-tables-and-columns.md
-        - name: Manipulating UDT Data
+        - name: Manipulating UDT data
           href: relational-databases/clr-integration-database-objects-user-defined-types/working-with-user-defined-types-manipulating-udt-data.md
       - name: Accessing in ADO.NET
         href: relational-databases/clr-integration-database-objects-user-defined-types/accessing-user-defined-types-in-ado-net.md
         items:
-        - name: Retrieving UDT Data
+        - name: Retrieving UDT data
           href: relational-databases/clr-integration-database-objects-user-defined-types/accessing-user-defined-types-retrieving-udt-data.md
-        - name: Updating UDT Columns with DataAdapters
+        - name: Updating UDT columns with DataAdapters
           href: relational-databases/clr-integration-database-objects-user-defined-types/accessing-user-defined-types-updating-udt-columns-with-dataadapters.md
-    - name: Integration & Transactions
+    - name: Integration & transactions
       href: relational-databases/clr-integration-data-access-transactions/clr-integration-and-transactions.md
       items:
       - name: Transaction Promotion
@@ -2378,20 +2376,20 @@ items:
         href: relational-databases/clr-integration/debugging-clr-database-objects.md
       - name: Deploy
         href: relational-databases/clr-integration/deploying-clr-database-objects.md
-      - name: Monitoring & Troubleshooting
+      - name: Monitoring & troubleshooting
         href: relational-databases/clr-integration/monitoring-and-troubleshooting-managed-database-objects.md
-      - name: Data Access from CLR Database Objects
+      - name: Data access from CLR database objects
         href: relational-databases/clr-integration/data-access/data-access-from-clr-database-objects.md
-      - name: Data Types in the .NET Framework
+      - name: Data types in the .NET Framework
         href: relational-databases/clr-integration-database-objects-types-net-framework/sql-server-data-types-in-the-net-framework.md
         items:
         - name: Collation & data types
           href: relational-databases/clr-integration-database-objects-types-net-framework/collation-and-clr-integration-data-types.md
-        - name: Large Object (LOB) Parameters
+        - name: Large object (LOB) parameters
           href: relational-databases/clr-integration-database-objects-types-net-framework/handling-large-object-lob-parameters-in-the-clr.md
         - name: Mapping parameter data
           href: relational-databases/clr-integration-database-objects-types-net-framework/mapping-clr-parameter-data.md
-        - name: Nullability & three-value logic Comparisons
+        - name: Nullability & three-value logic comparisons
           href: relational-databases/clr-integration-database-objects-types-net-framework/nullability-and-three-value-logic-comparisons.md
   - name: Extended stored procedures
     items:
@@ -4501,7 +4499,7 @@ items:
       href: database-engine/configure-windows/hybrid-buffer-pool.md
     - name: Persistent memory (PMEM)
       href: database-engine/configure-windows/configure-persistent-memory.md
-    - name: Add persisted log buffer
+    - name: Add persistent log buffer
       href: relational-databases/databases/add-persisted-log-buffer.md
     - name: Change Server Authentication Mode
       href: database-engine/configure-windows/change-server-authentication-mode.md
@@ -4531,6 +4529,8 @@ items:
         href: database-engine/configure-windows/ad-hoc-distributed-queries-server-configuration-option.md
       - name: ADR cleaner retry timeout
         href: database-engine/configure-windows/adr-cleaner-retry-timeout-configuration-option.md
+      - name: ADR Cleaner Thread Count
+        href: database-engine/configure-windows/adr-cleaner-thread-count-configuration-option.md
       - name: ADR Preallocation Factor
         href: database-engine/configure-windows/adr-preallocation-factor-server-configuration-option.md
       - name: affinity Input-Output mask
@@ -6023,8 +6023,6 @@ items:
       href: dma/dma-migrateserverlogins.md
     - name: Best practices
       href: dma/dma-bestpractices.md
-    - name: Assess application data access layer
-      href: dma/dma-assess-app-data-layer.md
     - name: Run from the command-line
       href: dma/dma-commandline.md
     - name: Configure settings
@@ -6103,8 +6101,8 @@ items:
         href: relational-databases/accelerated-database-recovery-concepts.md
       - name: Management
         href: relational-databases/accelerated-database-recovery-management.md
-      - name: Troubleshooting
-        href: relational-databases/accelerated-database-recovery-troubleshoot.md        
+      - name: Monitor and troubleshoot
+        href: relational-databases/accelerated-database-recovery-troubleshoot.md
     - name: Manage the Query Store
       href: relational-databases/performance/manage-the-query-store.md
     - name: Central Management Servers
@@ -6941,6 +6939,8 @@ items:
         - name: Administration, including Out of Memory
           href: relational-databases/in-memory-oltp/resolve-out-of-memory-issues.md
           items:
+          - name: App Control Managed Installer for In-Memory OLTP
+            href: relational-databases/in-memory-oltp/create-in-memory-oltp-app-control-managed-installer.md
           - name: Resource pool
             href: relational-databases/in-memory-oltp/bind-a-database-with-memory-optimized-tables-to-a-resource-pool.md
           - name: Restore a database to a pool
@@ -7004,29 +7004,31 @@ items:
     - name: Resource governor
       href: relational-databases/resource-governor/resource-governor.md
       items:
+      - name: Configuration examples and best practices
+        href: relational-databases/resource-governor/resource-governor-walkthrough.md
       - name: Enable
         href: relational-databases/resource-governor/enable-resource-governor.md
       - name: Disable
         href: relational-databases/resource-governor/disable-resource-governor.md
-      - name: Configure Resource Governor Using a Template
+      - name: Configure resource governor using a template
         href: relational-databases/resource-governor/configure-resource-governor-using-a-template.md
-      - name: View Resource Governor Properties
+      - name: View resource governor properties
         href: relational-databases/resource-governor/view-resource-governor-properties.md
-      - name: Resource Pool
+      - name: Resource pool
         href: relational-databases/resource-governor/resource-governor-resource-pool.md
         items:
         - name: Create
           href: relational-databases/resource-governor/create-a-resource-pool.md
-        - name: Change  Settings
+        - name: Modify
           href: relational-databases/resource-governor/change-resource-pool-settings.md
         - name: Delete
           href: relational-databases/resource-governor/delete-a-resource-pool.md
-      - name: Workload Group
+      - name: Workload group
         href: relational-databases/resource-governor/resource-governor-workload-group.md
         items:
         - name: Create
           href: relational-databases/resource-governor/create-a-workload-group.md
-        - name: Change  Settings
+        - name: Modify
           href: relational-databases/resource-governor/change-workload-group-settings.md
         - name: Move
           href: relational-databases/resource-governor/move-a-workload-group.md
@@ -7034,9 +7036,6 @@ items:
           href: relational-databases/resource-governor/delete-a-workload-group.md
       - name: Classifier function
         href: relational-databases/resource-governor/resource-governor-classifier-function.md
-        items:
-        - name: Create & Test a Classifier User-Defined Function
-          href: relational-databases/resource-governor/create-and-test-a-classifier-user-defined-function.md
     - name: Statistics
       href: relational-databases/statistics/statistics.md
       items:
@@ -7263,6 +7262,12 @@ items:
       href: sql-server/synapse-link/synapse-link-sql-server-change-feed.md
     - name: Azure Synapse Link for SQL change feed management
       href: sql-server/synapse-link/synapse-link-sql-server-change-feed-manage.md
+  - name: Fabric Databases
+    items:
+    - name: Microsoft Fabric Mirroring
+      href: sql-server/fabric-database/fabric-mirrored-databases.md
+    - name: SQL database in Microsoft Fabric
+      href: sql-server/fabric-database/sql-database-in-fabric.md
   - name: Machine Learning Services > 
     href: machine-learning/
   - name: Analytics Platform System > 
@@ -8131,7 +8136,7 @@ items:
     items:
     - name: Permissions or Securables page
       href: relational-databases/security/permissions-or-securables-page.md
-    - name: Resumable add table contraints
+    - name: Resumable add table constraints
       href: relational-databases/security/resumable-add-table-constraints.md
 - name: Tools
   items:
@@ -8654,15 +8659,15 @@ items:
       items:
       - name: Frequently asked questions
         href: ssms/ssms-21/faq.yml
-      - name: Release notes for SQL Server Managemement Studio 21 Preview
+      - name: Release notes
         href: ssms/ssms-21/release-notes-21.md
-      - name: System requirements for SQL Server Managemement Studio 21 Preview
+      - name: System requirements
         href: ssms/ssms-21/system-requirements.md
-      - name: Known issues for SQL Server Managemement Studio 21 Preview
+      - name: Known issues
         href: ssms/ssms-21/known-issues.md
       - name: Installation
         items:
-        - name: Download and install SQL Server Managemement Studio 21 Preview
+        - name: Download and install
           href: ssms/install/install.md
         - name: Select installation location
           href: ssms/install/select-install-location.md
@@ -8674,18 +8679,26 @@ items:
           href: ssms/install/local-help-content.md
         - name: Install versions side-by-side
           href: ssms/install/side-by-side.md
-        - name: Update SQL Server Managemement Studio 21 Preview
+        - name: Update
           href: ssms/install/update.md
-        - name: Modify SQL Server Managemement Studio 21 Preview
+        - name: Modify
           href: ssms/install/modify.md
-        - name: Repair SQL Server Managemement Studio 21 Preview
+        - name: Repair
           href: ssms/install/repair.md
-        - name: Troubleshoot installation
+        - name: Troubleshoot installation issues
           href: ssms/install/troubleshoot.md
-        - name: Uninstall SQL Server Managemement Studio 21 Preview
+        - name: Uninstall
           href: ssms/install/uninstall.md
-        - name: Channels for SQL Server Managemement Studio 21 Preview
+        - name: Channels
           href: ssms/install/channels-release.md
+      - name: Feedback and Troubleshooting
+        items:
+        - name: Suggest a feature
+          href: ssms/feedback-and-troubleshooting/suggest-feature.md
+        - name: Report a problem
+          href: ssms/feedback-and-troubleshooting/report-problem.md
+        - name: Customer Experience Improvement Program
+          href: ssms/feedback-and-troubleshooting/customer-experience-improvement-program.md
       - name: User permissions
         href: ssms/ssms-21/user-permissions.md
       - name: Sign in or switch user accounts
@@ -10004,24 +10017,22 @@ items:
     items: 
     - name: Extended features and tools
       href: tools/download-sql-feature-packs.md
-  - name: Visual Studio Code 
+  - name: Visual Studio Code extensions
     items:
-    - name: Overview
-      href: tools/visual-studio-code/mssql-extensions.md
-    - name: Connect and Query Tutorial
-      href: tools/visual-studio-code/sql-server-develop-use-vscode.md
-    - name: Query History
-      href: tools/visual-studio-code/mssql-query-history.md
-    - name: SQL Database Projects
-      href: /azure-data-studio/extensions/sql-database-project-extension
-    - name: SQL Bindings for Azure Functions
+    - name: MSSQL extension
       items: 
       - name: Overview
-        href: tools/visual-studio-code/create-azure-function-with-mssql.md
-      - name: From Object Explorer Tutorial
-        href: tools/visual-studio-code/create-azure-function-with-mssql-object-explorer.md
-      - name: From Command Palette Tutorial
-        href: tools/visual-studio-code/create-azure-function-with-mssql-command-palette.md
+        href: tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code.md
+      - name: Connect and Query
+        href: tools/visual-studio-code-extensions/mssql/connect-database-visual-studio-code.md
+    - name: SQL bindings for Azure Functions
+      items: 
+      - name: Overview
+        href: tools/visual-studio-code-extensions/sql-bindings/create-azure-function.md
+      - name: Object Explorer
+        href: tools/visual-studio-code-extensions/sql-bindings/create-azure-function-object-explorer.md
+      - name: Command Palette
+        href: tools/visual-studio-code-extensions/sql-bindings/create-azure-function-command-palette.md
 - name: Tutorials
   items:
   - name: SQL Server
@@ -10099,6 +10110,8 @@ items:
       href: linux/quickstart-install-connect-suse.md
     - name: Install and connect (Ubuntu)
       href: linux/quickstart-install-connect-ubuntu.md
+    - name: Install and connect (WSL2)
+      href: linux/quickstart-install-connect-wsl-2.md
     - name: Run and connect (containers)
       href: linux/quickstart-install-connect-docker.md
     - name: Deploy SQL Server container cluster
@@ -10214,7 +10227,7 @@ items:
       - name: Connectivity libraries
         href: linux/sql-server-linux-develop-connectivity-libraries.md
       - name: Use Visual Studio Code
-        href: ./tools/visual-studio-code/sql-server-develop-use-vscode.md
+        href: tools/visual-studio-code-extensions/mssql/connect-database-visual-studio-code.md
       - name: Use SSDT
         href: linux/sql-server-linux-develop-use-ssdt.md
     - name: Manage
@@ -10328,6 +10341,8 @@ items:
         href: linux/sql-server-linux-security-overview.md
       - name: Get started with security features
         href: linux/sql-server-linux-security-get-started.md
+      - name: Get started with SQL Server on SELinux
+        href: linux/sql-server-linux-security-selinux.md
       - name: Active Directory authentication
         href: linux/sql-server-linux-active-directory-auth-overview.md
       - name: Join an AD domain
@@ -10474,8 +10489,6 @@ items:
           href: sql-server/azure-arc/security-overview.md
         - name: Configure least privilege
           href: sql-server/azure-arc/configure-least-privilege.md
-        - name: Set up Entra authentication
-          href: sql-server/azure-arc/entra-authentication-setup-tutorial.md
         - name: Configure advanced data Security
           href: sql-server/azure-arc/configure-advanced-data-security.md
         - name: Certificate rotation
@@ -11699,6 +11712,8 @@ items:
         items:
         - name: Overview
           href: relational-databases/errors-events/database-engine-events-and-errors-18000-to-18999.md
+        - name: 18053
+          href: relational-databases/errors-events/mssqlserver-18053-database-engine-error.md
         - name: 18210
           href: relational-databases/errors-events/mssqlserver-18210-database-engine-error.md
         - name: 18264
@@ -11845,6 +11860,20 @@ items:
           href: relational-databases/errors-events/mssqlserver-42108-database-engine-error.md
         - name: 42109
           href: relational-databases/errors-events/mssqlserver-42109-database-engine-error.md
+        - name: 41962
+          href: relational-databases/errors-events/mssqlserver-41962-database-engine-error.md
+        - name: 41973
+          href: relational-databases/errors-events/mssqlserver-41973-database-engine-error.md
+        - name: 41974
+          href: relational-databases/errors-events/mssqlserver-41974-database-engine-error.md
+        - name: 41976
+          href: relational-databases/errors-events/mssqlserver-41976-database-engine-error.md
+        - name: 41977
+          href: relational-databases/errors-events/mssqlserver-41977-database-engine-error.md
+        - name: 41986
+          href: relational-databases/errors-events/mssqlserver-41986-database-engine-error.md
+        - name: 47521
+          href: relational-databases/errors-events/mssqlserver-47521-database-engine-error.md
       - name: Native client error 50,000
         href: relational-databases/errors-events/sql-server-native-client-error-mssqlserver-50000.md
   - name: Event classes
@@ -12299,6 +12328,8 @@ items:
         href: relational-databases/system-catalog-views/sys-database-usage-azure-sql-database.md
       - name: sys.dm_elastic_pool_resource_stats
         href: relational-databases/system-dynamic-management-views/sys-dm-elastic-pool-resource-stats-azure-sql-database.md
+      - name: sys.dm_hs_database_log_rate
+        href: relational-databases/system-dynamic-management-views/sys-dm-hs-database-log-rate.md
       - name: sys.elastic_pool_resource_stats
         href: relational-databases/system-catalog-views/sys-elastic-pool-resource-stats-azure-sql-database.md
       - name: sys.event_log
@@ -12394,8 +12425,8 @@ items:
         href: relational-databases/system-catalog-views/sys-database-recovery-status-transact-sql.md
       - name: sys.database_scoped_configurations
         href: relational-databases/system-catalog-views/sys-database-scoped-configurations-transact-sql.md
-      - name: sys.database_automatic_tuning_configuration
-        href: relational-databases/system-catalog-views/sys-database-automatic-tuning-configuration-transact-sql.md
+      - name: sys.database_automatic_tuning_configurations
+        href: relational-databases/system-catalog-views/sys-database-automatic-tuning-configurations-transact-sql.md
       - name: sys.database_automatic_tuning_options
         href: relational-databases/system-catalog-views/sys-database-automatic-tuning-options-transact-sql.md
       - name: sys.database_automatic_tuning_mode
@@ -12691,7 +12722,7 @@ items:
         href: relational-databases/system-catalog-views/syspolicy-policy-category-subscriptions-transact-sql.md
       - name: syspolicy_system_health_state
         href: relational-databases/system-catalog-views/syspolicy-system-health-state-transact-sql.md
-    - name: Resource Governor
+    - name: Resource governor
       href: relational-databases/system-catalog-views/resource-governor-catalog-views-transact-sql.md
       items:
       - name: sys.resource_governor_configuration
@@ -13166,7 +13197,7 @@ items:
         href: relational-databases/system-dynamic-management-views/sys-dm-db-wait-stats-azure-sql-database.md
       - name: sys.dm_operation_status (Azure SQL Database)
         href: relational-databases/system-dynamic-management-views/sys-dm-operation-status-azure-sql-database.md
-      - name: sys.dm_resource_governor_workload_groups_history_ex (Azure SQL Database)
+      - name: sys.dm_resource_governor_workload_groups_history_ex
         href: relational-databases/system-dynamic-management-views/sys-dm-resource-governor-workload-groups-history-ex-azure-sql-database.md
     - name: Database Mirroring
       items:
@@ -13474,7 +13505,7 @@ items:
         href: relational-databases/system-dynamic-management-views/sys-dm-repl-tranhash-transact-sql.md
       - name: sys.dm_repl_traninfo
         href: relational-databases/system-dynamic-management-views/sys-dm-repl-traninfo-transact-sql.md
-    - name: Resource Governor
+    - name: Resource governor
       href: relational-databases/system-dynamic-management-views/resource-governor-related-dynamic-management-views-transact-sql.md
       items:
       - name: sys.dm_resource_governor_configuration
@@ -13487,7 +13518,7 @@ items:
         href: relational-databases/system-dynamic-management-views/sys-dm-resource-governor-resource-pool-affinity-transact-sql.md
       - name: sys.dm_resource_governor_resource_pools
         href: relational-databases/system-dynamic-management-views/sys-dm-resource-governor-resource-pools-transact-sql.md
-      - name: sys.dm_resource_governor_pools_history_ex (Azure SQL Database)
+      - name: sys.dm_resource_governor_pools_history_ex
         href: relational-databases/system-dynamic-management-views/sys-dm-resource-governor-resource-pools-history-ex-azure-sql-database.md
       - name: sys.dm_resource_governor_resource_pool_volumes
         href: relational-databases/system-dynamic-management-views/sys-dm-resource-governor-resource-pool-volumes-transact-sql.md
@@ -13640,6 +13671,8 @@ items:
         href: relational-databases/system-dynamic-management-views/sys-dm-os-memory-cache-hash-tables-transact-sql.md
       - name: sys.dm_os_memory_clerks
         href: relational-databases/system-dynamic-management-views/sys-dm-os-memory-clerks-transact-sql.md
+      - name: sys.dm_os_memory_health_history
+        href: relational-databases/system-dynamic-management-views/sys-dm-os-memory-health-history.md
       - name: sys.dm_os_memory_nodes
         href: relational-databases/system-dynamic-management-views/sys-dm-os-memory-nodes-transact-sql.md
       - name: sys.dm_os_memory_objects

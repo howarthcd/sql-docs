@@ -88,7 +88,7 @@ If you have an even number of votes in the cluster, configure the [quorum soluti
 
 ## Validate cluster 
 
-For a failover cluster to be supported by Microsoft, it must pass cluster validation. Connect to the VM using your preferred method, such as Remote Desktop Protocol (RDP) and validate that your cluster passes validation before proceeding further. Failure to do so leaves your cluster in an unsupported state. 
+For a failover cluster to be supported by Microsoft, it must pass cluster validation. Connect to the VM using your preferred method, such as [Bastion](/azure/bastion/bastion-connect-vm-rdp-windows), and validate that your cluster passes validation before proceeding further. Failure to do so leaves your cluster in an unsupported state. 
 
 You can validate the cluster using Failover Cluster Manager (FCM) or the following PowerShell command:
 
@@ -185,7 +185,7 @@ The best method is to delete it through the SQL IaaS Agent extension by using th
 
 ```PowerShell
 # Remove the availability group listener
-# example: Remove-AzResource -ResourceId '/subscriptions/a1a11a11-1a1a-aa11-aa11-1aa1a11aa11a/resourceGroups/SQLAG-RG/providers/Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups/Cluster/availabilitygrouplisteners/aglistener' -Force
+# example: Remove-AzResource -ResourceId '/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/SQLAG-RG/providers/Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups/Cluster/availabilitygrouplisteners/aglistener' -Force
 Remove-AzResource -ResourceId '/subscriptions/<SubscriptionID>/resourceGroups/<resource-group-name>/providers/Microsoft.SqlVirtualMachine/SqlVirtualMachineGroups/<cluster-name>/availabilitygrouplisteners/<listener-name>' -Force
 ```
  

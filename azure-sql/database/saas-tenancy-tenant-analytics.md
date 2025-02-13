@@ -1,8 +1,8 @@
 ---
 title: Cross-tenant analytics using extracted data
 description: Cross-tenant analytics queries using data extracted from multiple Azure SQL databases in a single tenant app.
-author: bgavrilMS
-ms.author: bogavril
+author: bgavrilovicMS
+ms.author: bgavrilovic
 ms.reviewer: mathoma, wiassaf
 ms.date: 12/18/2018
 ms.service: azure-sql-database

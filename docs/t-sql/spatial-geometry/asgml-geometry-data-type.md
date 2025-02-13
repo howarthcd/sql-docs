@@ -7,6 +7,8 @@ ms.date: "08/03/2017"
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "AsGml_(geometry_Data_Type)_TSQL"
   - "AsGml_(geometry Data Type)"
@@ -17,7 +19,7 @@ dev_langs:
 ---
 # AsGml (geometry Data Type)
 
-[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/sql-asdb-asdbmi.md)]
+[!INCLUDE [SQL Server Azure SQL Database Azure SQL Managed Instance FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-fabricsqldb.md)]
 
 Returns the Geography Markup Language (GML) representation of a **geometry** instance.
   
@@ -58,4 +60,3 @@ SELECT @g.AsGml();
  [Extended Methods on Geometry Instances](../../t-sql/spatial-geometry/extended-methods-on-geometry-instances.md)  
   
   
-

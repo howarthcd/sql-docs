@@ -1,13 +1,15 @@
 ---
 title: "TRUNCATE TABLE (Transact-SQL)"
-description: TRUNCATE TABLE (Transact-SQL)
+description: TRUNCATE TABLE removes all rows from a table or specified partitions of a table.
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: randolphwest
-ms.date: 08/07/2024
+ms.date: 12/09/2024
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
+ms.custom:
+  - ignite-2024
 f1_keywords:
   - "TRUNCATE"
   - "TRUNCATE TABLE"
@@ -22,11 +24,11 @@ helpviewer_keywords:
   - "dropping rows"
 dev_langs:
   - "TSQL"
-monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current||=fabric"
+monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # TRUNCATE TABLE (Transact-SQL)
 
-[!INCLUDE [sql-asdb-asdbmi-asa-pdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricdw.md)]
+[!INCLUDE [sql-asdb-asdbmi-asa-pdw-fabricdw-fabricsqldb](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw-fabricdw-fabricsqldb.md)]
 
 Removes all rows from a table or specified partitions of a table, without logging the individual row deletions. `TRUNCATE TABLE` is similar to the `DELETE` statement with no `WHERE` clause; however, `TRUNCATE TABLE` is faster and uses fewer system and transaction log resources.
 
@@ -34,7 +36,7 @@ Removes all rows from a table or specified partitions of a table, without loggin
 
 ## Syntax
 
-Syntax for SQL Server and Azure SQL Database.
+Syntax for SQL Server, Azure SQL Database, Fabric SQL database
 
 ```syntaxsql
 TRUNCATE TABLE
@@ -108,6 +110,8 @@ If the table contains an identity column, the counter for that column is reset t
 
 A `TRUNCATE TABLE` operation can be rolled back within a transaction.
 
+In Fabric SQL database, truncating a table deletes all mirrored data from Fabric OneLake for that table.
+
 ## Limitations
 
 You can't use `TRUNCATE TABLE` on tables that:
@@ -138,7 +142,7 @@ In [!INCLUDE [ssazuresynapse-md](../../includes/ssazuresynapse-md.md)] and [!INC
 
 ## Permissions
 
-The minimum permission required is `ALTER` on *table_name*. `TRUNCATE TABLE` permissions default to the table owner, members of the **sysadmin** fixed server role, and the `db_owner` and **db_ddladmin** fixed database roles, and aren't transferable. However, you can incorporate the `TRUNCATE TABLE` statement within a module, such as a stored procedure, and grant appropriate permissions to the module using the `EXECUTE AS` clause.
+The minimum permission required is `ALTER` on *table_name*. `TRUNCATE TABLE` permissions default to the table owner, members of the sysadmin fixed server role, and the db_owner and db_ddladmin fixed database roles, and aren't transferable. However, you can incorporate the `TRUNCATE TABLE` statement within a module, such as a stored procedure, and grant appropriate permissions to the module using the `EXECUTE AS` clause.
 
 ## Examples
 

@@ -24,7 +24,6 @@ After the link is created, you can then fail over to your secondary replica for 
 > - It's also possible to configure the link by using [scripts](managed-instance-link-configure-how-to-scripts.md). 
 > - Configuring Azure SQL Managed Instance as your initial primary is supported starting with [SQL Server 2022 CU10](/troubleshoot/sql/releases/sqlserver-2022/cumulativeupdate10). 
 
-
 ## Overview
 
 Use the link feature to replicate databases from your initial primary to your secondary replica. For SQL Server 2022, the initial primary can be either SQL Server or Azure SQL Managed Instance. For SQL Server 2019 and earlier versions, the initial primary must be SQL Server. After the link is configured, the database from the initial primary is replicated to the secondary replica. 
@@ -153,6 +152,8 @@ If you encounter an error message when you create the link, select the error to 
 
 If you encounter an error when working with the link, the SSMS wizard stops execution at the step that failed, and can't be restarted again. Address the issue, and, if necessary, clean up the environment to revert back to the original state by removing the distributed availability group and availability group if it was created while setting up the link. Then launch the wizard again to start over.
 
+For more information, review [troubleshoot issues with the link](managed-instance-link-troubleshoot-how-to.md). 
+
 
 ## Related content
 
@@ -162,12 +163,12 @@ To use the link:
 - [Fail over the link](managed-instance-link-failover-how-to.md)
 - [Migrate with the link](managed-instance-link-migrate.md)
 - [Best practices for maintaining the link](managed-instance-link-best-practices.md)
+- [Troubleshoot issues with the link](managed-instance-link-troubleshoot-how-to.md)
 
 To learn more about the link: 
 - [Managed Instance link overview](managed-instance-link-feature-overview.md)
 - [Disaster recovery with Managed Instance link](managed-instance-link-disaster-recovery.md)
 
 For other replication and migration scenarios, consider:
-
 - [Transactional replication with SQL Managed Instance](replication-transactional-overview.md)
 - [Log Replay Service (LRS)](log-replay-service-overview.md)
