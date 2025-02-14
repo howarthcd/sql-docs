@@ -68,7 +68,7 @@ DROP TABLE { database_name.schema_name.table_name | schema_name.table_name | tab
 
 Is the name of the database in which the table was created.
 
-Azure SQL Database supports the three-part name format `database_name.schema_name.object_name` when `database_name` is the current database or `database_name` is `tempdb` and `object_name` starts with `#` or `##`. Azure SQL Database does not support four-part names.
+Azure SQL Database supports the three-part name format `database_name.schema_name.object_name` when `database_name` is the current database or `database_name` is `tempdb` and `object_name` starts with `#` or `##`. Azure SQL Database doesn't support four-part names.
 
 #### *IF EXISTS*
 
@@ -86,7 +86,7 @@ Is the name of the table to be removed.
 
 ## Remarks
 
-`DROP TABLE` cannot be used to drop a table that is referenced by a `FOREIGN KEY` constraint. The referencing `FOREIGN KEY` constraint or the referencing table must be dropped first. 
+`DROP TABLE` can't be used to drop a table that is referenced by a `FOREIGN KEY` constraint. The referencing `FOREIGN KEY` constraint or the referencing table must be dropped first. 
 
 Multiple tables can be dropped in the same `DROP TABLE` statement. If both the referencing table in a `FOREIGN KEY` constraint and the table with the referenced primary or unique key are being dropped in the same `DROP TABLE` statement, the referencing table must be listed first.
 
@@ -94,12 +94,12 @@ When a table is dropped, rules or defaults on the table lose their binding, and 
 
 If you delete all rows in a table by using the `DELETE` statement or use the `TRUNCATE TABLE` statement, the table definition exists until it is dropped using `DROP TABLE`.
 
-If you drop a table that contains a `varbinary(max)` column with the `FILESTREAM` attribute, any data stored in the file system is not removed.
+If you drop a table that contains a `varbinary(max)` column with the `FILESTREAM` attribute, any data stored in the file system isn't removed.
 
-When a ledger table is dropped, its dependent objects (the history table and the ledger view) are also dropped. A history table or a ledger view cannot be dropped directly. The system enforces a *soft-delete* semantics when dropping ledger tables and its dependent objects – they are not really dropped, but instead they are marked as dropped in system catalog views and renamed. For more information, see [Ledger considerations and limitations](../../relational-databases/security/ledger/ledger-limits.md).
+When a ledger table is dropped, its dependent objects (the history table and the ledger view) are also dropped. A history table or a ledger view can't be dropped directly. The system enforces a *soft-delete* semantics when dropping ledger tables and its dependent objects – they aren't really dropped, but instead they are marked as dropped in system catalog views and renamed. For more information, see [Ledger considerations and limitations](../../relational-databases/security/ledger/ledger-limits.md).
 
 > [!IMPORTANT]
-> `DROP TABLE` and `CREATE TABLE` should not be executed on the same table in the same batch. Otherwise an unexpected error may occur.
+> `DROP TABLE` and `CREATE TABLE` shouldn't be executed on the same table in the same batch. Otherwise an unexpected error may occur.
 
 In Fabric SQL database, dropping a table drops it both from the database, as well as from Fabric OneLake. All mirrored data for the dropped table is removed.
 
@@ -135,7 +135,7 @@ DROP TABLE AdventureWorks2022.dbo.SalesPerson2 ;
 
 ### C. Dropping a temporary table
 
-The following example creates a temporary table, tests for its existence, drops it, and tests again for its existence by attempting to execute a `SELECT` statement, which fails. This example does not use the `IF EXISTS` syntax which is available beginning with [!INCLUDE[sssql16-md](../../includes/sssql16-md.md)].
+The following example creates a temporary table, tests for its existence, drops it, and tests again for its existence by attempting to execute a `SELECT` statement, which fails. This example doesn't use the `IF EXISTS` syntax which is available beginning with [!INCLUDE[sssql16-md](../../includes/sssql16-md.md)].
 
 ```sql
 CREATE TABLE #temptable (col1 int);
@@ -145,7 +145,7 @@ VALUES (10);
 
 SELECT col1 FROM #temptable;
 
-IF OBJECT_ID(N'tempdb..#temptable', N'U') IS NOT NULL
+IF OBJECT_ID(N'tempdb..#temptable', N'U') isn't NULL
   DROP TABLE #temptable;
 
 SELECT col1 FROM #temptable;
@@ -155,7 +155,7 @@ SELECT col1 FROM #temptable;
 
 **Applies to**: [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] ( [!INCLUDE[sssql16-md](../../includes/sssql16-md.md)] through [current version](/troubleshoot/sql/general/determine-version-edition-update-level)).
 
-The following example creates a table named `T1`. Then the second statement drops the table. The third statement performs no action because the table is already dropped, however it does not cause an error.
+The following example creates a table named `T1`. Then the second statement drops the table. The third statement performs no action because the table is already dropped, however it doesn't cause an error.
 
 ```sql
 CREATE TABLE T1 (Col1 int);
