@@ -251,7 +251,7 @@ Use `MOVE TO` to drop the clustered index and move the resulting table to anothe
 
 When you specify `ONLINE = ON`, queries and modifications to the underlying data and associated nonclustered indexes aren't blocked by the `DROP INDEX` transaction. Only one clustered index can be dropped online at a time. For a complete description of the `ONLINE` option, see [CREATE INDEX](create-index-transact-sql.md).
 
-You can't drop a clustered index online if the index is disabled on a view, or contains `text`, `ntext`, `image`, `varchar(max)`, `nvarchar(max)`, `varbinary(max)`, or `xml` columns in the leaf-level data rows.
+You can't drop a clustered index online if the index is disabled on a view, or contains **text**, **ntext**, **image**, **varchar(max)**, **nvarchar(max)**, **varbinary(max)**, or **xml** columns in the leaf-level data rows.
 
 Using the `ONLINE = ON` and `MOVE TO` options requires more temporary disk space.
 
