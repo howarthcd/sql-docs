@@ -69,11 +69,11 @@ Is the user-defined name for the resource pool. *pool_name* is alphanumeric, can
 
 #### MIN_CPU_PERCENT = *value*
 
-Specifies the guaranteed average CPU bandwidth for all requests in the resource pool when there is CPU contention. *value* is an integer with a default setting of 0. The allowed range for *value* is from 0 through 100.
+Specifies the guaranteed average CPU bandwidth for all requests in the resource pool when there's CPU contention. *value* is an integer with a default setting of 0. The allowed range for *value* is from 0 through 100.
 
 #### MAX_CPU_PERCENT = *value*
 
-Specifies the maximum average CPU bandwidth that all requests in resource pool receive when there is CPU contention. *value* is an integer with a default setting of 100. The allowed range for *value* is from 1 through 100.
+Specifies the maximum average CPU bandwidth that all requests in resource pool receive when there's CPU contention. *value* is an integer with a default setting of 100. The allowed range for *value* is from 1 through 100.
 
 #### CAP_CPU_PERCENT = *value*
 
@@ -135,7 +135,7 @@ The sum of `MIN_CPU_PERCENT` or `MIN_MEMORY_PERCENT` for all resource pools can'
 
 The values for `MAX_CPU_PERCENT` and `MAX_MEMORY_PERCENT` must be greater than or equal to the values for `MIN_CPU_PERCENT` and `MIN_MEMORY_PERCENT`, respectively.
 
-`CAP_CPU_PERCENT` differs from `MAX_CPU_PERCENT` in that workloads associated with the pool can use CPU capacity above the value of `MAX_CPU_PERCENT` if it is available, but not above the value of `CAP_CPU_PERCENT`. Although there might be short spikes higher than `CAP_CPU_PERCENT`, workloads can't exceed `CAP_CPU_PERCENT` for extended periods of time, even when additional CPU capacity is available.
+`CAP_CPU_PERCENT` differs from `MAX_CPU_PERCENT` in that workloads associated with the pool can use CPU capacity above the value of `MAX_CPU_PERCENT` if it's available, but not above the value of `CAP_CPU_PERCENT`. Although there might be short spikes higher than `CAP_CPU_PERCENT`, workloads can't exceed `CAP_CPU_PERCENT` for extended periods of time, even when additional CPU capacity is available.
 
 The total CPU percentage for each affinitized component (scheduler(s) or NUMA node(s)) can't exceed 100 percent.
 
