@@ -4,7 +4,7 @@ description: "VECTOR_NORMALIZE takes a vector as an input and returns the normal
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: damauri, pookam
-ms.date: 09/11/2024
+ms.date: 02/18/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
