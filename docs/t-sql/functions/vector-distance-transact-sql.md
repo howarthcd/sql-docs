@@ -48,11 +48,11 @@ A string with the name of the distance metric to use to calculate the distance b
 
 ### vector1
 
-An expression that evaluates to a *vector* in binary format.
+An expression that evaluates to *vector* data type.
 
 ### vector2
 
-An expression that evaluates to a vector in binary format.
+An expression that evaluates to *vector* data type.
 
 ## Distance Metrics
 
@@ -66,7 +66,7 @@ An expression that evaluates to a vector in binary format.
 
 The function returns a scalar **float** value that represents the distance between the two vectors using the specified distance metric.
 
-An error is returned if *distance_metric* isn't a valid metric and if the provided binary values don't represent valid vectors.
+An error is returned if *distance_metric* isn't a valid metric and if the provided vectors are not of the [vector](../../t-sql/data-types/vector-data-type.md) type.
 
 ## Examples  
 

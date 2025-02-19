@@ -39,7 +39,7 @@ In general, when working with machine learning models or vector embeddings, it's
 For example, if you want a normalized vector using the Euclidean norm (which is the most common norm type), you can use:
 
 ```sql
-SELECT VECTOR_NORMALIZE ( vector_column, 'norm2' )
+SELECT VECTOR_NORMALIZE ( vector, 'norm2' )
 FROM ...
 ```
 
@@ -48,14 +48,14 @@ FROM ...
 :::image type="icon" source="../../includes/media/topic-link-icon.svg" border="false"::: [Transact-SQL syntax conventions](../../t-sql/language-elements/transact-sql-syntax-conventions-transact-sql.md)  
 
 ```syntaxsql
-VECTOR_NORMALIZE ( vector_column, norm_type )
+VECTOR_NORMALIZE ( vector, norm_type )
 ```
 
 ## Arguments
 
-### vector_column
+### vector
 
-An expression that evaluates to a vector. This column must be of the [vector](../../t-sql/data-types/vector-data-type.md) data type.
+An expression that evaluates to *vector* data type.
 
 ### norm_type
 
@@ -71,7 +71,7 @@ The result is a vector with the same direction as the input vector but with a le
 
 If the input is `NULL`, the returned result will also be `NULL`.
 
-An error is returned if *norm_type* isn't a valid norm type and if the *vector_column* is not of the [vector](../../t-sql/data-types/vector-data-type.md) data type.
+An error is returned if *norm_type* isn't a valid norm type and if the *vector* is not of the [vector](../../t-sql/data-types/vector-data-type.md) data type.
 
 ## Examples
 
