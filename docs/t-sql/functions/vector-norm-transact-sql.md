@@ -4,7 +4,7 @@ description: "VECTOR_NORM takes a vector as an input and returns the norm of the
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: damauri, pookam
-ms.date: 09/02/2024
+ms.date: 02/18/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -47,7 +47,7 @@ VECTOR_NORM ( vector, norm_type )
 
 ### vector
 
-An expression that evaluates to *vector* data type.
+An expression that evaluates to **vector** data type.
 
 ### norm_type
 
@@ -61,7 +61,7 @@ A string with the name of the norm type to use to calculate the norm of the give
 
 The function returns a **float** value that represents the norm of the vector using the specified norm type.
 
-An error is returned if *norm_type* isn't a valid norm type and if the *vector* is not of the [vector](../../t-sql/data-types/vector-data-type.md) type.
+An error is returned if *norm_type* isn't a valid norm type and if the vector is not of the [vector data type](../../t-sql/data-types/vector-data-type.md).
 
 ## Examples
 
