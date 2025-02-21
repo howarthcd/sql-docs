@@ -288,7 +288,7 @@ For more information, see [Optimize index maintenance to improve query performan
 - `REORGANIZE` isn't required in order to move the closed delta rowgroups into compressed rowgroups. The background tuple-mover (TM) process wakes up periodically to compress the closed delta rowgroups. We recommend using `REORGANIZE` when tuple-mover is falling behind. `REORGANIZE` can compress rowgroups more aggressively.
 - To compress all open and closed rowgroups, see the [REORGANIZE WITH (COMPRESS_ALL_ROW_GROUPS)](#reorganize-with--compress_all_row_groups---on--off--).
 
-For columnstore indexes in [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] (starting with [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)]), [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE [ssazuremi-md.md](../../includes/ssazuremi-md.md)], `REORGANIZE` performs the following extra defragmentation optimizations online:
+For columnstore indexes in [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)] and later versions, [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE [ssazuremi-md.md](../../includes/ssazuremi-md.md)], `REORGANIZE` performs the following extra defragmentation optimizations online:
 
 - Physically removes deleted rows from a rowgroup when 10% or more of the rows have been logically deleted. The deleted bytes are reclaimed on the physical media. For example, if a compressed row group of 1 million rows has 100,000 rows deleted, the [!INCLUDE [ssDE](../../includes/ssde-md.md)] removes the deleted rows and recompresses the rowgroup with 900,000 rows.
 
@@ -300,7 +300,7 @@ For columnstore indexes in [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md
 
 Applies to columnstore indexes.
 
-**Applies to:** [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] (starting with [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)]), [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE [ssazuremi-md.md](../../includes/ssazuremi-md.md)]
+**Applies to:** [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)] and later versions, [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE [ssazuremi-md.md](../../includes/ssazuremi-md.md)]
 
 `COMPRESS_ALL_ROW_GROUPS` provides a way to force open or closed delta rowgroups into the columnstore. With this option, it isn't necessary to rebuild the columnstore index to empty the delta rowgroups. Combined with the other remove and merge defragmentation features, this makes it no longer necessary to rebuild a columnstore index in most situations.
 
@@ -435,8 +435,8 @@ Indexes, including indexes on global temp tables, can be rebuilt online except f
 - Index on a local temp table
 - Initial unique clustered index on a view
 - Disabled clustered indexes
-- Clustered columnstore indexes in [!INCLUDE[ssSQL17](../../includes/sssql17-md.md)]) and older
-- Nonclustered columnstore indexes in [!INCLUDE[ssSQL16](../../includes/sssql16-md.md)]) and older
+- Clustered columnstore indexes in [!INCLUDE[ssSQL17](../../includes/sssql17-md.md)]) and earlier versions
+- Nonclustered columnstore indexes in [!INCLUDE[ssSQL16](../../includes/sssql16-md.md)]) and earlier versions
 - Clustered index, if the underlying table contains LOB data types (**image**, **ntext**, **text**) and spatial data types
 - **varchar(max)** and **varbinary(max)** columns can't be part of an index key. In [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] (starting with [!INCLUDE[ssSQL11](../../includes/sssql11-md.md)]), in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and in [!INCLUDE [ssazuremi-md.md](../../includes/ssazuremi-md.md)], when a table contains **varchar(max)** or **varbinary(max)** columns, a clustered index containing other columns can be built or rebuilt using the `ONLINE` option.
 
@@ -816,7 +816,7 @@ The `ALTER` permission on the table or view is required.
 - [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] doesn't support filegroups other than `PRIMARY`.
 - [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE[ssazuremi-md](../../includes/ssazuremi-md.md)] don't support `FILESTREAM` options.
 - Columnstore indexes aren't available before [!INCLUDE [ssSQL11](../../includes/sssql11-md.md)].
-- Resumable index operations are available starting with [!INCLUDE [ssSQL17](../../includes/sssql17-md.md)], in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and in [!INCLUDE[ssazuremi-md](../../includes/ssazuremi-md.md)].
+- Resumable index operations are available in [!INCLUDE [ssSQL17](../../includes/sssql17-md.md)] and later versions, [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE[ssazuremi-md](../../includes/ssazuremi-md.md)].
 
 ## Basic syntax example
 
@@ -938,7 +938,7 @@ ALTER INDEX cci_FactInternetSales2 ON FactInternetSales2 REORGANIZE PARTITION = 
 
 ### C. Compress all OPEN AND CLOSED delta rowgroups into the columnstore
 
-**Applies to:** [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] (starting with [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)]), [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE[ssazuremi-md](../../includes/ssazuremi-md.md)]
+**Applies to:** [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)] and later versions, [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE[ssazuremi-md](../../includes/ssazuremi-md.md)]
 
 The command `REORGANIZE WITH (COMPRESS_ALL_ROW_GROUPS = ON)` compresses each `OPEN` and `CLOSED` delta rowgroup into the columnstore as a compressed rowgroup. This empties the deltastore and forces all rows to get compressed into the columnstore. This is useful especially after performing many insert operations since these operations store the rows in one or more delta rowgroups.
 
