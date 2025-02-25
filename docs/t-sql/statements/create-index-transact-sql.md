@@ -288,7 +288,7 @@ For information on creating an XML index, see [CREATE XML INDEX](../../t-sql/sta
 
 Creates a filtered index by specifying which rows to include in the index. The filtered index must be a nonclustered index on a table. Creates filtered statistics for the data rows in the filtered index.
 
-The filter predicate uses simple comparison logic and can't reference a computed column, a UDT column, a spatial data type column, or a `hierarchyid` data type column. Comparisons with `NULL` literals using the comparison operators are not allowed. Use the `IS NULL` and `IS NOT NULL` operators instead.
+The filter predicate uses simple comparison logic and can't reference a computed column, a user-defined data type (UDT) column, a spatial data type column, or a **hierarchyid** data type column. Comparisons with `NULL` literals using the comparison operators are not allowed. Use the `IS NULL` and `IS NOT NULL` operators instead.
 
 Here are some examples of filter predicates for the `Production.BillOfMaterials` table:
 
@@ -333,7 +333,7 @@ The term `default`, in this context, isn't a keyword. It is an identifier for th
 
 Specifies the placement of FILESTREAM data for the table when a clustered index is created. The `FILESTREAM_ON` clause allows FILESTREAM data to be moved to a different FILESTREAM filegroup or partition scheme.
 
-*filestream_filegroup_name* is the name of a FILESTREAM filegroup. The filegroup must have one file defined for the filegroup by using a [CREATE DATABASE](../../t-sql/statements/create-database-transact-sql.md) or [ALTER DATABASE](../../t-sql/statements/alter-database-transact-sql.md) statement; otherwise, an error is raised.
+The *filestream_filegroup_name* is the name of a FILESTREAM filegroup. The filegroup must have one file defined for the filegroup by using a [CREATE DATABASE](../../t-sql/statements/create-database-transact-sql.md) or [ALTER DATABASE](../../t-sql/statements/alter-database-transact-sql.md) statement; otherwise, an error is raised.
 
 If the table is partitioned, the `FILESTREAM_ON` clause must be included and must specify a partition scheme of FILESTREAM filegroups that uses the same partition function and partition columns as the partition scheme for the table. Otherwise, an error is raised.
 
@@ -521,7 +521,7 @@ Indexes, including indexes on global temp tables, can be created online except f
 - Clustered columnstore indexes in [!INCLUDE[ssSQL17](../../includes/sssql17-md.md)]) and older versions
 - Nonclustered columnstore indexes in [!INCLUDE[ssSQL16](../../includes/sssql16-md.md)]) and older versions
 - Clustered index, if the underlying table contains LOB data types (**image**, **ntext**, **text**) and spatial data types
-- **varchar(max)** and **varbinary(max)** columns can't be part of an index key. In [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] (starting with [!INCLUDE[ssSQL11](../../includes/sssql11-md.md)]), in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and in [!INCLUDE [ssazuremi-md.md](../../includes/ssazuremi-md.md)], when a table contains **varchar(max)** or **varbinary(max)** columns, a clustered index containing other columns can be built or rebuilt using the `ONLINE` option.
+- **varchar(max)** and **varbinary(max)** columns can't be part of an index key. In [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] (starting with [!INCLUDE[ssSQL11](../../includes/sssql11-md.md)]), in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and in [!INCLUDE [ssazuremi-md.md](../../includes/ssazuremi-md.md)], when a table contains **varchar(max)** or **varbinary(max)** columns, a clustered index containing other columns can be built or rebuilt using the `ONLINE` option.
 - Nonclustered indexes on a table with a clustered columnstore index
 
 For more information, see [How online index operations work](../../relational-databases/indexes/how-online-index-operations-work.md).
@@ -530,7 +530,7 @@ For more information, see [How online index operations work](../../relational-da
 
 **Applies to**: [!INCLUDE[sql-server-2019](../../includes/sssql19-md.md)] and later versions, [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE [ssazuremi-md.md](../../includes/ssazuremi-md.md)]
 
-Specifies whether an online index operation is resumable.
+Specifies whether an online index operation is resumable. For more information, see [Resumable index operations](#resumable-indexes) and [Resumable index considerations](../../relational-databases/indexes/guidelines-for-online-index-operations.md#resumable-index-considerations).
 
 - ON
 
@@ -841,7 +841,9 @@ The following guidelines apply for performing index operations online:
 
 For more information, see [Perform index operations online](../../relational-databases/indexes/perform-index-operations-online.md).
 
-### <a name="resumable-indexes"></a>Resumable index operations
+<a id="resumable-indexes"></a>
+
+### Resumable index operations
 
 **Applies to**: [!INCLUDE[sql-server-2019](../../includes/sssql19-md.md)] and later versions, [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE [ssazuremi-md.md](../../includes/ssazuremi-md.md)]
 
@@ -980,7 +982,7 @@ To view information on existing indexes, you can query the [sys.indexes](../../r
 - [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] doesn't support filegroups other than `PRIMARY`.
 - [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE[ssazuremi-md](../../includes/ssazuremi-md.md)] don't support `FILESTREAM` options.
 - Columnstore indexes aren't available before [!INCLUDE [ssSQL11](../../includes/sssql11-md.md)].
-- Resumable index operations are available starting with [!INCLUDE [ssSQL17](../../includes/sssql17-md.md)], in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and in [!INCLUDE[ssazuremi-md](../../includes/ssazuremi-md.md)].
+- Resumable index operations are available starting with [!INCLUDE [ssSQL17](../../includes/sssql17-md.md)], in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and in [!INCLUDE[ssazuremi-md](../../includes/ssazuremi-md.md)].
 
 ## Examples: All versions. Uses the AdventureWorks database
 

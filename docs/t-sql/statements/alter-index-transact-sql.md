@@ -751,7 +751,7 @@ Resumable index rebuild operations have the following limitations:
 - The `SORT_IN_TEMPDB = ON` option isn't supported for resumable index operations.
 - The DDL command with `RESUMABLE = ON` can't be executed inside an explicit transaction.
 - You cannot create a resumable index that contains:
-  - Computed or `timestamp` (`rowversion`) column(s) as key columns.
+  - Computed or **timestamp**/**rowversion** columns as key columns.
   - LOB column as an included column.
 - Resumable index operations aren't supported for:
   - The `ALTER INDEX REBUILD ALL` command

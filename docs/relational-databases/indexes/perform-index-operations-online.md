@@ -73,7 +73,7 @@ Requires the `ALTER` permission on the table or view.
 
 ## <a id="TsqlProcedure"></a> Use Transact-SQL
 
-The following example rebuilds an existing online index in the **AdventureWorks** database.
+The following example rebuilds an existing online index in the `AdventureWorks` sample database.
 
 ```sql
 ALTER INDEX AK_Employee_NationalIDNumber
