@@ -233,7 +233,7 @@ A `UNIQUE` constraint treats `NULL` as a value. If a column is nullable and a `U
 
 Creates an index in which the sort order specified for the index key columns determines the page order in the index structure on disk. Rows on the pages in the bottom, or leaf, level of the clustered index always contain all columns of the table. Rows on the pages in the upper levels of the index contain key columns only.
 
-If a clustered index exists on a table, it contains all data in the table. A table can have only one clustered index. Without a clustered index, a table is considered a heap.
+A table can have only one clustered index. If a clustered index exists on a table, it contains all data in the table. A table without a clustered index is called a heap.
 
 A view with a unique clustered index is called an indexed view. An indexed view can have only one clustered index. Creating a unique clustered index on a view physically materializes the view. A unique clustered index must be created on a view before any other indexes can be defined on the same view. For more information, see [Create indexed views](../../relational-databases/views/create-indexed-views.md).
 
