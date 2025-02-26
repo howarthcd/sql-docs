@@ -5,7 +5,7 @@ description: Learn about the new features and documentation improvements for Azu
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: mathoma, randolphwest
-ms.date: 02/20/2025
+ms.date: 02/26/2025
 ms.service: azure-sql-database
 ms.subservice: service-overview
 ms.topic: whats-new
@@ -93,7 +93,7 @@ Learn about significant changes to the Azure SQL Database documentation. For pre
 
 | Changes | Details |
 | --- | --- |
-| **Availability metric**| Availability is presented as a metric in the Azure Monitor metrics. Driven by a variety of user connection failures, you can [monitor and configure alerts on Azure SQL Database Availability](monitoring-metrics-alerts.md#availability-metric). |
+| **Availability metric**| Availability is presented as a metric in the Azure Monitor metrics. Driven by a variety of user connection failures, you can [monitor and configure alerts on Azure SQL Database Availability](monitoring-metrics-alerts.md#availability-metric). This metric is now generally available.|
 | **sys.dm_database_backups** | The [sys.dm_database_backups](/sql/relational-databases/system-dynamic-management-views/sys-dm-database-backups-azure-sql-database?view=azuresqldb-current&preserve-view=true) dynamic management view returns information about the [automated backups of a database](automated-backups-overview.md). This DMV is now generally available. | 
 | **Manually initiate cutover for conversion to Hyperscale** | When converting an Azure SQL Database to the Hyperscale service tier, [you have a new option to manually initiate the cutover](https://aka.ms/hs-conversion-v2-preview). For more information, see [Convert an existing database to Hyperscale](convert-to-hyperscale.md). This feature is currently in preview.|
 | **Import bacpac file size increase** | The limit for an imported bacpac file size has been increased from 4 GB to 150 GB. For more information on importing a bacpac file generated from SqlPackage, see [Quickstart: Import a bacpac file to a database in Azure SQL Database](database-import.md).|
