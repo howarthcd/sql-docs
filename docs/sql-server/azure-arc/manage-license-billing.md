@@ -91,7 +91,7 @@ The following license types are supported when you're licensing v-cores:
 
 - By selecting a license with Software Assurance, you attest that you have Enterprise or Standard licenses with active Software Assurance or an active SQL Server subscription license.
 
-- Customers using SQL Server Enterprise, Standard, or Web edition instances of SQL Server licensed from cloud service providers or hosting serivce provides using the Service Provider Licensing Agreement (SPLA) should choose 'license only' for the license type.
+- For SQL Server Enterprise, Standard, or Web edition instances of SQL Server licensed from cloud service providers or hosting service providers using the Service Provider Licensing Agreement (SPLA), use `license only` for the license type.
 
 #### Available features
 
