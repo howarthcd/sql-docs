@@ -4,7 +4,7 @@ description: This article provides details about the configuration and use of th
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: randolphwest, dfurman
-ms.date: 02/10/2025
+ms.date: 02/26/2025
 ms.service: sql
 ms.topic: conceptual
 ms.custom:
@@ -148,6 +148,9 @@ SELECT file_id,
        growth
 FROM tempdb.sys.database_files;
 ```
+
+> [!NOTE]
+> [Accelerated database recovery](../accelerated-database-recovery-concepts.md) is always enabled for `tempdb` in Azure SQL Database. For more information, see [Improving Azure SQL Database reliability with accelerated database recovery in tempdb](https://techcommunity.microsoft.com/blog/azuresqlblog/improving-azure-sql-database-reliability-with-accelerated-database-recovery-in-t/4386823).
 
 Global temporary tables in [Azure SQL Database](/azure/azure-sql/database/sql-database-paas-overview) are database-scoped. For more information, see [Database scoped global temporary tables in Azure SQL Database](../../t-sql/statements/create-table-transact-sql.md#database-scoped-global-temporary-tables-in-azure-sql-database).
 
