@@ -17,7 +17,7 @@ monikerRange: "=azuresqldb-current || >=sql-server-ver16 || >=sql-server-linux-v
 
 [!INCLUDE [sqlserver2022-asdb-asmi-fabricsqldb](../../includes/applies-to-version/sqlserver2022-asdb-asmi-fabricsqldb.md)]
 
-By enabling efficient segment elimination, ordered columnstore indexes provide faster performance by skipping large amounts of ordered data that don't match the query predicate. Loading data into an ordered columnstore index can take longer than in a non-ordered index because of the data sorting operation, however with ordered columnstore indexes queries can run faster afterwards.
+By enabling efficient segment elimination, ordered columnstore indexes provide faster performance by skipping large amounts of ordered data that don't match the query predicate. Loading data into an ordered columnstore index and keeping it ordered via index rebuilds can take longer than in a non-ordered index because of the data sorting operation, however with ordered columnstore indexes queries can run faster afterwards.
 
 When users query a columnstore table, the optimizer checks the minimum and maximum values stored in each segment. Segments that are outside the bounds of the query predicate aren't read from disk to memory. A query can finish faster if the number of segments to read and their total size are smaller.
 
@@ -27,13 +27,13 @@ For more information about recently added features for columnstore indexes, see 
 
 ## Ordered vs. non-ordered columnstore index
 
-In a columnstore index, data in each column of each rowgroup is compressed into a separate segment. Each segment contains metadata describing its minimum and maximum values, so segments that are outside the bounds of the query predicate aren't read from disk during query execution. Columnstore indexes offer the highest level of data compression and reduce the size of data to read so queries can run faster. 
+In a columnstore index, data in each column of each rowgroup is compressed into a separate segment. Each segment contains metadata describing its minimum and maximum values, so segments that are outside the bounds of the query predicate aren't read from disk during query execution.
 
-However, when a columnstore index is not ordered, the index builder doesn't sort the data before compressing it into segments. That means that segments with overlapping value ranges could occur, causing queries to read more segments from disk and take longer to finish.
+When a columnstore index is not ordered, the index builder doesn't sort the data before compressing it into segments. That means that segments with overlapping value ranges can occur, causing queries to read more segments from disk and take longer to finish.
 
 When you create an ordered columnstore index, the [!INCLUDE [ssDE](../../includes/ssde-md.md)] sorts the existing data by the order keys you specify before the index builder compresses them into segments. With sorted data, segment overlapping is reduced or eliminated, allowing queries to have a more efficient segment elimination and thus faster performance because there are fewer segments to read from disk.
 
-Depending on the available memory, the data size, the degree of parallelism, the index type (clustered vs. nonclustered), and the type of index build (offline vs. online), the sort might be full (no segment overlap) or partial (some segment overlap). For example, partial sort occurs when the available memory is insufficient for a full sort. Queries using an ordered columnstore index often execute faster even if the index was built using a partial sort.
+Depending on the available memory, the data size, the degree of parallelism, the index type (clustered vs. nonclustered), and the type of index build (offline vs. online), the sort might be full (no segment overlap) or partial (some segment overlap). For example, partial sort occurs when the available memory is insufficient for a full sort. Queries using an ordered columnstore index often execute faster than with a non-ordered index even if the index was built using a partial sort.
 
 Full sort is provided for clustered columnstore indexes created or rebuilt with both `ONLINE = ON` and `MAXDOP = 1` options. In this case, the sort is not limited by the available memory because it uses the `tempdb` database to spill the data that doesn't fit in memory. This can make the index build process slower due to the additional `tempdb` I/O. However, with an online index rebuild, queries can continue using the existing index while the new index is being rebuilt.
 
@@ -42,9 +42,9 @@ Full sort might also be provided for clustered and nonclustered columnstore inde
 In all other cases, the sort is partial.
 
 > [!NOTE]
-> Currently, ordered columnstore indexes can be created or rebuilt online only in Azure SQL Database and in Azure SQL Managed Instance with the always-up-to-date update policy.
+> Currently, ordered columnstore indexes can be created or rebuilt online only in [!INCLUDE [ssazure-sqldb-sqlmi-versionless](../../includes/ssazure-sqldb-sqlmi-versionless.md)].
 
-To check the segment ranges for a column and determine if there is any segment overlap, run the following command, substituting placeholders with your schema, table, and column names:
+To check the segment ranges for a column and determine if there is any segment overlap, use the following query, substituting placeholders with your schema, table, and column names:
 
 ```sql
 SELECT OBJECT_SCHEMA_NAME(o.object_id) AS schema_name,
@@ -86,7 +86,9 @@ dbo         Table1     Column1     1        930144    COLUMNSTORE           2   
 ```
 
 > [!NOTE]
-> In an ordered columnstore index, the new data resulting from the same batch of DML or data loading operations is sorted within that batch only. There's no global sorting that includes existing data in the table. To sort all data in the table after inserting new data or updating existing data, rebuild the index.
+> In an ordered columnstore index, the new data resulting from the same batch of DML or data loading operations is sorted within that batch only. There's no global sorting that includes existing data in the table.
+>
+>To sort data in the index after inserting new data or updating existing data, rebuild the index.
 
 For an offline rebuild of a partitioned columnstore index, rebuild is done one partition at a time. Data in the partition that is being rebuilt is unavailable until the rebuild is complete for that partition.
 

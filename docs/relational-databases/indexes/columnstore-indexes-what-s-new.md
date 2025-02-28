@@ -47,8 +47,8 @@ This table summarizes key features for columnstore indexes and the products in w
 |Tuple mover background merge support|||||yes|yes|yes|yes|
 |Ordered clustered columnstore indexes||||||yes|yes|yes|
 |Ordered non-clustered columnstore indexes|||||||yes||
-|Online columnstore index (re)build||||||yes|yes||
-|Online ordered columnstore index (re)build|||||||yes||
+|Online columnstore index create and rebuild||||||yes|yes||
+|Online ordered columnstore index create and rebuild|||||||yes||
 
 <sup>1</sup> For [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], columnstore indexes are available in the DTU Premium tiers, DTU Standard tiers - S3 and above, and all vCore tiers. For [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)] SP1 and later versions, columnstore indexes are available in all editions. For [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)] (before SP1) and earlier versions, columnstore indexes are only available in the Enterprise Edition.
 
