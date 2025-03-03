@@ -169,7 +169,7 @@ First introduced with [!INCLUDE [_ss2022](../../includes/applies-to-version/_ss2
 
 |Platform|Ordered *clustered* columnstore indexes|Ordered *nonclustered* columnstore indexes|
 |:--|:--|:--|
-|[!INCLUDE [ssazure-sqldb-sqlmi-versionless](../../includes/ssazure-sqldb-sqlmi-versionless.md)] | Yes | Yes |
+|[!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [ssazure-sqlmi-autd](../../includes/ssazure-sqlmi-autd.md)] | Yes | Yes |
 |[!INCLUDE [fabric-sqldb](../../includes/fabric-sqldb.md)] | Yes\* | Yes |
 |[!INCLUDE [sssql22-md](../../includes/sssql22-md.md)]|Yes|No|
 |[!INCLUDE [ssazuremi-md](../../includes/ssazuremi-md.md)]|Yes|No|

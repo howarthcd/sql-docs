@@ -42,7 +42,7 @@ Full sort might also be provided for clustered and nonclustered columnstore inde
 In all other cases, the sort is partial.
 
 > [!NOTE]
-> Currently, ordered columnstore indexes can be created or rebuilt online only in [!INCLUDE [ssazure-sqldb-sqlmi-versionless](../../includes/ssazure-sqldb-sqlmi-versionless.md)].
+> Currently, ordered columnstore indexes can be created or rebuilt online only in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and in [!INCLUDE [ssazure-sqlmi-autd](../../includes/ssazure-sqlmi-autd.md)].
 
 To check the segment ranges for a column and determine if there is any segment overlap, use the following query, substituting placeholders with your schema, table, and column names:
 
