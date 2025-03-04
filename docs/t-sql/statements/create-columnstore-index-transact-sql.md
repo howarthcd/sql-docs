@@ -48,7 +48,7 @@ Follow [What's new in columnstore indexes](../../relational-databases/indexes/co
 
 ## Syntax
 
-Syntax for Azure SQL Database and [!INCLUDE [ssazure-sqlmi-autd](../../includes/ssazure-sqlmi-autd.md)]:
+Syntax for [!INCLUDE[ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [ssazure-sqlmi-autd](../../includes/ssazure-sqlmi-autd.md)]:
 
 ```syntaxsql
 -- Create a clustered columnstore index on disk-based table.
