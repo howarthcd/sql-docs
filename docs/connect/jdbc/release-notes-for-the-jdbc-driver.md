@@ -12,7 +12,7 @@ ms.topic: conceptual
 
 This article lists the releases of the _Microsoft JDBC Driver for SQL Server_. For each release version, the changes are named and described.
 
-## <a id="121"></a> 12.10
+## <a id="130"></a> 12.10
 
 Release number: 12.10.0  
 Released: March 07, 2025
@@ -37,6 +37,7 @@ For the driver in a tar.gz file: [Chinese (Simplified)](https://go.microsoft.com
 | Change | Details |
 | :---------- | :----------- |
 | Added "requireSecret" exclude tag for tests | Added "requireSecret" exclude tag for tests which require adding a secret to app registration. |
+| Check for null when getting DTV values | Added fix to checking for null value of a DTVImpl before calling DTVImpl::getValue has shown some perf gains in our internal benchmark. This fix will change behavior of getBinaryStream /getAsciiStream in ResultSet to be compliant with JDBC specs: a Java input stream that delivers the database column value as a stream of one-byte ASCII characters; if the value is SQL NULL, the value returned is null. |
 | Added com.ibm.security.auth.module and com.sun.security.auth.module as option import | Set resolution=optional for these OSGi imports to prevent deployment failures caused by mandatory imports. |
 | Reverted "Execute Stored Procedures Directly" feature, as well as subsequent changes related to the feature | Reverted the feature due to issues and regressions introduced by these changes. |
 | Changed MSAL logging from FINEST to FINER | This change is made to reduce the verbosity of the logs while still providing sufficient detail for debugging purposes. |
