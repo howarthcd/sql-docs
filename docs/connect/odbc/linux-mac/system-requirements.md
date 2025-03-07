@@ -3,7 +3,7 @@ title: System Requirements (ODBC Driver for SQL Server)
 description: This lists the system requirements for the ODBC Driver for SQL Server on Linux and macOS operating systems.
 author: David-Engel
 ms.author: davidengel
-ms.date: 12/18/2024
+ms.date: 03/17/2025
 ms.service: sql
 ms.subservice: connectivity
 ms.custom: linux-related-content
@@ -37,7 +37,7 @@ Versions 18, 17, 13.1, and 13 of the Linux and macOS drivers are supported on th
 |Apple macOS 11.0 (Big Sur)     |    |Yes |Yes |Yes |Yes |Yes |Yes |Yes |Yes |Yes |    |    |    |    |    |    |    |    |   |
 |Apple macOS 12.0 (Monterey)    |    |Yes |Yes |Yes |Yes |Yes |Yes |Yes |    |    |    |    |    |    |    |    |    |    |   |
 |Apple macOS 13.0 (Ventura)     |Yes |Yes |Yes |Yes |    |    |    |    |    |    |    |    |    |    |    |    |    |    |   |
-|Apple macOS 14.0 (Sonoma)      |Yes |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |   |
+|Apple macOS 14.0 (Sonoma)      |Yes |Yes |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |   |
 |Apple macOS 15.0 (Sequoia)     |Yes |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |   |
 |Alpine Linux 3.11              |    |    |    |    |    |    |    |    |Yes |Yes |Yes |Yes |    |    |    |    |    |    |   |
 |Alpine Linux 3.12              |    |    |    |    |    |Yes |Yes |Yes |Yes |Yes |    |    |    |    |    |    |    |    |   |
