@@ -314,14 +314,14 @@ If the Arc enabled machine goes offline and reconnects to Azure in a different s
 
 > [!IMPORTANT]
 > The bill-back charges are recorded within the first hour of the ESU subscription and look like single hourly charges for the [!INCLUDE [ssnoversion-md](../../includes/ssnoversion-md.md)] instances that have the ESU subscriptions enabled. Because the amount reflects the accumulated costs since one of the following dates, it's much higher than the regular hourly ESU charges:
- 
+>
 > - July 10, 2024, for [!INCLUDE [ssSQL11](../../includes/sssql11-md.md)]  (prior to the October, 2024 release this date was July, 2023)
-- July 10, 2024, for [!INCLUDE [ssSQL14](../../includes/sssql14-md.md)]
- 
+> - July 10, 2024, for [!INCLUDE [ssSQL14](../../includes/sssql14-md.md)]
+>
 > This difference is expected, and it should be a one-time charge.
- 
+>
 > During the following months, you should see only the regular hourly charges. Additional bill-back charges could be added in cases of connectivity disruptions, but they're typically much smaller amounts.
-> 
+
 ## Related content
 
 - [Product terms for SQL Server enabled by Azure Arc](https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/eaeas#ServiceSpecificTerms)
