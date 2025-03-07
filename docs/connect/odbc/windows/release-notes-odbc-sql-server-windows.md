@@ -34,6 +34,8 @@ For the ARM64 driver: [Chinese (Simplified)](https://go.microsoft.com/fwlink/?li
 | Install all features | Modify installer to install both features (Core and SDK) by default. |
 | Bug fixes. | [Bug fixes](../bug-fixes.md). |
 
+## Previous Releases
+
 ## 18.4
 
 Version number: 18.4.1.1  
@@ -88,8 +90,6 @@ For the x86 driver: [Chinese (Simplified)](https://go.microsoft.com/fwlink/?link
 | :------- | :------ |
 | Bug fixes | [Bug fixes](../bug-fixes.md). |
 | Security updates | [KB5037570](https://support.microsoft.com/kb/5037570) |
-
-## Previous Releases
 
 ## 18.3.2
 
