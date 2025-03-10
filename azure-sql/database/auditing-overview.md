@@ -45,13 +45,14 @@ You can use SQL Database auditing to:
 - The previous design of auditing triggers a database level audit and executes one audit session for each database in the server. The new architecture of auditing creates one extended event session at the server level that captures audit events for all databases.
 - The new auditing design optimizes memory and CPU, and is consistent with how auditing works in SQL Server and Azure SQL Managed Instance.
 
-## Changes for Server Audit 
-- Folder Structure change for storage account :
-  One of the primary changes involves the folder structure for audit logs stored in storage account containers. Previously, server audit logs were written to separate folders, one for each database, with the database name serving as the folder name. With the new update, all server audit logs will be consolidated into a single folder which is ‘Master’ folder. This behavior is the same as Azure SQL Managed Instance and SQL Server 
-- Folder structure change for Read-Only replicas :
-   For Read-Only database replicas, which previously had their logs stored in a read-only folder, those logs will now also be written into the Master folder. You can retrieve these logs by filtering on the new column ‘is_secondary_replica_true’.
+### Changes from the re-architecture of server auditing 
+
+- Folder structure change for storage account:
+  - One of the primary changes involves a folder structure change for audit logs stored in storage account containers. Previously, server audit logs were written to separate folders; one for each database, with the database name serving as the folder name. With the new update, all server audit logs will be consolidated into a single folder labeled `master`. This behavior is the same as Azure SQL Managed Instance and SQL Server.
+- Folder structure change for read-only replicas:
+  - Read-only database replicas previously had their logs stored in a read-only folder. Those logs will now be written into the `master` folder. You can retrieve these logs by filtering on the new column `is_secondary_replica_true`.
 - Permissions required to view Audit logs :
-  Control Server permission required to view audit logs stored in master folder
+  - **Control Server** permission is required to view audit logs stored in the `master` folder
 
 ## Auditing limitations
 
