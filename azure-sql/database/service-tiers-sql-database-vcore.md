@@ -4,12 +4,11 @@ description: The vCore purchasing model lets you independently scale compute and
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: sashan, moslake, mathoma, dfurman, srinia
-ms.date: 02/26/2025
+ms.date: 03/05/2025
 ms.service: azure-sql-database
 ms.subservice: performance
 ms.topic: conceptual
 ms.custom:
-  - references_regions
   - azure-sql-split
 ---
 # vCore purchasing model - Azure SQL Database
@@ -194,7 +193,7 @@ Besides its advanced scaling capabilities, Hyperscale is a great option for any 
 
 ## Hardware configuration
 
-Common hardware configurations in the vCore model include standard-series (Gen5), Fsv2-series, and DC-series. Hyperscale also provides an option for premium-series and premium-series memory optimized hardware. Hardware configuration defines compute and memory limits and other characteristics that affect workload performance.
+Common hardware configurations in the vCore model include standard-series (Gen5), premium-series, premium-series memory optimized, and DC-series. Hyperscale also provides an option for premium-series and premium-series memory optimized hardware. Hardware configuration defines compute and memory limits and other characteristics that affect workload performance.
 
 Certain hardware configurations such as standard-series (Gen5) can use more than one type of processor (CPU), as described in [Compute resources (CPU and memory)](#compute-resources-cpu-and-memory). While a given database or elastic pool tends to stay on the hardware with the same CPU type for a long time (commonly for multiple months), there are certain events that can cause a database or pool to be moved to hardware that uses a different CPU type. 
 
@@ -229,20 +228,22 @@ For Hyperscale database compute resources and specification, see [Hyperscale com
 
 ### Standard-series (Gen5)
 
-- Standard-series (Gen5) hardware provides balanced compute and memory resources, and is suitable for most database workloads.
+Standard-series (Gen5) hardware provides balanced compute and memory resources, and is suitable for most database workloads.
 
 Standard-series (Gen5) hardware is available in all public regions worldwide.
 
-### Hyperscale premium-series
+### Hyperscale premium-series 
 
-- Premium-series hardware options use the latest CPU and memory technology from Intel and AMD. Premium-series provides a boost to compute performance relative to standard-series hardware.
-- Premium-series option offers faster CPU performance compared to Standard-series and a higher number of maximum vCores.
-- Premium-series memory optimized option offers double the amount of memory relative to Standard-series.
-- Standard-series, premium-series, and premium-series memory optimized are available for [Hyperscale elastic pools](hyperscale-elastic-pool-overview.md).
+Premium-series hardware options use the latest CPU and memory technology from Intel and AMD. Premium-series provides a boost to compute performance relative to standard-series hardware.
+
+- The **Premium-series** option offers faster CPU performance compared to Standard-series and a higher number of maximum vCores.
+- The **Premium-series memory optimized option** offers double the amount of memory relative to Standard-series.
+
+Standard-series, premium-series, and premium-series memory optimized are available for [Hyperscale elastic pools](hyperscale-elastic-pool-overview.md).
 
 For more information, see the [Hyperscale premium series blog announcement](https://aka.ms/AAiq28n).
  
-For regions available, see [Hyperscale premium-series availability](#hyperscale-premium-series-availability).
+For regions available, see [Hyperscale premium-series availability](region-availability.md#hyperscale-premium-series-availability).
 
 ### DC-series
 
@@ -251,7 +252,7 @@ For regions available, see [Hyperscale premium-series availability](#hyperscale-
 - DC-series is designed for workloads that process sensitive data and demand confidential query processing capabilities, provided by Always Encrypted with secure enclaves.
 - DC-series hardware provides balanced compute and memory resources.
 
-DC-series is only supported for Provisioned compute (Serverless isn't supported) and doesn't support zone redundancy. For regions where DC-series is available, see [DC-series availability](#dc-series-regional-availability).
+DC-series is only supported for Provisioned compute (Serverless isn't supported) and doesn't support zone redundancy. For regions where DC-series is available, see [DC-series availability](region-availability.md#dc-series-availability).
 
 #### Azure offer types supported by DC-series
 
@@ -285,104 +286,13 @@ For a pool, on the **Overview** page, select **Configure**.
 
 Follow the steps to change configuration, and select hardware configuration as described in the previous steps.
 
-### Hardware availability
+## Hardware availability
 
-For information on previous generation hardware, see [Previous generation hardware availability](#previous-generation-hardware).
+For information on current generation hardware availability, see [Feature Availability by Region for Azure SQL Database](region-availability.md#vcore-purchasing-model-hardware-availability).
 
-<a id="gen4gen5-1"></a> <a id="gen5"></a>
+### Previous generation hardware
 
-#### Standard-series (Gen5) regional availability
-
-Standard-series (Gen5) hardware is available in all public regions worldwide.
-
-#### <a id="hyperscale-premium-series-availability"></a> Hyperscale premium-series regional availability
- 
-Hyperscale service tier premium-series and premium-series memory optimized hardware is available for single databases and elastic pools in the following regions:
-
-- Australia East \*\*
-- Australia Southeast
-- Brazil South \*\*,\*
-- Canada Central \*\*
-- Canada East
-- East Asia
-- Europe North \*\*
-- Europe West \*\*
-- France Central
-- Germany West Central
-- India Central
-- India South
-- Japan East \*\*
-- Japan West
-- Southeast Asia \*\*
-- Switzerland North
-- Sweden Central \*\*,\*
-- UK South \*\*
-- UK West \*
-- US Central \*\*
-- US East \*\*
-- US East 2 \*\*
-- US North Central
-- US South Central
-- US West Central
-- US West 1
-- US West 2 \*\*
-- US West 3 \*\*
-
-\* Premium-series memory optimized hardware is not currently available.
-
-\*\* Includes support for [zone redundancy](high-availability-sla-local-zone-redundancy.md#zone-redundant-availability).
-
-#### Fsv2-series regional availability
-
-Fsv2-series is available in the following regions:
-
-- Australia Central
-- Australia Central 2
-- Australia East
-- Australia Southeast
-- Brazil South
-- Canada Central
-- East Asia
-- Europe North
-- Europe West 
-- France Central
-- India Central
-- Korea Central
-- Korea South
-- South Africa North
-- Southeast Asia
-- UK South
-- UK West
-- US East
-- US West 2
-
-#### DC-series regional availability
-
-DC-series is available in the following regions:
-
-- Canada Central
-- Europe West
-- Europe North
-- Southeast Asia
-- UK South
-- US West
-- US East
-
-If you need DC-series in a currently unsupported region, [submit a support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest). On the **Basics** page, provide the following:
-
-1. For **Issue type**, select **Technical**. 
-1. Provide the desired subscription for the hardware. Select **Next**.
-1. For **Service type**, select **SQL Database**.
-1. For **Resource**, select **General question**.
-1. For **Summary**, provide the desired hardware availability and region.
-1. For **Problem type**, select **Security, Private and Compliance**.
-1. For **Problem subtype**, select **Always Encrypted**.
-
-:::image type="content" source="media/service-tiers-sql-database-vcore/request-dc-series.png" alt-text="Screenshot of the Azure portal form to request DC-series in a new region." lightbox="media/service-tiers-sql-database-vcore/request-dc-series.png":::
-
-## Previous generation hardware
-
-### Fsv2-series
+#### Fsv2-series
 
 Fsv2-series hardware for Azure SQL Database will be retired October 1, 2026. To minimize service disruption and maintain price-performance, transition to Hyperscale premium-series or Standard-series (Gen5) hardware. 
 
@@ -392,7 +302,7 @@ For most databases and workloads, Hyperscale premium-series or Standard-series (
 - Fsv2 provides less memory and `tempdb` per vCore than other hardware, so workloads sensitive to those limits might perform better on standard-series (Gen5).
 - Fsv2-series is only supported in the General Purpose tier.
 
-### Gen4
+#### Gen4
 
 Gen4 hardware has been retired and isn't available for provisioning, upscaling, or downscaling. Migrate your database to a supported hardware generation for a wider range of vCore and storage scalability, accelerated networking, best IO performance, and minimal latency. Review [hardware options for single databases](resource-limits-vcore-single-databases.md) and [hardware options for elastic pools](resource-limits-vcore-elastic-pools.md). For more information, see [Support has ended for Gen 4 hardware on Azure SQL Database](https://azure.microsoft.com/updates/support-has-ended-for-gen-4-hardware-on-azure-sql-database/).
 
