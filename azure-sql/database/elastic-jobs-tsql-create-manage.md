@@ -54,8 +54,14 @@ In each of the target server(s)/database(s), create a contained user mapped to t
 - For example, to create a contained database login in the `master` database, and a user in the user database, based on the user-assigned managed identity (UMI) named `job-agent-UMI`:
 
 ```sql
---Create a login on the master database mapped to a user-assigned managed identity (UMI)
-CREATE LOGIN [job-agent-UMI] FROM EXTERNAL PROVIDER; 
+-- Connect to the master database of the Azure SQL logical instance of job agent
+-- Use universal with MFA authentication type
+
+-- Create a login on the master database mapped to a user-assigned managed identity (UMI)
+CREATE LOGIN [job-agent-UMI] FROM EXTERNAL PROVIDER;
+
+-- Create a user on the master database mapped to a login
+CREATE USER [job-agent-UMI] FROM EXTERNAL PROVIDER;
 ```
 
 ```sql
