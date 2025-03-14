@@ -99,11 +99,11 @@ CREATE MASTER KEY ENCRYPTION BY PASSWORD='<password>';
 -- Create two database-scoped credentials.  
 -- The credential to connect to the Azure SQL logical server, to execute jobs
 CREATE DATABASE SCOPED CREDENTIAL job_credential WITH IDENTITY = 'job_credential',
-    SECRET = '<password>';
+  SECRET = '<password>';
 GO
 -- The credential to connect to the Azure SQL logical server, to refresh the database metadata in server
 CREATE DATABASE SCOPED CREDENTIAL refresh_credential WITH IDENTITY = 'refresh_credential',
-    SECRET = '<password>';
+  SECRET = '<password>';
 GO
 ```
 
@@ -153,9 +153,9 @@ EXEC jobs.sp_add_target_group 'ServerGroup1';
 
 -- Add a server target member
 EXEC jobs.sp_add_target_group_member
-@target_group_name = 'ServerGroup1',
-@target_type = 'SqlServer',
-@server_name = 'server1.database.windows.net';
+  @target_group_name = 'ServerGroup1',
+  @target_type = 'SqlServer',
+  @server_name = 'server1.database.windows.net';
 
 -- View the recently created target group and target group members
 SELECT * FROM jobs.target_groups WHERE target_group_name = 'ServerGroup1';
@@ -179,27 +179,27 @@ GO
 
 -- Add a server target member
 EXEC [jobs].sp_add_target_group_member
-@target_group_name = N'ServerGroup',
-@target_type = N'SqlServer',
---@refresh_credential_name = N'refresh_credential', --credential required to refresh the databases in a server
-@server_name = N'London.database.windows.net';
+  @target_group_name = N'ServerGroup',
+  @target_type = N'SqlServer',
+  --@refresh_credential_name = N'refresh_credential', --credential required to refresh the databases in a server
+  @server_name = N'London.database.windows.net';
 GO
 
 -- Add a server target member
 EXEC [jobs].sp_add_target_group_member
-@target_group_name = N'ServerGroup',
-@target_type = N'SqlServer',
---@refresh_credential_name = N'refresh_credential', --credential required to refresh the databases in a server
-@server_name = 'server2.database.windows.net';
+  @target_group_name = N'ServerGroup',
+  @target_type = N'SqlServer',
+  --@refresh_credential_name = N'refresh_credential', --credential required to refresh the databases in a server
+  @server_name = 'server2.database.windows.net';
 GO
 
 -- Exclude a database target member from the server target group
 EXEC [jobs].sp_add_target_group_member
-@target_group_name = N'ServerGroup',
-@membership_type = N'Exclude',
-@target_type = N'SqlDatabase',
-@server_name = N'server1.database.windows.net',
-@database_name = N'MappingDB';
+  @target_group_name = N'ServerGroup',
+  @membership_type = N'Exclude',
+  @target_type = N'SqlDatabase',
+  @server_name = N'server1.database.windows.net',
+  @database_name = N'MappingDB';
 GO
 
 -- View the recently created target group and target group members
@@ -223,11 +223,11 @@ EXEC jobs.sp_add_target_group 'PoolGroup';
 
 -- Add an elastic pool(s) target member
 EXEC jobs.sp_add_target_group_member
-@target_group_name = 'PoolGroup',
-@target_type = 'SqlElasticPool',
---@refresh_credential_name = 'refresh_credential', --credential required to refresh the databases in a server
-@server_name = 'server1.database.windows.net',
-@elastic_pool_name = 'ElasticPool-1';
+  @target_group_name = 'PoolGroup',
+  @target_type = 'SqlElasticPool',
+  --@refresh_credential_name = 'refresh_credential', --credential required to refresh the databases in a server
+  @server_name = 'server1.database.windows.net',
+  @elastic_pool_name = 'ElasticPool-1';
 
 -- View the recently created target group and target group members
 SELECT * FROM jobs.target_groups WHERE target_group_name = N'PoolGroup';
@@ -262,9 +262,9 @@ EXEC jobs.sp_add_job @job_name = 'CreateTableTest', @description = 'Create Table
 
 -- Add job step for create table
 EXEC jobs.sp_add_jobstep @job_name = 'CreateTableTest',
-@command = N'IF NOT EXISTS (SELECT * FROM sys.tables WHERE object_id = object_id(''Test''))
-CREATE TABLE [dbo].[Test]([TestId] [int] NOT NULL);',
-@target_group_name = 'PoolGroup';
+  @command = N'IF NOT EXISTS (SELECT * FROM sys.tables WHERE object_id = object_id(''Test''))
+    CREATE TABLE [dbo].[Test]([TestId] [int] NOT NULL);',
+  @target_group_name = 'PoolGroup';
 ```
 
 ### Data collection using built-in parameters
@@ -283,7 +283,7 @@ In many data collection scenarios, it can be useful to include some of these scr
 For example, to group all results from the same job execution together, use `$(job_execution_id)` as shown in the following command:
 
 ```sql
-@command= N' SELECT DB_NAME() DatabaseName, $(job_execution_id) AS job_execution_id, * FROM sys.dm_db_resource_stats WHERE end_time > DATEADD(mi, -20, GETDATE());'
+@command = N'SELECT DB_NAME() DatabaseName, $(job_execution_id) AS job_execution_id, * FROM sys.dm_db_resource_stats WHERE end_time > DATEADD(mi, -20, GETDATE());'
 ```
 
 > [!NOTE]
@@ -312,13 +312,13 @@ EXEC jobs.sp_add_job @job_name ='ResultsJob', @description='Collection Performan
 
 -- Add a job step w/ schedule to collect results
 EXEC jobs.sp_add_jobstep
-@job_name = 'ResultsJob',
-@command = N' SELECT DB_NAME() DatabaseName, $(job_execution_id) AS job_execution_id, * FROM sys.dm_db_resource_stats WHERE end_time > DATEADD(mi, -20, GETDATE());',
-@target_group_name = 'PoolGroup',
-@output_type = 'SqlDatabase',
-@output_server_name = 'server1.database.windows.net',
-@output_database_name = '<resultsdb>',
-@output_table_name = '<output_table_name>';
+  @job_name = 'ResultsJob',
+  @command = N' SELECT DB_NAME() DatabaseName, $(job_execution_id) AS job_execution_id, * FROM sys.dm_db_resource_stats WHERE end_time > DATEADD(mi, -20, GETDATE());',
+  @target_group_name = 'PoolGroup',
+  @output_type = 'SqlDatabase',
+  @output_server_name = 'server1.database.windows.net',
+  @output_database_name = '<resultsdb>',
+  @output_table_name = '<output_table_name>';
 
 -- Create a job to monitor pool performance
 
@@ -329,42 +329,43 @@ EXEC jobs.sp_add_target_group 'ElasticJobGroup';
 
 -- Add a server target member
 EXEC jobs.sp_add_target_group_member
-@target_group_name = 'ElasticJobGroup',
-@target_type = 'SqlDatabase',
-@server_name = 'server1.database.windows.net',
-@database_name = 'master';
+  @target_group_name = 'ElasticJobGroup',
+  @target_type = 'SqlDatabase',
+  @server_name = 'server1.database.windows.net',
+  @database_name = 'master';
 
 -- Add a job to collect perf results
 EXEC jobs.sp_add_job
-@job_name = 'ResultsPoolsJob',
-@description = 'Demo: Collection Performance data from all pools',
-@schedule_interval_type = 'Minutes',
-@schedule_interval_count = 15;
+  @job_name = 'ResultsPoolsJob',
+  @description = 'Demo: Collection Performance data from all pools',
+  @schedule_interval_type = 'Minutes',
+  @schedule_interval_count = 15;
 
 -- Add a job step w/ schedule to collect results
 EXEC jobs.sp_add_jobstep
-@job_name='ResultsPoolsJob',
-@command=N'declare @now datetime
-DECLARE @startTime datetime
-DECLARE @endTime datetime
-DECLARE @poolLagMinutes datetime
-DECLARE @poolStartTime datetime
-DECLARE @poolEndTime datetime
-SELECT @now = getutcdate ()
-SELECT @startTime = dateadd(minute, -15, @now)
-SELECT @endTime = @now
-SELECT @poolStartTime = dateadd(minute, -30, @startTime)
-SELECT @poolEndTime = dateadd(minute, -30, @endTime)
+  @job_name='ResultsPoolsJob',
+  @command=N'DECLARE @now datetime
+    DECLARE @startTime datetime
+    DECLARE @endTime datetime
+    DECLARE @poolLagMinutes datetime
+    DECLARE @poolStartTime datetime
+    DECLARE @poolEndTime datetime
+    SELECT @now = getutcdate ()
+    SELECT @startTime = dateadd(minute, -15, @now)
+    SELECT @endTime = @now
+    SELECT @poolStartTime = dateadd(minute, -30, @startTime)
+    SELECT @poolEndTime = dateadd(minute, -30, @endTime)
 
-SELECT elastic_pool_name , end_time, elastic_pool_dtu_limit, avg_cpu_percent, avg_data_io_percent, avg_log_write_percent, max_worker_percent, max_session_percent,
-        avg_storage_percent, elastic_pool_storage_limit_mb FROM sys.elastic_pool_resource_stats
-        WHERE end_time > @poolStartTime and end_time <= @poolEndTime;
-',
-@target_group_name = 'ElasticJobGroup',
-@output_type = 'SqlDatabase',
-@output_server_name = 'server1.database.windows.net',
-@output_database_name = 'resultsdb',
-@output_table_name = '<output_table_name>';
+    SELECT elastic_pool_name , end_time, elastic_pool_dtu_limit, avg_cpu_percent, avg_data_io_percent, avg_log_write_percent, max_worker_percent, max_session_percent,
+           avg_storage_percent, elastic_pool_storage_limit_mb 
+    FROM sys.elastic_pool_resource_stats
+    WHERE end_time > @poolStartTime and end_time <= @poolEndTime;
+  ',
+  @target_group_name = 'ElasticJobGroup',
+  @output_type = 'SqlDatabase',
+  @output_server_name = 'server1.database.windows.net',
+  @output_database_name = 'resultsdb',
+  @output_table_name = '<output_table_name>';
 ```
 
 ## Run the job
@@ -399,10 +400,10 @@ Connect to the `job_database` and run the following command:
 -- Connect to the job database specified when creating the job agent
 
 EXEC jobs.sp_update_job
-@job_name = 'ResultsJob',
-@enabled=1,
-@schedule_interval_type = 'Minutes',
-@schedule_interval_count = 15;
+  @job_name = 'ResultsJob',
+  @enabled=1,
+  @schedule_interval_type = 'Minutes',
+  @schedule_interval_count = 15;
 ```
 
 ## View job definitions
