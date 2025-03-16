@@ -203,7 +203,7 @@ The following example demonstrates how to use `authentication=ActiveDirectoryDef
     az login
     ```
 
-2. After successfully logging in to the Azure CLI, run the following code.
+1. After successfully logging in to the Azure CLI, run the following code.
 
     ```java
     import java.sql.Connection;
