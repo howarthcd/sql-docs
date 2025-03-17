@@ -52,6 +52,7 @@ In each of the target server(s)/database(s), create a contained user mapped to t
 
 - If the elastic job has logical server or pool targets, you must create the contained user mapped to the UMI in the `master` database of the target logical server.
 - For example, to create a contained database login in the `master` database, and a user in the user database, based on the user-assigned managed identity (UMI) named `job-agent-UMI`:
+- To run these T-SQL scripts, use Microsoft Entra authentication for your database connection.
 
 ```sql
 -- Connect to the master database of the Azure SQL logical instance of job agent
