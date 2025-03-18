@@ -278,6 +278,8 @@ It's possible to change the connection policy for your logical server by using t
 
 ### Azure CLI in a Bash shell
 
+For information on how to change the Azure SQL Database connection policy for a server, see [conn-policy](/cli/azure/sql/server/conn-policy)
+
 The following CLI script shows how to change the connection policy in a Bash shell:
 
 ```azurecli-interactive
@@ -313,5 +315,4 @@ az resource update --ids %sqlserverid% --set properties.connectionType=Proxy
 
 ## Related content
 
-- [Azure SQL Database connectivity architecture](connectivity-architecture.md)
-- [conn-policy](/cli/azure/sql/server/conn-policy)
+- [Connectivity architecture](connectivity-architecture.md)
