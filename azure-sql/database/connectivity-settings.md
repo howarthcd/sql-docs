@@ -13,7 +13,7 @@ ms.custom:
   - devx-track-azurepowershell
   - devx-track-azurecli
 ms.devlang: azurecli
-monikerRange: "=azuresql || =azuresql-db"
+monikerRange: "=azuresql || =azuresql-db || =fabricsql"
 ---
 # Connectivity settings
 

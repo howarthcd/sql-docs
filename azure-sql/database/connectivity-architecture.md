@@ -13,7 +13,7 @@ ms.custom:
   - fasttrack-edit
   - sqldbrb=1
   - references_regions
-monikerRange: "=azuresql || =azuresql-db"
+monikerRange: "=azuresql || =azuresql-db || =fabricsql"
 ---
 # Connectivity architecture
 
@@ -25,7 +25,7 @@ This article explains architecture of various components that direct network tra
 - For settings that control connectivity to the [logical server](logical-servers.md) for Azure SQL Database, see [connectivity settings](connectivity-settings.md).
 - This article does *not* apply to **Azure SQL Managed Instance**. Refer to [Connectivity architecture for Azure SQL Managed Instance](../managed-instance/connectivity-architecture-overview.md).
 - This article does *not* apply to decicated SQL pools in Azure Synapse Analytics. 
-    - For settings that control connectivity to dedicated SQL pools in Azure Synapse Analytics, see [Azure Synapse Analytics connectivity settings](/azure/synapse-analytics/security/connectivity-settings.md).
+    - For settings that control connectivity to dedicated SQL pools in Azure Synapse Analytics, see [Azure Synapse Analytics connectivity settings](/azure/synapse-analytics/security/connectivity-settings).
     - For connection strings to Azure Synapse Analytics pools, see [Connect to Synapse SQL](/azure/synapse-analytics/sql/connect-overview).
 
 ## Connectivity architecture
@@ -50,7 +50,7 @@ Logical servers in Azure SQL Database support the following three options for th
    - When using the Redirect connection policy, refer to the [Azure IP Ranges and Service Tags – Public Cloud](https://www.microsoft.com/download/details.aspx?id=56519) for a list of your region's IP addresses to allow.
 
    > [!NOTE]
-   > Currently, the connection policy for [SQL database in Microsoft Fabric](/fabric/databases/sql/) is **redirect** and cannot be changed.
+   > Currently, the connection policy for [SQL database in Microsoft Fabric](/fabric/database/sql/limitations#connection-policy) is **redirect** and cannot be changed.
 
 - **Proxy:** In this mode, all connections are proxied via the Azure SQL Database gateways, leading to increased latency and reduced throughput. For connections to use this mode, clients need to allow outbound communication from the client to Azure SQL Database gateway IP addresses on port 1433.
    - When using the Proxy connection policy, refer to the [Gateway IP addresses](#gateway-ip-addresses) list later in this article for your region's IP addresses to allow.
