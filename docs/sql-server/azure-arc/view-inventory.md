@@ -144,7 +144,7 @@ resources
 ```
 ## Inventory associated services
 
-SQL Server asociated services include:
+SQL Server associated services include:
 
 - SQL Server Database Engine
 - SQL Server Analysis Services (SSAS)
