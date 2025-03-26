@@ -1,8 +1,8 @@
 ---
 title: "Quickstart: Create Azure SQL Managed Instance"
 description: Create Azure SQL Managed Instance by using the Azure portal, PowerShell, and the Azure CLI. 
-author: urosran
-ms.author: urandjelovic
+author: vladai78
+ms.author: vladiv
 ms.reviewer: mathoma
 ms.date: 08/16/2024
 ms.service: azure-sql-managed-instance
@@ -19,7 +19,7 @@ This quickstart teaches you to create a deployment of [Azure SQL Managed Instanc
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/)
+- An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount)
 - In the general case, your user needs to have the role [SQL Managed Instance Contributor](/azure/role-based-access-control/built-in-roles#sql-managed-instance-contributor) assigned at subscription scope.
 - If provisioning in a subnet that is already delegated to Azure SQL Managed Instance, your user only needs the Microsoft.Sql/managedInstances/write permission assigned at subscription scope.
 - The latest version of the [Az.SQL](https://www.powershellgallery.com/packages/Az.Sql) PowerShell module or the latest version of the [Azure CLI](/cli/azure/install-azure-cli-windows). 
