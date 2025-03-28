@@ -26,7 +26,7 @@ Performance can degrade if pages are allocated for persistent version store (PVS
 
 The number of pages the background thread preallocates is based on various workload heuristics. Commonly, the background thread allocates chunks of 512 pages. The ADR preallocation factor is a multiple of the chunk. By default, the factor is `4`, which means that 2048 pages are preallocated at once when required.
 
-While the background thread takes workload patterns into consideration, this factor can be increased if necessary to improve performance. The `tx_version_optimized_insert_stats` extended event fires every few minutes and includes the `foreground_allocation_percent` field. If the value in this field is significantly higher than zero, consider increasing the `ADR Preallocation Factor` setting.
+While the background thread takes workload patterns into consideration, this factor can be increased if necessary to improve performance. The `tx_version_optimized_insert_stats` extended event fires periodically when space allocations in PVS occur and provides space allocation statistics. If the value in the `foreground_allocation_percent` field is significantly higher than zero, consider increasing the `ADR Preallocation Factor` setting.
 
 > [!WARNING]
 > If PVS preallocation factor is increased too much, it can contend with other allocations in the system and might actually reduce overall performance. Before you modify this setting, obtain a baseline of the system performance for tracking and comparison purposes.
