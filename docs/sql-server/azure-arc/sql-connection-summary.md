@@ -32,15 +32,14 @@ To view a summary of all client connections to the SQL Server instance, follow t
 
 | Column name | Description and version-specific information |
 | --- | --- |
-| Program Name | Name of client program that initiated the session.|
-| Client Interface Name | Name of library/driver being used by the client to communicate with the server. |
-| Database Name | Name of the current database for the session in the hourly snapshots. |
-| Request End Time | Last request end time from the hourly snapshots. Indicator of how recently the client program connected used the database. |
-| Total Writes | Aggregated number of writes from the client program to the database as seen in the hourly snapshots. | 
-| Total Reads | Aggregated number of reads from the client program to the database as seen in the hourly snapshots. |
-| Elapsed Time | Aggregated connection duration (in milliseconds) from the client program as seen in the hourly snapshots. |
-| Count | Count of unique sessions as seen in the hourly snapshots. The distinct sessions are identified using the login time. |
- 
+| **Program Name** | Name of client program that initiated the session.|
+| **Client Interface Name** | Name of library/driver being used by the client to communicate with the server. |
+| **Database Name** | Name of the current database for the session in the hourly snapshots. |
+| **Request End Time** | Last request end time from the hourly snapshots. Indicator of how recently the client program connected used the database. |
+| **Total Writes** | Aggregated number of writes from the client program to the database as seen in the hourly snapshots. |
+| **Total Reads** | Aggregated number of reads from the client program to the database as seen in the hourly snapshots. |
+| **Elapsed Time** | Aggregated connection duration (in milliseconds) from the client program as seen in the hourly snapshots. |
+| **Count** | Count of unique sessions as seen in the hourly snapshots. The distinct sessions are identified using the login time. |
 
 ## How is the data collected?
 
