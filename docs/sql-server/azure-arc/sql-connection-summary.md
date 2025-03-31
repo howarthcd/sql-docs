@@ -13,7 +13,7 @@ ms.custom:
 
 [!INCLUDE [sqlserver](../../includes/applies-to-version/sqlserver.md)]
 
-This article teaches you how to see a summary of client connections to [!INCLUDE [ssazurearc](../../includes/ssazurearc.md)] using the SQL Server Connections view in the Azure portal. 
+This article teaches you how to view client connections to [!INCLUDE [ssazurearc](../../includes/ssazurearc.md)] in Azure portal. 
 
 > [!NOTE]
 > The SQL Server Connections view in the Azure portal is currently in preview. 
