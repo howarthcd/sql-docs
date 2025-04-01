@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
-  title: "Frequently asked questions about Microsoft Copilot skills (preview)"
-  description: "Frequently asked questions about Microsoft Copilot skills in Azure SQL Database, currently in preview."
+  title: "Frequently asked questions about Microsoft Copilot in Azure SQL Database"
+  description: "Frequently asked questions about Microsoft Copilot in Azure SQL Database, currently in preview."
   author: markingmyname
   ms.author: maghan
   ms.reviewer: wiassaf, kendalv
@@ -12,7 +12,7 @@ metadata:
   ms.topic: faq
   ms.date: 03/18/2025
   monikerRange: "= azuresql || = azuresql-db"
-title: "Frequently asked questions about Microsoft Copilot in Azure SQL Database (preview)"
+title: "Frequently asked questions about Microsoft Copilot in Azure SQL Database"
 summary: |
   Frequently asked questions about Microsoft Copilot capabilities in Azure SQL, currently in preview. 
 
@@ -23,7 +23,7 @@ sections:
       - question: |
           In Azure SQL Database, where can I find Microsoft Copilot in Azure?
         answer: |
-          The preview of Copilot capabilities in Azure SQL Database includes Copilot in the Azure portal experience: [Azure Copilot integration](copilot-azure-sql-overview.md)
+          The Copilot capabilities in Azure SQL Database includes Copilot in the Azure portal experience: [Azure Copilot integration](copilot-azure-sql-overview.md)
       - question: |
           How do I enable Microsoft Copilot in Azure for my Azure tenant?
         answer: |
@@ -56,10 +56,7 @@ sections:
           Where can I learn more about privacy and data protection?
         answer: |
           For more information on how Copilot processes and uses personal data, see the [Microsoft Privacy Statement](https://privacy.microsoft.com/privacystatement).
-      - question: |
-          Where can I find the preview terms for using Azure OpenAI-powered previews like Copilot?
-        answer: |
-          For more information, see our [preview terms](https://azure.microsoft.com/support/legal/preview-supplemental-terms/#AzureOpenAI-PoweredPreviews).
+
 additionalContent: |
     ## Related content
 
