@@ -1,5 +1,6 @@
 ---
 title: Copilot in Azure SQL Database List of Sample Prompts
+description: "Explore a list of sample prompts to use with Microsoft Copilot in Azure SQL Database."
 author: markingmyname
 ms.author: maghan
 ms.date: 04/01/2025
