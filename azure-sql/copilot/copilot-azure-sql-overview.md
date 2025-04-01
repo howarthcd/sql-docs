@@ -89,7 +89,7 @@ You can provide prompts for the **Microsoft Copilot in Azure** around different 
  - Which connection string should I use to connect to my DB?
 ```
 
-For a list of more prompts, visit [Microsoft Copilot in Azure SQL Database list of sample prompt](copilot-prompts-list.md).
+For a list of more prompts, visit [List of sample prompts](copilot-prompts-list.md).
 
 > [!NOTE]  
 > AI powers Copilot, so surprises and mistakes are possible.
