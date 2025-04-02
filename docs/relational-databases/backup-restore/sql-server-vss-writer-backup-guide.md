@@ -59,8 +59,7 @@ The SQL writer service is installed in the system as part of the SQL Server inst
 
 During installation, the SQL writer account will be installed to use the Local System account. Since the SQL writer needs to talk to SQL Server using exclusive VDI APIs, the SQL writer account must have sufficient access rights for both SQL Server and VSS.  Configuring the service as a Local System account provides sufficient rights for the service to run correctly.
 
-  > [!NOTE]
-  > To have the SQL writer service work correctly, it is important to make sure that the Local System account is not removed from the SQL Server instance's 'sa' role.
+Make sure that the SQL writer service runs under the Local System account, and that the SQL Server `NT SERVICE\SQLWriter` login is a member of the **sysadmin** role.
 
 ### Re-Enabling and Starting SQL Writer
 
