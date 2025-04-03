@@ -240,7 +240,7 @@ Yes. You can configure sync between databases that belong to resource groups own
 
 ### Can I set up Data Sync to sync between databases in SQL Database that belong to different clouds (like Azure Public Cloud and Azure operated by 21Vianet)?
 
-Yes. You can set up sync between databases that belong to different clouds. You have to use PowerShell to add the sync members that belong to the different subscriptions.
+Data Sync does not support Cross-Cloud synchronization. 
 
 ### Can I use Data Sync to seed data from my production database to an empty database, and then sync them?
 
