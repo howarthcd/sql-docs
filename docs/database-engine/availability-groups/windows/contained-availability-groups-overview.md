@@ -4,7 +4,7 @@ description: An overview of the contained availability group feature of Always O
 author: MashaMSFT
 ms.author: mathoma
 ms.reviewer: mathoma, randolphwest
-ms.date: 03/16/2025
+ms.date: 03/25/2025
 ms.service: sql
 ms.subservice: high-availability
 ms.topic: conceptual
@@ -138,14 +138,14 @@ If the backup location is on a network resource, all servers that host replicas 
 
 ### Resource governor
 
-In [!INCLUDE[sssql22-md](../../../includes/sssql22-md.md)] before Cumulative Update 18, and in older versions of [!INCLUDE[ssNoVersion](../../../includes/ssnoversion-md.md)], resource governor configuration DDL commands have no effect when executed on a contained availability group connection. Additionally, if resource governor is enabled via an instance connection, it has no effect on the contained availability group connections.
+In [!INCLUDE[sssql22-md](../../../includes/sssql22-md.md)] before Cumulative Update 18, and in older versions of [!INCLUDE[ssNoVersion](../../../includes/ssnoversion-md.md)], configuring or using resource governor on contained availability group connections is not supported.
 
 Starting with [!INCLUDE[sssql22-md](../../../includes/sssql22-md.md)] Cumulative Update 18, if you configure resource governor on an instance connection, resource consumption on either instance connections or contained availability group connections is governed as expected. If you attempt to configure resource governor on a contained availability group connection, you receive an error.
 
-Resource governor works at the [!INCLUDE[ssde-md](../../../includes/ssde-md.md)] instance level. Resource governor configuration doesn't propagate to availability replicas. You must configure resource governor on each instance hosting an availability replica.
+Resource governor works at the [!INCLUDE[ssde-md](../../../includes/ssde-md.md)] instance level. Resource governor configuration at the instance level doesn't propagate to availability replicas. You must configure resource governor on each instance hosting an availability replica.
 
 > [!TIP]
-> We recommend that for a given availability group, you use the same resource governor configuration for all availability replicas.
+> We recommend that you use the same resource governor configuration for all [!INCLUDE[ssde-md](../../../includes/ssde-md.md)] instances hosting availability replicas to ensure consistent behavior as availability group failovers occur.
 
 For more information, see [Resource governor](../../../relational-databases/resource-governor/resource-governor.md) and [Resource governor configuration examples and best practices](../../../relational-databases/resource-governor/resource-governor-walkthrough.md).
 
@@ -172,6 +172,9 @@ To use transparent data encryption (TDE) with databases in a contained AG, manua
 Databases that use TDE rely on certificates in the `master` database to decrypt the Database Encryption Key (DEK). Without that certificate, [!INCLUDE [ssnoversion-md](../../../includes/ssnoversion-md.md)] can't decrypt databases encrypted with TDE or bring them online. In a contained AG, [!INCLUDE [ssnoversion-md](../../../includes/ssnoversion-md.md)] checks both `master` databases for the DMK, the `master` database for the instance, and the contained `master` database within the contained AG to decrypt the database. If it can't find the certificate in either location, then [!INCLUDE [ssnoversion-md](../../../includes/ssnoversion-md.md)] is unable to bring the database online.
 
 To transfer the DMK from the `master` database of the instance, to the contained `master` database, see [Move a TDE protected database to another SQL Server](../../../relational-databases/security/encryption/move-a-tde-protected-database-to-another-sql-server.md), primarily focusing on the portions where the DMK is transferred from the old server to the new one.
+
+> [!NOTE]
+> Encrypting any database on a SQL Server instance also [encrypts the `tempdb` system database](../../../relational-databases/security/encryption/transparent-data-encryption.md#tde-and-the-tempdb-system-database). 
 
 ### SSIS packages & maintenance plans
 
