@@ -46,10 +46,9 @@ If the current primary is configured for asynchronous commit availability mode, 
   
  The following illustration shows an availability group with five availability replicas. The primary replica and one secondary replica are configured for synchronous-commit mode with automatic failover. Another secondary replica is configured for synchronous-commit mode with only planned manual failover, and two secondary replicas are configured for asynchronous-commit mode, which supports only forced manual failover (typically called *forced failover*).
 
-  
  ![Availability and failover modes of replicas](../../../database-engine/availability-groups/windows/media/aoag-availabilityandfailovermodes.gif "Availability and failover modes of replicas")  
   
- The synchronization and failover behavior between two availability replicas depends on the availability mode of both replicas. For example, for synchronous commit to occur, both the current primary replica and the secondary replica in question must be configured for synchronous commit. Likewise, for automatic failover to occur, both replicas need to be configured for automatic failover. Therefore, the behavior for the illustrated deployment scenario above can be summarized in the following table, which explores the behavior with each potential primary replica:  
+ The synchronization and failover behavior between two availability replicas depend on the availability mode of both replicas. For example, for synchronous commit to occur, both the primary replica and the secondary replica must be configured for synchronous commit. Likewise for automatic failover, both replicas need to be configured for automatic failover. Therefore, the behavior for the illustrated deployment scenario above can be summarized in the following table, which explores the behavior with each potential primary replica:  
   
 |Current Primary Replica|Automatic Failover Targets|Synchronous-Commit Mode Behavior With|Asynchronous-Commit Mode Behavior With|Automatic failover possible|  
 |-----------------------------|--------------------------------|--------------------------------------------|---------------------------------------------|---------------------------------|  
@@ -109,30 +108,27 @@ If the current primary is configured for asynchronous commit availability mode, 
   
 > [!TIP]  
 >  To view the synchronization health of an availability group, availability replica, or availability database, query the **synchronization_health** or **synchronization_health_desc** column of [sys.dm_hadr_availability_group_states](../../../relational-databases/system-dynamic-management-views/sys-dm-hadr-availability-group-states-transact-sql.md), [sys.dm_hadr_availability_replica_states](../../../relational-databases/system-dynamic-management-views/sys-dm-hadr-availability-replica-states-transact-sql.md), or [sys.dm_hadr_database_replica_states](../../../relational-databases/system-dynamic-management-views/sys-dm-hadr-database-replica-states-transact-sql.md), respectively.
-
-  
+ 
 ###  <a name="HowSyncWorks"></a> How Synchronization Works on a Secondary Replica  
 
- Under the synchronous-commit mode, after a secondary replica joins the availability group and establishes a session with the primary replica, the secondary replica writes incoming log records to disk (*hardens the log*) and sends a confirmation message to the primary replica. Once the hardened log on the secondary database has caught up the end of log on the primary database, the state of the secondary database is set to SYNCHRONIZED. The time required for synchronization depends essentially on how far the secondary database was behind the primary database at the start of the session (measured by the number of log records initially received from the primary replica), the work load on the primary database, and the speed of the computer of the server instance that hosts the secondary replica.
+ In synchronous-commit mode, after a secondary replica joins the availability group and establishes a session with the primary replica:
 
-  
- Synchronous operation is maintained in the following manner:  
-  
-1.
-On receiving a transaction from a client, the primary replica writes the log for the transaction to the transaction log and concurrently sends the log record to the secondary replicas.
+1. The secondary replica writes incoming log records to disk (*hardens the log*).
+1. The secondary replica sends a confirmation message to the primary replica.
 
-  
-2.
-Once a log record is written to the transaction log of the primary database, the transaction can be undone only if there is a failover at this point to a secondary that did not receive the log. The primary replica waits for confirmation from the synchronous-commit secondary replica.
+After the hardened log on the secondary database has caught up to the end of log on the primary database, the state of the secondary database is set to SYNCHRONIZED.
 
+The time required for synchronization depends on how far the secondary database was behind the primary database at the start of the session. This delta is measured by the number of log records initially received from the primary replica, the work load on the primary database, and the speed of the instance host of the secondary replica.
   
-3.
-The secondary replica hardens the log and returns an acknowledgment to the primary replica.
-
+Synchronous operation is maintained in the following manner:  
   
-4.
-On receiving the confirmation from the secondary replica, the primary replica finishes the commit processing and sends a confirmation message to the client.
+1. On receiving a transaction from a client, the primary replica writes the log for the transaction to the transaction log and concurrently sends the log record to the secondary replicas.
 
+2. Once a log record is written to the transaction log of the primary database, the transaction can be undone only if there is a failover at this point to a secondary that did not receive the log. The primary replica waits for confirmation from the synchronous-commit secondary replica.
+
+3. The secondary replica hardens the log and returns an acknowledgment to the primary replica.
+
+4. On receiving the confirmation from the secondary replica, the primary replica finishes the commit processing and sends a confirmation message to the client.
 
 #### Synchronous-commit time out
 
