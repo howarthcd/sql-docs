@@ -240,6 +240,10 @@ The [maintenance window feature](maintenance-window.md) allows you to configure 
 
 Patching is generally not noticeable if you [employ retry logic](develop-overview.md#resiliency) in your app. For more information, see [Planning for Azure maintenance events in Azure SQL Database](planned-maintenance.md).
 
+### Can I access my backups?
+
+Azure SQL Database backups are managed automatically. No one externally has access to the backups. The backups are deleted once the configured retention period expires. For more information, see [Automated backups in Azure SQL Database](automated-backups-overview.md) and [Long-term retention](long-term-retention-overview.md).
+
 ## Engage with the SQL Server engineering team
 
 - [DBA Stack Exchange](https://dba.stackexchange.com/questions/tagged/sql-server): Ask database administration questions.
