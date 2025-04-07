@@ -11,7 +11,6 @@ ms.topic: overview
 ms.collection:
   - ce-skilling-ai-copilot
 ms.custom:
-  - build-2025
 monikerRange: "=azuresql || =azuresql-db"
 ---
 
@@ -19,7 +18,7 @@ monikerRange: "=azuresql || =azuresql-db"
 
 [!INCLUDE [appliesto-sqldb](../includes/appliesto-sqldb.md)]
 
-[Microsoft Copilot in Azure](/azure/copilot/overview) with Azure SQL Database is a [capability](/azure/copilot/capabilities#perform-tasks) of the Microsoft Azure Copilot experience that enhances the management and operation of Azure services, providing robust capabilities for SQL-dependent applications. It provides a conversational interface for users to interact with their databases, allowing them to ask questions and receive relevant answers based on the context of their database. It improves productivity in the Azure portal by offering self-help for database administration. This makes it easier for developers and database administrators to manage their databases, troubleshoot issues, and optimize performance.troubleshoot issues, and optimize performance.
+[Microsoft Copilot in Azure](/azure/copilot/overview) with Azure SQL Database is a [capability](/azure/copilot/capabilities#perform-tasks) of the Microsoft Azure Copilot experience that enhances the management and operation of Azure services, providing robust capabilities for SQL-dependent applications. It provides a conversational interface for users to interact with their databases, allowing them to ask questions and receive relevant answers based on the context of their database. It improves productivity in the Azure portal by offering self-help for database administration. This makes it easier for developers and database administrators to manage their databases, troubleshoot issues, and optimize performance.
 
 This article provides an overview of Microsoft Copilot in Azure with Azure SQL Database, including its features, how it works, and best practices for effective use.
 
