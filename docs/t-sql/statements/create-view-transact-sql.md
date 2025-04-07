@@ -3,38 +3,38 @@ title: CREATE VIEW (Transact-SQL)
 description: CREATE VIEW (Transact-SQL)
 author: markingmyname
 ms.author: maghan
-ms.date: 10/23/2024
+ms.date: 04/06/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
 ms.custom:
-  - ignite-2024
+- ignite-2024
 f1_keywords:
-  - "CREATE VIEW"
-  - "VIEW_TSQL"
-  - "VIEW"
-  - "CREATE_VIEW_TSQL"
-  - "SCHEMABINDING_TSQL"
+- "CREATE VIEW"
+- "VIEW_TSQL"
+- "VIEW"
+- "CREATE_VIEW_TSQL"
+- "SCHEMABINDING_TSQL"
 helpviewer_keywords:
-  - "table creation [SQL Server], CREATE VIEW"
-  - "views [SQL Server], creating"
-  - "CREATE VIEW statement"
-  - "updatable partitioned views"
-  - "tables [SQL Server], virtual"
-  - "updatable views"
-  - "modifying partitioned views"
-  - "virtual tables [SQL Server]"
-  - "number of columns per view"
-  - "partitioned views [SQL Server], creating"
-  - "WITH ENCRYPTION clause"
-  - "WITH CHECK OPTION clause"
-  - "partitioned views [SQL Server], modifying"
-  - "partitioned views [SQL Server], replication"
-  - "distributed partitioned views [SQL Server]"
-  - "views [SQL Server], indexed views"
-  - "maximum number of columns per view"
+- "table creation [SQL Server], CREATE VIEW"
+- "views [SQL Server], creating"
+- "CREATE VIEW statement"
+- "updatable partitioned views"
+- "tables [SQL Server], virtual"
+- "updatable views"
+- "modifying partitioned views"
+- "virtual tables [SQL Server]"
+- "number of columns per view"
+- "partitioned views [SQL Server], creating"
+- "WITH ENCRYPTION clause"
+- "WITH CHECK OPTION clause"
+- "partitioned views [SQL Server], modifying"
+- "partitioned views [SQL Server], replication"
+- "distributed partitioned views [SQL Server]"
+- "views [SQL Server], indexed views"
+- "maximum number of columns per view"
 dev_langs:
-  - "TSQL"
+- "TSQL"
 monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 
