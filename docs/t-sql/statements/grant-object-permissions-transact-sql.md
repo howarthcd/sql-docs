@@ -3,17 +3,17 @@ title: "GRANT object permissions (Transact-SQL)"
 description: GRANT grants permissions on a database objects.
 author: VanMSFT
 ms.author: vanto
-ms.date: 10/04/2023
+ms.date: 04/06/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
 ms.custom:
-  - ignite-2024
+- ignite-2024
 helpviewer_keywords:
-  - "granting permissions [SQL Server], objects"
-  - "GRANT statement, objects"
+- "granting permissions [SQL Server], objects"
+- "GRANT statement, objects"
 dev_langs:
-  - "TSQL"
+- "TSQL"
 monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # GRANT object permissions (Transact-SQL)
