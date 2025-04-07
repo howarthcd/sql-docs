@@ -74,6 +74,9 @@ Here is a list of sample prompts that you can use with Microsoft Copilot in Azur
 | Wait Statistics Analysis | Analyzes wait statistics and potential performance bottlenecks. | `What do the wait statistics look like for my database?` |
 | Workloads Increase and Scaling Analysis | Assesses workload increases and potential need for scaling. | `Has increased workload or traffic caused performance issues?` |
 
+> [!NOTE]
+> AI powers Copilot, so surprises and mistakes are possible.
+
 ## Related content
 
 - [Microsoft Copilot in Azure with Azure SQL Database](copilot-azure-sql-overview.md)

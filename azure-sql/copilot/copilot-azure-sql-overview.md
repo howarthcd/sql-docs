@@ -50,31 +50,9 @@ For information on enabling Microsoft Copilot, visit [What is Microsoft Copilot 
 
 You can ask and receive helpful, context-rich suggestions from [Microsoft Copilot in Azure](/azure/copilot/overview) within the Azure portal.
 
-Microsoft Copilot in Azure is a set of experiences that are powered by large language models (LLMs). Output produced by Copilot might contain inaccuracies, biases, or other unintended content. As with any generative AI model, humans should review the output produced by Copilot before use.
+Consider the Azure SQL database you are working with and the context of your question. The more specific you are, the better the responses can be. For example, if you ask about a specific database, Copilot provides information relevant to that database.
 
-Some example scenarios for using Copilot in Azure SQL Database include:
-
-- When you want to know the **current active connections** to your database, you could provide the prompt:
-
-  ```copilot-prompt
-  Who are currently actively connected to the database?
-  ```
-
-  Copilot in Azure returns a list of active connections to your database.
-
-- When you're working with a slow Azure SQL Database, you could provide the prompt:
-
-  ```copilot-prompt
-  My database is slow
-  ```
-
-  Microsoft Copilot in Azure starts looking at your database based on your context in the Azure portal. After the check, Copilot will detail specific areas that might be contributing to the issue. In this example, there was a specific query driving high CPU utilization:
-
-- You can continue the conversation and investigation with the prompt:
-
-  ```copilot-prompt
-  How can I tune that high CPU query?
-  ```
+Additionally, if you are asking Copilot a question about a different database from the database service or page you are on, the result is not clear and is more likely to give you a bad output.
 
 ## Example prompts
 
@@ -83,9 +61,9 @@ The following example prompts are clear, specific, and tailored to the propertie
 You can provide prompts for the **Microsoft Copilot in Azure** around different capability areas.
 
   ```copilot-prompt
-    - Who are currently actively connected to the database?
-    - Show me all the queries in my workload that have anti-patterns in them.
-    - Which connection string should I use to connect to my DB?
+    - What service tier should I use for this database?
+    - Which connection string should I use to connect to my database?
+    - Why was my database unavailable?
   ```
 
 For a list of more prompts, visit [List of sample prompts](copilot-prompts-list.md).
