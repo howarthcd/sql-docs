@@ -61,7 +61,7 @@ These permissions should be granted before you provision a logical server or man
 - [GroupMember.Read.All](/graph/permissions-reference#group-permissions): Allows access to Microsoft Entra group information.
 - [Application.Read.ALL](/graph/permissions-reference#application-resource-permissions): Allows access to Microsoft Entra service principal (application) information.
 
-## Permissions for SMI
+### Permissions for SMI
 
 The same Microsoft Graph applications are needed for the SMI, but the UMI permissions can be eliminated for Azure SQL Database using an SMI. The `CREATE USER` T-SQL syntax would need the `SID` and `TYPE` syntax, as described in the article, [CREATE USER (Transact-SQL)](/sql/t-sql/statements/create-user-transact-sql#syntax).
 
