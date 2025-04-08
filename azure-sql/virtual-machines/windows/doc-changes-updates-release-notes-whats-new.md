@@ -4,7 +4,7 @@ description: Learn about the new features for and improvements to SQL Server on 
 author: MashaMSFT
 ms.author: mathoma
 ms.reviewer: randolphwest, mathoma, dpless
-ms.date: 03/24/2024
+ms.date: 04/02/2025
 ms.service: azure-vm-sql-server
 ms.topic: whats-new
 ms.custom:
@@ -55,6 +55,15 @@ The following table lists features of SQL Server on Azure VMs that have been mad
 ## Documentation changes 
 
 Learn about significant changes to the SQL Server on Azure VMs documentation. For previous years, see the [What's new archive](doc-changes-updates-release-notes-whats-new-archive.md).
+
+> [!CAUTION]
+> SQL Server isn't supported on VM sizes that deploy with an uninitialized ephemeral disk. To learn more, review [VM deployment and SQL Server failures](/troubleshoot/sql/azure-sql/sql-deployment-fails-drive-not-ready). 
+
+### April 2025
+
+| Changes | Details |
+| --- | --- |
+|**Place `tempdb` to ephemeral storage** | If you're manually installing SQL Server to an Azure VM, be sure to [place `tempdb` on ephemeral storage](../windows/tempdb-ephemeral-storage.md) to improve performance. This is a best practice for SQL Server on Azure VMs. |
 
 ### March 2025
 
