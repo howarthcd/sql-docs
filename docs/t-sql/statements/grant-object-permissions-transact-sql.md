@@ -134,7 +134,7 @@ GRANT <permission> [ ,...n ] ON
 |`VIEW DEFINITION`|`CONTROL`|`VIEW DEFINITION`|
 
 > [!NOTE] 
-> In Azure Synapse Analytics, Schemabinding is unsupported which could lead to unexpected behavior when underlying objects are modified and permissions have been granted to a view. For additional information see [Create Views (Transact-SQL)](../../statements/create-view-transact-sql.md).
+> Schemabinding is unsupported in Azure Synapse Analytics, which could lead to unexpected behavior when underlying objects are modified and permissions have been granted to a view. For additional information see [Create Views (Transact-SQL)](../../t-sql/statements/create-view-transact-sql.md).
 
   
 ## Permissions
