@@ -226,7 +226,7 @@ If there are multiple SQL Server instances on the OSE, all instances and replica
 
 - The node must be passive of all FCIs present.
 - There is no standalone instance present in the node that does not qualify for AG passive replica.
-- No instances of [associated services](#manage-ssxs) in the same (OSE).
+- No instances of [associated services](#manage-ssxs) in the same OSE.
 
 
 ### Limitations
