@@ -4,8 +4,8 @@ titleSuffix: Azure SQL Database & Azure SQL Managed Instance
 description: Enable e-mail notifications for Azure SQL Database automatic query tuning.
 author: WilliamDAssafMSFT
 ms.author: wiassaf
-ms.reviewer: nnikolic, mathoma, dwilson
-ms.date: 02/28/2025
+ms.reviewer: nnikolic, mathoma, derekw
+ms.date: 04/22/2025
 ms.service: azure-sql
 ms.subservice: performance
 ms.topic: how-to
@@ -49,6 +49,37 @@ Follow these steps to create an Azure Automation Account through the method of s
 1. Select **Tags**. Consider using Azure tags. For example, the "Owner" or "CreatedBy" tag to identify who created the resource, and the "Environment" tag to identify whether this resource is in production, development, etc. For more information, see [Develop your naming and tagging strategy for Azure resources](/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging).
 1. Select **Review+Create**.
 1. Finish creation of the automation account by selecting **Create**.
+
+## Assign Azure roles to the system-assigned managed identity account
+
+An Automation account can use its system-assigned managed identity to get tokens to access other resources protected by Microsoft Entra ID, such as Azure SQL Database. These tokens don't represent any specific user of the application. Instead, they represent the application that's accessing the resource. In this case, for example, the token represents an Automation account.
+
+Before creating an Azure Automation runbook, it is important to grant the appropriate level of permissions to the automation account, following the principle of least privilege.  When you use a system assigned managed identity, adding the **SQL DB Contributor** and **SQL Server Contributor** roles to the SAMI is sufficient for automating Azure SQL Database tasks. For most scenarios, if your automation only targets specific databases, use the resource group level scope. If it must operate across an entire subscription, use the subscription level scope.
+
+The following example uses Azure PowerShell to assign the **SQL DB Contributor** role in the current subscription to the system assigned managed identity account.
+
+```powershell
+$roleAssignmentParams = @{
+	    ObjectId = "<automation-Identity-object-id>"
+	    Scope = "/subscriptions/<subscription-id>"
+	    RoleDefinitionName = "SQL DB Contributor"
+	}
+	
+	New-AzRoleAssignment @roleAssignmentParams
+```
+
+To add these roles to a system-assigned managed identity from within the Azure Portal, follow these steps:
+
+1. Sign in to the Azure portal.
+1. Locate the newly created Azure Automation account.
+1. Under Account Settings, select **Identity**.
+1. Under Permissions, select the **Azure role assignments** box.
+1. Select **Add role assignment (Preview)**.
+1. In the Scope dropdown list, select the set of resources that the role assignment applies - Subscription, Resource group, Role, and Scope.
+1. In the Role dropdown list, select a role as **SQL DB Contributor**.
+1. Select **Save**.
+
+Repeat the steps from the Add role assignment step in order to add the **SQL Server Contributor** role.
 
 > [!TIP]
 > Record your Azure Automation account name, subscription ID, and resources (such as copy-paste to a notepad) exactly as entered while creating the Automation app. You need this information later.
