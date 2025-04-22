@@ -218,6 +218,7 @@ For information, see:
 - All replicas present in the operating system environment (OSE) must be a secondary replica of an Always On availability group or the forwarder of a distributed availability group.
 - No standalone database outside of an AG irrespective of [database state](../../relational-databases/databases/database-states.md#database-state-definitions).
 - No active connections to any database except master, msdb, tempdb, or model databases.
+- No instances of SQL services (SSIS, SSAS, SSRS or BPIRS) in the same (OSE).
 
 If there are multiple SQL Server instances on the OSE, all instances and replicas must meet the conditions above.
 
