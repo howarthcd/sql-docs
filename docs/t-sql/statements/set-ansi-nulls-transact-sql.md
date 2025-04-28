@@ -1,4 +1,3 @@
-![image](https://github.com/user-attachments/assets/5efdd3ec-bada-4ee9-9289-bb5a6f528057)---
 title: "SET ANSI_NULLS (Transact-SQL)"
 description: SET ANSI_NULLS (Transact-SQL)
 author: WilliamDAssafMSFT
