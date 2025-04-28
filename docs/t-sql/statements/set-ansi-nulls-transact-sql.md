@@ -1,4 +1,4 @@
----
+![image](https://github.com/user-attachments/assets/5efdd3ec-bada-4ee9-9289-bb5a6f528057)---
 title: "SET ANSI_NULLS (Transact-SQL)"
 description: SET ANSI_NULLS (Transact-SQL)
 author: WilliamDAssafMSFT
@@ -27,6 +27,8 @@ monikerRange: ">=aps-pdw-2016||=azure-sqldw-latest||>=sql-server-2016||>=sql-ser
 [!INCLUDE [sql-asdb-asdbmi-asa-pdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw.md)]
 
 Specifies ISO compliant behavior of the Equals (`=`) and Not Equal To (`<>`) comparison operators when they are used with null values in [!INCLUDE [ssnoversion](../../includes/ssnoversion-md.md)].
+- `SET ANSI_NULLS ON` - Evaluates both `<expression> = NULL` and `<expression> <> NULL` as `False` if the value of `<expression>` is `NULL`. This is the ANSI-compliant behavior.
+- `SET ANSI_NULLS OFF` - Evaluates `<expression> = NULL` as `True` and `<expression> <> NULL` as `False` if the value of `<expression>` is `NULL`. This is not a recommended behavior, because the `NULL` values should not be compared using `=` and `<>` operators.
 
 > [!NOTE]
 > `SET ANSI_NULLS OFF` and the ANSI_NULLS OFF database option are deprecated. Starting with [!INCLUDE [_ss2017](../../includes/sssql17-md.md)], ANSI_NULLS is always set to ON. Deprecated features shouldn't be used in new applications. For more information, see [Deprecated Database Engine features in SQL Server 2017](../../database-engine/deprecated-database-engine-features-in-sql-server-2017.md#transact-sql-1).
@@ -99,6 +101,26 @@ SELECT @ANSI_NULLS AS ANSI_NULLS;
  Requires membership in the **public** role.  
   
 ## Examples
+
+ The following example uses the Equals (`=`) and Not Equal To (`<>`) comparison operators to make comparisons with `NULL` or `0` and the `null` value in a variable.
+
+```sql
+SET ANSI_NULLS OFF
+DECLARE @var INT = NULL
+SELECT
+	IIF(@var = NULL,  'True', 'False') as EqualNull,
+	IIF(@var <> NULL, 'True', 'False') as DifferentNull,
+	IIF(@var = 0,     'True', 'False') as EqualZero,
+	IIF(@var <> 0,    'True', 'False') as DifferentZero
+```
+The results are show in the following table.
+
+| EqualNull	| DifferentNull	| EqualZero	| DifferentZero |
+| --- | --- | --- | --- |
+| True	| False	| False	| True |
+
+With `SET ANSI_NULLS ON` all expressions would be evaluated as 'False' because `NULL` cannot be compared with `NULL` or `0` using these operators.
+
  The following example uses the Equals (`=`) and Not Equal To (`<>`) comparison operators to make comparisons with `NULL` and non-null values in a table. The example also shows that `IS NULL` is not affected by the `SET ANSI_NULLS` setting.  
   
 ```sql  
