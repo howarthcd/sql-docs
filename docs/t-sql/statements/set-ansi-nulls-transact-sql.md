@@ -27,8 +27,8 @@ monikerRange: ">=aps-pdw-2016||=azure-sqldw-latest||>=sql-server-2016||>=sql-ser
 [!INCLUDE [sql-asdb-asdbmi-asa-pdw](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw.md)]
 
 Specifies ISO compliant behavior of the Equals (`=`) and Not Equal To (`<>`) comparison operators when they are used with null values in [!INCLUDE [ssnoversion](../../includes/ssnoversion-md.md)].
-- `SET ANSI_NULLS ON` - Evaluates both `<expression> = NULL` and `<expression> <> NULL` as `False` if the value of `<expression>` is `NULL`. This is the ANSI-compliant behavior.
-- `SET ANSI_NULLS OFF` - Evaluates `<expression> = NULL` as `True` and `<expression> <> NULL` as `False` if the value of `<expression>` is `NULL`. This is not a recommended behavior, because the `NULL` values should not be compared using `=` and `<>` operators.
+- `SET ANSI_NULLS ON` - Evaluates both `{expression} = NULL` and `{expression} <> NULL` as `False` if the value of `{expression}` is `NULL`. This is the ANSI-compliant behavior.
+- `SET ANSI_NULLS OFF` - Evaluates `{expression} = NULL` as `True` and `{expression} <> NULL` as `False` if the value of `{expression}` is `NULL`. This is not a recommended behavior, because the `NULL` values should not be compared using `=` and `<>` operators.
 
 > [!NOTE]
 > `SET ANSI_NULLS OFF` and the ANSI_NULLS OFF database option are deprecated. Starting with [!INCLUDE [_ss2017](../../includes/sssql17-md.md)], ANSI_NULLS is always set to ON. Deprecated features shouldn't be used in new applications. For more information, see [Deprecated Database Engine features in SQL Server 2017](../../database-engine/deprecated-database-engine-features-in-sql-server-2017.md#transact-sql-1).
