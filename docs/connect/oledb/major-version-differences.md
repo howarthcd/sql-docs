@@ -3,7 +3,7 @@ title: "MSOLEDBSQL major version differences"
 description: A description of the differences between the OLE DB Driver 19 for SQL Server and the OLE DB Driver for SQL Server
 author: David-Engel
 ms.author: davidengel
-ms.date: "02/16/2022"
+ms.date: 05/02/2025
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: "reference"
@@ -17,11 +17,13 @@ helpviewer_keywords:
 
 ## Encryption property changes
 
-In the Microsoft OLE DB Driver 19 for SQL Server, there are a number of changes made to the encrypt property/connection string keyword.
+In the Microsoft OLE DB Driver 19 for SQL Server, there are a number of changes made to the encrypt property/connection string keyword and certificate validation behavior.
 
 First, the driver property `SSPROP_INIT_ENCRYPT` has been changed from a `VT_BOOL` to a `VT_BSTR`. The valid values of this property are `no`/`yes`/`true`/`false`/`Optional`/`Mandatory`/`Strict`. The valid values for the provider connection string keyword `Encrypt` have changed from `no`/`yes` to `no`/`yes`/`true`/`false`/`Optional`/`Mandatory`/`Strict`. Similarly, for the `IDataInitialize` connection string keyword `Use Encryption for Data`, the valid values have changed from `true`/`false` to `no`/`yes`/`true`/`false`/`Optional`/`Mandatory`/`Strict`. The `Optional` value is synonymous with the old `no`/`false` values and the `Mandatory` value is synonymous with the old `yes`/`true` values. `Strict` is a new value added in version 19.0.0 of the OLE DB Driver for SQL Server and encrypts `PRELOGIN` packets in addition to all other communication with the server. `Strict` encryption is only supported on SQL Server endpoints that support TDS 8.0, otherwise the driver will fail to connect. The OLE DB Driver 19 for SQL Server continues to support all legacy keyword values for backwards compatibility.
 
 Second, the default value has changed from `no`/`false` to `Mandatory`. This change means that connections are encrypted by default. Previously, the driver would encrypt connections if explicitly set by the user and/or mandated by the SQL Server when the server side property `Force Encryption` was set to `yes`. To use old default behavior, include `Encrypt=Optional;` in the provider connection string, or `Use Encryption for Data=Optional;` in the `IDataInitialize` connection string.
+
+Third, the `Trust Server Certificate` option has been disconnected from the `Encrypt`/`Use Encryption for Data` option. In previous versions, when `Encrypt` was `false` on the client, the `Trust Server Certificate` setting was always ignored, even if the server required encryption (the server-side `Force Encryption` setting). Starting with version 19, if encryption is negotiated on the connection by either the client or the server, the `Trust Server Certificate` setting is evaluated to determine whether the certificate should be validated by the client. This behavior change will cause version 19 clients that use default settings to fail to connect when the server forces encryption and uses an untrusted certificate (an insecure server configuration). Clients must change their `Trust Server Certificate` registry setting and connection option to connect to servers configured that way. For more information, see [Registry settings](features/registry-settings.md) and [Encryption and certificate validation](features/encryption-and-certificate-validation.md) 
 
 ## Driver name changes
 
