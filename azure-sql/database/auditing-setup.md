@@ -73,6 +73,14 @@ To configure writing audit logs to an event hub, select **Event Hub**. Select th
 
 :::image type="content" source="media/auditing-setup/auditing-select-event-hub.png" alt-text="Screenshot showing the Event hub." lightbox="media/auditing-setup/auditing-select-event-hub.png":::
 
+When auditing is configured with Azure External Monitors (such as Event Hub or Log Analytics) as the target, an additional diagnostic settings resource named SQLSecurityAuditEvents_XXXX-XXXX-XXX is created, which is critical for the proper functioning of auditing.
+
+If the diagnostic settings are deleted, either intentionally or unintentionally, the auditing functionality will fail silently, and audit logs will not be sent to the target location. To prevent this, configure alerts for the deletion of diagnostic settings to notify users and take necessary actions. For more information on creating action groups and configuring alerts, please refer to the following articles:
+
+- https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
+
+- https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=activity-log 
+
 > [!NOTE]  
 > If you're using multiple targets like storage account, log analytics, or event hub, make sure you have permissions for all the targets else saving audit configuration would fail as it will try to save the settings for all targets.
 
