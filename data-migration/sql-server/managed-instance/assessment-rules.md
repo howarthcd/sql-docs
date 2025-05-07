@@ -40,12 +40,12 @@ This article provides a list of the rules used to assess the feasibility of migr
 | `MIDatabaseSize` | Database | Issue | [Azure SQL Managed Instance doesn't support database size greater than 16 TB.](#MIDatabaseSize) |
 | `MIHeterogeneousMSDTCTransactSQL` | Database | Issue | [BEGIN DISTRIBUTED TRANSACTION with non-SQL Server remote server isn't supported in Azure SQL Managed Instance.](#MIHeterogeneousMSDTCTransactSQL) |
 | `MIHomogeneousMSDTCTransactSQL` | Database | Issue | [BEGIN DISTRIBUTED TRANSACTION is supported across multiple servers for Azure SQL Managed Instance.](#MIHomogeneousMSDTCTransactSQL) |
-| `MIInstanceSize` | Instance | Warning | [Maximum instance storage size in Azure SQL Managed Instance can't be greater than 8 TB.](#MIInstanceSize) |
+| `MIInstanceSize` | Instance | Warning | [Maximum instance storage size in Azure SQL Managed Instance can't be greater than 32 TB.](#MIInstanceSize) |
 | `MultipleLogFiles` | Database | Issue | [Azure SQL Managed Instance doesn't support databases with multiple log files.](#MultipleLogFiles<) |
 | `NextColumn` | Database | Issue | [Tables and Columns named NEXT lead to an error In Azure SQL Managed Instance.](#NextColumn) |
 | `NonANSILeftOuterJoinSyntax` | Database | Warning | [Non-ANSI style left outer join is no longer supported and has been removed.](#NonANSILeftOuterJoinSyntax) |
 | `NonANSIRightOuterJoinSyntax` | Database | Warning | [Non-ANSI style right outer join is no longer supported and has been removed.](#NonANSIRightOuterJoinSyntax) |
-| `NumDbExceeds100` | Instance | Warning | [Azure SQL Managed Instance supports a maximum of 100 databases per instance.](#NumDbExceeds100) |
+| `NumDbExceeds100` | Instance | Warning | [Azure SQL Managed Instance supports a maximum of 500 databases per instance.](#NumDbExceeds100) |
 | `OpenRowsetWithNonBlobDataSourceBulk` | Database | Issue | [OpenRowSet used in bulk operation with non-Azure blob storage data source isn't supported in Azure SQL Managed Instance.](#OpenRowsetWithNonBlobDataSourceBulk) |
 | `OpenRowsetWithNonSQLProvider` | Database | Issue | [OpenRowSet with non-SQL provider isn't supported in Azure SQL Managed Instance.](#OpenRowsetWithNonSQLProvider) |
 | `PowerShellJob` | Instance | Warning | [PowerShell job step isn't supported in Azure SQL Managed Instance.](#PowerShellJob) |
@@ -295,7 +295,7 @@ More information: [SQL Server Agent differences in Azure SQL Managed Instance](/
 
 ## <a id="MIDatabaseSize"></a> SQL Managed Instance database size
 
-**Title: Azure SQL Managed Instance does not support database size greater than 16 TB.**  
+**Title: Azure SQL Managed Instance does not support database size greater than 32 TB.**  
 **Category**: Issue
 
 **Description**  
@@ -308,7 +308,7 @@ More information: [Hardware characteristics of Azure SQL Managed Instance](/azur
 
 ## <a id="MIInstanceSize"></a> SQL Managed Instance instance size
 
-**Title: Maximum instance storage size in Azure SQL Managed Instance cannot be greater than 8 TB.**  
+**Title: Maximum instance storage size in Azure SQL Managed Instance cannot be greater than 32 TB.**  
 **Category**: Warning
 
 **Description**  
@@ -375,11 +375,11 @@ Use ANSI join syntax.
 
 ## <a id="NumDbExceeds100"></a> Databases exceed 100
 
-**Title: Azure SQL Managed Instance supports a maximum of 100 databases per instance.**  
+**Title: Azure SQL Managed Instance supports a maximum of 500 databases per instance.**  
 **Category**: Warning
 
 **Description**  
-Maximum number of databases supported in Azure SQL Managed Instance is 100, unless the instance storage size limit has been reached.
+Maximum number of databases supported in Azure SQL Managed Instance is 500, unless the instance storage size limit has been reached.
 
 **Recommendation**  
 Consider migrating the databases to different Azure SQL Managed Instances or to SQL Server on Azure Virtual Machines if all the databases must exist on the same instance.
