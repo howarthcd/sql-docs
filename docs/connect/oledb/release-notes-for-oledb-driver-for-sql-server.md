@@ -27,7 +27,6 @@ Thank you. For questions, contact GeneMi. (2019/03/16)
 
 :::image type="icon" source="../../includes/media/download.svg" border="false"::: **[Download x64/Arm64 installer](https://go.microsoft.com/fwlink/?linkid=2318101)**  
 :::image type="icon" source="../../includes/media/download.svg" border="false"::: **[Download x86 installer](https://go.microsoft.com/fwlink/?linkid=2318001)**  
-:::image type="icon" source="../../includes/media/download.svg" border="false"::: **  
 
 Released: May 09, 2025
 
