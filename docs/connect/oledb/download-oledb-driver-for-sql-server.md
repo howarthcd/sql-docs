@@ -18,7 +18,7 @@ The OLE DB Driver for SQL Server is a stand-alone data access application progra
 
 ## Download
 
-The redistributable installer for Microsoft OLE DB Driver for SQL Server installs the client components required during run time to take advantage of newer SQL Server features. The redistributable installer for Microsoft OLE DB Driver for SQL Server installs the client components required during run time to take advantage of newer SQL Server features.
+The redistributable installer for Microsoft OLE DB Driver for SQL Server installs the client components required during run time to take advantage of newer SQL Server features.
 
 Microsoft OLE DB Driver 19.4.1 for SQL Server is the latest general availability (GA) version. The Microsoft OLE DB Driver 19 for SQL Server can install side by side with Microsoft OLE DB Driver 18 for SQL Server.
 
