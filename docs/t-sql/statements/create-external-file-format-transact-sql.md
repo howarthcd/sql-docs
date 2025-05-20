@@ -258,7 +258,7 @@ Examples:
 
 `STRING_DELIMITER = *string_delimiter*`
 
-Specifies a character that encloses the textual values in the text-delimited file. The default is the empty string "". The value of `STRING_DELIMITER` is functionally equivalent to the [FIELDQUOTE](../functions/openrowset-transact-sql.md#fieldquote--field_quote) option in the `OPENROWSET` function.
+Specifies a character that encloses the textual values in the text-delimited file. The default is the empty string "". The value of `STRING_DELIMITER` is functionally equivalent to the [FIELDQUOTE](../functions/openrowset-bulk-transact-sql.md#fieldquote--field_quote) option in the `OPENROWSET BULK` function.
 
 > [!NOTE] 
 > Hadoop tables in Synapse dedicated SQL pools enable you to specify one or more characters in STRING_DELIMITER. In serverless SQL pool, you can use only one character.
@@ -336,17 +336,17 @@ External file format can describe a large number of date and time formats:
 |**datetime**|**smalldatetime**|**date**|**datetime2**|**datetimeoffset**|
 |--------------|-------------------|----------|---------------|--------------------|
 |`[M[M]]M-[d]d-[yy]yy HH:mm:ss[.fff]`|`[M[M]]M-[d]d-[yy]yy HH:mm[:00]`|`[M[M]]M-[d]d-[yy]yy`|`[M[M]]M-[d]d-[yy]yy HH:mm:ss[.fffffff]`|`[M[M]]M-[d]d-[yy]yy HH:mm:ss[.fffffff] zzz`|
-|`[M[M]]M-[d]d-[yy]yy hh:mm:ss[.fff][tt]`|`[M[M]]M-[d]d-[yy]yy hh:mm[:00][tt]`|``|`[M[M]]M-[d]d-[yy]yy hh:mm:ss[.fffffff][tt]`|`[M[M]]M-[d]d-[yy]yy hh:mm:ss[.fffffff][tt] zzz`|
+|`[M[M]]M-[d]d-[yy]yy hh:mm:ss[.fff][tt]`|`[M[M]]M-[d]d-[yy]yy hh:mm[:00][tt]`||`[M[M]]M-[d]d-[yy]yy hh:mm:ss[.fffffff][tt]`|`[M[M]]M-[d]d-[yy]yy hh:mm:ss[.fffffff][tt] zzz`|
 |`[M[M]]M-[yy]yy-[d]d HH:mm:ss[.fff]`|`[M[M]]M-[yy]yy-[d]d HH:mm[:00]`|`[M[M]]M-[yy]yy-[d]d`|`[M[M]]M-[yy]yy-[d]d HH:mm:ss[.fffffff]`|`[M[M]]M-[yy]yy-[d]d HH:mm:ss[.fffffff] zzz`|
-|`[M[M]]M-[yy]yy-[d]d hh:mm:ss[.fff][tt]`|`[M[M]]M-[yy]yy-[d]d hh:mm[:00][tt]`|``|`[M[M]]M-[yy]yy-[d]d hh:mm:ss[.fffffff][tt]`|`[M[M]]M-[yy]yy-[d]d hh:mm:ss[.fffffff][tt] zzz`|
+|`[M[M]]M-[yy]yy-[d]d hh:mm:ss[.fff][tt]`|`[M[M]]M-[yy]yy-[d]d hh:mm[:00][tt]`||`[M[M]]M-[yy]yy-[d]d hh:mm:ss[.fffffff][tt]`|`[M[M]]M-[yy]yy-[d]d hh:mm:ss[.fffffff][tt] zzz`|
 |`[yy]yy-[M[M]]M-[d]d HH:mm:ss[.fff]`|`[yy]yy-[M[M]]M-[d]d HH:mm[:00]`|`[yy]yy-[M[M]]M-[d]d`|`[yy]yy-[M[M]]M-[d]d HH:mm:ss[.fffffff]`|`[yy]yy-[M[M]]M-[d]d HH:mm:ss[.fffffff]  zzz`|
-|`[yy]yy-[M[M]]M-[d]d hh:mm:ss[.fff][tt]`|`[yy]yy-[M[M]]M-[d]d hh:mm[:00][tt]`|``|`[yy]yy-[M[M]]M-[d]d hh:mm:ss[.fffffff][tt]`|`[yy]yy-[M[M]]M-[d]d hh:mm:ss[.fffffff][tt] zzz`|
+|`[yy]yy-[M[M]]M-[d]d hh:mm:ss[.fff][tt]`|`[yy]yy-[M[M]]M-[d]d hh:mm[:00][tt]`||`[yy]yy-[M[M]]M-[d]d hh:mm:ss[.fffffff][tt]`|`[yy]yy-[M[M]]M-[d]d hh:mm:ss[.fffffff][tt] zzz`|
 |`[yy]yy-[d]d-[M[M]]M HH:mm:ss[.fff]`|`[yy]yy-[d]d-[M[M]]M HH:mm[:00]`|`[yy]yy-[d]d-[M[M]]M`|`[yy]yy-[d]d-[M[M]]M HH:mm:ss[.fffffff]`|`[yy]yy-[d]d-[M[M]]M HH:mm:ss[.fffffff]  zzz`|
-|`[yy]yy-[d]d-[M[M]]M hh:mm:ss[.fff][tt]`|`[yy]yy-[d]d-[M[M]]M hh:mm[:00][tt]`|``|`[yy]yy-[d]d-[M[M]]M hh:mm:ss[.fffffff][tt]`|`[yy]yy-[d]d-[M[M]]M hh:mm:ss[.fffffff][tt] zzz`|
+|`[yy]yy-[d]d-[M[M]]M hh:mm:ss[.fff][tt]`|`[yy]yy-[d]d-[M[M]]M hh:mm[:00][tt]`||`[yy]yy-[d]d-[M[M]]M hh:mm:ss[.fffffff][tt]`|`[yy]yy-[d]d-[M[M]]M hh:mm:ss[.fffffff][tt] zzz`|
 |`[d]d-[M[M]]M-[yy]yy HH:mm:ss[.fff]`|`[d]d-[M[M]]M-[yy]yy HH:mm[:00]`|`[d]d-[M[M]]M-[yy]yy`|`[d]d-[M[M]]M-[yy]yy HH:mm:ss[.fffffff]`|`[d]d-[M[M]]M-[yy]yy HH:mm:ss[.fffffff] zzz`|
-|`[d]d-[M[M]]M-[yy]yy hh:mm:ss[.fff][tt]`|`[d]d-[M[M]]M-[yy]yy hh:mm[:00][tt]`|``|`[d]d-[M[M]]M-[yy]yy hh:mm:ss[.fffffff][tt]`|`[d]d-[M[M]]M-[yy]yy hh:mm:ss[.fffffff][tt] zzz`|
+|`[d]d-[M[M]]M-[yy]yy hh:mm:ss[.fff][tt]`|`[d]d-[M[M]]M-[yy]yy hh:mm[:00][tt]`||`[d]d-[M[M]]M-[yy]yy hh:mm:ss[.fffffff][tt]`|`[d]d-[M[M]]M-[yy]yy hh:mm:ss[.fffffff][tt] zzz`|
 |`[d]d-[yy]yy-[M[M]]M HH:mm:ss[.fff]`|`[d]d-[yy]yy-[M[M]]M HH:mm[:00]`|`[d]d-[yy]yy-[M[M]]M`|`[d]d-[yy]yy-[M[M]]M HH:mm:ss[.fffffff]`|`[d]d-[yy]yy-[M[M]]M HH:mm:ss[.fffffff]  zzz`|
-|`[d]d-[yy]yy-[M[M]]M hh:mm:ss[.fff][tt]`|`[d]d-[yy]yy-[M[M]]M hh:mm[:00][tt]`|``|`[d]d-[yy]yy-[M[M]]M hh:mm:ss[.fffffff][tt]`|`[d]d-[yy]yy-[M[M]]M hh:mm:ss[.fffffff][tt] zzz`|
+|`[d]d-[yy]yy-[M[M]]M hh:mm:ss[.fff][tt]`|`[d]d-[yy]yy-[M[M]]M hh:mm[:00][tt]`||`[d]d-[yy]yy-[M[M]]M hh:mm:ss[.fffffff][tt]`|`[d]d-[yy]yy-[M[M]]M hh:mm:ss[.fffffff][tt] zzz`|
 
 Details:
 
@@ -358,9 +358,9 @@ Details:
 
 - Letters enclosed in square brackets are optional.
 
-- The letters `tt` designate [`AM`|`PM`|`am`|`pm`]. `AM` is the default. When `tt` is specified, the hour value (hh) must be in the range of 0 to 12.
+- The letters `tt` designate [`AM`|`PM`|`am`|`pm`]. `AM` is the default. When `tt` is specified, the hour value (`hh`) must be in the range of 0 to 12.
 
-- The letters `zzz` designate the time zone offset for the system's current time zone in the format {+|-}HH:ss].
+- The letters `zzz` designate the time zone offset for the system's current time zone in the format `{+|-}HH:ss]`.
 
 #### USE_TYPE_DEFAULT = { TRUE | FALSE }
 

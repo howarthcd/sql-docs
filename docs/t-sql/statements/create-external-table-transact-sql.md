@@ -198,7 +198,7 @@ This example shows how the three REJECT options interact with each other. For ex
 
 Specifies the directory within the External Data Source that the rejected rows and the corresponding error file should be written.
 
-If the specified path doesn't exist, PolyBase creates one on your behalf. A child directory is created with the name `_rejectedrows`. The `_` character ensures that the directory is escaped for other data processing unless explicitly named in the location parameter. Within this directory, there's a folder created based on the time of load submission in the format `YearMonthDay -HourMinuteSecond` (Ex. `20230330-173205`). In this folder, two types of files are written, the _reason file and the data file. This option can be used only with external data sources where `TYPE = HADOOP` and for external tables using `DELIMITEDTEXT` `FORMAT_TYPE`. For more information, see [CREATE EXTERNAL DATA SOURCE](create-external-data-source-transact-sql.md#type---hadoop--blob_storage--1) and [CREATE EXTERNAL FILE FORMAT (Transact-SQL)](create-external-file-format-transact-sql.md).
+If the specified path doesn't exist, PolyBase creates one on your behalf. A child directory is created with the name `_rejectedrows`. The `_` character ensures that the directory is escaped for other data processing unless explicitly named in the location parameter. Within this directory, there's a folder created based on the time of load submission in the format `YearMonthDay -HourMinuteSecond` (for example, `20230330-173205`). In this folder, two types of files are written, the _reason file and the data file. This option can be used only with external data sources where `TYPE = HADOOP` and for external tables using `DELIMITEDTEXT` `FORMAT_TYPE`. For more information, see [CREATE EXTERNAL DATA SOURCE](create-external-data-source-transact-sql.md) and [CREATE EXTERNAL FILE FORMAT (Transact-SQL)](create-external-file-format-transact-sql.md).
 
 The reason files and the data files both have the `queryID` associated with the CTAS statement. Because the data and the reason are in separate files, corresponding files have a matching suffix.
 
@@ -674,14 +674,14 @@ GO
 
 Creates an external table, used for: 
 
-- [Data virtualization (preview)](/azurel/azure-sql/database/data-virtualization-overview?view=azuresqldb-current&preserve-view=true)
+- [Data virtualization (preview)](/azure/azure-sql/database/data-virtualization-overview?view=azuresqldb-current&preserve-view=true)
 - [Elastic queries (preview)](/azure/azure-sql/database/elastic-query-overview?view=azuresqldb-current&preserve-view=true)
 
 See also [CREATE EXTERNAL DATA SOURCE (Transact-SQL)](create-external-data-source-transact-sql.md?view=azuresqldb-current&preserve-view=true).
 
 ## Syntax
 
-For use with [Data virtualization (preview)](/azurel/azure-sql/database/data-virtualization-overview?view=azuresqldb-current&preserve-view=true)
+For use with [Data virtualization (preview)](/azure/azure-sql/database/data-virtualization-overview?view=azuresqldb-current&preserve-view=true)
 
 ```syntaxsql
 CREATE EXTERNAL TABLE { database_name.schema_name.table_name | schema_name.table_name | table_name }
@@ -892,7 +892,7 @@ The following data types cannot be used in external tables:
 
 ## Examples
 
-For more examples, see [CREATE EXTERNAL DATA SOURCE (Transact-SQL)](create-external-data-source-transact-sql.md?view=azuresqldb-current&preserve-view=true) or see [Data virtualization with Azure SQL Database](/azure/azure-sql/datasbase/data-virtualization-overview?view=azuresql-db&preserve-view=true).
+For more examples, see [CREATE EXTERNAL DATA SOURCE (Transact-SQL)](create-external-data-source-transact-sql.md?view=azuresqldb-current&preserve-view=true) or see [Data virtualization with Azure SQL Database](/azure/azure-sql/database/data-virtualization-overview?view=azuresql-db&preserve-view=true).
 
 ### A. Create external table for Elastic Query
 
@@ -1010,7 +1010,7 @@ WITH
 
 ## Related content
 
-- [Data virtualization with Azure SQL Database (Preview)](/azure/azure-sql/database/data-virtualization-overview.md)
+- [Data virtualization with Azure SQL Database (Preview)](/azure/azure-sql/database/data-virtualization-overview)
 
 ::: moniker-end
 ::: moniker range="=azure-sqldw-latest"
@@ -1215,7 +1215,7 @@ If the specified path doesn't exist, it will be created. A child directory is cr
 
 In this folder, two types of files are written, the `_reason` file and the data file. 
 
-For more information, see [CREATE EXTERNAL DATA SOURCE](create-external-data-source-transact-sql.md#type---hadoop--blob_storage-).
+For more information, see [CREATE EXTERNAL DATA SOURCE](create-external-data-source-transact-sql.md).
 
 The reason files and the data files both have the queryID associated with the CTAS statement. Because the data and the reason are in separate files, corresponding files have a matching suffix.
 
@@ -1908,7 +1908,7 @@ Learn more about external tables and related concepts in the following articles:
 For more information and examples for `OPENROWSET` in Fabric Data Warehouse, see:
 
 - [Browse File Content Before Ingestion with the OPENROWSET function](/fabric/data-warehouse/browse-file-content-with-openrowset)
-- [Ingest Data into Your Warehouse Using Transact-SQL](/fabric/data-warehouse/ingest-data-tsql.md)
-- [Tutorial: Load data with T-SQL into a Warehouse](/fabric/data-warehouse/tutorial-load-data.md)
+- [Ingest Data into Your Warehouse Using Transact-SQL](/fabric/data-warehouse/ingest-data-tsql)
+- [Tutorial: Load data with T-SQL into a Warehouse](/fabric/data-warehouse/tutorial-load-data)
 
 ::: moniker-end

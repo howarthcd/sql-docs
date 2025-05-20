@@ -69,9 +69,7 @@ FROM OPENROWSET(
 ) AS filerows
 ```
 
-You can continue data set exploration by appending WHERE, GROUP BY and other clauses based on the result set of the first query.
-
-If the first query fails on your managed instance, that instance likely has restricted access to Azure storage accounts, and you should talk to your networking expert to enable access before you can proceed with querying.
+You can continue data set exploration by appending `WHERE`, `GROUP BY` and other clauses based on the result set of the first query.
 
 Once you get familiar with querying public data sets, consider switching to nonpublic data sets that require providing credentials, granting access rights and configuring firewall rules. In many real-world scenarios you will operate primarily with private data sets.
 
@@ -432,7 +430,7 @@ There's no hard limit to the number of files or the amount of data that can be q
 
 ### Query partitioned data
 
-Data is often organized in subfolders also called partitions. You can instruct managed instance to query only particular folders and files. Doing so reduces the number of files and the amount of data the query needs to read and process, resulting in better performance. This type of query optimization is known as partition pruning or partition elimination. You can eliminate partitions from query execution by using metadata function `filepath()` in the WHERE clause of the query.
+Data is often organized in subfolders also called partitions. You can instruct the query to read only particular folders and files. Doing so reduces the number of files and the amount of data the query needs to read and process, resulting in better performance. This type of query optimization is known as partition pruning or partition elimination. You can eliminate partitions from query execution by using metadata function `filepath()` in the `WHERE` clause of the query.
 
 The following sample query reads NYC Yellow Taxi data files only for the last three months of 2017:
 
@@ -558,14 +556,13 @@ The `WITH` options are mandatory, and for the sample size, the allowed options a
 
 ## Troubleshoot
 
-Issues with query execution are typically caused by managed instance not being able to access file location. The related error messages might report insufficient access rights, nonexisting location or file path, file being used by another process, or that directory cannot be listed. In most cases this indicates that access to files is blocked by network traffic control policies or due to lack of access rights. This is what should be checked:
+Issues with query execution are typically caused by Azure SQL Database not being able to access file location. The related error messages might report insufficient access rights, nonexisting location or file path, file being used by another process, or that directory cannot be listed. In most cases this indicates that access to files is blocked by network traffic control policies or due to lack of access rights. This is what should be checked:
 
 - Wrong or mistyped location path.
 - SAS key validity: it could be expired, containing a typo, starting with a question mark.
 - SAS key permissions allowed: **Read** at minimum, and **List** if wildcards are used.
-- Blocked inbound traffic on the storage account. Check [Managing virtual network rules for Azure Storage](/azure/storage/common/storage-network-security?tabs=azure-portal#managing-virtual-network-rules) for more details and make sure that access from managed instance VNet is allowed.
-- Outbound traffic blocked on the managed instance using [storage endpoint policy](service-endpoint-policies-configure.md#configure-policies). Allow outbound traffic to the storage account.
-- Managed Identity access rights: make sure the managed identity of the instance is granted access rights to the storage account.
+- Blocked inbound traffic on the storage account. Check [Managing virtual network rules for Azure Storage](/azure/storage/common/storage-network-security?tabs=azure-portal#managing-virtual-network-rules).
+- Managed Identity access rights: make sure the managed identity of the Azure SQL Database is granted access rights to the storage account.
 - Compatibility level of the database must be 130 or higher for data virtualization queries to work.
 
 ## Limitations

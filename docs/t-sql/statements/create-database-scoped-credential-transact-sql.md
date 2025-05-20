@@ -54,9 +54,9 @@ Specifies the name of the account to be used when connecting outside the server.
 
 - To import a file from Azure Blob Storage or Azure Data Lake Storage using a shared key, the identity name must be `SHARED ACCESS SIGNATURE`. For more information about shared access signatures, see [Using Shared Access Signatures (SAS)](/azure/storage/storage-dotnet-shared-access-signature-part-1). Only use `IDENTITY = SHARED ACCESS SIGNATURE` for a shared access signature.
 - To import a file from Azure Blob Storage using a managed identity, the identity name must be `MANAGED IDENTITY`.
-- When using Kerberos (Windows Active Directory or MIT KDC) do not use the domain name in the IDENTITY argument. It should just be the account name.
-- In a SQL Server instance, if creating a database scoped credential with a Storage Access Key used as the SECRET, IDENTITY is ignored.
-- `WITH IDENTITY` is not required if the container in Azure Blob storage is enabled for anonymous access. For an example querying Azure Blob storage, see [Importing into a table from a file stored on Azure Blob storage](../functions/openrowset-transact-sql.md#j-importing-into-a-table-from-a-file-stored-on-azure-blob-storage).
+- When using Kerberos (Windows Active Directory or MIT KDC) do not use the domain name in the `IDENTITY` argument. It should just be the account name.
+- In a SQL Server instance, if creating a database scoped credential with a Storage Access Key used as the `SECRET`, `IDENTITY` is ignored.
+- `WITH IDENTITY` is not required if the container in Azure Blob storage is enabled for anonymous access. For an example querying Azure Blob storage with `OPENROWSET BULK`, see [Import into a table from a file stored on Azure Blob storage](../functions/openrowset-bulk-transact-sql.md#j-use-openrowset-to-access-several-delta-files-from-azure-data-lake-gen2).
 - In [!INCLUDE [sssql22-md](../../includes/sssql22-md.md)] and later versions, the REST-API connector replaces HADOOP. For Azure Blob Storage and Azure Data Lake Gen 2, the only supported authentication method is shared access signature. For more information, see [CREATE EXTERNAL DATA SOURCE (Transact-SQL)](create-external-data-source-transact-sql.md).
 - In [!INCLUDE [sssql19-md](../../includes/sssql19-md.md)], the only PolyBase external data source that supports Kerberos authentication is Hadoop. All other external data sources (SQL Server, Oracle, Teradata, MongoDB, generic ODBC) only support Basic Authentication.
 - SQL pools in Azure Synapse Analytics include the following notes:

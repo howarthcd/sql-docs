@@ -77,10 +77,11 @@ Native format is supported by the following command options:
 
 |Command|Option|Description|  
 |-------------|------------|-----------------|  
-| `bcp` |`-n`|Causes the bcp utility to use the native data types of the data.*|  
-| `BULK INSERT` |`DATAFILETYPE ='native'`|Uses the native or wide native data types of the data. DATAFILETYPE is not needed if a format file specifies the data types.|  
+| `bcp` |`-n`|Causes the bcp utility to use the native data types of the data.\*|
+| `BULK INSERT` |`DATAFILETYPE ='native'`|Uses the native or wide native data types of the data. `DATAFILETYPE` is not needed if a format file specifies the data types.|  
 | `OPENROWSET` |N/A|Must use a format file|
- \*To load native (`-n`) data to a format compatible with earlier versions of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] clients, use the `-V` switch. For more information, see [Import native and character format data from earlier versions of SQL Server](import-native-and-character-format-data-from-earlier-versions-of-sql-server.md).  
+
+ \* To load native (`-n`) data to a format compatible with earlier versions of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] clients, use the `-V` switch. For more information, see [Import native and character format data from earlier versions of SQL Server](import-native-and-character-format-data-from-earlier-versions-of-sql-server.md).  
 
 > [!NOTE]
 >  Alternatively, you can specify formatting on a per-field basis in a format file. For more information, see [Format files to import or export data (SQL Server)](format-files-for-importing-or-exporting-data-sql-server.md).
