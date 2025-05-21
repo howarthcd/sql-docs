@@ -4,7 +4,7 @@ description: The AI_GENERATE_EMBEDDINGS function creates vector arrays for data.
 author: jettermctedder
 ms.author: bspendolini
 ms.reviewer: randolphwest
-ms.date: 04/22/2025
+ms.date: 05/21/2025
 ms.service: sql
 ms.topic: "reference"
 ms.custom:
