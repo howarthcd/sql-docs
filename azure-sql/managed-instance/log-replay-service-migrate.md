@@ -141,7 +141,7 @@ This generates an email that notifies you that auditing for the SQL managed inst
 
 To configure the firewall, follow these steps: 
 
-1. Go to your managed instance in the [Azure portal](https://portal.azure.com) and select the subnet to open the **Subnets** page.
+1. Go to your SQL managed instance in the [Azure portal](https://portal.azure.com) and select the subnet to open the **Subnets** page.
 
    :::image type="content" source="media/log-replay-service-migrate/sql-managed-instance-overview-page.png" alt-text="Screenshot of the SQL managed instance Overview page of the Azure portal, with the subnet selected.":::
 
