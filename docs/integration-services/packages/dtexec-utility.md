@@ -376,8 +376,6 @@ dtexec /option [value] [/option [value]]...
   
      **C** Custom events are reported.  
   
-     **D** Data Flow task events are reported.  
-  
      **P** Progress is reported.  
   
      **V** Verbose reporting.  
