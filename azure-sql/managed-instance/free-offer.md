@@ -72,11 +72,12 @@ The following table describes the limits of the free SQL Managed Instance:
 
 Additionally, the following limitations apply: 
 
-- The offer is valid for 12 months from the day the offer is initially activated, and can be applied to only one instance at a time, per subscription. 
+- The offer is valid for 12 months from the day the offer is initially activated, and can be applied to only one instance at a time, per subscription.
+- After 12 months, the free SQL managed instance is stopped. If the instance isn't upgraded to a paid version within 30 days, the instance and all databases are deleted, and no longer recoverable.
 - The following capabilities aren't supported: [Zone redundancy](high-availability-sla-local-zone-redundancy.md#zone-redundant-availability), [failover groups](failover-group-sql-mi.md), [long-term backup retention](../database/long-term-retention-overview.md).
 - Scaling up and down is only possible within the free offer limits. 
 - The free offer is currently available in the [following regions](region-availability.md#free-offer). 
-- If you delete a free SQL managed instance, all its databases are deleted and can't be restored. 
+- If you delete a free SQL managed instance, all its databases are deleted and can't be restored.
 
 ### Monthly vCore limits 
 
