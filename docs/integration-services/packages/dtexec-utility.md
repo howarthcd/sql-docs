@@ -58,7 +58,7 @@ DTExec /ISSERVER "\SSISDB\folderB\Integration Services Project17\Package.dtsx" /
  You can use **dtexec** with third-party scheduling tools to schedule packages that are deployed to the [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] server.  
   
 ##  <a name="bit"></a> Installation Considerations on 64-bit Computers  
- On a 64-bit computer, [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] installs a 64-bit version of the **dtexec** utility (dtexec.exe). If you have to run certain packages in 32-bit mode, you will have to install the 32-bit version of the **dtexec** utility. To install the 32-bit version of the **dtexec** utility, you must select either Client Tools or [!INCLUDE[ssBIDevStudioFull](../../includes/ssbidevstudiofull-md.md)] during setup.  
+ On a 64-bit computer, [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] installs a 64-bit version of the **dtexec** utility (dtexec.exe). If you have to run certain packages in 32-bit mode, you have to install the 32-bit version of the **dtexec** utility. To install the 32-bit version of the **dtexec** utility, you must select either Client Tools or [!INCLUDE[ssBIDevStudioFull](../../includes/ssbidevstudiofull-md.md)] during setup.  
   
  By default, a 64-bit computer that has both the 64-bit and 32-bit versions of an [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] command prompt utility installed will run the 32-bit version at the command prompt. The 32-bit version runs because the directory path for the 32-bit version appears in the PATH environment variable before the directory path for the 64-bit version. (Typically, the 32-bit directory path is *\<drive>*:\Program Files(x86)\Microsoft SQL Server\110\DTS\Binn, while the 64-bit directory path is *\<drive>*:\Program Files\Microsoft SQL Server\110\DTS\Binn.)  
   
@@ -163,9 +163,9 @@ dtexec /option [value] [/option [value]]...
   
 -   **/CheckF[ile]** _filespec_: (Optional). Sets the **CheckpointFileName** property on the package to the path and file spemandcified in *filespec*. This file is used when the package restarts. If this option is specified and no value is supplied for the file name, the **CheckpointFileName** for the package is set to an empty string. If this option isn't specified, the values in the package are retained.  
   
--   **/CheckP[ointing]** _{on\off}_ : (Optional). Sets a value that determines whether the package will use checkpoints during package execution. The value **on** specifies that a failed package is to be rerun. When the failed package is rerun, the run-time engine uses the checkpoint file to restart the package from the point of failure.  
+-   **/CheckP[ointing]** _{on\off}_ : (Optional). Sets a value that determines whether the package uses checkpoints during package execution. The value **on** specifies that a failed package is to be rerun. When the failed package is rerun, the run-time engine uses the checkpoint file to restart the package from the point of failure.  
   
-     The default value is on if the option is declared without a value. Package execution will fail if the value is set to on and the checkpoint file can't be found. If this option isn't specified, the value set in the package is retained. For more information, see [Restart Packages by Using Checkpoints](../../integration-services/packages/restart-packages-by-using-checkpoints.md).  
+     The default value is on if the option is declared without a value. Package execution fails if the value is set to on and the checkpoint file can't be found. If this option isn't specified, the value set in the package is retained. For more information, see [Restart Packages by Using Checkpoints](../../integration-services/packages/restart-packages-by-using-checkpoints.md).  
   
      The **/CheckPointing on** option of dtexec is equivalent to setting the **SaveCheckpoints** property of the package to True, and the **CheckpointUsage** property to Always.  
   
@@ -181,7 +181,7 @@ dtexec /option [value] [/option [value]]...
   
      At run time, you can use the **/Connection** option to load package configurations from a location other than the location that you specified at design time. The values of these configurations then replace the values that were originally specified. However you can use the **/Connection** option only for configurations, such as [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] configurations, that use a connection manager. To understand how package configurations are applied, see [Package Configurations](./legacy-package-deployment-ssis.md) and [Behavior Changes to Integration Services Features in SQL Server 2016](/previous-versions/sql/sql-server-2016/bb500430(v=sql.130)).  
   
--   **/Cons[oleLog]** [[*displayoptions*];[*list_options*;*src_name_or_guid*]...]: (Optional). Displays specified log entries to the console during package execution. If this option is omitted, no log entries are shown in the console. If the option is specified without parameters that limit the display, every log entry will display. To limit the entries that are displayed to the console, you can specify the columns to show by using the *displayoptions* parameter, and limit the log entry types by using the *list_options* parameter.  
+-   **/Cons[oleLog]** [[*displayoptions*];[*list_options*;*src_name_or_guid*]...]: (Optional). Displays specified log entries to the console during package execution. If this option is omitted, no log entries are shown in the console. If the option is specified without parameters that limit the display, every log entry displays. To limit the entries that are displayed to the console, you can specify the columns to show by using the *displayoptions* parameter, and limit the log entry types by using the *list_options* parameter.  
   
     > [!NOTE]  
     > When you run a package on the [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] server by using the **/ISSERVER** parameter, console output is limited and most of the **/Cons[oleLog]** options are not applicable. All execution logs can be seen from the server in the related views or by using standard reports available in [!INCLUDE[ssManStudioFull](../../includes/ssmanstudiofull-md.md)]. For more information about the reports, see [Reports for the Integration Services Server](../../integration-services/performance/monitor-running-packages-and-other-operations.md#reports).  
@@ -230,7 +230,7 @@ dtexec /option [value] [/option [value]]...
   
 -   **/De[crypt]**  _password_: (Optional). Sets the decryption password that is used when you load a package with password encryption.  
   
--   (Optional) Creates the debug dump files, .mdmp and .tmp, when one or more specified events occur while the package is running. The *error code* argument specifies the type of event code-error, warning, or information-that will trigger the system to create the debug dump files. To specify multiple event codes, separate each *error code* argument by a semi-colon (;). Do not include quotes with the *error code* argument.  
+-   (Optional) Creates the debug dump files, .mdmp and .tmp, when one or more specified events occur while the package is running. The *error code* argument specifies the type of event code-error, warning, or information-that triggers the system to create the debug dump files. To specify multiple event codes, separate each *error code* argument by a semi-colon (;). Don't include quotes with the *error code* argument.  
   
      The following example generates the debug dump files when the DTS_E_CANNOTACQUIRECONNECTIONFROMCONNECTIONMANAGER error occurs.  
   
@@ -243,9 +243,9 @@ dtexec /option [value] [/option [value]]...
     > [!NOTE]  
     > Debug dump files may contain sensitive information. Use an access control list (ACL) to restrict access to the files, or copy the files to a folder with restricted access. For example, before you send your debug files to Microsoft support services, we recommended that you remove any sensitive or confidential information.  
   
-     To apply this option to all packages that the **dtexec** utility runs, add a **DumpOnCodes** REG_SZ value to the HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\110\SSIS\Setup\DtsPath registry key. The data value in **DumpOnCodes** specifies the error code or codes that will trigger the system to create debug dump files. Multiple error codes must be separated by a semi-colon (;).  
+     To apply this option to all packages that the **dtexec** utility runs, add a **DumpOnCodes** REG_SZ value to the HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\110\SSIS\Setup\DtsPath registry key. The data value in **DumpOnCodes** specifies the error code or codes that trigger the system to create debug dump files. Multiple error codes must be separated by a semi-colon (;).  
   
-     If you add a **DumpOnCodes** value to the registry key, and use the **/Dump** option, the system will create debug dump files that are based on both settings.  
+     If you add a **DumpOnCodes** value to the registry key, and use the **/Dump** option, the system creates debug dump files that are based on both settings.  
   
      For more information about debug dump files, see [Generating Dump Files for Package Execution](../../integration-services/troubleshooting/generating-dump-files-for-package-execution.md).  
   
@@ -258,13 +258,13 @@ dtexec /option [value] [/option [value]]...
   
      To apply this option to all packages that the **dtexec** utility runs, add a **DumpOnError** REG_DWORD value to the HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\110\SSIS\Setup\DtsPath registry key. The value of the **DumpOnError** REG_DWORD value determines whether the **/DumpOnError** option needs to be used with the **dtexec** utility:  
   
-    -   A non-zero data value indicates that the system will create debug dump files when any error occurs, regardless of whether you use the **/DumpOnError** option with the **dtexec** utility.  
+    -   A non-zero data value indicates that the system creates debug dump files when any error occurs, regardless of whether you use the **/DumpOnError** option with the **dtexec** utility.  
   
-    -   A zero data value indicates that the system will not create the debug dump files unless you use the **/DumpOnError** option with the **dtexec** utility.  
+    -   A zero data value indicates that the system won't create the debug dump files unless you use the **/DumpOnError** option with the **dtexec** utility.  
   
      For more information about debug dump files, see [Generating Dump Files for Package Execution](../../integration-services/troubleshooting/generating-dump-files-for-package-execution.md)  
   
--   **/Env[Reference]** _environment reference ID_: (Optional). Specifies the environment reference (ID) that is used by the package execution, for a package that is deployed to the [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] server. The parameters configured to bind to variables will use the values of the variables that are contained in the environment.  
+-   **/Env[Reference]** _environment reference ID_: (Optional). Specifies the environment reference (ID) that is used by the package execution, for a package that is deployed to the [!INCLUDE[ssISnoversion](../../includes/ssisnoversion-md.md)] server. The parameters configured to bind to variables use the values of the variables that are contained in the environment.  
   
      You use **/Env[Reference]** option together with the **/ISServer** and the **/Server** options.  
   
@@ -444,7 +444,7 @@ dtexec /option [value] [/option [value]]...
   
 -   **/Va[lidate]**: (Optional). Stops the execution of the package after the validation phase, without actually running the package. During validation, use of the **/WarnAsError** option causes **dtexec** to treat a warning as an error; therefore the package fails if a warning occurs during validation.  
   
--   **/VerifyB[uild]** _major_[*;minor*[*;build*]]: (Optional). Verifies the build number of a package against the build numbers that were specified during the verification phase in the *major*, *minor*, and *build* arguments. If a mismatch occurs, the package will not execute.  
+-   **/VerifyB[uild]** _major_[*;minor*[*;build*]]: (Optional). Verifies the build number of a package against the build numbers that were specified during the verification phase in the *major*, *minor*, and *build* arguments. If a mismatch occurs, the package won't execute.  
   
      The values are long integers. The argument can have one of three forms, with a value for *major* always required:  
   
@@ -468,9 +468,9 @@ dtexec /option [value] [/option [value]]...
   
 -   **/VLog** _[Filespec]_: (Optional). Writes all Integration Services package events to the log providers that were enabled when the package was designed. To have Integration Services enable a log provider for text files and write log events to a specified text file, include a path and file name as the *Filespec* parameter.  
   
-     If you do not include the *Filespec* parameter, Integration Services will not enable a log provider for text files. Integration Services will only write log events to the log providers that were enabled when the package was designed.  
+     If you don't include the *Filespec* parameter, Integration Services won't enable a log provider for text files. Integration Services only writes log events to the log providers that were enabled when the package was designed.  
   
--   **/W[arnAsError]**: (Optional). Causes the package to consider a warning as an error; therefore, the package will fail if a warning occurs during validation. If no warnings occur during validation and the **/Validate** option isn't specified, the package is executed.  
+-   **/W[arnAsError]**: (Optional). Causes the package to consider a warning as an error; therefore, the package fails if a warning occurs during validation. If no warnings occur during validation and the **/Validate** option isn't specified, the package is executed.  
   
 -   **/X86**: (Optional). Causes [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] Agent to run the package in 32-bit mode on a 64-bit computer. This option is set by [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] Agent when the following conditions are true:  
   
