@@ -506,7 +506,7 @@ Causes SQL Server to generate a Showplan XML fragment with the ParameterRuntimeV
 
 #### OPTIMIZED_SP_EXECUTESQL = { ON | OFF }
 
-**Applies to:** [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)]
+**Applies to:** [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)], [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [fabric-sqldb](../../includes/fabric-sqldb.md)]
 
 Enables or disables the compilation serialization behavior of `sp_executesql` when a batch is compiled. The default is `OFF`. Allowing batches which use `sp_executesql` to serialize the compilation process reduces the impact of compilation storms.  A compilation storms refers to a situation where a large number of queries are being compiled simultaneously, leading to performance issues and resource contention.
 
