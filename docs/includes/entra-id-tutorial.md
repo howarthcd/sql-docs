@@ -80,16 +80,23 @@ Select the newly created application, and on the left side menu, select **API Pe
    1. Check **Directory.Read.All**
    1. Select **Add permissions**
 
-1. Select **Add a permission** > **Microsoft Graph** > **Delegated permissions**
+Or,
+
+1. Select **Add a permission** > **Microsoft Graph** > **Application permissions**
    1. Check **Application.Read.All**
-   1. Check **Directory.AccessAsUser.All**
    1. Check **Group.Read.All**
    1. Check **User.Read.All**
    1. Select **Add permissions**
 
 1. Select **Grant admin consent**
 
-:::image type="content" source="../relational-databases/security/authentication-access/media/configured-app-permissions.png" alt-text="Screenshot of application permissions in the Azure portal.":::
+| Scenario |Minimum permission |
+| --- | --- |
+|`CREATE USER` or `CREATE LOGIN` for a Microsoft Entra service principal or managed identity | **Application.Read.All** |
+|`CREATE USER` or `CREATE LOGIN` for a Microsoft Entra user | **User.Read.All** |
+|`CREATE USER` or `CREATE LOGIN` for a Microsoft Entra group | **Group.Read.All** |
+
+:::image type="content" source="media/entra-id-tutorial/grant-consent.png" alt-text="Screenshot showing how to grant consent in the Azure portal.":::
 
 > [!NOTE]
 > To grant **Admin consent** to the permissions above, your Microsoft Entra account requires the Privileged Role Administrator role or higher permissions.
