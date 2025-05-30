@@ -189,7 +189,7 @@ After access to the key is restored, bringing the database back online requires 
 
 If key access is restored within 30 minutes, the database will automatically heal within the subsequent hour. However, if key access is restored after more than 30 minutes, automatic healing of the database is not possible. In such cases, restoring the database involves extra procedures through the Azure portal and can be time-consuming, depending on the database's size.
 
-Once the database is back online, previously configured server-level settings, including failover group configurations, tags, and database-level settings such as elastic pool configurations, read scale, auto pause, point-in-time restore history, long-term retention policy, and others will be lost. Hence, it is recommended that customers implement a notification system to detect the loss of encryption key access within 30 minutes. After the 30-minute window has expired, we advise validating all server and database level settings on the recovered database.
+Once the database is back online, previously configured server-level settings, including failover group configurations, tags, and database-level settings such as elastic pool configurations, read scale, auto pause, point-in-time restore history, long-term retention policy, and others will be lost. Hence, it's recommended that customers implement a notification system to detect the loss of encryption key access within 30 minutes. After the 30-minute window has expired, we advise validating all server and database level settings on the recovered database.
 
 Below is a view of the extra steps required on the portal to bring an inaccessible database back online.
 
