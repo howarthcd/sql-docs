@@ -40,12 +40,12 @@ Diagram that shows that Hyperscale's compute tier consists of a primary compute 
 :::image-end:::
 
 The diagram shows the following components:   
-**a. [Compute](#compute)**: Hyperscale separates the main database engine, referred to as Compute, from the transaction logging and data storage components.   
-**b. [Storage](#azure-storage)**: Components that provide long-term storage and durability for data are separated from the main database engine. Data files are stored in separate Azure storage blobs. Data in Azure storage provides redundancy to recover a page server from failure.  
-**c. [Page servers](#page-server)**: Page servers retrieve data from data files in the storage layer, store it in a local SSD cache, and provide the data to the main engine. The local SSD cache is allocated based on compute size to retain the active/hot data pages. Page servers grow as the database size increases. Each page server manages up to 128 GB of data.   
-**d. [Log service](#log-service)**: A Hyperscale database uses log service to coordinate transaction log propagation to replicas and page servers.  
-**e. [Named replicas](service-tier-hyperscale-replicas.md#named-replica)**: Named replicas have their own compute but use the same log service. You can have up to 30 named replicas. Each named replica can have up to 4 high availability replicas.   
-**f. [High availability replicas](service-tier-hyperscale-replicas.md#hyperscale-secondary-replicas)**: High-availability replicas are optional standby copies of a primary, geo, or named replica, ready for failover and available for read-only workloads. Each primary replica and named replica can have up to 4 high availability replicas.  
+**A. [Compute](#compute)**: Hyperscale separates the main database engine, referred to as Compute, from the transaction logging and data storage components.   
+**B. [Storage](#azure-storage)**: Components that provide long-term storage and durability for data are separated from the main database engine. Data files are stored in separate Azure storage blobs. Data in Azure storage provides redundancy to recover a page server from failure.  
+**C. [Page servers](#page-server)**: Page servers retrieve data from data files in the storage layer, store it in a local SSD cache, and provide the data to the main engine. The local SSD cache is allocated based on compute size to retain the active/hot data pages. Page servers grow as the database size increases. Each page server manages up to 128 GB of data.   
+**D. [Log service](#log-service)**: A Hyperscale database uses log service to coordinate transaction log propagation to replicas and page servers.  
+**E. [Named replicas](service-tier-hyperscale-replicas.md#named-replica)**: Named replicas have their own compute but use the same log service. You can have up to 30 named replicas. Each named replica can have up to 4 high availability replicas.   
+**F. [High availability replicas](service-tier-hyperscale-replicas.md#hyperscale-secondary-replicas)**: High-availability replicas are optional standby copies of a primary, geo, or named replica, ready for failover and available for read-only workloads. Each primary replica and named replica can have up to 4 high availability replicas.  
 
 ## Compute
 
