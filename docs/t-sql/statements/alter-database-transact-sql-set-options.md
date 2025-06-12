@@ -3,8 +3,8 @@ title: "ALTER DATABASE SET Options (Transact-SQL)"
 description: Learn how to set database options such as Automatic tuning, encryption, Query Store in SQL Server, and Azure SQL Database.
 author: markingmyname
 ms.author: maghan
-ms.reviewer: randolphwest
-ms.date: 05/19/2025
+ms.reviewer: randolphwest, wiassaf
+ms.date: 06/11/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -4066,7 +4066,7 @@ Updates the timestamp for an existing warehouse snapshot in Fabric Data Warehous
 
 #### RESULT_SET_CACHING
 
-Enables or disables result set caching (preview) for the target artifact.
+Enables or disables result set caching (preview) for the current item. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).
 
 ## Permissions
 
@@ -4090,7 +4090,7 @@ SELECT [name], [DATA_LAKE_LOG_PUBLISHING_DESC] FROM sys.databases;
 
 ### B. Set and check result set caching (preview)
 
-The following T-SQL command will enable the artifact `MyDataWarehouse` to begin creating and applying result set cache (preview) to applicable SELECT queries.
+The following T-SQL command will enable the item `MyDataWarehouse` to begin creating and applying result set cache (preview) to applicable `SELECT` queries. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).
 
 ```sql
 ALTER DATABASE [MyDataWarehouse] SET RESULT_SET_CACHING ON;
