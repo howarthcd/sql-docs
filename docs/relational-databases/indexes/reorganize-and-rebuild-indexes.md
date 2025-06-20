@@ -4,7 +4,7 @@ description: This article describes index maintenance concepts, and a recommende
 author: dimitri-furman
 ms.author: dfurman
 ms.reviewer: mikeray
-ms.date: 10/11/2024
+ms.date: 06/20/2025
 ms.service: sql
 ms.subservice: table-view-index
 ms.topic: how-to
@@ -32,11 +32,12 @@ helpviewer_keywords:
   - "clustered indexes, defragmenting"
 monikerRange: ">=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-current || =azuresqldb-mi-current || >=aps-pdw-2016 || =fabric"
 ---
+
 # Optimize index maintenance to improve query performance and reduce resource consumption
 
 [!INCLUDE [SQL Server Azure SQL Database PDW FabricSQLDB](../../includes/applies-to-version/sql-asdb-asdbmi-pdw-fabricsqldb.md)]
 
-This article helps you decide when and how to perform index maintenance. It covers concepts such as index fragmentation and page density, and their impact on query performance and resource consumption. It describes index maintenance methods, [reorganizing an index](#reorganize-an-index) and [rebuilding an index](#rebuild-an-index), and suggests an index maintenance strategy that balances potential performance improvements against resource consumption required for maintenance.
+This article helps you decide when and how to perform index maintenance. It covers concepts such as index fragmentation and page density, and their impact on query performance and resource consumption. It describes index maintenance methods, [reorganizing an index](#reorganize-an-index) and [rebuilding an index](#rebuild-an-index), and suggests an index maintenance [strategy](#index-maintenance-strategy) that balances potential performance improvements against resource consumption required for maintenance.
 
 > [!NOTE]  
 > This article does not apply to a dedicated SQL pool in [!INCLUDE [ssazuresynapse-md](../../includes/ssazuresynapse-md.md)]. For information on index maintenance for a dedicated SQL pool in [!INCLUDE [ssazuresynapse-md](../../includes/ssazuresynapse-md.md)], see [Indexing dedicated SQL pool tables in [!INCLUDE [ssazuresynapse-md](../../includes/ssazuresynapse-md.md)]](/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-index).
@@ -88,10 +89,12 @@ The result set returned by `sys.dm_db_column_store_row_group_physical_stats` inc
 | `total_rows` | Number of rows physically stored in the row group. For compressed row groups, this includes the rows that are marked as deleted. |
 | `deleted_rows` | Number of rows physically stored in a compressed row group that are marked for deletion. 0 for row groups that are in delta store. |
 
+To determine the total number of physically stored deleted rows for a nonclustered columnstore index, add the value in the `deleted_rows` column in `sys.dm_db_column_store_row_group_physical_stats` to the value in the `rows` column in [sys.internal_partitions](../system-catalog-views/sys-internal-partitions-transact-sql.md) for the internal object type `COLUMN_STORE_DELETE_BUFFER` and the same object, index, and partition.
+
 Compressed row group fragmentation in a columnstore index can be computed using this formula:
 
 ```sql
-100.0*(ISNULL(deleted_rows,0))/NULLIF(total_rows,0)
+100.0 * (ISNULL(total_deleted_rows, 0)) / NULLIF(total_rows, 0)
 ```
 
 > [!TIP]  
@@ -245,11 +248,11 @@ Microsoft recommends that customers consider and adopt the following index maint
 
 In addition to the above considerations and strategy, in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [ssazuremi](../../includes/ssazuremi-md.md)] it is particularly important to consider the costs and benefits of index maintenance. Customers should perform it only when there is a demonstrated need, and taking into account the following points.
 
-- [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [ssazuremi](../../includes/ssazuremi-md.md)] implement [resource governance](/azure/azure-sql/database/resource-limits-logical-server#resource-governance) to set bounds on CPU, memory, and I/O consumption according to the provisioned pricing tier. These bounds apply to all user workloads, including index maintenance. If cumulative resource consumption by all workloads approaches resource bounds, the rebuild or reorganize operation can degrade performance of other workloads due to resource contention. For example, bulk data loads can become slower because transaction log I/O is at 100% due to a concurrent index rebuild. In [!INCLUDE [ssazuremi](../../includes/ssazuremi-md.md)], this impact can be reduced by running index maintenance in a separate Resource Governor workload group with restricted resource allocation, at the expense of extending index maintenance duration.
+- [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [ssazuremi](../../includes/ssazuremi-md.md)] implement [resource governance](/azure/azure-sql/database/resource-limits-logical-server#resource-governance) to set bounds on CPU, memory, and I/O consumption according to the provisioned pricing tier. These bounds apply to all user workloads, including index maintenance. If cumulative resource consumption by all workloads approaches resource bounds, the rebuild or reorganize operation can degrade performance of other workloads due to resource contention. For example, bulk data loads can become slower because transaction log I/O is at 100% due to a concurrent index rebuild. In [!INCLUDE [ssazuremi](../../includes/ssazuremi-md.md)], this impact can be reduced by running index maintenance in a separate [resource governor](../resource-governor/resource-governor.md) workload group with restricted resource allocation, at the expense of extending index maintenance duration.
 - For cost savings, customers often provision databases, elastic pools, and managed instances with minimal resource headroom. The pricing tier is chosen to be sufficient for application workloads. To accommodate a significant increase in resource usage due to index maintenance without degrading application performance, customers might have to provision more resources and increase costs, without necessarily improving application performance.
 - In elastic pools, resources are shared across all databases in a pool. Even if a particular database is idle, performing index maintenance on that database can affect application workloads running concurrently in other databases in the same pool. For more information, see [Resource management in dense elastic pools](/azure/azure-sql/database/elastic-pool-resource-management).
 - For most types of storage used in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [ssazuremi](../../includes/ssazuremi-md.md)], there is no difference in performance between sequential I/O and random I/O. This reduces the impact of index fragmentation on query performance.
-- When using either [Read Scale-out](/azure/azure-sql/database/read-scale-out) or [Geo-replication](/azure/azure-sql/database/active-geo-replication-overview) replicas, data latency on replicas often increases while index maintenance is being performed on the primary replica. If a geo-replica is provisioned with insufficient resources to sustain an increase in transaction log generation caused by index maintenance, it can lag far behind the primary, causing the system to reseed it. That makes the replica unavailable until reseeding is complete. Additionally, in Premium and Business Critical service tiers, replicas used for high availability can similarly get far behind the primary during index maintenance. If a failover is required during or soon after index maintenance, it can take longer than expected.
+- When using either [Read Scale-out](/azure/azure-sql/database/read-scale-out) or [Geo-replication](/azure/azure-sql/database/active-geo-replication-overview), data latency on replicas often increases while index maintenance is being performed on the primary replica. If a geo-replica is provisioned with insufficient resources to sustain an increase in transaction log generation caused by index maintenance, it can lag far behind the primary, causing the system to reseed it. That makes the replica unavailable until reseeding is complete. Additionally, in Premium and Business Critical service tiers, replicas used for high availability can similarly get far behind the primary during index maintenance. If a failover is required during or soon after index maintenance, it can take longer than expected.
 - If an index rebuild runs on the primary replica, and a long-running query executes on a readable replica at the same time, the query can get automatically terminated to prevent blocking the redo thread on the replica.
 
 There are specific but uncommon scenarios when one-time or periodic index maintenance may be needed in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [ssazuremi](../../includes/ssazuremi-md.md)]:
@@ -339,12 +342,21 @@ SELECT OBJECT_SCHEMA_NAME(i.object_id) AS schema_name,
        OBJECT_NAME(i.object_id) AS object_name,
        i.name AS index_name,
        i.type_desc AS index_type,
-       100.0 * (ISNULL(SUM(rgs.deleted_rows), 0)) / NULLIF(SUM(rgs.total_rows), 0) AS avg_fragmentation_in_percent
+       100.0 * (ISNULL(SUM(rgs.deleted_rows + ISNULL(ip.rows, 0)), 0)) / NULLIF(SUM(rgs.total_rows), 0) AS avg_fragmentation_in_percent
 FROM sys.indexes AS i
 INNER JOIN sys.dm_db_column_store_row_group_physical_stats AS rgs
 ON i.object_id = rgs.object_id
    AND
    i.index_id = rgs.index_id
+/* For nonclustered columnstore, include rows in the delete buffer */
+LEFT JOIN sys.internal_partitions AS ip
+ON i.object_id = ip.object_id
+   AND
+   i.index_id = ip.index_id
+   AND
+   rgs.partition_number = ip.partition_number
+   AND
+   ip.internal_object_type_desc = 'COLUMN_STORE_DELETE_BUFFER'
 WHERE rgs.state_desc = 'COMPRESSED'
 GROUP BY i.object_id, i.index_id, i.name, i.type_desc
 ORDER BY schema_name, object_name, index_name, index_type;
