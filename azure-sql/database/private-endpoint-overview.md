@@ -5,7 +5,7 @@ description: Overview of private endpoint feature.
 author: VanMSFT
 ms.author: vanto
 ms.reviewer: wiassaf, vanto, mathoma, randolphwest
-ms.date: 07/03/2024
+ms.date: 06/24/2025
 ms.service: azure-sql-database
 ms.subservice: security
 ms.topic: overview
@@ -190,7 +190,7 @@ We recommend that customers use the private link with the **Redirect connection 
 
 - Use the **latest version of drivers that have redirect support built in.** Redirect support is included in ODBC, OLEDB, NET SqlClient Data Provider, Core .NET SqlClient Data Provider, and JDBC (version 9.4 or above) drivers. Connections originating from all other drivers are proxied.
 
-After meeting the prerequisite, clients need to explicitly [choose **Redirect** connection policy](connectivity-architecture.md#connection-policy).
+After meeting the prerequisite, clients need to explicitly [choose **Redirect** connection policy](connectivity-architecture.md#connection-policy). If the connection policy has been set to **Redirect** before the private endpoint was set up, you might have to toggle the connection policy after setting up the private endpoint.
 
 If it isn't feasible to modify the firewall settings to allow outbound access on the 1433-65535 port range, an alternative solution is to change the connection policy to **Proxy**.
 
