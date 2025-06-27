@@ -52,6 +52,13 @@ To remove the *SQL Server - Azure Arc* resource:
 1. Select **Delete**.
 1. When you're prompted, confirm that you want to delete the resource.
 
+To remove dependent resources from a resource groups:
+
+1. In the Azure portal, go to the resource group where the SQL Server resource was.
+1. Under **Overview**, select the specific SQL Server resource and resources that you want to remove.
+1. Select **Delete**.
+1. When you're prompted, confirm that you want to delete the resources.
+
 ### [PowerShell](#tab/powershell)
 
 To uninstall Azure Extension for SQL Server, run:
