@@ -38,7 +38,7 @@ You can create a database user by using [!INCLUDE [ssManStudioFull](../../../inc
 
 [!INCLUDE [ssManStudio](../../../includes/ssmanstudio-md.md)] presents six options when creating a database user. The following diagram shows the six options in the green box, and indicates what they represent.
 
-:::image type="content" source="media/create-a-database-user/typesofusers.png" alt-text="Diagram that explains the different types of users.":::
+:::image type="content" source="media/create-a-database-user/types-of-users.png" alt-text="Diagram that explains the different types of users.":::
 
 ### Select the type of user
 
