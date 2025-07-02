@@ -15,6 +15,8 @@ monikerRange: "=azuresql || =azuresql-db"
 
 # Convert an existing database to Hyperscale
 
+[!INCLUDE [appliesto-sqldb](../includes/appliesto-sqldb.md)]
+
 You can convert an existing database in Azure SQL Database to Hyperscale using the Azure portal, the Azure CLI, PowerShell, or Transact-SQL.
 
 ## Prerequisites
