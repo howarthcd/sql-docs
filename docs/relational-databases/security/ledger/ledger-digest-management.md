@@ -4,7 +4,7 @@ description: This article provides information on digest management for a ledger
 author: VanMSFT
 ms.author: vanto
 ms.reviewer: mathoma
-ms.date: 02/07/2024
+ms.date: 07/09/2025
 ms.service: sql
 ms.subservice: security
 ms.custom: ignite-2023
@@ -60,15 +60,16 @@ In the following code snippet, replace `<your SAS key>` with the SAS key. The SA
 CREATE CREDENTIAL [https://ledgerstorage.blob.core.windows.net/sqldbledgerdigests]  
 WITH IDENTITY='SHARED ACCESS SIGNATURE',  
 SECRET = '<your SAS key>'   
-```  
+```
+ 
 > [!NOTE]
 > Starting with SQL Server 2022 Cumulative Update 17 (CU17) and continuing in SQL Server 2025, you can use [managed identities with SQL Server credentials](../../../t-sql/statements/create-credential-transact-sql#g-create-and-use-a-managed-identity-credential-to-access-azure-blob-storage). Managed identities provide an identity for applications to use when connecting to resources that support Microsoft Entra authentication.
 >
 > This feature is supported only in:
 > - SQL Server on Azure VMs
-> - SQL Server 2025 Arc-enabled
+> - Azure Arc-enabled SQL Server 2025
 >
-> Managed identities are not supported for on-premises SQL Server deployments.
+> Managed identities aren't supported for SQL Server on-premises deployments.
 
 #### Azure Confidential Ledger Permission
 
