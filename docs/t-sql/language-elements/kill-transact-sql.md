@@ -3,7 +3,7 @@ title: "KILL (Transact-SQL)"
 description: The KILL statement ends a user process that is based on the session ID or unit of work (UOW).
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 05/09/2024
+ms.date: 07/09/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -139,7 +139,7 @@ The same status report can be obtained by repeating the same `KILL` statement wi
 
 **[!INCLUDE [fabric](../../includes/fabric.md)] Data Warehouse:** Requires Write item permission.
 
-**SQL database in [!INCLUDE [fabric](../../includes/fabric.md)]:** Requires Write item permission.
+**SQL database in [!INCLUDE [fabric](../../includes/fabric.md)]:** Requires the `KILL DATABASE CONNECTION` permission in the SQL database engine, or the Write item permission in the Fabric workspace.
 
 **Azure Synapse Analytics:** Requires Admin permissions.
 
