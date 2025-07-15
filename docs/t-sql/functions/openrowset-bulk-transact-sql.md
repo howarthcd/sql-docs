@@ -65,24 +65,6 @@ OPENROWSET( BULK 'data_file' ,
    [ , ORDER ( { column [ ASC | DESC ] } [ , ...n ] ) [ UNIQUE ] ]
 ```
 
-## Permissions
-
-`OPENROWSET` with external data sources, requires the following permissions:
-
-- `ADMINISTER DATABASE BULK OPERATIONS`
-
-  or
-
-- `ADMINISTER BULK OPERATIONS`
-
-The following example grants `ADMINISTEER DATABASE BULK OPERATIONS` to a principal.
-
-```sql
-GRANT ADMINISTER DATABASE BULK OPERATIONS TO [<principal_name>];
-```
-
-If the target storage account is private, the principal must also have the **Storage Blob Data Reader** role (or higher) assigned at the container or storage account level.
-
 ## Arguments
 
 ### BULK arguments
@@ -297,6 +279,24 @@ To bulk export or import SQLXML data, use one of the following data types in you
 | `SQLCHAR` or `SQLVARYCHAR` | The data is sent in the client code page, or in the code page implied by the collation. |
 | `SQLNCHAR` or `SQLNVARCHAR` | The data is sent as Unicode. |
 | `SQLBINARY` or `SQLVARYBIN` | The data is sent without any conversion. |
+
+## Permissions
+
+`OPENROWSET` with external data sources, requires the following permissions:
+
+- `ADMINISTER DATABASE BULK OPERATIONS`
+
+  or
+
+- `ADMINISTER BULK OPERATIONS`
+
+The following example grants `ADMINISTEER DATABASE BULK OPERATIONS` to a principal.
+
+```sql
+GRANT ADMINISTER DATABASE BULK OPERATIONS TO [<principal_name>];
+```
+
+If the target storage account is private, the principal must also have the **Storage Blob Data Reader** role (or higher) assigned at the container or storage account level.
 
 ## Examples
 
