@@ -231,9 +231,9 @@ If there are multiple SQL Server instances on the OSE, all instances and replica
 
 ### Limitations
 
-The current passive instance detection logic has the following limitations.
+The current passive instance detection logic has the following limitations:
 
-- The checks are done every hour. A failover within the hour may or may not bill both replicas.
+- The checks are hourly. A failover within the hour may or may not bill both replicas.
 - Passive instances for other HADR technologies like log shipping or mirroring are not automatically detected at this time.
 - The detection logic does not support free disaster recovery testing or monitoring connections like database consistency checks, backups or monitoring resource usage data.
 
@@ -282,7 +282,7 @@ The usage of the SQL Server software is reported once an hour. The specific mete
 
 - If two or more instances of SQL Server or SQL Server associated services are installed on the same OSE the instance with the highest edition will be billed.
 
-- The combination of the selected `LicenseType` value and the highest SQL Server edition installed on the OSE defines which meter is sent every hour.
+- The combination of the selected `LicenseType` value and the highest SQL Server edition installed on the OSE defines which meter is sent.
 
 For more information, see [SQL Server Licensing Resources and Documents](https://www.microsoft.com/licensing/docs/view/SQL-Server).
 
