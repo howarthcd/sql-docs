@@ -20,9 +20,9 @@ This article explains how to transition the SQL Server instances to pay-as-you-g
 
 If your SQL Server instances are covered by a license with Software assurance or a subscription license, typically you want to transition to a pay-as-you-go Azure subscription immediately after the expiration time. At that point you want to make sure that:
 
-1. All Arc SQL deployments are switched to pay-as-you-go billing.
-1. All Azure SQL deployments (PaaS and IaaS) are switched to pay-as-you-go billing.
-1. The transition tasks are executed immediately after the license agreement expiration for continuous compliance and accurate billing.
+- All Arc SQL deployments are switched to pay-as-you-go billing.
+- All Azure SQL deployments (PaaS and IaaS) are switched to pay-as-you-go billing.
+- The transition tasks are executed immediately after the license agreement expiration for continuous compliance and accurate billing.
 
 To manage the transition follow these steps.
 
@@ -86,7 +86,7 @@ These charges use separate recurring pay-as-you-go (`PAYG`) meters to track usag
 
 ### Intermittent use of SQL Server
 
-If you an application is infrequently used and can be offline longer than 30 days, it will trigger recurring billing because the SQL Arc service cannot tell if the disconnection is intentional or not. To prevent billing, disconnect the SQL Server instance from Azure Arc. When the VM is up and running, you will need to onboard it to Arc again using any of the supported methods. For details, review [Disconnect SQL Server instances from Azure Arc](delete-from-azure-arc.md).
+If you have an application that's infrequently used and can be offline longer than 30 days, it will trigger recurring billing because the SQL Arc service cannot tell if the disconnection is intentional or not. To prevent billing, disconnect the SQL Server instance from Azure Arc. When the VM is up and running, you will need to onboard it to Arc again using any of the supported methods. For details, review [Disconnect SQL Server instances from Azure Arc](delete-from-azure-arc.md).
 
 ### Solution overview
 
