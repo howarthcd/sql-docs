@@ -72,11 +72,15 @@ Like the `OPENROWSET` function, `OPENDATASOURCE` should only reference OLE DB da
   
 The connection requirements for each provider are similar to the requirements for those parameters when creating linked servers. The details for many common providers are listed in the article [sp_addlinkedserver &#40;Transact-SQL&#41;](../../relational-databases/system-stored-procedures/sp-addlinkedserver-transact-sql.md).  
   
-Any call to `OPENDATASOURCE`, `OPENQUERY`, or `OPENROWSET` in the `FROM` clause is evaluated separately and independently from any call to these functions used as the target of the update, even if identical arguments are supplied to the two calls. In particular, filter or join conditions applied on the result of one of those calls has no effect on the results of the other.  
-  
+Any call to `OPENDATASOURCE`, `OPENQUERY`, or `OPENROWSET` in the `FROM` clause is evaluated separately and independently from any call to these functions used as the target of the update, even if identical arguments are supplied to the two calls. In particular, filter or join conditions applied on the result of one of those calls has no effect on the results of the other. 
+
 ## Permissions  
  Any user can execute OPENDATASOURCE. The permissions that are used to connect to the remote server are determined from the connection string.  
-  
+
+## Limitations
+
+Not supported with [Microsoft Access Database Engine driver](https://support.microsoft.com/office/download-and-install-microsoft-365-access-runtime-185c5a32-8ba9-491e-ac76-91cbe3ea09c9). 
+ 
 ## Examples  
 
 ### A. Using OPENDATASOURCE with SELECT and the SQL Server OLE DB Driver  
