@@ -661,11 +661,12 @@ The URI of the data file(s) whose data is to be read and returned as row set. Th
 
 The URI may include the `*` character to match any sequence of characters, allowing `OPENROWSET` to pattern-match against the URI. Additionally, it can end with `/**` to enable recursive traversal through all subfolders.
 
-The URI of the data file(s) whose data is to be read and returned as row set. The URI can reference Azure Data Lake storage or Azure Blob storage. The supported URI formats are:
+The URI of the data file(s) whose data is to be read and returned as row set. The URI can reference Azure Data Lake storage or Azure Blob storage. Fabric One Lake storage is in public preview. The supported URI formats are:
 
 - `https://{storage}.blob.core.windows.net/[container}/{file path}`
 - `https://{storage}.dfs.core.windows.net/[container}/{file path}`
 - `abfss://[container}@{storage}.dfs.core.windows.net/{file path}`
+- `https://onelake.dfs.fabric.microsoft.com/<workspaceId>/<lakehouseId>/Files/{file path}` - public preview
 
 For example:
 
@@ -913,7 +914,7 @@ The supported features are summarized in the table:
 |-------------------|-----------|----------------------|
 | **File formats**  | Parquet, CSV, JSONL (preview) | Delta, Azure Cosmos DB, JSON, relational databases |
 | **Authentication**| EntraID/SPN passthrough, public storage | SAS/SAK, SPN, Managed access |
-| **Storage**       | Azure Blob Storage, Azure Data Lake Storage | Fabric OneLake |
+| **Storage**       | Azure Blob Storage, Azure Data Lake Storage, Fabric OneLake (preview) | |
 | **Options**       | Only full/absolute URI in `OPENROWSET`  | Relative URI path in `OPENROWSET`, `DATA_SOURCE` |
 | **Partitioning**  | You can use the `filepath()` function in a query. |  |
 
