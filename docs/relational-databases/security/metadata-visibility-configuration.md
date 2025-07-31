@@ -24,7 +24,7 @@ monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >
 
 The visibility of metadata is limited to securables that a user either owns or on which the user has been granted some permission.
 
-  For example, the following query returns a row if the user has been granted a permission such as SELECT or INSERT on the table `myTable`.
+  For example, the following query returns a row if the user grants a permission such as SELECT or INSERT on the table `myTable`.
 
 ```sql
 SELECT name, object_id
@@ -33,7 +33,7 @@ WHERE name = N'myTable';
 GO
 ```
 
-However, if the user doesn't have any permission on `myTable`, the query returns an empty result set.
+However, if the user has no permission on `myTable`, the query returns an empty result set.
 
 ## Scope and Impact of Metadata Visibility Configuration
 
@@ -42,7 +42,7 @@ Metadata visibility configuration only applies to the following securables:
 - Catalog views
 - Metadata exposing built-in functions
 - Compatibility views
-- [!INCLUDE [ssDE](../../includes/ssde-md.md)] **sp_help** stored procedures
+- [!INCLUDE [ssDE](../../includes/ssde-md.md)] `sp_help` stored procedures
 - Information schema views
 - Extended properties
 
@@ -53,7 +53,7 @@ Metadata visibility configuration doesn't apply to the following securables:
 - Replication system tables
 - [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] Agent system tables
 - Backup system tables
-- Replication and [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] Agent **sp_help** stored procedures
+- Replication and [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] Agent `sp_help` stored procedures
 
 Limited metadata accessibility means the following:
 
@@ -110,19 +110,19 @@ The following metadata isn't subject to forced disclosure:
 
 - Source definition of a user-defined object such as a stored procedure or trigger. The source code is visible only when one of the following is true:
 
-    -   The user has **VIEW DEFINITION** permission on the object.
+  - The user has **VIEW DEFINITION** permission on the object.
 
-    -   The user hasn't been denied **VIEW DEFINITION** permission on the object and has **CONTROL**, **ALTER**, or **TAKE OWNERSHIP** permission on the object. All other users will see `NULL`.
+  - The user hasn't been denied **VIEW DEFINITION** permission on the object and has **CONTROL**, **ALTER**, or **TAKE OWNERSHIP** permission on the object. All other users will see `NULL`.
 
 - The definition columns found in the following catalog views:
 
-    - `sys.all_sql_modules`
-    - `sys.server_sql_modules`
-    - `sys.default_constraints`
-    - `sys.numbered_procedures`
-    - `sys.sql_modules`
-    - `sys.check_constraints`
-    - `sys.computed_columns`
+  - `sys.all_sql_modules`
+  - `sys.server_sql_modules`
+  - `sys.default_constraints`
+  - `sys.numbered_procedures`
+  - `sys.sql_modules`
+  - `sys.check_constraints`
+  - `sys.computed_columns`
 
 - The `ctext` column in the `syscomments` compatibility view.
 
@@ -130,12 +130,12 @@ The following metadata isn't subject to forced disclosure:
 
 - The following columns in the information schema views:
 
-    - `INFORMATION_SCHEMA.CHECK_CONSTRAINTS.CHECK_CLAUSE`
-    - `INFORMATION_SCHEMA.DOMAINS.DOMAIN_DEFAULT`
-    - `INFORMATION_SCHEMA.ROUTINES.ROUTINE_DEFINITION`
-    - `INFORMATION_SCHEMA.COLUMNS.COLUMN_DEFAULT`
-    - `INFORMATION_SCHEMA.ROUTINE_COLUMNS.COLUMN_DEFAULT`
-    - `INFORMATION_SCHEMA.VIEWS.VIEW_DEFINITION`
+  - `INFORMATION_SCHEMA.CHECK_CONSTRAINTS.CHECK_CLAUSE`
+  - `INFORMATION_SCHEMA.DOMAINS.DOMAIN_DEFAULT`
+  - `INFORMATION_SCHEMA.ROUTINES.ROUTINE_DEFINITION`
+  - `INFORMATION_SCHEMA.COLUMNS.COLUMN_DEFAULT`
+  - `INFORMATION_SCHEMA.ROUTINE_COLUMNS.COLUMN_DEFAULT`
+  - `INFORMATION_SCHEMA.VIEWS.VIEW_DEFINITION`
 
 - OBJECT_DEFINITION() function
 
