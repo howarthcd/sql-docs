@@ -17,21 +17,27 @@ Starting with version 13.2.0, the JDBC driver supports the vector data type. Vec
 ## Creating a vector object
 
 The microsoft.sql.Vector class is a custom implementation designed to represent vector data in the JDBC driver. It provides a structured way to handle high-dimensional data, including serialization and deserialization, while ensuring compatibility with SQL Server's vector datatype.
-The vector object should include the number of elements, type indicator, actual data.
+The vector object should include the number of elements, type indicator and data.
 ```java
 public enum VectorDimensionType {
         FLOAT32 // 32-bit (single precision) float
 }
 
-private VectorDimensionType vectorType;
-private int dimensionCount; //No. of dimensions in the vector
-private Object[] data; //A float[] array containing the vector's numerical values.
+private VectorDimensionType vectorType; // The type of values in the data array
+private int dimensionCount; // Number of dimensions in the vector
+private Object[] data; // An array containing the vector's numerical values
 ```
-The Microsoft SQL Server JDBC driver offers two methods to initialize a vector object, providing flexibility for different use cases and input data.
+The Microsoft JDBC Driver for SQL Server offers two methods to initialize a vector object, providing flexibility for different use cases and input data.
 
 ### Creating a vector object using dimension count and vector type
 
+Constructor:
+
+```java
 public Vector(int dimensionCount, VectorDimensionType vectorType, Object[] data);
+```
+
+Example:
 
 ```java
 Vector vector = new Vector(3, Vector.VectorDimensionType.FLOAT32, new Float[]{1.0f, 2.0f, 3.0f});
@@ -39,11 +45,18 @@ Vector vector = new Vector(3, Vector.VectorDimensionType.FLOAT32, new Float[]{1.
 
 ### Creating a vector object using precision and scale
 
+Constructor:
+
+```java
 public Vector(int precision, int scale, Object[] data);
-where parameters are defined as below:
-- precision : The number of dimensions in the vector.
-- scale :  The scale value, it represents no. of bytes per dimension where 4 represents FLOAT32.
-- data : A float[] array containing the vector's numerical values.
+```
+
+Where the parameters are:
+- *precision*: The number of dimensions in the vector.
+- *scale*:  The scale value, which represents the number of bytes per dimension. 4 bytes represents a FLOAT32.
+- *data*: A float[] array containing the vector's numerical values.
+
+Example:
 
 ```java
 Vector vector = new Vector(3, 4, new Float[]{1.0f, 2.0f, 3.0f});
@@ -51,13 +64,13 @@ Vector vector = new Vector(3, 4, new Float[]{1.0f, 2.0f, 3.0f});
 
 ## Populating and retrieving a table
 
-Assuming one has a table with a vector column as:
+Here are some code examples that populate and retrieve vector data from a database. The examples assume a table has been created with a vector column defined as follows:
 
 ```sql
 CREATE TABLE sampleTable (vector_col vector(3))
 ```
 
-A sample script to insert values using statement:
+Insert values using a plain INSERT statement:
 
 ```java
 try (Statement stmt = connection.createStatement()){
@@ -65,16 +78,17 @@ try (Statement stmt = connection.createStatement()){
 }
 ```
 
-Inserting value using prepared statement:
+Insert values using a prepared statement with a vector parameter:
 
 ```java
+Vector vector = new Vector(3, Vector.VectorDimensionType.FLOAT32, new Float[]{1.0f, 2.0f, 3.0f});
 try (PreparedStatement preparedStatement = con.prepareStatement("insert into sampleTable values (?)")) {
-    preparedStatement..setObject(1, vector, microsoft.sql.Types.VECTOR);
+    preparedStatement.setObject(1, vector, microsoft.sql.Types.VECTOR);
     preparedStatement.execute();
 }
 ```
 
-Inserting null value using prepared statement:
+Insert a null value using a prepared statement with a parameter:
 
 ```java
 Vector vector = new Vector(1, Vector.VectorDimensionType.FLOAT32, null);
@@ -91,7 +105,7 @@ try (PreparedStatement preparedStatement = con.prepareStatement("insert into sam
 }
 ```
 
-Reading values from the table:
+Read vector values from a table:
 
 ```java
 try (SQLServerResultSet resultSet = (SQLServerResultSet) stmt.executeQuery("select * from sampleTable")) {
@@ -122,7 +136,7 @@ try (SQLServerResultSet resultSet = (SQLServerResultSet) stmt.executeQuery("sele
 
 ## Using stored procedures with vector
 
-Having a stored procedure such as:
+Using the following stored procedure:
 
 ```java
 String sql = "CREATE PROCEDURE " + inputProc + 
@@ -130,7 +144,7 @@ String sql = "CREATE PROCEDURE " + inputProc +
              " SELECT TOP 1 @p0 = col_vector FROM sampleTable ";
 ```
 
-Output parameters must be registered:
+Return a vector output parameter using the following example:
 
 ```java
 try (CallableStatement callableStatement = con.prepareCall("{call " + inputProc + " (?) }")) {
@@ -142,6 +156,7 @@ try (CallableStatement callableStatement = con.prepareCall("{call " + inputProc 
 ## Using TVP with vector
 
 ```java
+Vector vector = new Vector(3, Vector.VectorDimensionType.FLOAT32, new Float[]{1.0f, 2.0f, 3.0f});
 SQLServerDataTable tvp = new SQLServerDataTable();
 tvp.addColumnMetadata("vector_col", microsoft.sql.Types.VECTOR);
 tvp.addRow(vector);
@@ -154,7 +169,10 @@ try (SQLServerPreparedStatement preparedStatement = (SQLServerPreparedStatement)
 
 ## Using SQLServerBulkCopy from source table to destination table with vector
 
+Vectors can be used in bulk copy commands:
+
 ```java
+Vector vector = new Vector(3, Vector.VectorDimensionType.FLOAT32, new Float[]{1.0f, 2.0f, 3.0f});
 try (Statement stmt = con.createStatement();
         SQLServerBulkCopy bulkCopy = new SQLServerBulkCopy(con)) {
 
@@ -167,8 +185,11 @@ try (Statement stmt = con.createStatement();
 
 ## Using bulkCopy from csv file to destination table with vector
 
-Having a csv file such as:
-```java
+Vectors can be imported from CSV files.
+
+Paste the following contents into a CSV file named `vectors.csv`:
+
+```text
 vector_col
 "[1.0,2.0,3.0]"
 "[4.0,5.0,6.0]"
@@ -177,7 +198,7 @@ vector_col
 ```java
 try (Statement stmt = con.createStatement();
     SQLServerBulkCopy bulkCopy = new SQLServerBulkCopy(con);
-    SQLServerBulkCSVFileRecord fileRecord = new SQLServerBulkCSVFileRecord(fileName, null, ",", true)) {
+    SQLServerBulkCSVFileRecord fileRecord = new SQLServerBulkCSVFileRecord("vectors.csv", null, ",", true)) {
 
         stmt.executeUpdate("create table destinationTable (vector_col vector(3))");
 
@@ -187,14 +208,13 @@ try (Statement stmt = con.createStatement();
 
         bulkCopy.setDestinationTableName("destinationTable");
         bulkCopy.writeToServer(fileRecord);
-
 }
 ```
 
-## Backward Compatibility
+## Backward compatibility
 
-If an application hasn't been updated to handle the VECTOR data type, the driver provides backward compatibility by allowing vector data types to be read using backward compatible types. This is controlled using the `vectorTypeSupport` connection string property.
-Currently, the supported values are "off" (server sends vector types as JSON string data) and "v1" (server sends vector types of FLOAT32 as vector data). Default is "v1". Future values may be added as needed to support additional vector types. ("v2" may indicate additional support for FLOAT16 and/or INT32 vectors, for example).
+If an application hasn't been updated to handle the VECTOR data type, the driver provides backward compatibility by allowing vector data types to be read using backward compatible types. This is controlled by using the `vectorTypeSupport` connection string property.
+Supported values are `off` (server sends vector types as string data in JSON format) and `v1` (server sends vector types of FLOAT32 as vector data). The default value is `v1`.
 
 ## Limitations of vector
 
