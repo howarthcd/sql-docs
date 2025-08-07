@@ -64,7 +64,7 @@ Vector vector = new Vector(3, 4, new Float[]{1.0f, 2.0f, 3.0f});
 
 ## Populating and retrieving a table
 
-Here are some code examples that populate and retrieve vector data from a database. The examples assume a table has been created with a vector column defined as follows:
+Here are some code examples that populate and retrieve vector data from a database. The examples assume a table with a vector column, defined as follows:
 
 ```sql
 CREATE TABLE sampleTable (vector_col vector(3))
@@ -213,7 +213,7 @@ try (Statement stmt = con.createStatement();
 
 ## Backward compatibility
 
-If an application hasn't been updated to handle the VECTOR data type, the driver provides backward compatibility by allowing vector data types to be read using backward compatible types. This is controlled by using the `vectorTypeSupport` connection string property.
+If an application is not updated to handle the VECTOR data type, the driver provides backward compatibility by allowing vector data types to be read using backward compatible types. This behavior is controlled by using the `vectorTypeSupport` connection string property.
 Supported values are `off` (server sends vector types as string data in JSON format) and `v1` (server sends vector types of FLOAT32 as vector data). The default value is `v1`.
 
 ## Limitations of vector
