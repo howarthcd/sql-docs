@@ -156,7 +156,7 @@ A distributed AG can also cross OS boundaries. The underlying AGs are bound by t
 
 ## Related content
 
-- [Configure SQL Server availability group for high availability on Linux](sql-server-linux-availability-group-configure-ha.md)
+- [Configure SQL Server availability group for high availability on Linux](high-availability/availability-groups-configure.md)
 - [Configure a SQL Server availability group for read-scale on Linux](sql-server-linux-availability-group-configure-rs.md)
 - [Configure a Pacemaker cluster for SQL Server availability groups](sql-server-linux-availability-group-cluster-pacemaker.md)
 - [Configure SQL Server Always On availability group on Windows and Linux (cross-platform)](sql-server-linux-availability-group-cross-platform.md)
