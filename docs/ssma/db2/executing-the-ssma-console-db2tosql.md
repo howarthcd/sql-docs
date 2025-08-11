@@ -637,11 +637,9 @@ Or
    sql-files="<folder-name>\*.sql" />
 ```
 
-## Executing SSMA Console in parallel
+## Execute SSMA console in parallel
 
-The SSMA Console utility can be executed in parallel through scripting by specifying the database name and corresponding folder path as input parameters. In the example provided below, the databases SAMPLE1, SAMPLE2, and SAMPLE3 with their respective folder paths are supplied as input to the script.
-
-**Input to the script:**
+The SSMA console utility can be executed in parallel through scripting, by specifying the database name and corresponding folder path as input parameters. In the following example, the databases `SAMPLE1`, `SAMPLE2`, and `SAMPLE3`, with their respective folder paths, are supplied as input to the script.
 
 ```txt
 SAMPLE1,C:\folder path\SSMA Project1
@@ -649,11 +647,9 @@ SAMPLE2,C:\folder path\SSMA Project2
 SAMPLE3,C:\folder path\SSMA Project3
 ```
 
-The following sample PowerShell script enables parallel execution of the SSMA Console command.
+The following sample PowerShell script enables parallel execution of the SSMA console.
 
-**Sample script:**
-
-```script
+```powershell
 $baseFolder = "C:\folder path\folder1"
 $ssmaExe = "C:\folder path\SSMAforDb2Console.exe"
 $databaselistPath = Join-Path $baseFolder "Databaselist.txt"
@@ -672,14 +668,15 @@ $preparedEntries = foreach ($entry in $entries) {
         $dbNameCounts[$dbName]++
         $suffix = "_{0:D2}" -f $dbNameCounts[$dbName]
         $fileDbName = "$dbName$suffix"
-    } else {
+    }
+    else {
         $dbNameCounts[$dbName] = 0
         $fileDbName = $dbName
     }
     [PSCustomObject]@{
-        DbName = $dbName
+        DbName        = $dbName
         WorkingFolder = $workingFolder
-        FileDbName = $fileDbName
+        FileDbName    = $fileDbName
     }
 }
 
@@ -695,33 +692,35 @@ $preparedEntries | ForEach-Object -Parallel {
     $conversionXmlPath = Join-Path $using:baseFolder "ConversionAndDataMigrationSample_$fileDbName.xml"
     $convTree.Save($conversionXmlPath)
 	
-  	# Update VariableValueFileSample.xml
-  	$varTree = [xml](Get-Content $using:variableXmlTemplate)
-  	$nodes = $varTree.SelectNodes('//variable[@name="$WorkingFolder$"]')
-  	if ($nodes.Count -eq 0) {
-  		Write-Host "No variable node found for `$WorkingFolder$"
-  	} else {
-  		$nodes | ForEach-Object { $_.value = $workingFolder }
-  	}
-  	$nodes2 = $varTree.SelectNodes('//variable[@name="$Db2InitialCatalog$"]')
-  	if ($nodes2.Count -eq 0) {
-  		Write-Host "No variable node found for `$Db2InitialCatalog$"
-  	} else {
-  		$nodes2 | ForEach-Object { $_.value = $dbName }
-  	}
-  	$variableXmlPath = Join-Path $using:baseFolder "VariableValueFileSample_$fileDbName.xml"
-  	$varTree.Save($variableXmlPath)
+    # Update VariableValueFileSample.xml
+    $varTree = [xml](Get-Content $using:variableXmlTemplate)
+    $nodes = $varTree.SelectNodes('//variable[@name="$WorkingFolder$"]')
+    if ($nodes.Count -eq 0) {
+        Write-Host "No variable node found for `$WorkingFolder$"
+    }
+    else {
+        $nodes | ForEach-Object { $_.value = $workingFolder }
+    }
+    $nodes2 = $varTree.SelectNodes('//variable[@name="$Db2InitialCatalog$"]')
+    if ($nodes2.Count -eq 0) {
+        Write-Host "No variable node found for `$Db2InitialCatalog$"
+    }
+    else {
+        $nodes2 | ForEach-Object { $_.value = $dbName }
+    }
+    $variableXmlPath = Join-Path $using:baseFolder "VariableValueFileSample_$fileDbName.xml"
+    $varTree.Save($variableXmlPath)
 
     # Prepare output/error file paths
     $outputFile = Join-Path $using:baseFolder "ssma_output_$fileDbName.txt"
     $errorFile = Join-Path $using:baseFolder "ssma_error_$fileDbName.txt"
 
     # Prepare argument list
-    $args = "-s `"$conversionXmlPath`" -v `"$variableXmlPath`""
+    $arguments = "-s `"$conversionXmlPath`" -v `"$variableXmlPath`""
 
     # Run SSMA console
-    Start-Process -FilePath $using:ssmaExe -ArgumentList $args -RedirectStandardOutput $outputFile -RedirectStandardError $errorFile -Wait
-    Write-Host "Executed command: `"$using:ssmaExe`" $args"
+    Start-Process -FilePath $using:ssmaExe -ArgumentList $arguments -RedirectStandardOutput $outputFile -RedirectStandardError $errorFile -Wait
+    Write-Host "Executed command: `"$using:ssmaExe`" $arguments"
 }
 ```
 
