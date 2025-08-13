@@ -4,7 +4,7 @@ description: Latest release notes for SQL Server enabled by Azure Arc
 author: anosov1960
 ms.author: sashan
 ms.reviewer: mikeray, randolphwest
-ms.date: 07/16/2025
+ms.date: 08/15/2025
 ms.topic: conceptual
 ms.custom:
   - ignite-2023
@@ -29,11 +29,7 @@ Only Azure extension for SQL Server agent versions released within the last year
 
 **Extension version**: `1.1.3139.313`
 
-Arc SQL Server | GA | US Gov Virginia region availability - Inventory and Billing Capabilities
-
-Arc SQL MI | Upgrades remove Grafana and Opensearch dashboards (Phase 2)
-
-Arc Data Services | Deprecation | Retire Azure Arc-enabled PostgreSQL server
+SQL Server enabled by Azure Arc is generally available in US Government Virginia. For more information, review [SQL Server enabled by Azure Arc in US Government](us-government-region.md).
 
 ## July 29, 2025
 
