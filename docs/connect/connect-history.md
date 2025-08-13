@@ -134,9 +134,9 @@ Here's a list of the supportability scenarios of past MDAC/WDAC releases, starti
   32-bit and 64-bit versions of WDAC are released with the 32-bit and 64-bit versions of the Windows operating systems, respectively.
 
 
-## SQL Server versions and ODBC and OLEDB drivers
+## SQL Server versions and ODBC and OLE DB drivers
 
-The following table shows SQL Server versions over time and the corresponding driver that shipped with that SQL Server version
+The following table shows SQL Server versions over time and the corresponding ODBC and OLE DB drivers that shipped with that SQL Server version
 
 | **SQL Server Version** | **ODBC Driver** | **OLE DB Provider** | **Notes** |
 | --- | --- | --- | --- |
