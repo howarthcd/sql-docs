@@ -10,8 +10,6 @@ ms.subservice: migration-guide
 ms.topic: how-to
 ms.collection:
   - sql-migration-content
-  - migration
-  - onprem-to-azure
 ---
 
 # Migrate from SQL Server: Pre-migration
