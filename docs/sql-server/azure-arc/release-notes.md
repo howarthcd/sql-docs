@@ -29,7 +29,14 @@ Only Azure extension for SQL Server agent versions released within the last year
 
 **Extension version**: `1.1.3139.313`
 
-SQL Server enabled by Azure Arc is generally available in US Government Virginia. For more information, review [SQL Server enabled by Azure Arc in US Government](us-government-region.md).
+## August 14, 2025
+
+SQL Server enabled by Azure Arc is generally available in US Government Virginia. For more information, review [SQL Server enabled by Azure Arc in US Government](us-government-region.md). In addition to features announced earlier, you can:
+
+- [Subscribe to Extended Security Updates in a production environment](extended-security-updates.md#subscribe-to-extended-security-updates-in-a-production-environment)
+- [Manage licensing and billing](manage-license-billing.md)
+
+This release announces the feature is generally available. It doesn't update extension version or other components of any agent or extension.
 
 ## July 29, 2025
 

@@ -3,8 +3,8 @@ title: Azure Government
 description: "Describes features and limitations currently available for SQL Server enabled by Azure Arc on US Government region."
 author: AbdullahMSFT
 ms.author: amamun
-ms.reviewer: MikeRayMSFT, mikeray
-ms.date: 07/08/2025
+ms.reviewer: mikeray
+ms.date: 08/15/2025
 ms.topic: conceptual #Don't change
 #customer intent:Understand the features, limitations, and onboarding process for using SQL Server enabled by Azure Arc in US Government regions, specifically to manage their SQL Server resources securely and compliantly within the Azure Government portal.
 
@@ -26,6 +26,10 @@ Currently, these features are only available:
 
 With SQL Server enabled by Azure Arc, U.S. government agencies and organizations can manage SQL Server instances outside of Azure from the Azure Government portal, in a secure and compliant manner.
 
+## Prerequisite
+
+Requires Azure extension for SQL Server version `1.1.3119.307` or later.
+
 The latest updates are available in the [Release notes - SQL Server enabled by Azure Arc](release-notes.md).
 
 ## Onboard your SQL Server
@@ -44,8 +48,11 @@ Currently, in the US Government Virginia region, SQL Server registration provide
   - View SQL Server instances as Azure resources.
   - View databases Azure resources.
   - View the properties for each server. For example, you can view the version, edition, and database for each instance.
+- [Subscribe to Extended Security Updates in a production environment](extended-security-updates.md#subscribe-to-extended-security-updates-in-a-production-environment).
+- [Manage licensing and billing of SQL Server enabled by Azure Arc](manage-license-billing.md).
+- License virtual cores. Review [licensing limitations](#limitations).
 
-[All other features](overview.md#feature-differentiation), aren't currently available.
+[All other features](overview.md#feature-differentiation) aren't currently available.
 
 ## Limitations
 
@@ -53,7 +60,10 @@ The following SQL Server features aren't currently available in any US Governmen
 
 - Failover cluster instance (FCI)
 - Availability group (AG)
-- SQL Server dependent services like [!INCLUDE [ssis-md](../../includes/ssis-md.md)], [!INCLUDE [ssas-md](../../includes/ssas-md.md)], [!INCLUDE [ssrs](../../includes/ssrs.md)], or Power BI Report Server as well.
+- License physical cores (p-cores) with unlimited virtualization.
+- License physical cores (p-cores) without virtual machines.
+- SQL Server associated services:
+   [!INCLUDE [sql-server-associated-services](includes/sql-server-associated-services.md)]
 
 ## Related content
 
