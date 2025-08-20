@@ -24,12 +24,18 @@ conceptualContent:
         - text: Azure SQL Database
           url: /azure/azure-sql/migration-guides/database/sql-server-to-sql-database-overview
           itemType: how-to-guide
+        - text: SQL database in Microsoft Fabric
+          url: /fabric/database/sql/sqlpackage#import-a-database-with-sqlpackage
+          itemType: how-to-guide
         - text: Azure SQL Managed Instance
           url: /azure/azure-sql/migration-guides/managed-instance/sql-server-to-managed-instance-overview
           itemType: how-to-guide
         - text: SQL Server on Azure VMs
           url: /azure/azure-sql/migration-guides/virtual-machines/sql-server-to-sql-on-azure-vm-individual-databases-guide
           itemType: how-to-guide
+        - text: Fabric Data Warehouse
+          url: /fabric/data-warehouse/migration-assistant
+          itemType: concept
         - text: Migrate SQL Server to Azure video
           url: /shows/data-exposed/migrate-sql-server-to-azure?WT.mc_id=dataexposed-c9-niner-mighub
           itemType: video
