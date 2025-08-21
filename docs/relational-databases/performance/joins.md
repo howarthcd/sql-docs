@@ -324,7 +324,7 @@ ALTER DATABASE SCOPED CONFIGURATION SET DISABLE_BATCH_MODE_ADAPTIVE_JOINS = ON;
 ALTER DATABASE SCOPED CONFIGURATION SET BATCH_MODE_ADAPTIVE_JOINS = OFF;
 ```
 
-When enabled, this setting appears as enabled in [Sys.database_scoped_configurations](../system-catalog-views/sys-database-scoped-configurations-transact-sql.md).
+When enabled, this setting appears as enabled in [sys.database_scoped_configurations](../system-catalog-views/sys-database-scoped-configurations-transact-sql.md).
 
 To re-enable adaptive joins for all query executions originating from the database, execute the following within the context of the applicable database:
 

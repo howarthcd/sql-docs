@@ -89,7 +89,7 @@ Since the Query Store retains multiple execution plans per query, it can enforce
 >  
 > By design, Query Store doesn't collect plans for DDL statements such as `CREATE INDEX`, etc. Query Store captures cumulative resource consumption by collecting plans for the underlying DML statements. For example, Query Store might display the `SELECT` and `INSERT` statements executed internally to populate a new index.
 >  
-> Query Store doesn't collect data for natively compiled stored procedures by default. Use [Sys.sp_xtp_control_query_exec_stats](../system-stored-procedures/sys-sp-xtp-control-query-exec-stats-transact-sql.md) to enable data collection for natively compiled stored procedures.
+> Query Store doesn't collect data for natively compiled stored procedures by default. Use [sys.sp_xtp_control_query_exec_stats](../system-stored-procedures/sys-sp-xtp-control-query-exec-stats-transact-sql.md) to enable data collection for natively compiled stored procedures.
 
 **Wait stats** are another source of information that helps to troubleshoot performance in the [!INCLUDE [ssDE-md](../../includes/ssde-md.md)]. For a long time, wait statistics were available only on instance level, which made it hard to backtrack waits to a specific query. Starting with [!INCLUDE [ssSQL17](../../includes/sssql17-md.md)] and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], Query Store includes a dimension that tracks wait stats. The following example enables the Query Store to collect wait stats.
 
@@ -191,7 +191,7 @@ Here are some examples how you can get more insights into your workload before a
 
 For the available options to configure Query Store parameters, see [ALTER DATABASE SET options (Transact-SQL)](../../t-sql/statements/alter-database-transact-sql-set-options.md#query-store).
 
-Query the `sys.database_query_store_options` view to determine the current options of the Query Store. For more information about the values, see [Sys.database_query_store_options](../system-catalog-views/sys-database-query-store-options-transact-sql.md).
+Query the `sys.database_query_store_options` view to determine the current options of the Query Store. For more information about the values, see [sys.database_query_store_options](../system-catalog-views/sys-database-query-store-options-transact-sql.md).
 
 For examples about setting configuration options using [!INCLUDE [tsql](../../includes/tsql-md.md)] statements, see [Option Management](#OptionMgmt).
 
@@ -210,7 +210,7 @@ Functions help operations with the Query Store.
 
 :::row:::
     :::column:::
-        [Sys.fn_stmt_sql_handle_from_sql_stmt (Transact-SQL)](../system-functions/sys-fn-stmt-sql-handle-from-sql-stmt-transact-sql.md)
+        [sys.fn_stmt_sql_handle_from_sql_stmt (Transact-SQL)](../system-functions/sys-fn-stmt-sql-handle-from-sql-stmt-transact-sql.md)
     :::column-end:::
 :::row-end:::
 
@@ -220,39 +220,39 @@ Catalog views present information about the Query Store.
 
 :::row:::
     :::column:::
-        [Sys.database_query_store_options (Transact-SQL)](../system-catalog-views/sys-database-query-store-options-transact-sql.md)
+        [sys.database_query_store_options (Transact-SQL)](../system-catalog-views/sys-database-query-store-options-transact-sql.md)
     :::column-end:::
     :::column:::
-        [Sys.query_context_settings (Transact-SQL)](../system-catalog-views/sys-query-context-settings-transact-sql.md)
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column:::
-        [Sys.query_store_plan (Transact-SQL)](../system-catalog-views/sys-query-store-plan-transact-sql.md)
-    :::column-end:::
-    :::column:::
-        [Sys.query_store_query (Transact-SQL)](../system-catalog-views/sys-query-store-query-transact-sql.md)
+        [sys.query_context_settings (Transact-SQL)](../system-catalog-views/sys-query-context-settings-transact-sql.md)
     :::column-end:::
 :::row-end:::
 :::row:::
     :::column:::
-        [Sys.query_store_query_text (Transact-SQL)](../system-catalog-views/sys-query-store-query-text-transact-sql.md)
+        [sys.query_store_plan (Transact-SQL)](../system-catalog-views/sys-query-store-plan-transact-sql.md)
     :::column-end:::
     :::column:::
-        [Sys.query_store_runtime_stats (Transact-SQL)](../system-catalog-views/sys-query-store-runtime-stats-transact-sql.md)
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column:::
-        [Sys.query_store_wait_stats (Transact-SQL)](../system-catalog-views/sys-query-store-wait-stats-transact-sql.md)
-    :::column-end:::
-    :::column:::
-        [Sys.query_store_runtime_stats_interval (Transact-SQL)](../system-catalog-views/sys-query-store-runtime-stats-interval-transact-sql.md)
+        [sys.query_store_query (Transact-SQL)](../system-catalog-views/sys-query-store-query-transact-sql.md)
     :::column-end:::
 :::row-end:::
 :::row:::
     :::column:::
-        [Sys.database_query_store_internal_state (Transact-SQL)](../system-catalog-views/sys-database-query-store-internal-state-transact-sql.md)
+        [sys.query_store_query_text (Transact-SQL)](../system-catalog-views/sys-query-store-query-text-transact-sql.md)
+    :::column-end:::
+    :::column:::
+        [sys.query_store_runtime_stats (Transact-SQL)](../system-catalog-views/sys-query-store-runtime-stats-transact-sql.md)
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column:::
+        [sys.query_store_wait_stats (Transact-SQL)](../system-catalog-views/sys-query-store-wait-stats-transact-sql.md)
+    :::column-end:::
+    :::column:::
+        [sys.query_store_runtime_stats_interval (Transact-SQL)](../system-catalog-views/sys-query-store-runtime-stats-interval-transact-sql.md)
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column:::
+        [sys.database_query_store_internal_state (Transact-SQL)](../system-catalog-views/sys-database-query-store-internal-state-transact-sql.md)
     :::column-end:::
     :::column:::
     :::column-end:::
@@ -295,7 +295,7 @@ Stored procedures configure the Query Store.
     :::column-end:::
 :::row-end:::
 
-<sup>1</sup> In extreme scenarios Query Store can enter an ERROR state because of internal errors. Starting with [!INCLUDE [sssql17-md](../../includes/sssql17-md.md)], if this happens, Query Store can be recovered by executing the `sp_query_store_consistency_check` stored procedure in the affected database. See [Sys.database_query_store_options](../system-catalog-views/sys-database-query-store-options-transact-sql.md) for more details described in the `actual_state_desc` column description.
+<sup>1</sup> In extreme scenarios Query Store can enter an ERROR state because of internal errors. Starting with [!INCLUDE [sssql17-md](../../includes/sssql17-md.md)], if this happens, Query Store can be recovered by executing the `sp_query_store_consistency_check` stored procedure in the affected database. See [sys.database_query_store_options](../system-catalog-views/sys-database-query-store-options-transact-sql.md) for more details described in the `actual_state_desc` column description.
 
 <a id="Scenarios"></a>
 <a id="OptionMgmt"></a>

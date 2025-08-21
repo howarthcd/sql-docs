@@ -74,7 +74,7 @@ This section describes the change data capture security model.
 
 #### Configuration and administration
 
-To either enable or disable change data capture for a database, the caller of [Sys.sp_cdc_enable_db (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-enable-db-transact-sql.md) or [Sys.sp_cdc_disable_db (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-disable-db-transact-sql.md) must be a member of the fixed server **sysadmin** role. Enabling and disabling change data capture at the table level requires the caller of [Sys.sp_cdc_enable_table (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-enable-table-transact-sql.md) and [Sys.sp_cdc_disable_table (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-disable-table-transact-sql.md) to either be a member of the sysadmin role or a member of the database **database db_owner** role.
+To either enable or disable change data capture for a database, the caller of [sys.sp_cdc_enable_db (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-enable-db-transact-sql.md) or [sys.sp_cdc_disable_db (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-disable-db-transact-sql.md) must be a member of the fixed server **sysadmin** role. Enabling and disabling change data capture at the table level requires the caller of [sys.sp_cdc_enable_table (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-enable-table-transact-sql.md) and [sys.sp_cdc_disable_table (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-disable-table-transact-sql.md) to either be a member of the sysadmin role or a member of the database **database db_owner** role.
 
 Use of the stored procedures to support the administration of change data capture jobs is restricted to members of the server **sysadmin** role and members of the **database db_owner** role.
 
@@ -114,7 +114,7 @@ A database that is enabled for change data capture can be mirrored. To ensure th
 
 1. Ensure that [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] Agent is running on the mirror.
 
-1. Create the capture job and cleanup job on the mirror after the principal has failed over to the mirror. To create the jobs, use the stored procedure [Sys.sp_cdc_add_job (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-add-job-transact-sql.md).
+1. Create the capture job and cleanup job on the mirror after the principal has failed over to the mirror. To create the jobs, use the stored procedure [sys.sp_cdc_add_job (Transact-SQL)](../system-stored-procedures/sys-sp-cdc-add-job-transact-sql.md).
 
 For more information about database mirroring, see [Database Mirroring (SQL Server)](../../database-engine/database-mirroring/database-mirroring-sql-server.md).
 
@@ -145,7 +145,7 @@ Consider a scenario in which change data capture is enabled on the [!INCLUDE [ss
   SQL Server cannot load database '%.*ls' because change data capture is enabled. The currently installed edition of SQL Server does not support change data capture. Either disable change data capture in the database by using a supported edition of SQL Server, or upgrade the instance to one that supports change data capture.
   ```
 
-You can use [Sys.sp_cdc_disable_db](../system-stored-procedures/sys-sp-cdc-disable-db-transact-sql.md) to remove change data capture from a restored or attached database.
+You can use [sys.sp_cdc_disable_db](../system-stored-procedures/sys-sp-cdc-disable-db-transact-sql.md) to remove change data capture from a restored or attached database.
 
 <a id="Tracking"></a>
 
