@@ -23,7 +23,7 @@ helpviewer_keywords:
   
 - The primary replica of the availability group must currently be online.    
 - The instance that you intend on joining to the availability group has already been [added as a secondary replica](add-a-secondary-replica-to-an-availability-group-sql-server.md).
-- To use SQL Server Management Studio (SSMS), you must be connected to the server instance that hosts a primary replica. To use Transact-SQL or PowerShell, you must be connected to, and execute teh commands from, the secondary replica.
+- To use SQL Server Management Studio (SSMS), you must be connected to the server instance that hosts a primary replica. To use Transact-SQL or PowerShell, you must be connected to, and execute the commands from, the secondary replica.
 - The local server instance must be able to connect to the database mirroring endpoint of the server instance that is hosting the secondary replica.  
   
 > [!IMPORTANT]  
