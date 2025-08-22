@@ -28,9 +28,13 @@ This article summarizes the new features and enhancements for [!INCLUDE [sql-ser
 
 ## Get SQL Server 2025
 
-[Get SQL Server 2025 Preview](https://info.microsoft.com/ww-landing-sql-server-2025.html). Build number: 17.0.800.3.
+[Get SQL Server 2025 Preview](https://info.microsoft.com/ww-landing-sql-server-2025.html).
 
-For more information and known issues, see [SQL Server 2025 Preview release notes](sql-server-2025-release-notes.md).
+Review:
+
+- [Known issues](sql-server-2025-release-notes.md#known-issues)
+- [Build number](sql-server-2025-release-notes.md#build-number)
+- [Breaking changes](../database-engine/breaking-changes-to-database-engine-features-in-sql-server-2025.md)
 
 For the best experience with [!INCLUDE [sql-server-2025](../includes/sssql25-md.md)], use the [latest tools](../tools/overview-sql-tools.md).
 
@@ -105,7 +109,7 @@ The following sections identify features that are improved or introduced in [!IN
 - [Query Store and intelligent query processing](#query-store-and-intelligent-query-processing)
 - [Language](#language)
 - [Tools](#tools)
-- [Fabric](#microsoft-fabric)
+- [Microsoft Fabric](#microsoft-fabric)
 
 ## AI
 
@@ -279,7 +283,11 @@ The [intelligent query processing (IQP)](../relational-databases/performance/int
 
 ## Microsoft Fabric
 
-### Fabric mirroring for SQL Server 2025 (Preview)
+| New feature or update | Details |
+| --- | --- |
+| [Mirroring in Fabric](/fabric/database/mirrored-database/overview) | Continuously replicate data to Microsoft Fabric from SQL Server 2025 on-premises. Microsoft Fabric already includes mirroring from a variety of sources, including Azure SQL Database and Azure SQL Managed Instance. For more information on SQL Server 2025 database mirroring to Fabric, see [Mirrored SQL Server databases in Microsoft Fabric](/fabric/database/mirrored-database/sql-server). |
+
+### Fabric mirroring for SQL Server 2025 RC0 (Preview)
 
 - You can configure SQL Server resource governor to manage resource usage for Mirroring in Fabric for [!INCLUDE [sssql25-md](../includes/sssql25-md.md)]. Each workload group is for a specific phase of mirroring.
 

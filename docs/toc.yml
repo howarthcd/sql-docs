@@ -4411,6 +4411,8 @@ items:
       href: database-engine/install-windows/install-sql-server-from-the-command-prompt.md
     - name: Configuration File
       href: database-engine/install-windows/install-sql-server-using-a-configuration-file.md
+    - name: Slipstream installation
+      href: database-engine/install-windows/install-sql-server-using-slipstream.md
     - name: SysPrep
       href: database-engine/install-windows/install-sql-server-using-sysprep.md
     - name: PowerShell Desired State Configuration
@@ -4458,8 +4460,8 @@ items:
       href: database-engine/install-windows/upgrade-sql-server-management-tools.md
     - name: Installation Wizard (Setup)
       href: database-engine/install-windows/upgrade-sql-server-using-the-installation-wizard-setup.md
-    - name: Upgrade edition
-      href: database-engine/install-windows/upgrade-to-a-different-edition-of-sql-server-setup.md
+    - name: Change edition
+      href: database-engine/install-windows/upgrade-downgrade-sql-server-edition-setup.md
     - name: Upgrade Database Engine
       items:
       - name: Overview
