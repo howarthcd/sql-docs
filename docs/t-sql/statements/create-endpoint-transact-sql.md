@@ -110,21 +110,21 @@ FOR DATABASE_MIRRORING (
 
 #### *endPointName*
 
-The assigned name for the endpoint you are creating. Use when updating or deleting the endpoint.
+The assigned name for the endpoint you're creating. Use when updating or deleting the endpoint.
 
 #### AUTHORIZATION *login*
 
-Specifies a valid [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] or Windows login that is assigned ownership of the newly created endpoint object. If AUTHORIZATION is not specified, by default, the caller becomes owner of the newly created object.
+Specifies a valid [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] or Windows login that is assigned ownership of the newly created endpoint object. If AUTHORIZATION isn't specified, by default, the caller becomes owner of the newly created object.
 
 To assign ownership by specifying AUTHORIZATION, the caller must have IMPERSONATE permission on the specified *login*.
 
-#### The AUTHORIZATION option is not available in ALTER ENDPOINT. Ownership can only be assigned when the endpoint is created.
+The AUTHORIZATION option isn't available in ALTER ENDPOINT. Ownership can only be assigned when the endpoint is created.
 
 To reassign ownership, see [DROP ENDPOINT (Transact-SQL)](../../t-sql/statements/drop-endpoint-transact-sql.md) and then return to this article to recreate the endpoint.
 
 #### STATE = { STARTED | STOPPED | DISABLED }
 
-The state of the endpoint when it is created. If the state is not specified when the endpoint is created, STOPPED is the default.
+The state of the endpoint when it's created. If the state isn't specified when the endpoint is created, STOPPED is the default.
 
 #### STARTED
 
@@ -136,7 +136,7 @@ Endpoint is disabled. In this state, the server listens to port requests but ret
 
 #### STOPPED
 
-Endpoint is stopped. In this state, the server does not listen to the endpoint port or respond to any attempted requests to use the endpoint.
+Endpoint is stopped. In this state, the server doesn't listen to the endpoint port or respond to any attempted requests to use the endpoint.
 
 To change the state, use [ALTER ENDPOINT (Transact-SQL)](../../t-sql/statements/alter-endpoint-transact-sql.md).
 
@@ -158,11 +158,11 @@ The following arguments apply only to the TCP protocol option.
 
 Specifies the port number listened to for connections by the service broker TCP/IP protocol. By convention, 5022 is used but any number between 1024 and 32767 is valid.
 
-#### LISTENER_IP = ALL | (_4-part-ip_ ) | ( "*ip_address_v6*" )
+#### LISTENER_IP = ALL | (_4-part-ip_) | ( "*ip_address_v6*" )
 
 Specifies the IP address that the endpoint will listen on. The default is ALL. This means that the listener will accept a connection on any valid IP address.
 
-If you configure database mirroring with an IP address instead of a fully-qualified domain name (`ALTER DATABASE SET PARTNER = partner_IP_address` or `ALTER DATABASE SET WITNESS = witness_IP_address`), you have to specify `LISTENER_IP =IP_address` instead of `LISTENER_IP=ALL` when you create mirroring endpoints.
+If you configure database mirroring with an IP address instead of a fully qualified domain name (`ALTER DATABASE SET PARTNER = partner_IP_address` or `ALTER DATABASE SET WITNESS = witness_IP_address`), you have to specify `LISTENER_IP =IP_address` instead of `LISTENER_IP=ALL` when you create mirroring endpoints.
 
 ### T-SQL Options
 
@@ -182,7 +182,7 @@ The way connection is encrypted are negotiated between server and the client. Th
 
 #### STRICT
 
-Specifies that all the messages sent to this endpoint must be encrypted and fallback certificate wouldn't be presented by the endpoint. If the TLS header is not the first message, the server breaks the connection.
+Specifies that all the messages sent to this endpoint must be encrypted and fallback certificate wouldn't be presented by the endpoint. If the TLS header isn't the first message, the server breaks the connection.
 
 ### SERVICE_BROKER and DATABASE_MIRRORING Options
 
@@ -200,9 +200,7 @@ The supported authentication methods include NTLM and or Kerberos or both.
 > [!IMPORTANT]  
 > All mirroring connections on a server instance use a single database mirroring endpoint. Any attempt to create an additional database mirroring endpoint will fail.
 
-### \<authentication_options> ::=
-
-#### WINDOWS [ { NTLM \| KERBEROS \| NEGOTIATE } ] **
+#### WINDOWS [ { NTLM \| KERBEROS \| NEGOTIATE } ]
 
 Specifies that the endpoint is to connect using Windows Authentication protocol to authenticate the endpoints. This is the default.
 
@@ -226,7 +224,7 @@ Specifies whether encryption is used in the process. The default is REQUIRED.
 
 #### DISABLED
 
-Specifies that data sent over a connection is not encrypted.
+Specifies that data sent over a connection isn't encrypted.
 
 #### SUPPORTED
 
@@ -308,11 +306,11 @@ Enables the endpoint to perform in the role of both a witness and a partner in t
 For more information about these roles, see [Database Mirroring (SQL Server)](../../database-engine/database-mirroring/database-mirroring-sql-server.md).
 
 > [!NOTE]  
-> There is no default port for DATABASE_MIRRORING.
+> There's no default port for DATABASE_MIRRORING.
 
 ## Remarks
 
-ENDPOINT DDL statements cannot be executed inside a user transaction. ENDPOINT DDL statements do not fail even if an active snapshot isolation level transaction is using the endpoint being altered.
+ENDPOINT DDL statements can't be executed inside a user transaction. ENDPOINT DDL statements don't fail even if an active snapshot isolation level transaction is using the endpoint being altered.
 
 Requests can be executed against an ENDPOINT by the following:
 
