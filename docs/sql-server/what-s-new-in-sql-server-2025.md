@@ -331,6 +331,8 @@ For changes related to SQL Server Integration Services, see [What's New in SQL S
 
 The [Hot add CPU](../relational-databases/thread-and-task-architecture-guide.md#hot-add-cpu) feature is deprecated in this version of [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)], and is planned to be removed in a future version.
 
+The [lightweight pooling](../database-engine/configure-windows/lightweight-pooling-server-configuration-option.md) configuration option and the corresponding **fiber mode** feature is deprecated in this version of [!INCLUDE[ssNoVersion](../includes/ssnoversion-md.md)], and is planned for removal in a future version.
+
 **Purview access policies** (DevOps policies and data owner policies) are discontinued in this version of SQL Server. Use [Fixed server roles](../relational-databases/security/authentication-access/server-level-roles.md#fixed-server-level-roles-introduced-in-sql-server-2022) instead.
 
 - In place of the **SQL Performance Monitoring** Purview policy action, use the `##MS_ServerPerformanceStateReader##` and/or `##MS_PerformanceDefinitionReader##` fixed server roles.
