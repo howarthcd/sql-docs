@@ -46,9 +46,9 @@ This tutorial is divided into three lessons:
 
 | Lesson | Description |
 | --- | --- |
-| [Lesson 1: Creating the Conversation Objects](lesson-1-creating-the-conversation-objects.md) | In this lesson, you create the message types, contract, services, and queues that are required to support a basic Service Broker conversation. |
-| [Lesson 2: Beginning a Conversation and Transmitting Messages](lesson-2-beginning-a-conversation-and-transmitting-messages.md) | In this lesson, you complete a basic conversation by starting the conversation and transmitting a request message from the initiator to the target. You'll then transmit a reply message back to the initiator and end the conversation. |
-| [Lesson 3: Dropping the Conversation Objects](lesson-3-dropping-the-conversation-objects.md) | In this lesson, you drop the objects that were created to support the conversation. |
+| [Lesson 1: Create the conversation objects](lesson-1-creating-the-conversation-objects.md) | In this lesson, you create the message types, contract, services, and queues that are required to support a basic Service Broker conversation. |
+| [Lesson 2: Begin a conversation and transmit messages](lesson-2-beginning-a-conversation-and-transmitting-messages.md) | In this lesson, you complete a basic conversation by starting the conversation and transmitting a request message from the initiator to the target. You then transmit a reply message back to the initiator and end the conversation. |
+| Lesson 3: Drop the conversation objects](lesson-3-dropping-the-conversation-objects.md) | In this lesson, you drop the objects that were created to support the conversation. |
 
 ## Requirements
 
