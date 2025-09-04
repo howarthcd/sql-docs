@@ -1,10 +1,10 @@
 ---
-title: Implementing Internal Activation
+title: Implement Internal Activation
 description: "This tutorial is intended for users who are new to Service Broker, but are familiar with database concepts and Transact-SQL statements."
 author: rwestMSFT
 ms.author: randolphwest
 ms.reviewer: mikeray, maghan
-ms.date: 03/07/2025
+ms.date: 09/03/2025
 ms.service: sql
 ms.subservice: configuration
 ms.topic: how-to
@@ -65,16 +65,16 @@ To complete this tutorial, you should be familiar with the Transact-SQL language
 
 Your system must have the following installed:
 
-- Any supported edition of SQL Server.
+- Any supported edition of SQL Server
 
-- [SQL Server Management Studio](/ssms/).
+- [SQL Server Management Studio](/ssms/)
 
-- A supported internet browser.
+- A supported internet browser
 
-- The [!INCLUDE [sssampledbobject-md](../../includes/sssampledbobject-md.md)] sample database, which you can download from the [Microsoft SQL Server Samples and Community Projects](https://go.microsoft.com/fwlink/?LinkID=85384) home page.
+- The [!INCLUDE [sssampledbobject-md](../../includes/sssampledbobject-md.md)] sample database, which you can download from the [Microsoft SQL Server Samples and Community Projects](https://go.microsoft.com/fwlink/?LinkID=85384) home page
 
 ## Related content
 
-- [Completing a Conversation in a Single Database](completing-a-conversation-in-a-single-database.md)
-- [Completing a Conversation Between Databases](completing-a-conversation-between-databases.md)
-- [Completing a Conversation Between Instances](completing-a-conversation-between-instances.md)
+- [Complete a conversation in a single database](completing-a-conversation-in-a-single-database.md)
+- [Complete a conversation between databases](completing-a-conversation-between-databases.md)
+- [Complete a conversation between instances](completing-a-conversation-between-instances.md)
