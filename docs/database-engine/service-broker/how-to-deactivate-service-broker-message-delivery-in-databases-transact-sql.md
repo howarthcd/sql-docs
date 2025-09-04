@@ -14,7 +14,7 @@ ms.topic: how-to
 
 [!INCLUDE [sql-asdbmi](../../includes/applies-to-version/sql-asdbmi.md)]
 
-When message delivery isn't active, messages remain in the transmission queue. To determine whether Service Broker is active for a database, check the **is_broker_enabled** column of the `sys.databases` catalog view.
+When message delivery isn't active, messages remain in the transmission queue. To determine whether Service Broker is active for a database, check the `is_broker_enabled` column of the `sys.databases` catalog view.
 
 > [!NOTE]  
 > Deactivating Service Broker prevents messages from being sent from or delivered to the database. However, this doesn't prevent messages from arriving in the instance. To prevent messages from arriving in the instance, you must remove or stop the Service Broker endpoint.
