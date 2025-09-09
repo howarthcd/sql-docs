@@ -41,16 +41,6 @@ This article provides different syntax, arguments, remarks, permissions, and exa
 
 ::: moniker-end
 
-> [!TIP]
-> The conditional behavior described for the `MERGE` statement works best when the two tables have a complex mixture of matching characteristics. For example, inserting a row if it doesn't exist, or updating a row if it matches. When simply updating one table based on the rows of another table, improve the performance and scalability with `INSERT`, `UPDATE`, and `DELETE` statements. For example:
-
-```sql
-INSERT tbl_A (col, col2)
-SELECT col, col2
-FROM tbl_B
-WHERE NOT EXISTS (SELECT col FROM tbl_A A2 WHERE A2.col = tbl_B.col);
-```
-
 :::image type="icon" source="../../includes/media/topic-link-icon.svg" border="false"::: [Transact-SQL syntax conventions](../../t-sql/language-elements/transact-sql-syntax-conventions-transact-sql.md)
 
 ## Syntax
@@ -320,9 +310,19 @@ Specifies the search conditions to specify `<merge_search_condition>` or `<claus
 #### \<graph search pattern>
 
 Specifies the graph match pattern. For more information about the arguments for this clause, see [MATCH (Transact-SQL)](../queries/match-sql-graph.md).
+
 ::: moniker-end
 
 ## Remarks
+
+The conditional behavior described for the `MERGE` statement works best when the two tables have a complex mixture of matching characteristics. For example, inserting a row if it doesn't exist, or updating a row if it matches. When simply updating one table based on the rows of another table, improve the performance and scalability with `INSERT`, `UPDATE`, and `DELETE` statements. For example:
+
+```sql
+INSERT tbl_A (col, col2)
+SELECT col, col2
+FROM tbl_B
+WHERE NOT EXISTS (SELECT col FROM tbl_A A2 WHERE A2.col = tbl_B.col);
+```
 
 At least one of the three `MATCHED` clauses must be specified, but they can be specified in any order. A variable can't be updated more than once in the same `MATCHED` clause.
 
