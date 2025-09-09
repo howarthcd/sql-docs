@@ -5,7 +5,7 @@ description: Learn about restoring a deleted logical server in Azure SQL Databas
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: dinethi, jaypatel
-ms.date: 09/08/2025
+ms.date: 09/09/2025
 ms.service: azure-sql-database
 ms.subservice: backup-restore
 ms.topic: how-to
@@ -135,6 +135,9 @@ Follow these steps to set up the variables needed to hard-delete the soft-delete
    ```
 
 1. Create an API call body to restore the logical server first. After the restore, we will update the soft-delete retention to zero, and then proceed to hard-delete it. Replace `<Azure region name>` with your region name, for example, `East US 2`.
+
+   > [!TIP]
+   > Do not pass any other parameters with this request body.
 
    ```powershell
     $body={
