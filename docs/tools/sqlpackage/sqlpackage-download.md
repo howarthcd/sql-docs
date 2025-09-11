@@ -53,6 +53,16 @@ To uninstall SqlPackage, run the following command:
    dotnet tool uninstall -g microsoft.sqlpackage
    ```
 
+### Install SqlPackage with .NET 9 or later
+
+To install SqlPackage with a newer version of the .NET SDK, add `--allow-roll-forward` to the install command:
+
+   ```bash
+   dotnet tool install -g microsoft.sqlpackage --allow-roll-forward
+   ```
+
+This option allows SqlPackage to use a newer version of the .NET runtime if .NET 8 isn't installed.
+
 ### Troubleshoot installation
 
 If you encounter issues during installation, follow these steps:
