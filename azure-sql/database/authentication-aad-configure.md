@@ -1,15 +1,14 @@
 ---
-title: Configure Microsoft Entra authentication
+title: Configure Microsoft Entra Authentication
 titleSuffix: Azure SQL Database & SQL Managed Instance & Azure Synapse Analytics
 description: Learn how to connect to Azure SQL Database, Azure SQL Managed Instance, and Azure Synapse Analytics using the Microsoft Entra authentication.
 author: VanMSFT
 ms.author: vanto
-ms.reviewer: wiassaf, vanto, mathoma, maghan
-ms.date: 09/27/2024
+ms.reviewer: wiassaf, mathoma, maghan
+ms.date: 09/11/2025
 ms.service: azure-sql
 ms.subservice: security
 ms.topic: how-to
-monikerRange: "=azuresql || =azuresql-db || =azuresql-mi"
 ms.custom:
   - azure-synapse
   - has-adal-ref
@@ -18,6 +17,7 @@ ms.custom:
   - has-azure-ad-ps-ref, azure-ad-ref-level-one-done
   - sfi-image-nochange
   - sfi-ropc-nochange
+monikerRange: "=azuresql || =azuresql-db || =azuresql-mi"
 ---
 
 # Configure and manage Microsoft Entra authentication with Azure SQL
@@ -36,7 +36,7 @@ This article shows you how to use [Microsoft Entra ID for authentication](authen
 
 Alternatively, you can also [configure Microsoft Entra authentication for SQL Server on Azure Virtual Machines](../virtual-machines/windows/configure-azure-ad-authentication-for-sql-vm.md).
 
-<a id='azure-ad-authentication-methods'></a>
+<a id="azure-ad-authentication-methods"></a>
 
 ## Prerequisites
 
@@ -59,9 +59,9 @@ For more information, see:
 - [Manage Microsoft Entra ID using Windows PowerShell](/powershell/module/azuread)
 - [Hybrid Identity Required Ports and Protocols](/entra/identity/hybrid/connect/reference-connect-ports)
 
-<a id='provision-azure-ad-admin-sql-database'></a>
-<a id='create-and-populate-an-azure-ad-instance'></a>
-<a id='associate-or-add-an-azure-subscription-to-azure-active-directory'></a>
+<a id="provision-azure-ad-admin-sql-database"></a>
+<a id="create-and-populate-an-azure-ad-instance"></a>
+<a id="associate-or-add-an-azure-subscription-to-azure-active-directory"></a>
 
 ## Set Microsoft Entra admin
 
@@ -69,14 +69,14 @@ To use Microsoft Entra authentication with your resource, it needs to have the M
 
 The Microsoft Entra admin can also be configured when the Azure SQL resource is created. If a Microsoft Entra admin is already configured, skip this section.
 
-<a id='azure-ad-admin-with-a-server-in-sql-database'></a>
-<a id='provision-azure-ad-admin-sql-database'></a>
+<a id="azure-ad-admin-with-a-server-in-sql-database"></a>
+<a id="provision-azure-ad-admin-sql-database"></a>
 
 ### Azure SQL Database and Azure Synapse Analytics
 
-Setting the Microsoft Entra admin enables Microsoft Entra authentication for your [logical server](logical-servers.md) for Azure SQL Database and Azure Synapse Analytics. You can set a Microsoft Entra admin for your server by using the Azure portal, PowerShell, Azure CLI, or REST APIs.
+Setting the Microsoft Entra admin enables Microsoft Entra authentication for your [Logical server](logical-servers.md) for Azure SQL Database and Azure Synapse Analytics. You can set a Microsoft Entra admin for your server by using the Azure portal, PowerShell, Azure CLI, or REST APIs.
 
-In the Azure portal, you can find the **logical server** name 
+In the Azure portal, you can find the **logical server** name
 
 - In the **server name** field on the **Overview** page of Azure SQL Database.
 - In the **server name** field on the **Overview** page of your standalone dedicated SQL pool in Azure Synapse Analytics.
@@ -90,21 +90,21 @@ To set the Microsoft Entra admin for your logical server in the Azure portal, fo
 
 1. Search for **SQL servers** and then select the logical server for your database resource to open the **SQL server** pane.
 
-    :::image type="content" source="media/authentication-aad-configure/search-for-and-select-sql-servers.png" alt-text="Screenshot showing how to search for and select SQL servers.":::
+   :::image type="content" source="media/authentication-aad-configure/search-for-and-select-sql-servers.png" alt-text="Screenshot showing how to search for and select SQL servers.":::
 
 1. On the **SQL server** pane for your logical server, select **Microsoft Entra ID** under **Settings** to open the **Microsoft Entra ID** pane.
 
 1. On the **Microsoft Entra ID** pane, select **Set admin** to open the **Microsoft Entra ID** pane.
 
-    :::image type="content" source="media/authentication-aad-configure/sql-servers-set-active-directory-admin.png" alt-text="Screenshot shows the option to set the Microsoft Entra admin for SQL servers." lightbox="media/authentication-aad-configure/sql-servers-set-active-directory-admin.png":::
+   :::image type="content" source="media/authentication-aad-configure/sql-servers-set-active-directory-admin.png" alt-text="Screenshot shows the option to set the Microsoft Entra admin for SQL servers." lightbox="media/authentication-aad-configure/sql-servers-set-active-directory-admin.png":::
 
-1. The **Microsoft Entra ID** pane shows all users, groups, and applications in your current directory and allows you to search by name, alias, or ID. Find your desired identity for your Microsoft Entra admin and select it, then click **Select** to close the pane.
+1. The **Microsoft Entra ID** pane shows all users, groups, and applications in your current directory and allows you to search by name, alias, or ID. Find your desired identity for your Microsoft Entra admin and select it, then select **Select** to close the pane.
 
 1. At the top of the **Microsoft Entra ID** page for your logical server, select **Save**.
 
-    :::image type="content" source="media/authentication-aad-configure/save.png" alt-text="Screenshot shows the option to save a Microsoft Entra admin." lightbox="media/authentication-aad-configure/save.png":::
+   :::image type="content" source="media/authentication-aad-configure/save.png" alt-text="Screenshot shows the option to save a Microsoft Entra admin." lightbox="media/authentication-aad-configure/save.png":::
 
-    The **Object ID** is displayed next to the admin name for Microsoft Entra users and groups. For applications (service principals), the **Application ID** is displayed.
+   The **Object ID** is displayed next to the admin name for Microsoft Entra users and groups. For applications (service principals), the **Application ID** is displayed.
 
 The process of changing the administrator might take several minutes. Then the new administrator appears in the **Microsoft Entra admin** field.
 
@@ -151,7 +151,7 @@ Set-AzSqlServerActiveDirectoryAdministrator @parameters
 ```
 
 > [!NOTE]  
-> The **ObjectID** is required when the **DisplayName** is not unique. To retrieve the **ObjectID** and **DisplayName** values, you can view the properties of a user or group in the Microsoft Entra ID section of the Azure portal.
+> The **ObjectID** is required when the **DisplayName** isn't unique. To retrieve the **ObjectID** and **DisplayName** values, you can view the properties of a user or group in the Microsoft Entra ID section of the Azure portal.
 
 The following example returns information about the current Microsoft Entra admin for the server:
 
@@ -204,7 +204,7 @@ You can also use the [Server Azure AD Administrator](/rest/api/sql/server-azure-
 > [!NOTE]  
 > The Microsoft Entra admin is stored in the server's `master` database as a user (database principal). Since database principal names must be unique, the display name of the admin can't be the same as the name of any user in the server's `master` database. If a user with the name already exists, the Microsoft Entra admin setup fails and rolls back, indicating that the name is already in use.
 
-<a id='provision-azure-ad-admin-sql-managed-instance'></a>
+<a id="provision-azure-ad-admin-sql-managed-instance"></a>
 
 ### Azure SQL Managed Instance
 
@@ -220,14 +220,13 @@ To grant your SQL managed instance read permissions to Microsoft Entra ID by usi
 
 1. In the [Azure portal **Directories + subscriptions pane**](https://portal.azure.com/#settings/directory), choose the directory that contains your managed instance as the **Current directory**.```
 
-
 1. Search for **SQL managed instances** and then select your managed instance to open the **SQL managed instance** pane. Then,  select **Microsoft Entra ID** under **Settings** to open the **Microsoft Entra ID** pane for your instance.
 
    :::image type="content" source="media/authentication-aad-configure/active-directory-pane.png" alt-text="Screenshot of the Azure portal showing the Microsoft Entra admin page open for the selected SQL managed instance." lightbox="media/authentication-aad-configure/active-directory-pane.png":::
 
 1. On the **Microsoft Entra admin** pane, select **Set admin** from the navigation bar to open the **Microsoft Entra ID** pane.
 
-    :::image type="content" source="media/authentication-aad-configure/set-admin.png" alt-text="Screenshot showing the Set admin command highlighted on the Microsoft Entra admin page for the selected SQL managed instance." lightbox="media/authentication-aad-configure/set-admin.png":::
+   :::image type="content" source="media/authentication-aad-configure/set-admin.png" alt-text="Screenshot showing the Set admin command highlighted on the Microsoft Entra admin page for the selected SQL managed instance." lightbox="media/authentication-aad-configure/set-admin.png":::
 
 1. On the **Microsoft Entra ID** pane, search for a user, check the box next to the user or group to be an administrator, and then press **Select** to close the pane and go back to the **Microsoft Entra admin** page for your managed instance.
 
@@ -235,11 +234,11 @@ To grant your SQL managed instance read permissions to Microsoft Entra ID by usi
 
 1. From the navigation bar of the **Microsoft Entra admin** page for your managed instance, select **Save** to confirm your Microsoft Entra administrator.
 
-    :::image type="content" source="media/authentication-aad-configure/save.png" alt-text="Screenshot of the Microsoft Entra admin page with the Save button in the top row next to the Set admin and Remove admin buttons." lightbox="media/authentication-aad-configure/save.png":::
+   :::image type="content" source="media/authentication-aad-configure/save.png" alt-text="Screenshot of the Microsoft Entra admin page with the Save button in the top row next to the Set admin and Remove admin buttons." lightbox="media/authentication-aad-configure/save.png":::
 
-    After the administrator change operation completes, the new administrator appears in the Microsoft Entra admin field.
+   After the administrator change operation completes, the new administrator appears in the Microsoft Entra admin field.
 
-    The **Object ID** is displayed next to the admin name for Microsoft Entra users and groups. For applications (service principals), the **Application ID** is displayed.
+   The **Object ID** is displayed next to the admin name for Microsoft Entra users and groups. For applications (service principals), the **Application ID** is displayed.
 
 > [!TIP]  
 > To remove the admin, select **Remove admin** at the top of the Microsoft Entra ID page, then select **Save**.
@@ -333,11 +332,11 @@ The **Microsoft Entra ID** page for SQL Managed Instance in the Azure portal dis
 
 1. Select the banner on top of the **Microsoft Entra ID** page and grant permission to the system-assigned or user-assigned managed identity that represents your instance. Only a Privileged Role Administrator or higher role in your tenant can perform this operation.
 
-    :::image type="content" source="media/authentication-aad-configure/grant-permissions.png" alt-text="Screenshot of the dialog for granting permissions to a SQL managed instance for accessing Microsoft Entra ID with the Grant permissions button selected.":::
+   :::image type="content" source="media/authentication-aad-configure/grant-permissions.png" alt-text="Screenshot of the dialog for granting permissions to a SQL managed instance for accessing Microsoft Entra ID with the Grant permissions button selected.":::
 
 1. When the operation succeeds, a **Success** notification shows in the top-right corner:
 
-    :::image type="content" source="media/authentication-aad-configure/success.png" alt-text="Screenshot of a notification confirming that Microsoft Entra ID read permissions are successfully updated for the managed instance.":::
+   :::image type="content" source="media/authentication-aad-configure/success.png" alt-text="Screenshot of a notification confirming that Microsoft Entra ID read permissions are successfully updated for the managed instance.":::
 
 #### [PowerShell](#tab/azure-powershell)
 
@@ -409,7 +408,7 @@ To connect to a database in SQL Database or Azure Synapse Analytics with Microso
 
 ### Database user permissions
 
-When a database user is created, it receives the **CONNECT** permission to the database by default. A database user also inherits permissions in two circumstances:
+When a database user is created, it receives the `CONNECT` permission to the database by default. A database user also inherits permissions in two circumstances:
 
 - If the user is a member of a Microsoft Entra group that's also assigned permissions on the server.
 - If the user is created from a login, it inherits the server-assigned permissions of the login applicable on the database.
@@ -423,7 +422,7 @@ For more information, see:
 
 ### Contained database users
 
-A contained database user is a type of SQL user that isn't connected to a login in the `master` database. To create a Microsoft Entra contained database user, connect to the database with a Microsoft Entra identity that has at least the **ALTER ANY USER** permission. The following T-SQL example creates a database principal `Microsoft_Entra_principal_name` from Microsoft Entra ID.
+A contained database user is a type of SQL user that isn't connected to a login in the `master` database. To create a Microsoft Entra contained database user, connect to the database with a Microsoft Entra identity that has at least the `ALTER` ANY USER** permission. The following T-SQL example creates a database principal `Microsoft_Entra_principal_name` from Microsoft Entra ID.
 
 ```sql
 CREATE USER [<Microsoft_Entra_principal_name>] FROM EXTERNAL PROVIDER;
@@ -449,7 +448,7 @@ CREATE USER [adrian@contoso.com] FROM EXTERNAL PROVIDER;
 
 ### Login based users
 
-> [!NOTE]
+> [!NOTE]  
 > [Microsoft Entra server principals (logins)](authentication-azure-ad-logins.md) are currently in public preview for Azure SQL Database and Azure Synapse Analytics. Microsoft Entra logins are generally available for Azure SQL Managed Instance and SQL Server 2022.
 
 [Microsoft Entra server principals (or logins)](authentication-azure-ad-logins.md) are supported, which means contained database users aren't required. Database principals (users) can be created based off of a server principal, which means Microsoft Entra users can inherit server-level assigned permissions of a login.
@@ -473,7 +472,9 @@ CREATE USER [alice@fabrikam.com] FROM EXTERNAL PROVIDER;
 
 A federated domain user account that is imported into a managed domain as an external user, must use the managed domain identity.
 
-### Naming considerations
+<a id="naming-considerations"></a>
+
+### Name considerations
 
 Special characters like colon `:` or ampersand `&` when included as user names in the T-SQL `CREATE LOGIN` and `CREATE USER` statements aren't supported.
 
@@ -485,7 +486,7 @@ The `CREATE USER ... FROM EXTERNAL PROVIDER` command requires Azure SQL access t
 
 - You might encounter SQL error 33134, which contains the Microsoft Entra ID-specific error message. The error usually says that access is denied, that the user must enroll in MFA to access the resource, or that access between first-party applications must be handled via preauthorization. In the first two cases, the issue is usually caused by Conditional Access policies that are set in the user's Microsoft Entra tenant: they prevent the user from accessing the external provider. Updating the Conditional Access policies to allow access to the application '00000003-0000-0000-c000-000000000000' (the application ID of the Microsoft Graph API) should resolve the issue. If the error says access between first-party applications must be handled via preauthorization, the issue is because the user is signed in as a service principal. The command should succeed if it's executed by a user instead.
 - If you receive a **Connection Timeout Expired**, you might need to set the `TransparentNetworkIPResolution`
-parameter of the connection string to false. For more information, see [Connection timeout issue with .NET Framework 4.6.1 - TransparentNetworkIPResolution](/archive/blogs/dataaccesstechnologies/connection-timeout-issue-with-net-framework-4-6-1-transparentnetworkipresolution).
+  parameter of the connection string to false. For more information, see [Connection timeout issue with .NET Framework 4.6.1 - TransparentNetworkIPResolution](/archive/blogs/dataaccesstechnologies/connection-timeout-issue-with-net-framework-4-6-1-transparentnetworkipresolution).
 
 For more information about creating contained database users based on Microsoft Entra identities, see [CREATE USER](/sql/t-sql/statements/create-user-transact-sql).
 
@@ -493,7 +494,7 @@ For more information about creating contained database users based on Microsoft 
 
 For improved security to your Azure SQL resource, consider configuring [multifactor authentication (MFA)](authentication-aad-overview.md#multifactor-authentication-mfa), which prompts the user to use a second alternative method to authenticate to the database, such as a phone call or an authenticator app.
 
-To use multifactor authentication with your Azure SQL resource, first [enable multifactor authentication](/entra/identity/authentication/concept-mfa-howitworks#how-to-enable-and-use-microsoft-entra-multifactor-authentication), and then use a [conditional access policy](conditional-access-configure.md) to enforce MFA for your Azure SQL resource.
+To use multifactor authentication with your Azure SQL resource, first [enable multifactor authentication](/entra/identity/authentication/concept-mfa-howitworks#how-to-enable-and-use-microsoft-entra-multifactor-authentication), and then use a [Conditional access policy](conditional-access-configure.md) to enforce MFA for your Azure SQL resource.
 
 ## Connect with Microsoft Entra
 
