@@ -220,7 +220,31 @@ Original SQL projects include two large blocks for Release and Debug build setti
 
 The [project properties](../concepts/project-properties.md) reference lists the available properties and their defaults.
 
-## Step 4: Build a `.dacpac` file from the modified project for comparison
+## Step 4: Solution files
+
+Your project file might be referenced in a solution file (`.sln`). If you have a solution file, you should update it to reference the new SDK-style project file. If you do not have a solution file, you can skip this section and proceed to Step 5.
+
+### Optional: Create a new solution file
+
+For a solution file that only contains the SQL project, it is more straightforward to remove the solution file and create a new solution file with the SDK-style project.
+
+```bash
+dotnet new sln --name MySolution
+dotnet sln MySolution.sln add MyDatabaseProject\MyDatabaseProject.sqlproj
+```
+
+### Optional: Edit the solution file
+
+When a solution file contains multiple projects, you should update the solution file to reference the new SDK-style project file. You can edit the solution file in a text editor and change the project reference to the new SDK-style project file. The project reference in the solution file should look like this:
+
+```xml
+Project("{PROJECT_TYPE_GUID}") = "MyDatabaseProject", "MyDatabaseProject\MyDatabaseProject.sqlproj", "{PROJECT_GUID}"
+EndProject
+```
+
+The `PROJECT_TYPE_GUID` value for a Microsoft.Build.Sql project is `42EA0DBD-9CF1-443E-919E-BE9C484E4577`, and the `PROJECT_GUID` is a unique identifier for the project found in the project file `<ProjectGuid>` element. The `PROJECT_GUID` value is not required to be changed and can remain the same as in the original project file. The `PROJECT_TYPE_GUID` value is required to be changed to the Microsoft.Build.Sql project type GUID.
+
+## Step 5: Build a `.dacpac` file from the modified project for comparison
 
 ::: zone pivot="sq1-visual-studio"
 
@@ -260,7 +284,7 @@ dotnet build MyDatabaseProject.sqlproj
 
 The build process creates a `.dacpac` file in the `bin\Debug` folder of the project by default. Using file explorer, locate the `.dacpac` created by the build process and copy it into a new folder outside of the project directory. We use this `.dacpac` file for comparison to validate our conversion later.
 
-## Step 5: Verify that the `.dacpac` files are the same
+## Step 6: Verify that the `.dacpac` files are the same
 
 To verify that the conversion was successful, compare the `.dacpac` files created from the original and modified projects. The [schema comparison](../concepts/schema-comparison.md) capabilities of SQL projects allow us to visualize the difference in database models between the two `.dacpac` files. Alternatively, the DacpacVerify command-line utility can be used to compare the two `.dacpac` files, including their pre/post-deployment scripts and project settings.
 
@@ -310,30 +334,6 @@ When schema comparison is run, no results should be displayed. The lack of diffe
 
 > [!NOTE]  
 > The comparison of `.dacpac` files through schema comparison doesn't validate pre/post-deployment scripts, refactorlog, or other project settings. It only validates the database model. Using the DacpacVerify command-line utility is the recommended way to validate that the two `.dacpac` files are equivalent.
-
-## Step 6: Solution files
-
-Your project file might be referenced in a solution file (`.sln`). If you have a solution file, you should update it to reference the new SDK-style project file.
-
-### Optional: Create a new solution file
-
-For a solution file that only contains the SQL project, it is more straightforward to remove the solution file and create a new solution file with the SDK-style project.
-
-```bash
-dotnet new sln --name MySolution
-dotnet sln MySolution.sln add MyDatabaseProject\MyDatabaseProject.sqlproj
-```
-
-### Optional: Edit the solution file
-
-When a solution file contains multiple projects, you should update the solution file to reference the new SDK-style project file. You can edit the solution file in a text editor and change the project reference to the new SDK-style project file. The project reference in the solution file should look like this:
-
-```xml
-Project("{PROJECT_TYPE_GUID}") = "MyDatabaseProject", "MyDatabaseProject\MyDatabaseProject.sqlproj", "{PROJECT_GUID}"
-EndProject
-```
-
-The `PROJECT_TYPE_GUID` value for a Microsoft.Build.Sql project is `42EA0DBD-9CF1-443E-919E-BE9C484E4577`, and the `PROJECT_GUID` is a unique identifier for the project found in the project file `<ProjectGuid>` element. The `PROJECT_GUID` value is not required to be changed and can remain the same as in the original project file. The `PROJECT_TYPE_GUID` value is required to be changed to the Microsoft.Build.Sql project type GUID.
 
 ## Related content
 
