@@ -16,7 +16,7 @@ monikerRange:
 ---
 # Nested Common Table Expression (CTE) in Fabric data warehousing (Transact-SQL)
 
-[!INCLUDE [fabric-se-and-dw](../../includes/applies-to-version/fabric-se-and-dw.md)]
+[!INCLUDE [Fabric SE DW](../../includes/applies-to-version/fabric-se-dw.md)]
 
 Common Table Expressions (CTEs) can simplify complex queries by deconstructing ordinarily complex queries into reusable blocks.
 

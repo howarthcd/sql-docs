@@ -31,7 +31,7 @@ helpviewer_keywords:
   
 -   [!INCLUDE[msCoName](../../includes/msconame-md.md)] [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [fabric-sqldb](../../includes/fabric-sqldb.md)]
  
--   [!INCLUDE [Fabric SQL analytics endpoint and DW](../../includes/fabric-se-and-dw.md)]
+-   [!INCLUDE [Fabric SQL analytics endpoint and DW](../../includes/fabric-se-dw.md)]
   
 -   Oracle  
   
