@@ -1,19 +1,19 @@
 ---
-title: Microsoft Entra authentication
+title: Microsoft Entra Authentication
 titleSuffix: Azure SQL Database & Azure SQL Managed Instance & Azure Synapse Analytics
 description: Learn about how to use Microsoft Entra ID for authentication with Azure SQL Database, Azure SQL Managed Instance, and Synapse SQL in Azure Synapse Analytics
 author: VanMSFT
 ms.author: vanto
-ms.reviewer: wiassaf, vanto, mathoma, randolphwest
-ms.date: 09/27/2024
+ms.reviewer: wiassaf, mathoma, randolphwest
+ms.date: 09/11/2025
 ms.service: azure-sql
 ms.subservice: security
 ms.topic: conceptual
-monikerRange: "=azuresql || =azuresql-db || =azuresql-mi"
 ms.custom:
   - azure-synapse
   - sqldbrb=1
   - sfi-image-nochange
+monikerRange: "=azuresql || =azuresql-db || =azuresql-mi"
 ---
 # Microsoft Entra authentication for Azure SQL
 
@@ -21,7 +21,7 @@ ms.custom:
 
 This article provides an in depth overview of using Microsoft Entra authentication with [Azure SQL Database](sql-database-paas-overview.md), [Azure SQL Managed Instance](../managed-instance/sql-managed-instance-paas-overview.md), [SQL Server on Azure VMs](../virtual-machines/windows/sql-server-on-azure-vm-iaas-what-is-overview.md), [Synapse SQL in Azure Synapse Analytics](/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-what-is) and [SQL Server for Windows and Linux](/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview).
 
-If you want to configure Microsoft Entra authentication, review: 
+If you want to configure Microsoft Entra authentication, review:
 - [Azure SQL Database and Azure SQL Managed Instance](authentication-aad-configure.md)
 - [SQL Server on Azure VMs](../virtual-machines/windows/configure-azure-ad-authentication-for-sql-vm.md)
 
@@ -63,9 +63,9 @@ The general steps to configure Microsoft Entra authentication are:
 
 Azure SQL supports using the following Microsoft Entra identities as logins and users (principals) in your servers and databases:
 
-  - **Microsoft Entra users**: Any [type of user](/entra/fundamentals/how-to-create-delete-users#types-of-users) in a Microsoft Entra tenant, which includes internal users, external users, guests, and members. Members of an Active Directory domain [federated with Microsoft Entra ID](/entra/identity/hybrid/connect/whatis-fed) are also supported, and can be configured for [seamless single sign-on](/entra/identity/hybrid/connect/how-to-connect-sso).
-  - **Applications**: applications that exist in Azure can use service principals or managed identities to authenticate directly to Azure SQL. Using managed identities is preferable since authentication is passwordless and eliminates the need for developer-managed credentials.
-  - **Microsoft Entra groups**, which can simplify access management across your organization by managing user and application access based on group membership.
+- **Microsoft Entra users**: Any [type of user](/entra/fundamentals/how-to-create-delete-users#types-of-users) in a Microsoft Entra tenant, which includes internal users, external users, guests, and members. Members of an Active Directory domain [federated with Microsoft Entra ID](/entra/identity/hybrid/connect/whatis-fed) are also supported, and can be configured for [seamless single sign-on](/entra/identity/hybrid/connect/how-to-connect-sso).
+- **Applications**: applications that exist in Azure can use service principals or managed identities to authenticate directly to Azure SQL. Using managed identities is preferable since authentication is passwordless and eliminates the need for developer-managed credentials.
+- **Microsoft Entra groups**, which can simplify access management across your organization by managing user and application access based on group membership.
 
 For *user identities*, the following authentication methods are supported:
 
@@ -91,7 +91,7 @@ The Microsoft Entra admin plays a special role: it's the first account that can 
 
 ## Microsoft Entra principals
 
-> [!NOTE]
+> [!NOTE]  
 > [Microsoft Entra server principals (logins)](authentication-azure-ad-logins.md) are currently in public preview for Azure SQL Database and Azure Synapse Analytics. Microsoft Entra logins are generally available for Azure SQL Managed Instance and SQL Server 2022.
 
 Microsoft Entra identities can be created as principals in Azure SQL in three ways:
@@ -117,7 +117,7 @@ A Microsoft Entra login has the following property values in [sys.server_princip
 
 | Property | Value |
 | --- | --- |
-| SID (Security Identifier) | Binary representation of the Microsoft Entra identity's object ID |
+| `SID` (Security Identifier) | Binary representation of the Microsoft Entra identity's object ID |
 | type | E = External login or application from Microsoft Entra ID<br />X = External group from Microsoft Entra ID |
 | type_desc | EXTERNAL_LOGIN for Microsoft Entra login or app<br />EXTERNAL_GROUP for Microsoft Entra group |
 
@@ -135,7 +135,7 @@ The following table details the Microsoft Entra login-based user property values
 
 | Property | Value |
 | --- | --- |
-| SID (Security Identifier) | Binary representation of the Microsoft Entra identity's object ID, plus 'AADE' |
+| `SID` (Security Identifier) | Binary representation of the Microsoft Entra identity's object ID, plus 'AADE' |
 | type | E = External login or application from Microsoft Entra ID<br />X = External group from Microsoft Entra ID |
 | type_desc | EXTERNAL_LOGIN for Microsoft Entra login or app<br />EXTERNAL_GROUP for Microsoft Entra group |
 
@@ -149,15 +149,15 @@ The following T-SQL shows how to create a contained database user for a Microsof
 CREATE USER [MSEntraUser] FROM EXTERNAL PROVIDER
 ```
 
-A Microsoft Entra database-based user has the same property values as login-based users in [sys.database_principals](/sql/relational-databases/system-catalog-views/sys-database-principals-transact-sql), except for how the SID is constructed:
+A Microsoft Entra database-based user has the same property values as login-based users in [sys.database_principals](/sql/relational-databases/system-catalog-views/sys-database-principals-transact-sql), except for how the `SID` is constructed:
 
 | Property | Value |
 | --- | --- |
-| SID (Security Identifier) | Binary representation of the Microsoft Entra identity's object ID |
+| `SID` (Security Identifier) | Binary representation of the Microsoft Entra identity's object ID |
 | type | E = External login or application from Microsoft Entra ID<br />X = External group from Microsoft Entra ID |
 | type_desc | EXTERNAL_LOGIN for Microsoft Entra login or app<br />EXTERNAL_GROUP for Microsoft Entra group |
 
-To get the original Microsoft Entra GUID that the SID is based on, use the following T-SQL conversion:
+To get the original Microsoft Entra GUID that the `SID` is based on, use the following T-SQL conversion:
 
 ```sql
 SELECT CAST(sid AS UNIQUEIDENTIFIER) AS EntraID FROM sys.database_principals
@@ -187,7 +187,6 @@ SELECT
   sid
 FROM sys.database_principals WHERE TYPE = 'E' OR TYPE = 'X'
 ```
-
 
 ## Microsoft Entra-only authentication
 
@@ -258,13 +257,13 @@ For creating Microsoft Entra principals and a few other scenarios, Azure SQL nee
 
 - If the SQL principal executing the command is a user identity, no additional permissions on the SQL instance are required to query MS Graph.
 - If the SQL principal executing the command is a service identity, for example a service principal or managed identity, then the Azure SQL instance requires its own permissions to query MS Graph.
-   - Application permissions can be assigned to the primary server identity (managed identity) of the logical server or managed instance. The SQL process can use the primary server identity to authenticate to other Azure services in a tenant, such as MS Graph. The following table explains various scenarios and the MS Graph permissions required for the command to execute successfully.
+  - Application permissions can be assigned to the primary server identity (managed identity) of the logical server or managed instance. The SQL process can use the primary server identity to authenticate to other Azure services in a tenant, such as MS Graph. The following table explains various scenarios and the MS Graph permissions required for the command to execute successfully.
 
 | Scenario | Minimum Permission |
 | --- | --- |
-| CREATE USER or CREATE LOGIN for a Microsoft Entra service principal or managed identity | Application.Read.All |
-| CREATE USER or CREATE LOGIN for a Microsoft Entra user | User.Read.All |
-| CREATE USER or CREATE LOGIN for a Microsoft Entra group | GroupMember.Read.All |
+| `CREATE` USER or `CREATE LOGIN` for a Microsoft Entra service principal or managed identity | Application.Read.All |
+| `CREATE` USER or `CREATE LOGIN` for a Microsoft Entra user | User.Read.All |
+| `CREATE` USER or `CREATE LOGIN` for a Microsoft Entra group | GroupMember.Read.All |
 | Microsoft Entra authentication with Azure SQL Managed Instance | Directory Readers role assigned to the managed instance identity |
 
 > [!TIP]  
@@ -296,7 +295,7 @@ Once Microsoft Entra authentication has been configured for your Azure SQL resou
 When using Microsoft Entra authentication with Azure SQL, consider the following limitations:
 
 - Microsoft Entra users and service principals (Microsoft Entra applications) that are members of more than 2048 Microsoft Entra security groups aren't supported and can't log into the database.
-- The following system functions aren't supported and return NULL values when executed by Microsoft Entra principals:
+- The following system functions aren't supported and return `NULL` values when executed by Microsoft Entra principals:
 
   - `SUSER_ID()`
   - `SUSER_NAME(<ID>)`
@@ -312,13 +311,13 @@ When using Microsoft Entra authentication with Azure SQL Database and Azure Syna
 
 - Microsoft Entra users that are part of a group that is member of the `db_owner` database role might see the following error when attempting to use the **[CREATE DATABASE SCOPED CREDENTIAL](/sql/t-sql/statements/create-database-scoped-credential-transact-sql)** syntax against Azure SQL Database and Azure Synapse:
 
-    `SQL Error [2760] [S0001]: The specified schema name 'user@mydomain.com' either doesn't exist or you do not have permission to use it.`
+  `SQL Error [2760] [S0001]: The specified schema name 'user@mydomain.com' either doesn't exist or you do not have permission to use it.`
 
-    To mitigate the **CREATE DATABASE SCOPED CREDENTIAL** issue, add the Microsoft Entra user's identity to the `db_owner` role directly.
+  To mitigate the `CREATE DATABASE SCOPED CREDENTIAL` issue, add the Microsoft Entra user's identity to the `db_owner` role directly.
 
 - Azure SQL Database and Azure Synapse Analytics doesn't create implicit users for users logged in as part of a Microsoft Entra group membership. Because of this, various operations that require assigning ownership can fail, even if the Microsoft Entra group is added as a member to a role with those permissions.
 
-   For example, a user signed into a database via a Microsoft Entra group with the **db_ddladmin** role can't execute CREATE SCHEMA, ALTER SCHEMA, and other object creation statements without a schema explicitly defined (such as table, view, or type, for example). To resolve this, a Microsoft Entra user must be created for that user, or the Microsoft Entra group must be altered to assign a DEFAULT_SCHEMA such as **dbo**.
+  For example, a user signed into a database via a Microsoft Entra group with the **db_ddladmin** role can't execute `CREATE SCHEMA`, `ALTER SCHEMA`, and other object creation statements without a schema explicitly defined (such as table, view, or type, for example). To resolve this, a Microsoft Entra user must be created for that user, or the Microsoft Entra group must be altered to assign a `DEFAULT_SCHEMA` such as **dbo**.
 
 - When using geo-replication and failover groups, the Microsoft Entra administrator must be configured for both the primary and the secondary servers. If a server doesn't have a Microsoft Entra administrator, then Microsoft Entra logins and users receive a `Cannot connect` error.
 - Removing the Microsoft Entra administrator for the server prevents any Microsoft Entra authentication connections to the server. If necessary, a SQL Database administrator can drop unusable Microsoft Entra users manually.
@@ -330,7 +329,7 @@ When using Microsoft Entra authentication with Azure SQL Managed Instance, consi
 - Microsoft Entra server principals (logins) and users are supported for [SQL Managed Instance](../managed-instance/sql-managed-instance-paas-overview.md).
 - Setting a Microsoft Entra group login as a database owner isn't supported in [SQL Managed Instance](../managed-instance/sql-managed-instance-paas-overview.md).
 
-   - An extension of this is that when a group is added as part of the `dbcreator` server role, users from this group can connect to the SQL Managed Instance and create new databases, but won't be able to access the database. This is because the new database owner is SA, and not the Microsoft Entra user. This issue doesn't manifest if the individual user is added to the `dbcreator` server role.
+  - An extension of this is that when a group is added as part of the `dbcreator` server role, users from this group can connect to the SQL Managed Instance and create new databases, but won't be able to access the database. This is because the new database owner is SA, and not the Microsoft Entra user. This issue doesn't manifest if the individual user is added to the `dbcreator` server role.
 
 - Microsoft Entra server principals (logins) for SQL Managed Instance allows the possibility of creating multiple logins that can be added to the `sysadmin` role.
 - SQL Agent management and jobs execution are supported for Microsoft Entra logins.

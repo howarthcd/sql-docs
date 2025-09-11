@@ -1,10 +1,10 @@
 ---
-title: "Row-level security"
+title: "Row-Level Security"
 description: Learn how row-level security uses group membership or execution context to control access to rows in a database table in SQL Server.
 author: VanMSFT
 ms.author: vanto
 ms.reviewer: wiassaf
-ms.date: 09/16/2024
+ms.date: 09/11/2025
 ms.service: sql
 ms.subservice: "security"
 ms.topic: conceptual
@@ -30,14 +30,16 @@ Row-level security simplifies the design and coding of security in your applicat
 
 The access restriction logic is located in the database tier rather than away from the data in another application tier. The database system applies the access restrictions every time that data access is attempted from any tier. This makes your security system more reliable and robust by reducing the surface area of your security system.
 
-Implement RLS by using the [CREATE SECURITY POLICY](../../t-sql/statements/create-security-policy-transact-sql.md) [!INCLUDE [tsql](../../includes/tsql-md.md)] statement, and predicates created as [inline table-valued functions](../user-defined-functions/create-user-defined-functions-database-engine.md).
+Implement RLS by using the [CREATE SECURITY POLICY](../../t-sql/statements/create-security-policy-transact-sql.md) [!INCLUDE [tsql](../../includes/tsql-md.md)] statement, and predicates created as [Inline table-valued functions](../user-defined-functions/create-user-defined-functions-database-engine.md).
 
 Row-level security was first introduced to [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)].
 
 > [!NOTE]  
 > This article is focused on [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] and Azure SQL platforms. For [!INCLUDE [fabric](../../includes/fabric.md)], see [Row-level security in Microsoft Fabric](/fabric/data-warehouse/row-level-security).
 
-## <a id="Description"></a> Description
+<a id="Description"></a>
+
+## Description
 
 Row-level security (RLS) supports two types of security predicates:
 
@@ -83,7 +85,9 @@ Block predicates have the following behavior:
 
 - No changes have been made to the bulk APIs, including `BULK INSERT`. This means that block predicates `AFTER INSERT` applies to bulk insert operations just as they would regular insert operations.
 
-## <a id="UseCases"></a> Use cases
+<a id="UseCases"></a>
+
+## Use cases
 
 Here are design examples of how row-level security (RLS) can be used:
 
@@ -97,7 +101,9 @@ RLS filter predicates are functionally equivalent to appending a `WHERE` clause.
 
 In more formal terms, RLS introduces predicate based access control. It features a flexible, centralized, predicate-based evaluation. The predicate can be based on metadata or any other criteria the administrator determines as appropriate. The predicate is used as a criterion to determine if the user has the appropriate access to the data based on user attributes. Label-based access control can be implemented by using predicate-based access control.
 
-## <a id="Permissions"></a> Permissions
+<a id="Permissions"></a>
+
+## Permissions
 
 Creating, altering, or dropping security policies requires the `ALTER ANY SECURITY POLICY` permission. Creating or dropping a security policy requires `ALTER` permission on the schema.
 
@@ -113,7 +119,9 @@ Security policies apply to all users, including dbo users in the database. Dbo u
 
 If a security policy is created with `SCHEMABINDING = OFF`, then to query the target table, users must have the `SELECT` or `EXECUTE` permission on the predicate function and any additional tables, views, or functions used within the predicate function. If a security policy is created with `SCHEMABINDING = ON` (the default), then these permission checks are bypassed when users query the target table.
 
-## <a id="Best"></a> Best practices
+<a id="Best"></a>
+
+## Best practices
 
 - It's highly recommended to create a separate schema for the RLS objects: predicate functions, and security policies. This helps to separate the permissions that are required on these special objects from the target tables. Additional separation for different policies and predicate functions might be needed in multitenant databases, but not as a standard for every case.
 
@@ -135,7 +143,9 @@ Avoid predicate logic that depends on session-specific [SET options](../../t-sql
 
 - Predicate functions shouldn't compare concatenated strings with `NULL`, because this behavior is affected by the [SET CONCAT_NULL_YIELDS_NULL (Transact-SQL)](../../t-sql/statements/set-concat-null-yields-null-transact-sql.md) option.
 
-## <a id="SecNote"></a> Security note: side-channel attacks
+<a id="SecNote"></a>
+
+## Security note: side-channel attacks
 
 ### Malicious security policy manager
 
@@ -145,7 +155,9 @@ It's important to observe that a malicious security policy manager, with suffici
 
 It's possible to cause information leakage by using carefully crafted queries that use errors to exfiltrate data. For example, `SELECT 1/(SALARY-100000) FROM PAYROLL WHERE NAME='John Doe';` would let a malicious user know that John Doe's salary is exactly $100,000. Even though there's a security predicate in place to prevent a malicious user from directly querying other people's salary, the user can determine when the query returns a divide-by-zero exception.
 
-## <a id="Limitations"></a> Cross-feature compatibility
+<a id="Limitations"></a>
+
+## Cross-feature compatibility
 
 In general, row-level security will work as expected across features. However, there are a few exceptions. This section documents several notes and caveats for using row-level security with certain other features of [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)].
 
@@ -175,9 +187,13 @@ Other limitations:
 
 - Microsoft Fabric and Azure Synapse Analytics support filter predicates only. Block predicates aren't currently supported on Microsoft Fabric and Azure Synapse Analytics.
 
-## <a id="CodeExamples"></a> Examples
+<a id="CodeExamples"></a>
 
-### <a id="Typical"></a> A. Scenario for users who authenticate to the database
+## Examples
+
+<a id="Typical"></a>
+
+### A. Scenario for users who authenticate to the database
 
 This example creates three users and creates and populates a table with six rows. It then creates an inline table-valued function and a security policy for the table. The example then shows how select statements are filtered for the various users.
 
@@ -300,7 +316,9 @@ DROP SCHEMA Security;
 DROP SCHEMA Sales;
 ```
 
-### <a id="external"></a> B. Scenarios for using Row Level Security on an Azure Synapse external table
+<a id="external"></a>
+
+### B. Scenarios for using Row Level Security on an Azure Synapse external table
 
 This short example creates three users and an external table with six rows. It then creates an inline table-valued function and a security policy for the external table. The example shows how select statements are filtered for the various users.
 
@@ -367,7 +385,7 @@ CREATE EXTERNAL TABLE Sales_ext WITH (LOCATION='<your_table_name>', DATA_SOURCE=
 AS SELECT * FROM sales;
 ```
 
-Grant SELECT for the three users on the external table `Sales_ext` that you created.
+Grant `SELECT` for the three users on the external table `Sales_ext` that you created.
 
 ```sql
 GRANT SELECT ON Sales_ext TO Sales1;
@@ -439,7 +457,9 @@ DROP LOGIN Sales2;
 DROP LOGIN Manager;
 ```
 
-### <a id="MidTier"></a> C. Scenario for users who connect to the database through a middle-tier application
+<a id="MidTier"></a>
+
+### C. Scenario for users who connect to the database through a middle-tier application
 
 > [!NOTE]  
 > In this example block predicates functionality isn't currently supported for Microsoft Fabric and Azure Synapse, hence inserting rows for the wrong user ID isn't blocked.
@@ -540,7 +560,9 @@ DROP FUNCTION Security.fn_securitypredicate;
 DROP SCHEMA Security;
 ```
 
-### <a id="Lookup"></a> D. Scenario for using a lookup table for the security predicate
+<a id="Lookup"></a>
+
+### D. Scenario for using a lookup table for the security predicate
 
 This example uses a lookup table for the link between the user identifier and the value being filtered, rather than having to specify the user identifier in the fact table. It creates three users and creates and populates a fact table, `Sample.Sales`, with six rows and a lookup table with two rows. It then creates an inline table-valued function that joins the fact table to the lookup to get the user identifier, and a security policy for the table. The example then shows how select statements are filtered for the various users.
 

@@ -1,10 +1,10 @@
 ---
-title: "Lesson 1: Creating the Base Conversation Objects"
+title: "Lesson 1: Create the Base Conversation Objects"
 description: "In this lesson, you learn to build all the objects that enable a database to support a conversation in the database"
 author: rwestMSFT
 ms.author: randolphwest
 ms.reviewer: mikeray, maghan
-ms.date: 03/07/2025
+ms.date: 09/03/2025
 ms.service: sql
 ms.subservice: configuration
 ms.topic: how-to
@@ -51,17 +51,18 @@ GO
 
 ### Create the contract
 
-Copy and paste the following code into a Query Editor window. Then, run it to create the contract for the conversation. The contract specifies that conversations that use it must send messages of the `//AWDB/InternalAct/RequestMessage` type from the initiator to the target, and messages of the `//AWDB/InternalAct/ReplyMessage` type from the target to the initiator.
+Copy and paste the following code into a Query Editor window. Then, run it to create the contract for the conversation. The contract specifies that conversations that use it must send messages of the **//AWDB/InternalAct/RequestMessage** type from the initiator to the target, and messages of the **//AWDB/InternalAct/ReplyMessage** type from the target to the initiator.
 
 ```sql
 CREATE CONTRACT [//AWDB/InternalAct/SampleContract]
-    ([//AWDB/InternalAct/RequestMessage] SENT BY INITIATOR, [//AWDB/InternalAct/ReplyMessage] SENT BY TARGET);
+    ([//AWDB/InternalAct/RequestMessage] SENT BY INITIATOR,
+    [//AWDB/InternalAct/ReplyMessage] SENT BY TARGET);
 GO
 ```
 
 ### Create the target queue and service
 
-Copy and paste the following code into a Query Editor window. Then, run it to create the queue and service that is used for the target. Because queues are referenced from the same database in a manner similar to tables and views, queue names are formatted like table or view names. The `CREATE SERVICE` statement associates the service with the `TargetQueueIntAct`. Therefore, all messages that are sent to the service are received into the `TargetQueueIntAct`. The `CREATE SERVICE` also specifies that only conversations that use the `//AWDB/InternalAct/SampleContract` created earlier can use the service as a target service.
+Copy and paste the following code into a Query Editor window, then run it to create the queue and service that's used for the target. Because queues are referenced from the same database in a manner similar to tables and views, queue names are formatted like table or view names. The `CREATE SERVICE` statement associates the service with the **TargetQueueIntAct**. Therefore, all messages that are sent to the service are received into the **TargetQueueIntAct**. The `CREATE SERVICE` also specifies that only conversations that use the **//AWDB/InternalAct/SampleContract** created earlier can use the service as a target service.
 
 ```sql
 CREATE QUEUE TargetQueueIntAct;
@@ -74,7 +75,7 @@ GO
 
 ### Create the initiator queue and service
 
-Copy and paste the following code into a Query Editor window. Then, run it to create the queue and service that is used for the initiator. Because no contract name is specified, no other services can use this service as a target service.
+Copy and paste the following code into a Query Editor window, then run it to create the queue and service that's used for the initiator. Because no contract name is specified, no other services can use this service as a target service.
 
 ```sql
 CREATE QUEUE InitiatorQueueIntAct;
@@ -89,4 +90,4 @@ GO
 You successfully configured [!INCLUDE [sssampledbobject-md](../../includes/sssampledbobject-md.md)] to support a conversation between the `//AWDB/InternalAct/InitiatorService` and the `//AWDB/InternalAct/TargetService`.
 
 > [!div class="nextstepaction"]
-> [Lesson 2: Creating an Internal Activation Procedure](lesson-2-creating-an-internal-activation-procedure.md)
+> [Lesson 2: Create an internal activation procedure](lesson-2-creating-an-internal-activation-procedure.md)
