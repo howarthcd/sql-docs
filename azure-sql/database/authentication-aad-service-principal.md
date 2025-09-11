@@ -1,11 +1,11 @@
 ---
-title: Microsoft Entra service principals with Azure SQL
+title: Microsoft Entra Service Principals with Azure SQL
 titleSuffix: Azure SQL Database & Azure SQL Managed Instance
 description: Use Microsoft Entra service principals and managed identities in Azure SQL Database and Azure SQL Managed Instance
 author: VanMSFT
 ms.author: vanto
-ms.reviewer: wiassaf, vanto, mathoma
-ms.date: 09/16/2024
+ms.reviewer: wiassaf, mathoma
+ms.date: 09/11/2025
 ms.service: azure-sql
 ms.subservice: security
 ms.topic: conceptual
@@ -18,7 +18,7 @@ monikerRange: "=azuresql || =azuresql-db || =azuresql-mi"
 
 Azure SQL resources support programmatic access for applications using service principals and managed identities in Microsoft Entra ID ([formerly Azure Active Directory](/entra/fundamentals/new-name)).
 
-<a name='service-principal-azure-ad-applications-support'></a>
+<a id="service-principal-azure-ad-applications-support"></a>
 
 ## Service principals (Microsoft Entra applications) support
 
@@ -28,13 +28,13 @@ Microsoft Entra ID further enables advanced authentication scenarios like [OAuth
 
 For more information on Microsoft Entra applications, see [Application and service principal objects in Microsoft Entra ID](/entra/identity-platform/app-objects-and-service-principals) and [Create an Azure service principal with Azure PowerShell](/powershell/azure/create-azure-service-principal-azureps).
 
-<a name='functionality-of-azure-ad-user-creation-using-service-principals'></a>
+<a id="functionality-of-azure-ad-user-creation-using-service-principals"></a>
 
 ## Microsoft Entra user creation using service principals
 
 Supporting this functionality is useful in Microsoft Entra application automation processes where Microsoft Entra principals are created and maintained in SQL Database or SQL Managed Instance without human interaction. Service principals can be a Microsoft Entra admin for the SQL logical server or managed instance, as part of a group or as a standalone identity. The application can automate Microsoft Entra object creation in SQL Database or SQL Managed Instance, allowing full automation of database user creation.
 
-<a name='enable-service-principals-to-create-azure-ad-users'></a>
+<a id="enable-service-principals-to-create-azure-ad-users"></a>
 
 ## Enable service principals to create Microsoft Entra users
 
@@ -46,42 +46,57 @@ The following steps explain how to assign a managed identity to the server and a
 
 1. Assign the server identity. The server identity can be a system-assigned or user-assigned managed identity. For more information, see [Managed identities in Microsoft Entra for Azure SQL](authentication-azure-ad-user-assigned-managed-identity.md).
 
-    - The following PowerShell command creates a new logical server provisioned with a system-assigned managed identity:
+   - The following PowerShell command creates a new logical server provisioned with a system-assigned managed identity:
 
-    ```powershell
-    New-AzSqlServer -ResourceGroupName <resource group> -Location <Location name> -ServerName <Server name> -ServerVersion "12.0" -SqlAdministratorCredentials (Get-Credential) -AssignIdentity
-    ```
+   ```powershell
+   $newServerParams = @{
+       ResourceGroupName        = '<resource group>'
+       Location                 = '<Location name>'
+       ServerName               = '<Server name>'
+       ServerVersion            = '12.0'
+       SqlAdministratorCredentials = (Get-Credential)
+       AssignIdentity           = $true
+   }
+   New-AzSqlServer @newServerParams
+   ```
 
-    For more information, see the [New-AzSqlServer](/powershell/module/az.sql/new-azsqlserver) command, or [New-AzSqlInstance](/powershell/module/az.sql/new-azsqlinstance) command for SQL Managed Instance.
+   For more information, see the [New-AzSqlServer](/powershell/module/az.sql/new-azsqlserver) command, or [New-AzSqlInstance](/powershell/module/az.sql/new-azsqlinstance) command for SQL Managed Instance.
 
-    - For an existing logical server, execute the following command to add a system-assigned managed identity to it:
+   - For an existing logical server, execute the following command to add a system-assigned managed identity to it:
 
-    ```powershell
-    Set-AzSqlServer -ResourceGroupName <resource group> -ServerName <Server name> -AssignIdentity
-    ```
+   ```powershell
+   $setServerParams = @{
+       ResourceGroupName = '<resource group>'
+       ServerName        = '<Server name>'
+       AssignIdentity    = $true
+   }
+   Set-AzSqlServer @setServerParams
+   ```
 
-    For more information, see the [Set-AzSqlServer](/powershell/module/az.sql/set-azsqlserver) command, or [Set-AzSqlInstance](/powershell/module/az.sql/set-azsqlinstance) command for SQL Managed Instance.
+   For more information, see the [Set-AzSqlServer](/powershell/module/az.sql/set-azsqlserver) command, or [Set-AzSqlInstance](/powershell/module/az.sql/set-azsqlinstance) command for SQL Managed Instance.
 
-    - To check if the server identity is assigned to the server, execute the [Get-AzSqlServer](/powershell/module/az.sql/get-azsqlserver) command, or [Get-AzSqlInstance](/powershell/module/az.sql/get-azsqlinstance) command for SQL Managed Instance.
+   - To check if the server identity is assigned to the server, execute the [Get-AzSqlServer](/powershell/module/az.sql/get-azsqlserver) command, or [Get-AzSqlInstance](/powershell/module/az.sql/get-azsqlinstance) command for SQL Managed Instance.
 
-    > [!NOTE]  
-    > The server identity can be assigned using REST API and CLI commands as well. For more information, see [az sql server create](/cli/azure/sql/server#az-sql-server-create), [az sql server update](/cli/azure/sql/server#az-sql-server-update), and [Servers - REST API](/rest/api/sql/servers).
+   > [!NOTE]  
+   > The server identity can be assigned using REST API and CLI commands as well. For more information, see [az sql server create](/cli/azure/sql/server#az-sql-server-create), [az sql server update](/cli/azure/sql/server#az-sql-server-update), and [Servers - REST API](/rest/api/sql/servers).
 
 1. Grant the server identity permissions to query Microsoft Graph. This can be done multiple ways: by adding the identity to the Microsoft Entra [**Directory Readers**](/entra/identity/role-based-access-control/permissions-reference#directory-readers) role, by assigning the identity the individual Microsoft Graph permissions, or by adding the identity to a role-assignable group that has the **Directory Readers** role:
 
-    - Add server identity to a role-assignable group
+   - Add server identity to a role-assignable group
 
-        In production environments, it's recommended that a tenant administrator creates a [role-assignable group](/entra/identity/role-based-access-control/groups-concept) and assigns the **Directory Readers** role to it. Group owners can then add server identities to the group, inheriting those permissions. This removes the requirement for a **Privileged Roles Administrator** to grant permissions to each individual server identity, allowing administrators to delegate permission assignment to owners of the group for this scenario. For more information, see [Directory Readers role in Microsoft Entra ID for Azure SQL](authentication-aad-directory-readers-role.md).
+     In production environments, it's recommended that a tenant administrator creates a [role-assignable group](/entra/identity/role-based-access-control/groups-concept) and assigns the **Directory Readers** role to it. Group owners can then add server identities to the group, inheriting those permissions. This removes the requirement for a **Privileged Roles Administrator** to grant permissions to each individual server identity, allowing administrators to delegate permission assignment to owners of the group for this scenario. For more information, see [Directory Readers role in Microsoft Entra ID for Azure SQL](authentication-aad-directory-readers-role.md).
 
-    - Assign Microsoft Graph permissions to server identity
+   - Assign Microsoft Graph permissions to server identity
 
-        To assign the individual Microsoft Graph permissions to the server identity, you must have the Microsoft Entra **Privileged Roles Administrator** role. This is recommended over assigning the **Directory Readers** role, because there are permissions included in the role that the server identity doesn't need. Assigning only the individual Microsoft Graph read permissions limits the server identity's permissions within your tenant and maintains the principle of least privilege. For instructions, see [Managed identities in Microsoft Entra for Azure SQL](authentication-azure-ad-user-assigned-managed-identity.md).
+     To assign the individual Microsoft Graph permissions to the server identity, you must have the Microsoft Entra **Privileged Roles Administrator** role. This is recommended over assigning the **Directory Readers** role, because there are permissions included in the role that the server identity doesn't need. Assigning only the individual Microsoft Graph read permissions limits the server identity's permissions within your tenant and maintains the principle of least privilege. For instructions, see [Managed identities in Microsoft Entra for Azure SQL](authentication-azure-ad-user-assigned-managed-identity.md).
 
-    - Add server identity to Directory Readers role
+   - Add server identity to Directory Readers role
 
-        To add the server identity to the **Directory Readers** role, you must be a member of the Microsoft Entra  **Privileged Roles Administrator** role. In production environments this option isn't recommended for two reasons: the Directory Reader role gives more permissions than the server identity requires, and the role assignment process still requires administrator approvals for each server identity (unlike using groups). Follow the SQL Managed Instance instructions available in the article [Set Microsoft Entra admin (SQL Managed Instance)](authentication-aad-configure.md?tabs=azure-powershell#provision-azure-ad-admin-sql-managed-instance).
+     To add the server identity to the **Directory Readers** role, you must be a member of the Microsoft Entra  **Privileged Roles Administrator** role. In production environments this option isn't recommended for two reasons: the Directory Reader role gives more permissions than the server identity requires, and the role assignment process still requires administrator approvals for each server identity (unlike using groups). Follow the SQL Managed Instance instructions available in the article [Set Microsoft Entra admin (SQL Managed Instance)](authentication-aad-configure.md?tabs=azure-powershell#provision-azure-ad-admin-sql-managed-instance).
 
-## Troubleshooting
+<a id="troubleshooting"></a>
+
+## Troubleshoot
 
 When troubleshooting, you might encounter the following error:
 
