@@ -4,13 +4,13 @@ description: Describes the CE feedback for expressions feature in SQL Server 202
 author: thesqlsith
 ms.author: derekw
 ms.reviewer: randolphwest
-ms.date: 09/11/2025
+ms.date: 09/19/2025
 ms.service: sql
 ms.topic: concept-article
-# CustomerIntent: As a database engineer, I want to understand the capabilities of the CE feedback for expressions feature in SQL Server 2025 so that I can effectively implement and support this technology.
-monikerRange: "=azuresqldb-current || =sql-server-ver17 || =sql-server-linux-ver17 || = fabric"
 ms.custom:
   - build-2025
+# CustomerIntent: As a database engineer, I want to understand the capabilities of the CE feedback for expressions feature in SQL Server 2025 so that I can effectively implement and support this technology.
+monikerRange: "=azuresqldb-current || =sql-server-ver17 || =sql-server-linux-ver17 || =fabric"
 ---
 
 # Cardinality estimation (CE) feedback for expressions
@@ -36,8 +36,10 @@ To use CE Feedback for Expressions, the following prerequisites must be met:
 - To check the current status of the database scoped configuration:
 
 ```sql
-SELECT name, value, value_for_secondary 
-FROM sys.database_scoped_configurations 
+SELECT name,
+       value,
+       value_for_secondary
+FROM sys.database_scoped_configurations
 WHERE name = 'CE_FEEDBACK_FOR_EXPRESSIONS';
 ```
 
@@ -65,14 +67,14 @@ FROM Customer AS C
 WHERE O.o_totalprice > 10000;
 ```
 
-For this query, the query optimizer might choose to get data from each table - `Customer`, followed by `Orders`, select all of the associated columns from both tables, and *join* the data (with a filter) where the `totalprice` of an order is greater than $10,000. 
+For this query, the query optimizer might choose to get data from each table - `Customer`, followed by `Orders`, select all of the associated columns from both tables, and *join* the data (with a filter) where the `totalprice` of an order is greater than $10,000.
 Each logical expression such as a filter or join within a query plan generates a signature that contributes to a fingerprint. CE Feedback for expressions uses these fingerprints to learn and apply feedback across queries that share similar subexpressions, even if the overall query structure is different.
 
 The feature focuses on expressions with consistent cardinality overestimation/underestimation across queries. It analyzes two different workload patterns that are currently not eligible for CE feedback:
 
-- Workloads without repeated executions, but which do have repeated expression patterns. For example, a commonly used join pattern.
+- Workloads without repeated executions, but with repeated expression patterns. For example, a commonly used join pattern.
 
-- Queries in which one part of the query might benefit from a different CE model than another portion of the same query. For example, the join between tables A and B might require simple containment, and the join between tables C and D which might require base containment.
+- Queries in which one part of the query might benefit from a different CE model than another portion of the same query. For example, the join between tables `A` and `B` might require simple containment, and the join between tables `C` and `D`, which might require base containment.
 
 The feedback for expressions feature applies filter and join assumptions to correct misestimation issues, such as:
 
@@ -90,41 +92,48 @@ Joins:
 These assumptions reflect different CE model strategies, such as containment and independence. For more conceptual background, see [Cardinality Estimation Feedback Explained by Kate Smith](https://techcommunity.microsoft.com/blog/azuresqlblog/cardinality-estimation-feedback-explained-by-kate-smith-akatesmith/4197930) and [Cardinality Estimation for Correlated Columns in SQL Server 2016](https://techcommunity.microsoft.com/blog/sqlserver/cardinality-estimation-for-correlated-columns-in-sql-server-2016/384467).
 
 ### Hint lifecycle
+
 Feedback hints progress through the following states:
 
 - Monitoring: The system observes repeated executions of a subexpression and tracks whether cardinality misestimation persists.
-- Applying: If misestimation continues, a feedback hint may be generated and applied during query compilation to adjust the CE model.
-- Blocked: If the applied hint results in a suboptimal cardinality estimate, it is blocked from future use.
+- Applying: If misestimation continues, a feedback hint could be generated and applied during query compilation to adjust the CE model.
+- Blocked: If the applied hint results in a suboptimal cardinality estimate, it's blocked from future use.
 
 This lifecycle ensures that feedback is only applied when beneficial and avoids regression in estimation quality.
 
 ### Regression protection
-CE feedback for expressions includes regression protection. If a hint causes a worse cardinality estimate than before, it is blocked. However, this protection is limited to cardinality estimation and does not evaluate query execution time. For execution/runtime related regressions, [automatic plan correction](../automatic-tuning/automatic-tuning.md#automatic-plan-correction) may intervene. If the automatic plan correction feature is not enabled, actions that the feature would take are recorded and available by querying the [sys.dm_db_tuning_recommendations](../system-dynamic-management-views/sys-dm-db-tuning-recommendations-transact-sql.md#example-2)
+
+CE feedback for expressions includes regression protection. If a hint causes a worse cardinality estimate than before, it's blocked. However, this protection is limited to cardinality estimation and doesn't evaluate query execution time. For execution/runtime related regressions, [automatic plan correction](../automatic-tuning/automatic-tuning.md#automatic-plan-correction) might intervene. If the automatic plan correction feature isn't enabled, actions that the feature would take are recorded and available by querying the [sys.dm_db_tuning_recommendations](../system-dynamic-management-views/sys-dm-db-tuning-recommendations-transact-sql.md#example-2)
 dynamic management view.
 
-## Monitoring and telemetry
+## Telemetry and monitoring
 
 CE Feedback for Expressions activity can be monitored using the following tools:
 
 - Extended events:
-  - adhoc_ce_feedback_query_level_telemetry
-  - query_adhoc_ce_feedback_expression_hint
-  - query_adhoc_ce_feedback_hint
+  - `adhoc_ce_feedback_query_level_telemetry`
+  - `query_adhoc_ce_feedback_expression_hint`
+  - `query_adhoc_ce_feedback_hint`
 
 The CE Feedback extended events `query_ce_feedback_begin_analysis` and `query_ce_feedback_telemetry` can also be useful while tracking the activity of the feature.
 
 - Fingerprint data is cached in a dedicated memory clerk named `AdHocCEFeedbackCache`. This cache can be accessed via the system catalog view `sys.dm_exec_ce_feedback_cache`.
 
 - Showplan integration
-When a CE feedback for expressions hint is applied, the query plan will include a `CardinalityFeedback` attribute in the showplan xml. This tag indicates that feedback was used to adjust the cardinality estimate for a specific subexpression.
 
-## Caching and persistence
+  When a CE feedback for expressions hint is applied, the query plan includes a `CardinalityFeedback` attribute in the Showplan XML. This tag indicates that feedback was used to adjust the cardinality estimate for a specific subexpression.
 
-Persisted feedback is stored in an internal Query Store table (sys.plan_persist_ce_feedback_for_expressions) and reloaded on startup. This ensures the system does not need to relearn feedback for fingerprints it has already encountered. The cache persistence mechanism is lossy in nature, meaning feedback is only persisted to disk periodically. The frequency of persistence is not currently configurable. If the SQL Server instance restarts or memory is cleared before the next persistence cycle, feedback generated since the last flush may be lost.
+<a id="caching-and-persistence"></a>
+
+## Cache and persistence
+
+Persisted feedback is stored in an internal Query Store table (`sys.plan_persist_ce_feedback_for_expressions`) and reloaded on startup. This ensures the system doesn't need to relearn feedback for fingerprints it has already encountered. The cache persistence mechanism is lossy in nature, meaning feedback is only persisted to disk periodically. The frequency of persistence isn't currently configurable.
+
+If the SQL Server instance restarts or memory is cleared before the next persistence cycle, feedback generated since the last flush can be lost.
 
 ## Limitations
 
-Persistence is not currently available for Query Store on readable secondaries. CE feedback for expressions can apply feedback differently on a primary replica and on a secondary replica. However, the feedback is not persisted on secondary replicas and only exists within the memory based cache in that scenario. If a failover event occurs, the feedback that had been learned on any of the readable secondaries will be lost.
+Persistence isn't currently available for Query Store on readable secondaries. CE feedback for expressions can apply feedback differently on a primary replica and on a secondary replica. However, the feedback isn't persisted on secondary replicas and only exists within the memory based cache in that scenario. If a failover event occurs, the feedback that had been learned on any of the readable secondaries is lost.
 
 ## Related content
 
