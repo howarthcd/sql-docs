@@ -25,16 +25,14 @@ Extension versions are cumulative. Higher extension versions include all of the 
 
 Only Azure extension for SQL Server agent versions released within the last year are supported.
 
-## September, 2025
+## September 15, 2025
+
+**Extension version**: `1.1.3176.319`
 
 Certain limitations in US Government Virginia have been lifted. You can now:
 
 - License physical cores (p-cores) with unlimited virtualization.
 - License physical cores (p-cores) without virtual machines.
-
-## September 15, 2025
-
-**Extension version**: `1.1.3176.319`
 
 ## August, 2025
 
