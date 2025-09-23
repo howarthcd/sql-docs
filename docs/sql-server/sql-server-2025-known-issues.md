@@ -82,12 +82,6 @@ Queries that use the built-in `SESSION_CONTEXT` function might return incorrect 
 
 For more information, see the [Known issues](../t-sql/functions/session-context-transact-sql.md#known-issues) section in `SESSION_CONTEXT`.
 
-## Access violation exception occurs under certain conditions
-
-When the Optional parameter plan optimization feature encounters a predicate that is based on a LOB column, an access violation exception can occur. A fix has been identified and will be part of the next preview release of SQL Server 2025.
-
-Large object (LOB) data types in the Database Engine can store data that exceeds 8,000 bytes. These data types store data on a [row-overflow](../relational-databases/pages-and-extents-architecture-guide.md#row-overflow-considerations) data page. A LOB also encompasses data types that store data on dedicated LOB page structures, which use a text or image pointer of in-row references to LOB data pages. For more information about data storage, see [Pages and extents architecture guide](../relational-databases/pages-and-extents-architecture-guide.md).
-
 <a id="setting-the-backup-compression-algorithm-to-zstd"></a>
 
 ## Issue when setting the backup compression algorithm to ZSTD
