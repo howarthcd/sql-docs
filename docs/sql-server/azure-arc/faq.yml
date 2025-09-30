@@ -116,11 +116,11 @@ sections:
     questions:
       - question: I have an enterprise or a small business account with Microsoft, can I enable recurring pay-as-you-go billing?
         answer: |
-          No. At this point, recurring billing is only offered to cloud solution provider (CSP) managed customers.
+          No. At this point, recurring pay-as-you-go billing is enabled and required in the CSP-managed subscriptions. It is not available with other subscription offers.
 
       - question: How do I ensure that my VM and SQL server are not billed when it is disconnected or turned off intentionally?
         answer: |
-          If the machine is offline for less than 30 days and then reconnects, the uploaded SQL Server usage will reflect the offline period, and the monthly invoice will account for it. If you keep it offline for longer than 30 days, the billing will resume when the machine is back online and reconnects.
+          If the machine is offline for less than 30 days and then reconnects, the uploaded SQL Server usage will reflect the offline period, and the monthly invoice will account for it. If you plan to keep it offline for longer than 30 days, you should disconnect the Arc-enabled SQL Server. For steps, review [Disconnect SQL Server instances from Azure Arc](delete-from-azure-arc.md). Then reconnect using one of [the supported deployments options](deployment-options.md).
 
       - question: How can I be notified about when a given machine does not send usage data when expected or when recurring billing has happened or is happening?
         answer: |
