@@ -1,10 +1,10 @@
 ---
 title: "Query Hints (Transact-SQL)"
-description: "Query hints specify that the indicated hints are used in the scope of a query. They affect all operators in the statement."
+description: Query hints specify that the indicated hints are used in the scope of a query. They affect all operators in the statement.
 author: rwestMSFT
 ms.author: randolphwest
 ms.reviewer: wiassaf
-ms.date: 06/11/2025
+ms.date: 10/03/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -57,7 +57,7 @@ helpviewer_keywords:
   - "QUERY_PLAN_PROFILE query hint"
   - "ABORT_QUERY_EXECUTIONquery hint"
 dev_langs:
-  - "TSQL"
+  - TSQL
 monikerRange: "=azuresqldb-current || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 
@@ -176,7 +176,7 @@ Specifies the indexed views are expanded. Also specifies the Query Optimizer doe
 This query hint virtually disallows direct use of indexed views and indexes on indexed views in the query plan.
 
 > [!NOTE]  
-> The indexed view remains condensed if there's a direct reference to the view in the query's `SELECT` part. The view also remains condensed if you specify `WITH (NOEXPAND)` or `WITH (NOEXPAND, INDEX( <index_value> [ , *...n* ] ) )`. For more information about the query hint `NOEXPAND`, see [Using NOEXPAND](../queries/hints-transact-sql-table.md#using-noexpand).
+> The indexed view remains condensed if there's a direct reference to the view in the query's `SELECT` part. The view also remains condensed if you specify `WITH (NOEXPAND)` or `WITH (NOEXPAND, INDEX( <index_value> [ , *...n* ] ) )`. For more information about the query hint `NOEXPAND`, see [Using NOEXPAND](hints-transact-sql-table.md#using-noexpand).
 
 The hint only affects the views in the statements' `SELECT` part, including those views in `INSERT`, `UPDATE`, `MERGE`, and `DELETE` statements.
 
@@ -318,7 +318,9 @@ Forces the Query Optimizer to try a plan that works for the maximum potential ro
 
 If such a plan isn't possible, the Query Optimizer returns an error instead of deferring error detection to query execution. Rows can contain variable-length columns; the [!INCLUDE [ssDE](../../includes/ssde-md.md)] allows for rows to be defined that have a maximum potential size beyond the ability of the [!INCLUDE [ssDE](../../includes/ssde-md.md)] to process them. Generally, despite the maximum potential size, an application stores rows that have actual sizes within the limits that the [!INCLUDE [ssDE](../../includes/ssde-md.md)] can process. If the [!INCLUDE [ssDE](../../includes/ssde-md.md)] comes across a row that is too long, an execution error is returned.
 
-#### <a id="use_hint"></a> USE HINT ( '*hint_name*' )
+<a id="use_hint"></a>
+
+#### USE HINT ( '*hint_name*' )
 
 **Applies to**: [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] (starting with [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)] SP1), [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE [ssazuremi-md](../../includes/ssazuremi-md.md)].
 
@@ -331,7 +333,7 @@ The following hint names are supported:
 
 | Hint | Description |
 | --- | --- |
-| `'ABORT_QUERY_EXECUTION'` <a id="use_hint_abort_query_execution"></a> | Blocks query execution. Intended to be used as a [Query Store hint](../../relational-databases/performance/query-store-hints.md) to let administrators block future execution of known problematic queries, for example non-essential queries impacting application workloads. For more information, see [Block future execution of problematic queries](../../relational-databases/performance/query-store-hints-best-practices.md#block-future-execution-of-problematic-queries).<br /><br />**Applies to**: [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)]. This hint is **in preview**. |
+| `'ABORT_QUERY_EXECUTION'` <a id="use_hint_abort_query_execution"></a> | Blocks query execution. Intended to be used as a [Query Store hint](../../relational-databases/performance/query-store-hints.md) to let administrators block future execution of known problematic queries, for example non-essential queries affecting application workloads. For more information, see [Block future execution of problematic queries](../../relational-databases/performance/query-store-hints-best-practices.md#block-future-execution-of-problematic-queries).<br /><br />**Applies to**: [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], [!INCLUDE [ssazuremi-md](../../includes/ssazuremi-md.md)]<sup>[AUTD](/azure/azure-sql/managed-instance/update-policy#always-up-to-date-update-policy)</sup>, and [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)]. |
 | `'ASSUME_FIXED_MIN_SELECTIVITY_FOR_REGEXP'` | The [Cardinality Estimation](../../relational-databases/performance/cardinality-estimation-sql-server.md) model for [REGEXP_LIKE](../functions/regexp-like-transact-sql.md) provides default selectivity values. Use this hint if the default estimation is too high. It sets the selectivity to a fixed lower selectivity value.<br /><br />**Applies to:** [!INCLUDE [sssql25-md](../../includes/sssql25-md.md)] and later versions, and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] |
 | `'ASSUME_FIXED_MAX_SELECTIVITY_FOR_REGEXP'` | The [Cardinality Estimation](../../relational-databases/performance/cardinality-estimation-sql-server.md) model for [REGEXP_LIKE](../functions/regexp-like-transact-sql.md) provides default selectivity values. Use this hint if the default estimation is too low. It sets the selectivity to a fixed higher selectivity value.<br /><br />**Applies to:** [!INCLUDE [sssql25-md](../../includes/sssql25-md.md)] and later versions, and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] |
 | `'ASSUME_JOIN_PREDICATE_DEPENDS_ON_FILTERS'` <a id="use_hint_join_containment"></a> | Generates a query plan using the Simple Containment assumption instead of the default Base Containment assumption for joins, under the Query Optimizer [Cardinality Estimation](../../relational-databases/performance/cardinality-estimation-sql-server.md) model of [!INCLUDE [ssSQL14](../../includes/sssql14-md.md)] and later versions. This hint name is equivalent to [Trace Flag](../database-console-commands/dbcc-traceon-trace-flags-transact-sql.md) 9476. |
@@ -346,7 +348,7 @@ The following hint names are supported:
 | `'DISABLE_OPTIMIZER_ROWGOAL'` <a id="use_hint_rowgoal"></a> | Causes SQL Server to generate a plan that doesn't use row goal modifications with queries that contain these keywords:<br /><br />- `TOP`<br />- `OPTION (FAST N)`<br />- `IN`<br />- `EXISTS`<br /><br />This hint name is equivalent to [Trace Flag](../database-console-commands/dbcc-traceon-trace-flags-transact-sql.md) 4138. |
 | `'DISABLE_PARAMETER_SNIFFING'` | Instructs Query Optimizer to use average data distribution while compiling a query with one or more parameters. This instruction makes the query plan independent on the parameter value that was first used when the query was compiled. This hint name is equivalent to [Trace Flag](../database-console-commands/dbcc-traceon-trace-flags-transact-sql.md) 4136 or [database scoped configuration](../statements/alter-database-scoped-configuration-transact-sql.md) setting `PARAMETER_SNIFFING = OFF`. |
 | `'DISABLE_ROW_MODE_MEMORY_GRANT_FEEDBACK'` | Disables row mode memory grant feedback. For more information, see [Row mode memory grant feedback](../../relational-databases/performance/intelligent-query-processing-memory-grant-feedback.md#row-mode-memory-grant-feedback).<br /><br />**Applies to**: [!INCLUDE [sql-server-2019](../../includes/sssql19-md.md)] and later versions, and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] |
-| `'DISABLE_TSQL_SCALAR_UDF_INLINING'` | Disables scalar UDF inlining. For more information, see [Scalar UDF Inlining](../../relational-databases/user-defined-functions/scalar-udf-inlining.md).<br /><br />**Applies to**: [!INCLUDE [sql-server-2019](../../includes/sssql19-md.md)] and later versions, and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] |
+| `'DISABLE_TSQL_SCALAR_UDF_INLINING'` | Disables scalar UDF inlining. For more information, see [Scalar UDF inlining](../../relational-databases/user-defined-functions/scalar-udf-inlining.md).<br /><br />**Applies to**: [!INCLUDE [sql-server-2019](../../includes/sssql19-md.md)] and later versions, and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] |
 | `'DISALLOW_BATCH_MODE'` | Disables batch mode execution. For more information, see [Execution modes](../../relational-databases/query-processing-architecture-guide.md#execution-modes).<br /><br />**Applies to**: [!INCLUDE [sql-server-2019](../../includes/sssql19-md.md)] and later versions, and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] |
 | `'ENABLE_HIST_AMENDMENT_FOR_ASC_KEYS'` | Enables automatically generated quick statistics (histogram amendment) for any leading index column for which cardinality estimation is needed. The histogram used to estimate cardinality is adjusted at query compile time to account for actual maximum or minimum value of this column. This hint name is equivalent to [Trace Flag](../database-console-commands/dbcc-traceon-trace-flags-transact-sql.md) 4139. |
 | `'ENABLE_QUERY_OPTIMIZER_HOTFIXES'` | Enables Query Optimizer hotfixes (changes released in SQL Server Cumulative Updates and Service Packs). This hint name is equivalent to [Trace Flag](../database-console-commands/dbcc-traceon-trace-flags-transact-sql.md) 4199 or [database scoped configuration](../statements/alter-database-scoped-configuration-transact-sql.md) setting `QUERY_OPTIMIZER_HOTFIXES = ON`. |
@@ -354,7 +356,7 @@ The following hint names are supported:
 | `'FORCE_LEGACY_CARDINALITY_ESTIMATION'` <a id="use_hint_ce70"></a> | Forces the Query Optimizer to use [Cardinality Estimation](../../relational-databases/performance/cardinality-estimation-sql-server.md) model of [!INCLUDE [ssSQL11](../../includes/sssql11-md.md)] and earlier versions. This hint name is equivalent to [Trace Flag](../database-console-commands/dbcc-traceon-trace-flags-transact-sql.md) 9481 or [database scoped configuration](../statements/alter-database-scoped-configuration-transact-sql.md) setting `LEGACY_CARDINALITY_ESTIMATION = ON`. |
 | `'QUERY_OPTIMIZER_COMPATIBILITY_LEVEL_n'` <sup>1</sup> | Forces the Query Optimizer behavior at a query level. This behavior happens as if the query was compiled with database compatibility level *n*, where *n* is a supported database compatibility level. For a list of currently supported values for *n*, see [sys.dm_exec_valid_use_hints](../../relational-databases/system-dynamic-management-views/sys-dm-exec-valid-use-hints-transact-sql.md).<br /><br />**Applies to**: [!INCLUDE [ssSQL17](../../includes/sssql17-md.md)] CU 10 and later versions, and [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] |
 | `'QUERY_PLAN_PROFILE'` <sup>2</sup> | Enables lightweight profiling for the query. When a query that contains this new hint finishes, a new extended event, `query_plan_profile`, is fired. This extended event exposes execution statistics and actual execution plan XML similar to the `query_post_execution_showplan` extended event but only for queries that contains the new hint.<br /><br />**Applies to**: [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)] SP 2 CU 3, [!INCLUDE [ssSQL17](../../includes/sssql17-md.md)] CU 11, and later versions |
-| `'DISABLE_RESULT_SET_CACHE'` | Disables result set caching (preview) for a specific run of a query, if result set cache is enabled for the currently-connected item. This means it will neither generate new result set cache nor leverage existing result set cache (if any). This could be useful in debugging or A/B testing scenarios. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).<br /><br />**Applies to**: [!INCLUDE [fabric](../../includes/fabric.md)] |
+| `'DISABLE_RESULT_SET_CACHE'` | Disables result set caching (preview) for a specific run of a query, if result set cache is enabled for the currently-connected item. This means it will neither generate new result set cache nor use existing result set cache (if any). This could be useful in debugging or A/B testing scenarios. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).<br /><br />**Applies to**: [!INCLUDE [fabric](../../includes/fabric.md)] |
 
 <sup>1</sup> The `QUERY_OPTIMIZER_COMPATIBILITY_LEVEL_n` hint doesn't override default or legacy cardinality estimation setting, if you force it through database scoped configuration, trace flag, or another query hint such as `QUERYTRACEON`. This hint only affects the behavior of the Query Optimizer. It doesn't affect other features of [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] that might depend on the [database compatibility level](../statements/alter-database-transact-sql-compatibility-level.md), such as the availability of certain database features. For more information, see [Developer's Choice: Hinting Query Execution model](/archive/blogs/sql_server_team/developers-choice-hinting-query-execution-model).
 
@@ -365,7 +367,9 @@ The list of all supported `USE HINT` names can be queried using the dynamic mana
 > [!IMPORTANT]  
 > Some `USE HINT` hints might conflict with trace flags enabled at the global or session level, or database scoped configuration settings. In this case, the query level hint (`USE HINT`) always takes precedence. If a `USE HINT` conflicts with another query hint, or a trace flag enabled at the query level (such as by `QUERYTRACEON`), [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] will generate an error when trying to execute the query.
 
-#### <a id="use-plan"></a> USE PLAN N'*xml_plan*'
+<a id="use-plan"></a>
+
+#### USE PLAN N'*xml_plan*'
 
 Forces the Query Optimizer to use an existing query plan for a query specified by *xml_plan*.
 
@@ -394,7 +398,9 @@ Table hints other than `INDEX`, `FORCESCAN`, and `FORCESEEK` are disallowed as q
 > [!CAUTION]  
 > Specifying `FORCESEEK` with parameters limits the number of plans that can be considered by the Query Optimizer more than when specifying `FORCESEEK` without parameters. This might cause a "Plan cannot be generated" error to occur in more cases.
 
-#### <a id="for-timestamp"></a> FOR TIMESTAMP AS OF '*point_in_time*'
+<a id="for-timestamp"></a>
+
+#### FOR TIMESTAMP AS OF '*point_in_time*'
 
 **Applies to**: [!INCLUDE [fabric-dw](../../includes/fabric-dw.md)] in [!INCLUDE [fabric](../../includes/fabric.md)]
 
@@ -439,7 +445,7 @@ You can enforce hints on queries identified through Query Store without making c
 
 ## Query hint support in Fabric Data Warehouse
 
-[[!INCLUDE [fabric](../../includes/fabric.md)] Data Warehouse](/fabric/data-warehouse/data-warehousing) supports a subset of query hints:
+[Data warehousing in Microsoft Fabric](/fabric/data-warehouse/data-warehousing) supports a subset of query hints:
 
 - `HASH GROUP`
 - `ORDER GROUP`
@@ -448,10 +454,10 @@ You can enforce hints on queries identified through Query Store without making c
 - `CONCAT UNION`
 - `FORCE ORDER`
 - `USE HINT`
-    - `ASSUME_MIN_SELECTIVITY_FOR_FILTER_ESTIMATES`
-    - `ASSUME_FULL_INDEPENDENCE_FOR_FILTER_ESTIMATES` 
-    - `ASSUME_PARTIAL_CORRELATION_FOR_FILTER_ESTIMATES`
-    - `ASSUME_JOIN_PREDICATE_DEPENDS_ON_FILTERS`
+  - `ASSUME_MIN_SELECTIVITY_FOR_FILTER_ESTIMATES`
+  - `ASSUME_FULL_INDEPENDENCE_FOR_FILTER_ESTIMATES`
+  - `ASSUME_PARTIAL_CORRELATION_FOR_FILTER_ESTIMATES`
+  - `ASSUME_JOIN_PREDICATE_DEPENDS_ON_FILTERS`
 
 These query hints are exclusive to [!INCLUDE [fabric](../../includes/fabric.md)] Data Warehouse:
 
@@ -692,17 +698,21 @@ GO
 The following example uses the `QUERYTRACEON` query hints. The example uses the [!INCLUDE [ssSampleDBobject](../../includes/sssampledbobject-md.md)] database. You can enable all plan-affecting hotfixes controlled by trace flag 4199 for a particular query using the following query:
 
 ```sql
-SELECT * FROM Person.Address
-WHERE City = 'SEATTLE' AND PostalCode = 98104
+SELECT *
+FROM Person.Address
+WHERE City = 'SEATTLE'
+      AND PostalCode = 98104
 OPTION (QUERYTRACEON 4199);
 ```
 
 You can also use multiple trace flags as in the following query:
 
 ```sql
-SELECT * FROM Person.Address
-WHERE City = 'SEATTLE' AND PostalCode = 98104
-OPTION  (QUERYTRACEON 4199, QUERYTRACEON 4137);
+SELECT *
+FROM Person.Address
+WHERE City = 'SEATTLE'
+      AND PostalCode = 98104
+OPTION (QUERYTRACEON 4199, QUERYTRACEON 4137);
 ```
 
 ### N. Use Query Store hints
@@ -724,26 +734,32 @@ GO
 The following example applies the hint to force the [legacy cardinality estimator](../../relational-databases/performance/cardinality-estimation-sql-server.md) to query_id 39, identified in Query Store:
 
 ```sql
-EXEC sys.sp_query_store_set_hints @query_id = 39, @query_hints = N'OPTION (USE HINT (''FORCE_LEGACY_CARDINALITY_ESTIMATION''))';
+EXECUTE sys.sp_query_store_set_hints
+    @query_id = 39,
+    @query_hints = N'OPTION (USE HINT (''FORCE_LEGACY_CARDINALITY_ESTIMATION''))';
 ```
 
 The following example applies the hint to enforce a maximum memory grant size in `PERCENT` of configured memory limit to `query_id` 39, identified in Query Store:
 
 ```sql
-EXEC sys.sp_query_store_set_hints @query_id = 39, @query_hints = N'OPTION (MAX_GRANT_PERCENT = 10)';
+EXECUTE sys.sp_query_store_set_hints
+    @query_id = 39,
+    @query_hints = N'OPTION (MAX_GRANT_PERCENT = 10)';
 ```
 
 The following example applies multiple query hints to query_id 39, including `RECOMPILE`, `MAXDOP 1`, and the [!INCLUDE [sssql11-md](../../includes/sssql11-md.md)] query optimizer behavior:
 
 ```sql
-EXEC sys.sp_query_store_set_hints @query_id = 39,
+EXECUTE sys.sp_query_store_set_hints
+    @query_id = 39,
     @query_hints = N'OPTION(RECOMPILE, MAXDOP 1, USE HINT (''QUERY_OPTIMIZER_COMPATIBILITY_LEVEL_110''))';
 ```
 
 The following example blocks query with the query_id 39 from future execution by applying the `ABORT_QUERY_EXECUTION` hint. The hint is in preview.
 
 ```sql
-EXEC sys.sp_query_store_set_hints @query_id = 39,
+EXECUTE sys.sp_query_store_set_hints
+    @query_id = 39,
     @query_hints = N'OPTION (USE HINT (''ABORT_QUERY_EXECUTION''))';
 ```
 
@@ -788,11 +804,12 @@ OPTION (FORCE DISTRIBUTED PLAN);
 Use `'DISABLE_RESULT_SET_CACHE'` as a `hint_name` to block result set cache for a particular run of a query. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).
 
 ```sql
-SELECT OrderDateKey, SUM(SalesAmount) AS TotalSales
+SELECT OrderDateKey,
+       SUM(SalesAmount) AS TotalSales
 FROM FactInternetSales
 GROUP BY OrderDateKey
 ORDER BY OrderDateKey
-OPTION (USE HINT ('DISABLE_RESULT_SET_CACHE'));
+OPTION (USE HINT('DISABLE_RESULT_SET_CACHE'));
 ```
 
 ## Related content
