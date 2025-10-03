@@ -1,12 +1,12 @@
 ---
 title: "sys.stats (Transact-SQL)"
-description: sys.stats (Transact-SQL)
+description: The sys.stats system catalog view contains a row for each statistics object that exists for the tables, indexes, and indexed views in a SQL Server database.
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 09/19/2025
+ms.date: 10/02/2025
 ms.service: sql
 ms.subservice: system-objects
-ms.topic: "reference"
+ms.topic: reference
 f1_keywords:
   - "sys.stats"
   - "stats_TSQL"
@@ -15,7 +15,7 @@ f1_keywords:
 helpviewer_keywords:
   - "sys.stats catalog view"
 dev_langs:
-  - "TSQL"
+  - TSQL
 monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current || =fabric"
 ---
 # sys.stats (Transact-SQL)
