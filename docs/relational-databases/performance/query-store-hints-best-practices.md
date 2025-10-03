@@ -1,10 +1,10 @@
 ---
-title: "Query Store Hints Best Practices"
-description: "Best practices for the Query Store hints feature, which helps you to shape query plans without changing application code."
+title: Query Store Hints Best Practices
+description: Best practices for the Query Store hints feature, which helps you to shape query plans without changing application code.
 author: MikeRayMSFT
 ms.author: mikeray
 ms.reviewer: randolphwest
-ms.date: 07/25/2025
+ms.date: 10/03/2025
 ms.service: sql
 ms.subservice: performance
 ms.topic: best-practice
@@ -12,7 +12,7 @@ ms.custom:
   - ignite-2024
   - build-2025
 dev_langs:
-  - "TSQL"
+  - TSQL
 monikerRange: "=azuresqldb-current || =azuresqldb-mi-current || >=sql-server-ver16 || >=sql-server-linux-ver16 || =fabric"
 ---
 
@@ -66,7 +66,9 @@ Query Store hints can be a valuable method when a newer database compatibility l
 For example, if you have a [!INCLUDE [sssql22-md](../../includes/sssql22-md.md)] instance with a database in compatibility level 140, you can still use Query Store hints to run individual queries in compatibility level 160. You could use the following hint:
 
 ```sql
-EXEC sys.sp_query_store_set_hints @query_id= 39, @query_hints = N'OPTION(USE HINT(''QUERY_OPTIMIZER_COMPATIBILITY_LEVEL_160''))';
+EXECUTE sys.sp_query_store_set_hints
+    @query_id = 39,
+    @query_hints = N'OPTION(USE HINT(''QUERY_OPTIMIZER_COMPATIBILITY_LEVEL_160''))';
 ```
 
 For a complete tutorial, see [Query Store hints Examples](query-store-hints.md#examples).
@@ -82,14 +84,20 @@ After performance testing the new compatibility level and deploying Query Store 
 You can use the `ABORT_QUERY_EXECUTION` query hint to block future execution of known problematic queries, for example nonessential queries causing high resource consumption and affecting critical application workloads.
 
 > [!NOTE]  
-> At this time, the [ABORT_QUERY_EXECUTION](/sql/t-sql/queries/hints-transact-sql-query?view=azuresqldb-current&preserve-view=true#use_hint_abort_query_execution) (preview) query hint is available only in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)] and [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)].
+> The [ABORT_QUERY_EXECUTION](/sql/t-sql/queries/hints-transact-sql-query?view=azuresqldb-current&preserve-view=true#use_hint_abort_query_execution) query hint is available only in [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], [!INCLUDE [ssazuremi-md](../../includes/ssazuremi-md.md)]<sup>[AUTD](/azure/azure-sql/managed-instance/update-policy#always-up-to-date-update-policy)</sup>, and [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)].
 
 For example, to block future execution of `query_id` 39, execute [sys.sp_query_store_set_hints](../system-stored-procedures/sys-sp-query-store-set-hints-transact-sql.md) as follows:
 
 ```sql
-EXEC sys.sp_query_store_set_hints
-     @query_id = 39,
-     @query_hints = N'OPTION (USE HINT (''ABORT_QUERY_EXECUTION''))';
+EXECUTE sys.sp_query_store_set_hints
+    @query_id = 39,
+    @query_hints = N'OPTION (USE HINT (''ABORT_QUERY_EXECUTION''))';
+```
+
+To unblock the same query, execute execute [sys.sp_query_store_clear_hints](../system-stored-procedures/sys-sp-query-store-clear-hints-transact-sql.md):
+
+```sql
+EXECUTE sys.sp_query_store_clear_hints @query_id = 39;
 ```
 
 For more information, see Query Store hint [examples](query-store-hints.md#examples).
@@ -98,6 +106,7 @@ The following considerations apply:
 
 - When you specify this hint for a query, an attempt to execute the query fails with error 8778, severity 16, *Query execution has been aborted because the ABORT_QUERY_EXECUTION hint was specified.*
 - To unblock a query, you can clear the hint by passing the `query_id` value to the `@query_id` parameter in the [sys.sp_query_store_clear_hints](../system-stored-procedures/sys-sp-query-store-clear-hints-transact-sql.md) stored procedure.
+  - This stored procedure clears all hints for a query. If you want to retain existing hints while unblocking the query, use [sys.sp_query_store_set_hints](../system-stored-procedures/sys-sp-query-store-set-hints-transact-sql.md), removing the `ABORT_QUERY_EXECUTION` hint but keeping other hints.
 - You can use system views to find queries in Query Store that are blocked, as in the following example query:
 
   ```sql
@@ -105,11 +114,11 @@ The following considerations apply:
          q.query_hash,
          qt.query_sql_text
   FROM sys.query_store_query_hints AS qsh
-  INNER JOIN sys.query_store_query AS q
-  ON qsh.query_id = q.query_id
-  INNER JOIN sys.query_store_query_text AS qt
-  ON q.query_text_id = qt.query_text_id
-  WHERE UPPER(qsh.query_hint_text) LIKE '%ABORT[_]QUERY[_]EXECUTION%'
+       INNER JOIN sys.query_store_query AS q
+           ON qsh.query_id = q.query_id
+       INNER JOIN sys.query_store_query_text AS qt
+           ON q.query_text_id = qt.query_text_id
+  WHERE UPPER(qsh.query_hint_text) LIKE '%ABORT[_]QUERY[_]EXECUTION%';
   ```
 
 - To get the `query_id` value, at least one query execution must be recorded in Query Store. This execution doesn't have to be successful. This means that future execution of timed out or canceled queries can be blocked.
@@ -145,7 +154,7 @@ Carefully load test changes for mission critical or sensitive systems before app
 
 ### Forced parameterization and the RECOMPILE hint are not supported
 
-Applying the `RECOMPILE` query hint with Query Store hints isn't supported when the database option [PARAMETERIZATION is set to FORCED](../../t-sql/statements/alter-database-transact-sql-set-options.md#parameterization_option-). For more information, see [Guidelines for Using Forced Parameterization](../../relational-databases/query-processing-architecture-guide.md#forced-parameterization).
+Applying the `RECOMPILE` query hint with Query Store hints isn't supported when the database option [PARAMETERIZATION is set to FORCED](../../t-sql/statements/alter-database-transact-sql-set-options.md#parameterization_option-). For more information, see [Guidelines for Using Forced Parameterization](../query-processing-architecture-guide.md#forced-parameterization).
 
 The `RECOMPILE` hint isn't compatible with forced parameterization set at the database level. If the database uses forced parameterization, and the `RECOMPILE` hint is part of the hints string set in Query Store for a query, the Database Engine ignores the `RECOMPILE` hint and applies other hints if specified. Additionally, starting in July 2022 in Azure SQL Database, a warning (error code 12461) is issued stating that the `RECOMPILE` hint was ignored.
 
@@ -155,4 +164,4 @@ For information on which query hints can be applied, see [Supported query hints]
 
 - [Save an Execution Plan in XML Format](save-an-execution-plan-in-xml-format.md)
 - [Display and save execution plans](display-and-save-execution-plans.md)
-- [Configure the max degree of parallelism (MAXDOP) in Azure SQL Database](/azure/azure-sql/database/configure-max-degree-of-parallelism)
+- [Configure the max degree of parallelism (MAXDOP) in Azure SQL Database and SQL database in Fabric](/azure/azure-sql/database/configure-max-degree-of-parallelism)
