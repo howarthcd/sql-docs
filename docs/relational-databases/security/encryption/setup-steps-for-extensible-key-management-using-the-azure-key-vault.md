@@ -4,7 +4,7 @@ description: Install and configure the SQL Server Connector for Azure Key Vault.
 author: VanMSFT
 ms.author: vanto
 ms.reviewer: randolphwest
-ms.date: 09/11/2025
+ms.date: 10/06/2025
 ms.service: sql
 ms.subservice: security
 ms.topic: how-to
@@ -101,6 +101,9 @@ To grant your SQL Server instance access permissions to your Azure key vault, yo
 
 Select the method you want to use to create a key vault.
 
+> [!NOTE]  
+> Only Azure Key Vault and Azure Key Vault Managed HSM are supported. Azure Cloud HSM isn't supported.
+
 ## [Azure portal](#tab/portal)
 
 ### Create a key vault by using the Azure portal
@@ -156,7 +159,7 @@ The recommended method is to use [Azure role-based access control (RBAC)](/azure
 #### Vault access policy
 
 > [!NOTE]  
-> If you're using the **Azure role-based access control** option, you can skip this section. If you are changing the permission model, you can do so by going to the **Access configuration** menu of the key vault. Make sure you have the correct permissions to manage the key vault. For more information, see [Enable Azure RBAC permissions on Key Vault](/azure/key-vault/general/rbac-guide#enable-azure-rbac-permissions-on-key-vault).
+> If you're using the **Azure role-based access control** option, you can skip this section. If you're changing the permission model, you can do so by going to the **Access configuration** menu of the key vault. Make sure you have the correct permissions to manage the key vault. For more information, see [Enable Azure RBAC permissions on Key Vault](/azure/key-vault/general/rbac-guide#enable-azure-rbac-permissions-on-key-vault).
 
 1. From the **Access configuration** tab, select **Vault access policy**. If you're using an existing Key vault, you can select the **Access policies** menu from the Key vault resource, and select **Create**.
 
@@ -408,7 +411,7 @@ Download the SQL Server Connector from the [Microsoft Download Center](https://g
 > - SQL Server Connector versions 1.0.0.440 and older have been replaced and are no longer supported in production environments and using the instructions on the [SQL Server Connector Maintenance & Troubleshooting](sql-server-connector-maintenance-troubleshooting.md) page under [Upgrade of SQL Server Connector](sql-server-connector-maintenance-troubleshooting.md#upgrade-of--connector).
 > - Starting with version 1.0.3.0, the SQL Server Connector reports relevant error messages to the Windows event logs for troubleshooting.
 > - Starting with version 1.0.4.0, there's support for private Azure clouds, including Azure operated by 21Vianet, Azure Germany, and Azure Government.
-> - There's a breaking change in version 1.0.5.0 in terms of the thumbprint algorithm. You might experience database restore failures after upgrading to 1.0.5.0. For more information, see [KB article 447099](/troubleshoot/sql/database-engine/backup-restore/error-33111-restore-issues-sql-connector).
+> - There's a breaking change in version 1.0.5.0 in terms of the thumbprint algorithm. You might experience database restore failures after upgrading to 1.0.5.0. For more information, see [Error 33111 when restoring backups from older versions of SQL Server Connector for Microsoft Azure Key Vault](/troubleshoot/sql/database-engine/backup-restore/error-33111-restore-issues-sql-connector).
 > - Starting with version 1.0.5.0 (TimeStamp: September 2020), the SQL Server Connector supports filtering messages and network request retry logic.
 > - Starting with updated version 1.0.5.0 (TimeStamp: November 2020), the SQL Server Connector supports RSA 2048, RSA 3072, RSA-HSM 2048 and RSA-HSM 3072 keys.
 > - Starting with updated version 1.0.5.0 (TimeStamp: November 2020), you can refer to a specific key version in the Azure Key Vault.
@@ -528,7 +531,7 @@ For a note about the minimum permission levels needed for each action in this se
 
      -- Add the credential to the SQL Server administrator's domain login
      ALTER LOGIN [<domain>\<login>]
-     ADD CREDENTIAL sysadmin_ekm_cred;
+         ADD CREDENTIAL sysadmin_ekm_cred;
      ```
 
    For an example of using variables for the `CREATE CREDENTIAL` argument and programmatically removing the hyphens from the Client ID, see [CREATE CREDENTIAL](../../../t-sql/statements/create-credential-transact-sql.md).
@@ -545,18 +548,18 @@ For a note about the minimum permission levels needed for each action in this se
 
    ```sql
    CREATE ASYMMETRIC KEY EKMSampleASYKey
-   FROM PROVIDER [AzureKeyVault_EKM]
-   WITH PROVIDER_KEY_NAME = 'ContosoRSAKey0',
-   CREATION_DISPOSITION = OPEN_EXISTING;
+        FROM PROVIDER [AzureKeyVault_EKM]
+        WITH PROVIDER_KEY_NAME = 'ContosoRSAKey0',
+            CREATION_DISPOSITION = OPEN_EXISTING;
    ```
 
    Beginning with updated version 1.0.5.0 of the SQL Server connector, you can refer to a specific key version in the Azure Key Vault:
 
    ```sql
    CREATE ASYMMETRIC KEY EKMSampleASYKey
-   FROM PROVIDER [AzureKeyVault_EKM]
-   WITH PROVIDER_KEY_NAME = 'ContosoRSAKey0/1a4d3b9b393c4678831ccc60def75379',
-   CREATION_DISPOSITION = OPEN_EXISTING;
+        FROM PROVIDER [AzureKeyVault_EKM]
+        WITH PROVIDER_KEY_NAME = 'ContosoRSAKey0/1a4d3b9b393c4678831ccc60def75379',
+            CREATION_DISPOSITION = OPEN_EXISTING;
    ```
 
    In the preceding example script, `1a4d3b9b393c4678831ccc60def75379` represents the specific version of the key that will be used. If you use this script, it doesn't matter if you update the key with a new version. The key version (for example) `1a4d3b9b393c4678831ccc60def75379` will always be used for database operations.
@@ -566,7 +569,7 @@ For a note about the minimum permission levels needed for each action in this se
    ```sql
    --Create a Login that will associate the asymmetric key to this login
    CREATE LOGIN TDE_Login
-   FROM ASYMMETRIC KEY EKMSampleASYKey;
+       FROM ASYMMETRIC KEY EKMSampleASYKey;
    ```
 
 1. Create a new login from the asymmetric key in SQL Server. Drop the credential mapping from [Step 5: Configure SQL Server](#step-5-configure-sql-server) so that the credentials can be mapped to the new login.
@@ -574,7 +577,7 @@ For a note about the minimum permission levels needed for each action in this se
    ```sql
    --Now drop the credential mapping from the original association
    ALTER LOGIN [<domain>\<login>]
-   DROP CREDENTIAL sysadmin_ekm_cred;
+       DROP CREDENTIAL sysadmin_ekm_cred;
    ```
 
 1. Alter the new login, and map the EKM credentials to the new login.
@@ -582,7 +585,7 @@ For a note about the minimum permission levels needed for each action in this se
    ```sql
    --Now add the credential mapping to the new Login
    ALTER LOGIN TDE_Login
-   ADD CREDENTIAL sysadmin_ekm_cred;
+       ADD CREDENTIAL sysadmin_ekm_cred;
    ```
 
 ### Configure the user database to be encrypted
@@ -609,7 +612,7 @@ For a note about the minimum permission levels needed for each action in this se
    ```sql
    --Enable TDE by setting ENCRYPTION ON
    ALTER DATABASE TestTDE
-   SET ENCRYPTION ON;
+       SET ENCRYPTION ON;
    ```
 
 ### Registry details
@@ -617,7 +620,10 @@ For a note about the minimum permission levels needed for each action in this se
 1. Execute the following [!INCLUDE [tsql](../../../includes/tsql-md.md)] query in the `master` database to show the asymmetric key used.
 
    ```sql
-   SELECT name, algorithm_desc, thumbprint FROM sys.asymmetric_keys;
+   SELECT name,
+          algorithm_desc,
+          thumbprint
+   FROM sys.asymmetric_keys;
    ```
 
    The statement returns:
@@ -630,7 +636,9 @@ For a note about the minimum permission levels needed for each action in this se
 1. In the user database (`TestTDE`), execute the following [!INCLUDE [tsql](../../../includes/tsql-md.md)] query to show the encryption key used.
 
    ```sql
-   SELECT encryptor_type, encryption_state_desc, encryptor_thumbprint
+   SELECT encryptor_type,
+          encryption_state_desc,
+          encryptor_thumbprint
    FROM sys.dm_database_encryption_keys
    WHERE database_id = DB_ID('TestTDE');
    ```
@@ -668,7 +676,7 @@ For a note about the minimum permission levels needed for each action in this se
    GO
    ```
 
-   For sample scripts, see the blog at [SQL Server Transparent Data Encryption and Extensible Key Management with Azure Key Vault](https://techcommunity.microsoft.com/t5/sql-server-blog/intro-sql-server-transparent-data-encryption-and-extensible-key/ba-p/1427549).
+   For sample scripts, see the blog at [SQL Server Transparent Data Encryption and Extensible Key Management with Azure Key Vault](https://techcommunity.microsoft.com/blog/sqlserver/intro---sql-server-transparent-data-encryption-and-extensible-key-management-usi/1427549).
 
 1. The `SQL Server Cryptographic Provider` registry key isn't cleaned up automatically after a key or all EKM keys are deleted. It must be cleaned up manually. Cleaning the registry key should be done with extreme caution, since cleaning the registry prematurely can break the EKM functionality. To clean up the registry key, delete the `SQL Server Cryptographic Provider` registry key on `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft`.
 
@@ -681,8 +689,8 @@ If the registry key `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SQL Server Cryptograp
 ```sql
 CREATE ASYMMETRIC KEY EKMSampleASYKey
 FROM PROVIDER [AzureKeyVault_EKM]
-WITH PROVIDER_KEY_NAME = 'ContosoRSAKey0',
-CREATION_DISPOSITION = OPEN_EXISTING;
+    WITH PROVIDER_KEY_NAME = 'ContosoRSAKey0',
+    CREATION_DISPOSITION = OPEN_EXISTING;
 ```
 
 ```output
@@ -701,7 +709,7 @@ If the credential has a client secret that is about to expire, a new secret can 
    ```sql
    ALTER CREDENTIAL sysadmin_ekm_cred
    WITH IDENTITY = 'DocsSampleEKMKeyVault',
-   SECRET = '<New Secret>';
+       SECRET = '<New Secret>';
    ```
 
 1. Restart the SQL Server service.
@@ -776,7 +784,9 @@ SQL Server doesn't have a mechanism to automatically rotate the asymmetric key u
 1. You can verify the new asymmetric key and the encryption key used in the database:
 
    ```sql
-   SELECT encryptor_type, encryption_state_desc, encryptor_thumbprint
+   SELECT encryptor_type,
+          encryption_state_desc,
+          encryptor_thumbprint
    FROM sys.dm_database_encryption_keys
    WHERE database_id = DB_ID('databaseName');
    ```
