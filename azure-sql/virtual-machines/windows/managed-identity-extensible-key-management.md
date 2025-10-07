@@ -3,8 +3,8 @@ title: Managed Identity Support for Extensible Key Management (EKM) with Azure K
 description: Learn how to use managed identities with SQL Server on Azure Virtual Machines and Transparent Data Encryption (TDE) Extensible Key Management with Azure Key Vault.
 author: Pietervanhove
 ms.author: pivanho
-ms.reviewer: vanto, mathoma
-ms.date: 02/16/2025
+ms.reviewer: vanto, mathoma, randolphwest
+ms.date: 10/06/2025
 ms.service: azure-vm-sql-server
 ms.subservice: security
 ms.topic: how-to
@@ -19,7 +19,7 @@ This article shows you how to use managed identities for Extensible Key Manageme
 
 Starting with SQL Server 2022 Cumulative Update 17 (CU17), managed identities are supported for EKM with AKV and Managed Hardware Security Modules (HSM) on SQL Server on Azure VMs. Managed identities are the recommended authentication method to allow different Azure services to authenticate the SQL Server on Azure VM resource without using passwords or secrets. For more information on managed identities, see [Managed identity types](/entra/identity/managed-identities-azure-resources/overview#managed-identity-types).
 
-> [!NOTE]
+> [!NOTE]  
 > Managed identities are only supported for SQL Server on Azure VMs and not for SQL Server on-premises.
 >
 > For information on setting up EKM with AKV for SQL Server on-premises, see [Set up SQL Server TDE Extensible Key Management by using Azure Key Vault](/sql/relational-databases/security/encryption/setup-steps-for-extensible-key-management-using-the-azure-key-vault).
@@ -29,6 +29,10 @@ Starting with SQL Server 2022 Cumulative Update 17 (CU17), managed identities ar
 - A SQL Server on Azure VM with SQL Server 2022 CU17 or later [registered with the SQL IaaS Agent extension](sql-agent-extension-manually-register-single-vm.md).
 - The SQL Server instance using a managed identity for EKM must be [configured with Microsoft Entra authentication](configure-azure-ad-authentication-for-sql-vm.md), whether or not it's the instance registered with the extension.
 - An Azure Key Vault and key created in the key vault. For more information, see [Create a key vault](/sql/relational-databases/security/encryption/setup-steps-for-extensible-key-management-using-the-azure-key-vault?tabs=portal#step-2-create-a-key-vault).
+
+> [!NOTE]  
+> Only Azure Key Vault and Azure Key Vault Managed HSM are supported. Azure Cloud HSM isn't supported.
+
 - Managed identities are supported for EKM with AKV. The primary managed identity for the SQL Server on Azure VM needs:
   - To be assigned with a user-assigned managed identity or system-assigned managed identity. For more information, see [Configure managed identities on Azure virtual machines (VMs)](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities) and [Enable Microsoft Entra authentication](configure-azure-ad-authentication-for-sql-vm.md#enable-microsoft-entra-authentication).
   - To have the `Key Vault Crypto Service Encryption User` role for the primary managed identity assigned to the key vault if you're using [Azure role-based access control](/sql/relational-databases/security/encryption/setup-steps-for-extensible-key-management-using-the-azure-key-vault?tabs=portal#azure-role-based-access-control) or the *Unwrap Key* and *Wrap Key* permissions if you're using [vault access policy](/sql/relational-databases/security/encryption/setup-steps-for-extensible-key-management-using-the-azure-key-vault?tabs=portal#vault-access-policy).
@@ -43,30 +47,32 @@ Before you can create a credential using a managed identity, you need to add a r
 The following example shows how to create a credential for a managed identity to use with the AKV:
 
 ```sql
-CREATE CREDENTIAL [<akv-name>.vault.azure.net] 
+CREATE CREDENTIAL [<akv-name>.vault.azure.net]
     WITH IDENTITY = 'Managed Identity'
-    FOR CRYPTOGRAPHIC PROVIDER AzureKeyVault_EKM_Prov
+    FOR CRYPTOGRAPHIC PROVIDER AzureKeyVault_EKM_Prov;
 ```
 
 You can check the AKV name by querying `sys.credentials`:
 
 ```sql
 SELECT name, credential_identity
-FROM sys.credentials
+FROM sys.credentials;
 ```
 
 The `WITH IDENTITY = 'Managed Identity'` clause requires a primary managed identity assigned to the SQL Server on Azure VM.
 
 For more information on setting up EKM with AKV, see [Set up SQL Server TDE Extensible Key Management by using Azure Key Vault](/sql/relational-databases/security/encryption/setup-steps-for-extensible-key-management-using-the-azure-key-vault).
 
-## Creating a credential to use with Managed Hardware Security Modules (HSMs)
+<a id="creating-a-credential-to-use-with-managed-hardware-security-modules-hsms"></a>
+
+## Create a credential to use with managed hardware security modules (HSMs)
 
 To create a credential to use with Azure Key Vault Managed Hardware Security Modules (HSMs), use the following syntax:
 
 ```sql
-CREATE CREDENTIAL [<akv-name>.managedhsm.azure.net] 
+CREATE CREDENTIAL [<akv-name>.managedhsm.azure.net]
     WITH IDENTITY = 'Managed Identity'
-    FOR CRYPTOGRAPHIC PROVIDER AzureKeyVault_EKM_Prov
+    FOR CRYPTOGRAPHIC PROVIDER AzureKeyVault_EKM_Prov;
 ```
 
 For more information on setting up EKM with AKV, see [Set up SQL Server TDE Extensible Key Management by using Azure Key Vault](/sql/relational-databases/security/encryption/setup-steps-for-extensible-key-management-using-the-azure-key-vault).
@@ -78,31 +84,31 @@ If your current configuration is using EKM with AKV using a secret, you'll need 
 1. Create the credential using a managed identity:
 
    ```sql
-   CREATE CREDENTIAL [<akv-name>.vault.azure.net] 
+   CREATE CREDENTIAL [<akv-name>.vault.azure.net]
        WITH IDENTITY = 'Managed Identity'
-       FOR CRYPTOGRAPHIC PROVIDER AzureKeyVault_EKM_Prov
+       FOR CRYPTOGRAPHIC PROVIDER AzureKeyVault_EKM_Prov;
    ```
 
 1. If there's a credential using a secret associated with the SQL Server administration domain login, drop the existing credential:
 
    ```sql
    ALTER LOGIN [<domain>\<login>]
-   DROP CREDENTIAL [<existing-credential-name>]
+       DROP CREDENTIAL [<existing-credential-name>];
    ```
 
 1. Associate the new credential with the SQL Server administration domain login:
 
    ```sql
    ALTER LOGIN [<domain>\<login>]
-   ADD CREDENTIAL [<akv-name>.vault.azure.net]
+       ADD CREDENTIAL [<akv-name>.vault.azure.net];
    ```
 
 You can check the encrypted database view to verify the database encryption using the following query:
 
 ```sql
-SELECT * 
-FROM sys.dm_database_encryption_keys 
-WHERE database_id=db_id('<your-database-name>')
+SELECT *
+FROM sys.dm_database_encryption_keys
+WHERE database_id = db_id('<your-database-name>');
 ```
 
 For more information on setting up EKM with AKV, see [Set up SQL Server TDE Extensible Key Management by using Azure Key Vault](/sql/relational-databases/security/encryption/setup-steps-for-extensible-key-management-using-the-azure-key-vault).
