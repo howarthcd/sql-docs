@@ -151,6 +151,8 @@ The following steps use SQL Server Management Studio (SSMS). Download the latest
  **Display name**  
  Type the name to show on e-mail messages sent from this account. The display name is optional. This is the name displayed on messages sent from this account. For example, an account for [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] Agent can display the name "SQL Server Agent Automated Mailer" on e-mail messages.  
 
+ If the name contains the character “\“, you must enter “\\”, otherwise this character will “disappear” from the Display Name.
+
  **Reply e-mail**  
  Type the e-mail address that is used for replies to e-mail messages sent from this account. The reply e-mail is optional. For example, replies to an account for [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] Agent can go to the database administrator, danw@Adventure-Works.com.  
 
