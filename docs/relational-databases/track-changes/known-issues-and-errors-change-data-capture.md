@@ -97,7 +97,7 @@ The following are examples of `ALTER COLUMN` data type changes that aren't suppo
 - **bigint** to **int**
 - **char(x)**, **nvarchar(x)**, or **nvarchar(x)** to **uniqueidentifier**, **DATE**, or **INT**
 
-Changing the data type of a columns of a CDC-enabled table can result in the following errors: 
+Changing the data type of a column in a CDC-enabled table can result in the following errors: 
 
 - [Error 241](#error-241---conversion-failed-when-converting-date-andor-time-from-character-string) - Conversion failed when converting date and/or time from character string.
 - [Error 245](#error-245---conversion-failed-when-converting-the-value-from-string-to-int) - Conversion failed when converting the value. 
@@ -247,7 +247,7 @@ These are the different troubleshooting categories included in this section:
 
 #### Error 8169 - Conversion failed when converting from a character string to uniqueidentifier
 
-* **Cause**: This error occurs when an [ALTER COLUMN](../../t-sql/statements/alter-table-transact-sql.md#alter-column) command is issued to change the data type of a column when table has CDC enabled. For example, if a table has a **char(x)**, **nvarchar(x)**, **nvarchar(x)** column and you change the data type to **uniqueidentifier**, or **DATE**, or **INT** (such as: `ALTER TABLE table_name ALTER COLUMN [column_name] uniqueidentifier`), you might see this error in the [sys.dm_cdc_errors](../system-dynamic-management-views/change-data-capture-sys-dm-cdc-errors.md) Dynamic Management View (DMV). Error 8169 indicates an unsupported data conversion in the change table, even though the ALTER command on the source table succeeds.
+* **Cause**: This error occurs when an [ALTER COLUMN](../../t-sql/statements/alter-table-transact-sql.md#alter-column) command is issued to change the data type of a column when table has CDC enabled. For example, if a table has a **char(x)**, **nvarchar(x)**, **nvarchar(x)** column and you change the data type to **uniqueidentifier** (such as: `ALTER TABLE table_name ALTER COLUMN [column_name] uniqueidentifier`), you might see this error in the [sys.dm_cdc_errors](../system-dynamic-management-views/change-data-capture-sys-dm-cdc-errors.md) Dynamic Management View (DMV). Error 8169 indicates an unsupported data conversion in the change table, even though the ALTER command on the source table succeeds.
 
 * **Recommendation**: To resolve this issue, disable and re-enable CDC for your table after altering the column. Alternatively, disable CDC before running the `ALTER COLUMN` command, and then reenable CDC after the `ALTER COLUMN` change.
 

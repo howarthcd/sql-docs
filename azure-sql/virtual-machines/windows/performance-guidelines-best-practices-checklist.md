@@ -63,7 +63,7 @@ If you plan to manually install SQL Server on an Azure VM, follow these essentia
 
 ## VM size
 
-[!INCLUDE [sql-vm-deplyment-failure](../../includes/sql-vm-deplyment-failure.md)]
+[!INCLUDE [sql-vm-deployment-failure](../../includes/sql-vm-deployment-failure.md)]
 
 The checklist in this section covers the [VM size best practices](performance-guidelines-best-practices-vm-size.md) for SQL Server on Azure VMs.
 

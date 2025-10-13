@@ -23,7 +23,7 @@ When you deploy an Azure virtual machine (VM) with SQL Server installed on it, e
 
 For updates made in previous years, see the [What's new archive](doc-changes-updates-release-notes-whats-new-archive.md). 
 
-[!INCLUDE [sql-vm-deplyment-failure](../../includes/sql-vm-deplyment-failure.md)]
+[!INCLUDE [sql-vm-deployment-failure](../../includes/sql-vm-deployment-failure.md)]
 
 
 ## Preview
@@ -65,7 +65,7 @@ Learn about significant changes to the SQL Server on Azure VMs documentation. Fo
 
 | Changes | Details |
 | --- | --- |
-| **SQL Server 2025 Preview** | SQL Server 2025 Preview is now [available to deploy as an image](sql-server-on-azure-vm-iaas-what-is-overview.md#licensing) for SQL Server on Azure VMs. Review [SQL Server 2025 preview](/sql/sql-server/what-s-new-in-sql-server-2025) to learn more.  |
+| **SQL Server 2025 Preview** | SQL Server 2025 Preview is now [available to deploy as an image](sql-server-on-azure-vm-iaas-what-is-overview.md#sql-vm-images-and-licensing) for SQL Server on Azure VMs. Review [SQL Server 2025 preview](/sql/sql-server/what-s-new-in-sql-server-2025) to learn more.  |
 
 ### April 2025
 

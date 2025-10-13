@@ -29,7 +29,7 @@ An Azure subscription. Create a [free account](https://azure.microsoft.com/prici
 
 Use the Azure Marketplace to choose one of several pre-configured images from the virtual machine gallery.
 
-The Developer edition is used in this article because it's a full-featured, free edition of SQL Server for development testing. You pay only for the cost of running the VM. However, you're free to choose any of the images to use in this walkthrough. For a description of available images, see the [SQL Server Windows Virtual Machines overview](sql-server-on-azure-vm-iaas-what-is-overview.md#licensing).
+The Developer edition is used in this article because it's a full-featured, free edition of SQL Server for development testing. You pay only for the cost of running the VM. However, you're free to choose any of the images to use in this walkthrough. For a description of available images, see the [SQL Server Windows Virtual Machines overview](sql-server-on-azure-vm-iaas-what-is-overview.md#sql-vm-images-and-licensing).
 
 > [!NOTE]  
 > SQL Server 2025 Preview introduces separate Enterprise Developer and Standard Developer editions of SQL Server.
@@ -49,7 +49,7 @@ To choose an image, follow these steps:
 
 ## Basic settings
 
-[!INCLUDE [sql-vm-deplyment-failure](../../includes/sql-vm-deplyment-failure.md)]
+[!INCLUDE [sql-vm-deployment-failure](../../includes/sql-vm-deployment-failure.md)]
 
 The **Basics** tab allows you to select the subscription, resource group, and instance details.
 

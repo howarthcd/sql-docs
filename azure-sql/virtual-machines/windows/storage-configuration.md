@@ -19,13 +19,13 @@ This article teaches you how to configure your storage for your SQL Server on Az
 
 SQL Server VMs deployed through Azure Marketplace images automatically follow default [Storage best practices](performance-guidelines-best-practices-storage.md) that can be modified during deployment. Some of these configuration settings can be changed after deployment.
 
-[!INCLUDE [sql-vm-deplyment-failure](../../includes/sql-vm-deplyment-failure.md)]
+[!INCLUDE [sql-vm-deployment-failure](../../includes/sql-vm-deployment-failure.md)]
 
 ## Prerequisites
 
 To use the automated storage configuration settings, your virtual machine requires the following characteristics:
 
-- Provisioned with a [SQL Server gallery image](sql-server-on-azure-vm-iaas-what-is-overview.md#licensing).
+- Provisioned with a [SQL Server gallery image](sql-server-on-azure-vm-iaas-what-is-overview.md#sql-vm-images-and-licensing).
 - Uses the [Resource Manager deployment model](/azure/azure-resource-manager/management/deployment-models).
 - Uses [premium SSDs](/azure/virtual-machines/disks-types#premium-ssds).
 

@@ -22,7 +22,7 @@ There's typically a trade-off between optimizing for costs and optimizing for pe
 
 For comprehensive details, see the other articles in this series: [Checklist](performance-guidelines-best-practices-checklist.md), [Storage](performance-guidelines-best-practices-storage.md), [Security](security-considerations-best-practices.md), [HADR configuration](hadr-cluster-best-practices.md), [Collect baseline](performance-guidelines-best-practices-collect-baseline.md).
 
-[!INCLUDE [sql-vm-deplyment-failure](../../includes/sql-vm-deplyment-failure.md)]
+[!INCLUDE [sql-vm-deployment-failure](../../includes/sql-vm-deployment-failure.md)]
 
 ## Checklist
 
