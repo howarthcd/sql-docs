@@ -31,7 +31,7 @@ In this tutorial, you learn how to:
 - Access to Microsoft Entra ID is available for authentication purpose. For more information, see [Microsoft Entra authentication for SQL Server](../relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview.md).
 - [SQL Server Management Studio (SSMS)](../ssms/download-sql-server-management-studio-ssms.md) version 18.0 or higher is installed on the client machine.
 - A supported certificate.
-- [Network requirements for enabling Entra ID authentication](../sql-server/azure-arc/prerequisites.md#network-requirements-for-enabling-microsoft-entra-authenticationn)
+- [Network requirements for enabling Entra ID authentication](../sql-server/azure-arc/prerequisites.md#network-requirements-for-enabling-microsoft-entra-authentication)
 
   Microsoft Entra ID supports CSP certificates. Entra ID doesn't support CNG certificates.
 
