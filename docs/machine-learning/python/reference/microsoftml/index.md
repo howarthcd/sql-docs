@@ -76,15 +76,10 @@ monikerRange: ">=sql-server-2017 || >=sql-server-linux-ver15"
 
 - [*microsoftml.featurize_text*: Converts text columns into numerical features](featurize-text.md)
 
-  - [*microsoftml.featurize_text*: Converts text columns into numerical features](featurize-text.md)
-
-    - [*microsoftml.n_gram*: Converts text into features using n-grams](n-gram.md)
-    - [*microsoftml.n_gram_hash*: Converts text into features using hashed n-grams](n-gram-hash.md)
-
-  - [*microsoftml.featurize_text*: Converts text columns into numerical features](featurize-text.md)
-
-    - [*microsoftml.custom*: Removes custom stopwords](custom.md)
-    - [*microsoftml.predefined*: Removes predefined stopwords](predefined.md)
+  - [*microsoftml.n_gram*: Converts text into features using n-grams](n-gram.md)
+  - [*microsoftml.n_gram_hash*: Converts text into features using hashed n-grams](n-gram-hash.md)
+  - [*microsoftml.custom*: Removes custom stopwords](custom.md)
+  - [*microsoftml.predefined*: Removes predefined stopwords](predefined.md)
 
 - [*microsoftml.get_sentiment*: Sentiment analysis](get-sentiment.md)
 

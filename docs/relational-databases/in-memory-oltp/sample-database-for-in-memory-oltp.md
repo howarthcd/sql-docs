@@ -29,13 +29,13 @@ The documentation of this sample is structured as follows:
 
 - [Prerequisites](#prerequisites) for installing the sample and running the demo workload.
 
-- Instructions for [Installing the In-Memory OLTP sample based on AdventureWorks](#InstallingtheIn-MemoryOLTPsamplebasedonAdventureWorks).
+- Instructions for [Install the In-Memory OLTP sample based on AdventureWorks](#install-the-in-memory-oltp-sample-based-on-adventureworks).
 
-- [Description of the sample tables and procedures](#Descriptionofthesampletablesandprocedures) - includes descriptions of the tables and procedures added to [!INCLUDE [sssampledbobject-md](../../includes/sssampledbobject-md.md)] by the in-memory OLTP sample, as well as considerations for migrating some of the original [!INCLUDE [sssampledbobject-md](../../includes/sssampledbobject-md.md)] tables to be memory-optimized.
+- [Description of the sample tables and procedures](#description-of-the-sample-tables-and-procedures) - includes descriptions of the tables and procedures added to [!INCLUDE [sssampledbobject-md](../../includes/sssampledbobject-md.md)] by the in-memory OLTP sample, as well as considerations for migrating some of the original [!INCLUDE [sssampledbobject-md](../../includes/sssampledbobject-md.md)] tables to be memory-optimized.
 
-- Instructions for performing [Performance Measurements using the Demo Workload](#PerformanceMeasurementsusingtheDemoWorkload) - includes instructions for installing and running **ostress**, a tool using for driving the workload, and running the demo workload itself.
+- Instructions for performing [Performance measurements using the demo workload](#performance-measurements-using-the-demo-workload) - includes instructions for installing and running **ostress**, a tool using for driving the workload, and running the demo workload itself.
 
-- [Memory and Disk Space Utilization in the Sample](#MemoryandDiskSpaceUtilizationintheSample).
+- [Memory and disk space utilization in the sample](#memory-and-disk-space-utilization-in-the-sample).
 
 ## Prerequisites
 
@@ -224,7 +224,7 @@ In the previous example, some of the bucket counts are oversized, but not the bu
 
 #### Considerations for memory utilization
 
-Memory utilization in the sample database, both before and after running the demo workload, is discussed in the Section [Memory utilization for the memory-optimized tables](#Memoryutilizationforthememory-optimizedtables).
+Memory utilization in the sample database, both before and after running the demo workload, is discussed in the Section [Memory utilization for the memory-optimized tables](#memory-utilization-for-the-memory-optimized-tables).
 
 ### Stored procedures added by the sample
 
@@ -268,7 +268,7 @@ The two key stored procedures for inserting sales order and updating shipping de
 
 - `Sales.usp_UpdateSalesOrderShipInfo_native`
 
-  - This is the natively compiled stored procedure that actually processes the update to the shipping information. It's means to be called from the wrapper stored procedure `Sales.usp_UpdateSalesOrderShipInfo_inmem`. If the client can deal with failures and implements retry logic, you can call this procedure directly, rather than using the wrapper stored procedure.
+  - This is the natively compiled stored procedure that actually processes the update to the shipping information. It's meant to be called from the wrapper stored procedure `Sales.usp_UpdateSalesOrderShipInfo_inmem`. If the client can deal with failures and implements retry logic, you can call this procedure directly, rather than using the wrapper stored procedure.
 
 The following stored procedure is used for the demo workload.
 
@@ -369,7 +369,7 @@ We use the **ostress** tool to execute the scripts using several concurrent conn
 
 #### Run the workload
 
-To test at scale we insert 10 million sales orders, using 100 connections. This test performs reasonably on a modest server (for example, 8 physical, 16 logical cores), and basic SSD storage for the log. If the test doesn't perform well on your hardware, take look at the Section [Troubleshooting slow-running tests](#Troubleshootingslow-runningtests). If you want to reduce the level of stress for this test, lower the number of connections by changing the parameter `-n`. For example to lower the connection count to 40, change the parameter `-n100` to `-n40`.
+To test at scale we insert 10 million sales orders, using 100 connections. This test performs reasonably on a modest server (for example, 8 physical, 16 logical cores), and basic SSD storage for the log. If the test doesn't perform well on your hardware, take look at the section [Troubleshoot slow-running tests](#troubleshoot-slow-running-tests). If you want to reduce the level of stress for this test, lower the number of connections by changing the parameter `-n`. For example to lower the connection count to 40, change the parameter `-n100` to `-n40`.
 
 As a performance measure for the workload we use the elapsed time as reported by `ostress.exe` after running the workload.
 
@@ -421,7 +421,7 @@ ostress.exe -S. -E -dAdventureWorks2022 -Q"EXEC Demo.usp_DemoReset"
 
 Depending on the hardware, this might take a few minutes to run.
 
-We recommend a reset after every demo run. Because this workload is insert-only, each run consumes more memory, and thus a reset is required to prevent running out of memory. The amount of memory consumed after a run is discussed in Section [Memory utilization after running the workload](#Memoryutilizationafterrunningtheworkload).
+We recommend a reset after every demo run. Because this workload is insert-only, each run consumes more memory, and thus a reset is required to prevent running out of memory. The amount of memory consumed after a run is discussed in Section [Memory utilization after running the workload](#memory-utilization-after-running-the-workload).
 
 ### Troubleshoot slow-running tests
 
