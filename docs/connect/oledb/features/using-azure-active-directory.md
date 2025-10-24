@@ -4,7 +4,7 @@ description: Learn about the Microsoft Entra authentication methods available in
 author: David-Engel
 ms.author: davidengel
 ms.reviewer: v-davidengel
-ms.date: 07/26/2024
+ms.date: 10/24/2025
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: conceptual
