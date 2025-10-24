@@ -3,7 +3,7 @@ title: Using Microsoft Entra ID with the ODBC Driver
 description: The Microsoft ODBC Driver for SQL Server allows ODBC applications to connect to Azure SQL Database or Azure SQL Managed Instance by authenticating with Microsoft Entra ID.
 author: David-Engel
 ms.author: davidengel
-ms.date: 07/31/2024
+ms.date: 10/24/2025
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: concept-article
@@ -32,7 +32,7 @@ The `Authentication` keyword can be used when connecting with a DSN or connectio
 
 |Name|Values|Default|Description|
 |-|-|-|-|
-|`Authentication`|(not set), (empty string), `SqlPassword`, `ActiveDirectoryPassword`, `ActiveDirectoryIntegrated`, `ActiveDirectoryInteractive`, `ActiveDirectoryMsi`, `ActiveDirectoryServicePrincipal` |(not set)|Controls the authentication mode.<table><tr><th>Value<th>Description<tr><td>(not set)<td>Authentication mode determined by other keywords (existing legacy connection options.)<tr><td>(empty string)<td>(Connection string only.) Override and unset an `Authentication` value set in the DSN.<tr><td>`SqlPassword`<td>Directly authenticate to SQL using a username and password.<tr><td>`ActiveDirectoryPassword`<td>Authenticate with a Microsoft Entra identity using a username and password.<tr><td>`ActiveDirectoryIntegrated`<td>_Windows, and Linux/Mac 17.6+, driver only_. Authenticate with a Windows credential federated through Microsoft Entra ID with integrated authentication.<tr><td>`ActiveDirectoryInteractive`<td>_Windows driver only_. Authenticate with a Microsoft Entra identity using interactive authentication.<tr><td>`ActiveDirectoryMsi`<td>Authenticate with a Microsoft Entra managed identity. For a user-assigned identity, set UID to the identity's client ID for Azure App Service or Azure Container Instance; otherwise, use its object ID. For system-assigned identity, UID isn't required.<tr><td>`ActiveDirectoryServicePrincipal`<td>(17.7+) Authenticate with a Microsoft Entra  service principal. UID is set to the client ID of the service principal. PWD is set to the client secret.</table>|
+|`Authentication`|(not set), (empty string), `SqlPassword`, `ActiveDirectoryPassword`, `ActiveDirectoryIntegrated`, `ActiveDirectoryInteractive`, `ActiveDirectoryMsi`, `ActiveDirectoryServicePrincipal` |(not set)|Controls the authentication mode.<table><tr><th>Value<th>Description<tr><td>(not set)<td>Authentication mode determined by other keywords (existing legacy connection options.)<tr><td>(empty string)<td>(Connection string only.) Override and unset an `Authentication` value set in the DSN.<tr><td>`SqlPassword`<td>Directly authenticate to SQL using a username and password.<tr><td>`ActiveDirectoryPassword`<td>**[DEPRECATED]** Authenticate with a Microsoft Entra identity using a username and password.<br/>Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).<tr><td>`ActiveDirectoryIntegrated`<td>_Windows, and Linux/Mac 17.6+, driver only_. Authenticate with a Windows credential federated through Microsoft Entra ID with integrated authentication.<tr><td>`ActiveDirectoryInteractive`<td>_Windows driver only_. Authenticate with a Microsoft Entra identity using interactive authentication.<tr><td>`ActiveDirectoryMsi`<td>Authenticate with a Microsoft Entra managed identity. For a user-assigned identity, set UID to the identity's client ID for Azure App Service or Azure Container Instance; otherwise, use its object ID. For system-assigned identity, UID isn't required.<tr><td>`ActiveDirectoryServicePrincipal`<td>(17.7+) Authenticate with a Microsoft Entra  service principal. UID is set to the client ID of the service principal. PWD is set to the client secret.</table>|
 |`Encrypt`|(not set), `Yes`/`Mandatory`(18.0+), `No`/`Optional`(18.0+), `Strict`(18.0+)|(see description)|Controls encryption for a connection. If the pre-attribute value of the `Authentication` setting isn't _`none`_ in the DSN or connection string, the default is `Yes`. The default is also `Yes` in versions 18.0.1+. Otherwise, the default is `No`. If the attribute `SQL_COPT_SS_AUTHENTICATION` overrides the pre-attribute value of `Authentication`, explicitly set the value of Encryption in the DSN or connection string or connection attribute. The pre-attribute value of Encryption is `Yes` if the value is set to `Yes` in either the DSN or connection string.|
 
 ## New and/or Modified Connection Attributes
@@ -61,7 +61,9 @@ It's possible to use Microsoft Entra authentication options when creating or edi
 
 ![The DSN creation and editing screen with Microsoft Entra integrated authentication selected.](windows/create-dsn-ad-integrated.png)
 
-`Authentication=ActiveDirectoryPassword` for Microsoft Entra username/password authentication to Azure SQL 
+`Authentication=ActiveDirectoryPassword` for Microsoft Entra username/password authentication to Azure SQL
+
+**[DEPRECATED]** ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
 
 ![The DSN creation and editing screen with Microsoft Entra Password authentication selected.](windows/create-dsn-ad-password.png)
 
@@ -118,6 +120,8 @@ These options correspond to the same six available in the DSN setup UI above.
 
 5. Microsoft Entra username/password authentication (if the target database is in Azure SQL Database or Azure SQL Managed Instance). Server certificate gets validated, whatever the encryption setting (unless `TrustServerCertificate` is set to `true`). The username/password is passed in the connection string.
 
+   **[DEPRECATED]** ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+
    `server=Server;database=Database;UID=UserName;PWD=<password>;Authentication=ActiveDirectoryPassword;Encrypt=yes;`
 
 6. (_Windows, and Linux/macOS 17.6+, driver only_.) Integrated Windows Authentication using ADAL or Kerberos, which involves redeeming Windows account credentials for a Microsoft Entra access token, assuming the target database is in Azure SQL. Server certificate gets validated, whatever the encryption setting (unless `TrustServerCertificate` is set to `true`). On Linux/macOS, a suitable Kerberos ticket needs to be available. For more information, see the section below on Federated Accounts and [Using Integrated Authentication](linux-mac/using-integrated-authentication.md).
@@ -140,7 +144,7 @@ These options correspond to the same six available in the DSN setup UI above.
 
    `server=Server;database=Database;UID=myObjectId;Authentication=ActiveDirectoryMsi;Encrypt=yes;`
 
-10. Microsoft Entra service principal authentication
+9. Microsoft Entra service principal authentication
 
    `server=Server;database=Database;UID=clientId;PWD=<password>;Authentication=ActiveDirectoryServicePrincipal;Encrypt=yes;`
 
@@ -153,6 +157,8 @@ These options correspond to the same six available in the DSN setup UI above.
 - To connect using a SQL Server account username and password, you may now use the new `SqlPassword` option, which is recommended especially for Azure SQL since this option enables more secure connection defaults.
 
 - To connect using a Microsoft Entra account username and password, specify `Authentication=ActiveDirectoryPassword` in the connection string and the `UID` and `PWD` keywords with the username and password, respectively.
+
+  **[DEPRECATED]** ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
 
 - To connect using Windows Integrated or Microsoft Entra Integrated (Windows, and Linux/macOS 17.6+, driver only) authentication, specify `Authentication=ActiveDirectoryIntegrated` in the connection string. The driver will choose the correct authentication mode automatically. For driver versions 17.7 or earlier, `UID` and `PWD` must not be specified. Beginning with driver version 17.8, `UID` and `PWD` are ignored.
 
@@ -189,7 +195,7 @@ The following sample shows the code required to connect to SQL Server using Micr
 
 ```cpp
     ...
-    SQLCHAR connString[] = "Driver={ODBC Driver 18 for SQL Server};Server={server};UID=myuser;PWD=<password>;Authentication=ActiveDirectoryPassword;Encrypt=yes;"
+    SQLCHAR connString[] = "Driver={ODBC Driver 18 for SQL Server};Server={server};UID=myuser;PWD=<password>;Authentication=ActiveDirectoryInteractive;Encrypt=yes;"
     ...
     SQLDriverConnect(hDbc, NULL, connString, SQL_NTS, NULL, 0, NULL, SQL_DRIVER_NOPROMPT);
     ...

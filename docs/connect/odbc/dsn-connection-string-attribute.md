@@ -3,7 +3,7 @@ title: ODBC DSN and connection string keywords
 description: How to connect using the ODBC driver. Find keywords for connection strings and DSNs, and connection attributes for SQLSetConnectAttr and SQLGetConnectAttr.
 author: David-Engel
 ms.author: davidengel
-ms.date: 01/09/2026
+ms.date: 10/24/2025
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: concept-article
@@ -167,7 +167,7 @@ Sets the authentication mode to use when connecting to SQL Server. For more info
 | |SQL_AU_NONE|(Default) Not set. Combination of other attributes determines authentication mode.|
 |SqlPassword|SQL_AU_PASSWORD|SQL Server authentication with username and password.|
 |ActiveDirectoryIntegrated|SQL_AU_AD_INTEGRATED|Microsoft Entra integrated authentication.|
-|ActiveDirectoryPassword|SQL_AU_AD_PASSWORD|Microsoft Entra password authentication.|
+|ActiveDirectoryPassword|SQL_AU_AD_PASSWORD|**[DEPRECATED]** Microsoft Entra password authentication.<br/><br/>Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).|
 |ActiveDirectoryInteractive|SQL_AU_AD_INTERACTIVE|Microsoft Entra Interactive authentication.|
 |ActiveDirectoryMsi|SQL_AU_AD_MSI|Microsoft Entra managed identity authentication. For user-assigned identity, UID is set to the object ID of the user identity. |
 |ActiveDirectoryServicePrincipal|SQL_AU_AD_SPA|Microsoft Entra service principal authentication. UID is set to the client ID of the service principal. PWD is set to the client secret. |
