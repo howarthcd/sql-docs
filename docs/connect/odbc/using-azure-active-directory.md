@@ -63,7 +63,8 @@ It's possible to use Microsoft Entra authentication options when creating or edi
 
 `Authentication=ActiveDirectoryPassword` for Microsoft Entra username/password authentication to Azure SQL
 
-**[DEPRECATED]** ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+> [!NOTE]
+> ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
 
 ![The DSN creation and editing screen with Microsoft Entra Password authentication selected.](windows/create-dsn-ad-password.png)
 
@@ -120,7 +121,8 @@ These options correspond to the same six available in the DSN setup UI above.
 
 5. Microsoft Entra username/password authentication (if the target database is in Azure SQL Database or Azure SQL Managed Instance). Server certificate gets validated, whatever the encryption setting (unless `TrustServerCertificate` is set to `true`). The username/password is passed in the connection string.
 
-   **[DEPRECATED]** ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+   > [!NOTE]
+   > ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
 
    `server=Server;database=Database;UID=UserName;PWD=<password>;Authentication=ActiveDirectoryPassword;Encrypt=yes;`
 
@@ -158,7 +160,8 @@ These options correspond to the same six available in the DSN setup UI above.
 
 - To connect using a Microsoft Entra account username and password, specify `Authentication=ActiveDirectoryPassword` in the connection string and the `UID` and `PWD` keywords with the username and password, respectively.
 
-  **[DEPRECATED]** ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+  > [!NOTE]
+  > ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
 
 - To connect using Windows Integrated or Microsoft Entra Integrated (Windows, and Linux/macOS 17.6+, driver only) authentication, specify `Authentication=ActiveDirectoryIntegrated` in the connection string. The driver will choose the correct authentication mode automatically. For driver versions 17.7 or earlier, `UID` and `PWD` must not be specified. Beginning with driver version 17.8, `UID` and `PWD` are ignored.
 

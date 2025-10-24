@@ -38,7 +38,8 @@ On Windows, the underlying ODBC driver supports one more value for the **Authent
 
 ## Example - connect using SqlPassword and ActiveDirectoryPassword
 
-**ActiveDirectoryPassword is deprecated.** Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+> [!NOTE]
+> ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
 
 ```php
 <?php

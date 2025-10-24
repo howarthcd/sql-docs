@@ -359,7 +359,8 @@ Access to a Windows domain-joined machine to query your Kerberos Domain Controll
 
 ## Connect using ActiveDirectoryPassword authentication mode
 
-**[DEPRECATED]** ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+> [!NOTE]  
+> ActiveDirectoryPassword is **deprecated**. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
 
 The following example shows how to use `authentication=ActiveDirectoryPassword` mode.
 
