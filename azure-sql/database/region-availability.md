@@ -235,8 +235,8 @@ The following table is for [zone-redundant](high-availability-sla-local-zone-red
 | Central US | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
 | East US 1 | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
 | East US 2 | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
-| South Central US | | | [!INCLUDE [yes](../includes/yes.md)] |
-| West US 2 | | | [!INCLUDE [yes](../includes/yes.md)] |
+| South Central US | | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
+| West US 2 | | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
 | West US 3 | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
 
 #### [Asia Pacific](#tab/asia)
@@ -245,7 +245,8 @@ The following table is for [zone-redundant](high-availability-sla-local-zone-red
 |:---|:---|:---|:---|
 | Southeast Asia | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
 | Australia East | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
-| Japan East | | | [!INCLUDE [yes](../includes/yes.md)] |
+| Central India | | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
+| Japan East | | [!INCLUDE [yes](../includes/yes.md)] | [!INCLUDE [yes](../includes/yes.md)] |
 
 #### [Europe, the Middle East, and Africa](#tab/emea)
 
@@ -361,5 +362,3 @@ Currently, all regions with serverless support 40 vCores and provide [availabili
 - [Designing globally available services using Azure SQL Database](designing-cloud-solutions-for-disaster-recovery.md?view=azuresql-db&preserve-view=true)
 - [Move resources to new region - Azure SQL Database](move-resources-across-regions.md?view=azuresql-db&preserve-view=true)
 - [Disaster recovery guidance - Azure SQL Database](disaster-recovery-guidance.md)
-
-## TODO
