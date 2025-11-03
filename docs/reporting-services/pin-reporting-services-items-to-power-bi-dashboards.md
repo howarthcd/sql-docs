@@ -24,7 +24,7 @@ You can pin an on-premises [!INCLUDE[ssRSnoversion](../includes/ssrsnoversion-md
  
 [!INCLUDE [ssrs-no-pin-2-power-bi](../includes/ssrs-no-pin-2-power-bi.md)]
  
-##  <a name="bkmk_requirements_to_pin"></a> Requirements to pin  
+##  <a name="bkmk_requirements_to_pin"></a> Requirements to pin 
   
 -   The report server is configured for [!INCLUDE[sspowerbi](../includes/sspowerbi-md.md)] integration. For more information, see [Power BI report server integration &#40;Configuration Manager&#41;](../reporting-services/install-windows/power-bi-report-server-integration-configuration-manager.md). If you don't configure the report server, the **Pin to Power BI Dashboard** button doesn't appear on the report viewer toolbar.  
   
