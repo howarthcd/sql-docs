@@ -107,8 +107,7 @@ This section shows examples of new and existing connection string keywords to be
 
 ### Microsoft Entra username and password authentication
 
-> [!NOTE]
-> ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+[!INCLUDE [entra-password-auth-deprecation](../../../includes/entra-password-auth-deprecation.md)]
 
 - Using `IDataInitialize::GetDataSource`:
     > Provider=MSOLEDBSQL19;Data Source=[server];Initial Catalog=[database];**Authentication=ActiveDirectoryPassword**;User ID=[username];Password=[password];Use Encryption for Data=Mandatory

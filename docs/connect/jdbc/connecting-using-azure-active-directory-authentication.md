@@ -38,7 +38,7 @@ Connection properties to support Microsoft Entra authentication in the Microsoft
   - **ActiveDirectoryServicePrincipalCertificate**
     - Since driver version 12.4, `authentication=ActiveDirectoryServicePrincipalCertificate` can be used to connect to an Azure SQL Database/Synapse Analytics by specifying the application/client ID in the userName property and the location of the Service Principal certificate in the `clientCertificate` property. For more information, see [Connect using ActiveDirectoryServicePrincipalCertificate authentication mode](#connect-using-activedirectoryserviceprincipalcertificate-authentication-mode).
   - **ActiveDirectoryPassword [DEPRECATED]**
-    - ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+    - ActiveDirectoryPassword is deprecated. For more information, see [Connect using ActiveDirectoryPassword authentication mode](#connect-using-activedirectorypassword-authentication-mode).
     - Since driver version 6.0, `authentication=ActiveDirectoryPassword` can be used to connect to Azure SQL/Synapse Analytics with Microsoft Entra username and password. For more information, see [Connect using ActiveDirectoryPassword authentication mode](#connect-using-activedirectorypassword-authentication-mode).
 
   - **SqlPassword**
@@ -359,8 +359,7 @@ Access to a Windows domain-joined machine to query your Kerberos Domain Controll
 
 ## Connect using ActiveDirectoryPassword authentication mode
 
-> [!NOTE]  
-> ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+[!INCLUDE [entra-password-auth-deprecation](../../includes/entra-password-auth-deprecation.md)]
 
 The following example shows how to use `authentication=ActiveDirectoryPassword` mode.
 

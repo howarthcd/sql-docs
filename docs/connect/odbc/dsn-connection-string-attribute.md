@@ -170,7 +170,7 @@ Sets the authentication mode to use when connecting to SQL Server. For more info
 |ActiveDirectoryInteractive|SQL_AU_AD_INTERACTIVE|Microsoft Entra Interactive authentication.|
 |ActiveDirectoryMsi|SQL_AU_AD_MSI|Microsoft Entra managed identity authentication. For user-assigned identity, UID is set to the object ID of the user identity. |
 |ActiveDirectoryServicePrincipal|SQL_AU_AD_SPA|Microsoft Entra service principal authentication. UID is set to the client ID of the service principal. PWD is set to the client secret. |
-|ActiveDirectoryPassword|SQL_AU_AD_PASSWORD|[DEPRECATED] Microsoft Entra password authentication.<br/><br/>ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).|
+|ActiveDirectoryPassword|SQL_AU_AD_PASSWORD|[DEPRECATED] Microsoft Entra password authentication.<br/><br/>ActiveDirectoryPassword is deprecated. For more information, see [ActiveDirectoryPassword is deprecated](using-azure-active-directory.md#activedirectorypassword-is-deprecated).|
 | |SQL_AU_RESET|Unset. Overrides any DSN or connection string setting.|
 
 > [!NOTE]

@@ -51,14 +51,13 @@ When the application is connecting to Azure SQL data sources by using Microsoft 
 | Active Directory Managed Identity, <br>Active Directory MSI | Authenticate using a Microsoft Entra system-assigned or user-assigned managed identity | 2.1.0+ |
 | Active Directory Default | Authenticate with a Microsoft Entra identity by using password-less and non-interactive mechanisms including managed identities, Visual Studio Code, Visual Studio, Azure CLI, etc. | 3.0.0+ |
 | Active Directory Workload Identity | Authenticate with a Microsoft Entra identity by using a federated User Assigned Managed Identity to connect to SQL Database from Azure client environments that are enabled for Workload Identity. | 5.2.0+ |
-| Active Directory Password [DEPRECATED] | Authenticate with a Microsoft Entra identity's username and password.<br/><br/>Active Directory Password is deprecated. Migrate to multifactor authentication (Active Directory Interactive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication). | 1.0+ |
+| Active Directory Password [DEPRECATED] | Authenticate with a Microsoft Entra identity's username and password.<br/><br/>Active Directory Password is deprecated. For more information, see [Using password authentication](#using-password-authentication). | 1.0+ |
 
 <sup>1</sup> Before **Microsoft.Data.SqlClient** 2.0.0, `Active Directory Integrated`, and `Active Directory Interactive` authentication modes are supported only on .NET Framework.
 
 ## Using password authentication
 
-> [!NOTE]
-> ActiveDirectoryPassword is deprecated. Migrate to multifactor authentication (ActiveDirectoryInteractive) for user principals. For more information, see [Planning for mandatory multifactor authentication for Azure](/entra/identity/authentication/concept-mandatory-multifactor-authentication).
+[!INCLUDE [entra-password-auth-deprecation](../../../includes/entra-password-auth-deprecation.md)]
 
 `Active Directory Password` authentication mode supports authentication to Azure data sources with Microsoft Entra ID for native or federated Microsoft Entra users. When you're using this mode, user credentials must be provided in the connection string. The following example shows how to use `Active Directory Password` authentication.
 
