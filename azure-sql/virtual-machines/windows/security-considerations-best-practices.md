@@ -205,6 +205,29 @@ To be FIPS compliant with SQL Server on Azure VMs, you should be on Windows Serv
 
 SQL Server isn't currently FIPS compliant on Linux Azure VMs.
 
+## Security risks of restoring backups from untrusted sources
+
+This section outlines the security risks associated with restoring backups to SQL Server on Azure VMs from untrusted sources.
+
+### Why this matters 
+
+Restoring SQL backup files (`.bak`) introduces a potential risk if the backup originates from an untrusted source. The security risk is exacerbated further when a SQL Server VM has multiple instances, as it amplifies the area of threat. While backups that remain within a trusted boundary pose no security issue, restoring a malicious backup can compromise the security of the entire environment.
+
+A malicious `.bak` file can: 
+- Take over the SQL Server on Azure VM.
+- Escalate privileges and gain unauthorized access to underlying virtual machine.
+
+This attack occurs before any validating scripts or security checks can execute, which makes it extremely dangerous. Restoring an untrusted backup is equivalent to running untrusted applications on a critical virtual machine, and introducing arbitrary code execution into your environment. 
+
+### Best practices
+
+Follow these backup security best practices to reduce the threat to SQL Server on Azure VMs: 
+- Treat restoring backups as a high-risk operation.
+- Reduce the threat service area by using isolated instances.
+- Only allow trusted backups: never restore backups from unknown or external sources.
+- Only allow backups that remained within a trusted boundary : ensure backups originate from within the trusted boundary.
+- Do not bypass security controls for convenience.
+
 ## Related content
 
 Review the security best practices for [SQL Server](/sql/relational-databases/security/) and [Azure VMs](/azure/virtual-machines/security-recommendations), and then review this article for the best practices that apply to SQL Server on Azure VMs specifically.
