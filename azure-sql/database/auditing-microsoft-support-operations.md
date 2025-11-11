@@ -37,6 +37,16 @@ AzureDiagnostics
 
 You have the option of choosing a different storage destination for this auditing log, or use the same auditing configuration for your server.
 
+### Note
+
+DevOps Audit Logs stored in **Microsoft Azure Storage** may contain sensitive operational details. If accessed by a malicious actor within the customer environment, could gain insights into system operations, which may lead to unauthorized access or data breaches. 
+
+**Customer Responsibility:**  
+Secure these logs by:
+- Restricting access to authorized personnel only.
+- Applying strong Azure RBAC and network controls.
+- Monitoring and auditing storage access regularly.
+
 ## Related content
 
 - [Auditing for Azure SQL Database and Azure Synapse Analytics](auditing-overview.md)
