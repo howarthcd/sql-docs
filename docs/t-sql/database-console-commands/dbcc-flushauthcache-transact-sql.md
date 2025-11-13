@@ -45,9 +45,7 @@ None.
 
 ## Remarks
 
-The authentication cache makes a copy of logins and server firewall rules stored in the `master` database, and places them in memory in the user database. Since information about contained database users is already stored in the user database, contained database users aren't part of the authentication cache.
-
-This does not interrupt the ongoing connections.
+The authentication cache makes a copy of logins and server firewall rules stored in the `master` database, and places them in memory in the user database. 
 
 A user with the **KILL DATABASE CONNECTION** permission can explicitly terminate a connection to [!INCLUDE[ssSDS](../../includes/sssds-md.md)] by using the [KILL (Transact-SQL)](../../t-sql/language-elements/kill-transact-sql.md) command.
 
