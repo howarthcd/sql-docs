@@ -1,6 +1,6 @@
 ---
 title: Secure your Azure SQL Database
-description: Learn how to secure Azure SQL Database with best practices for protecting data, managing access, and defending against common threats.
+description: Learn how to secure Azure SQL Database with best practices for protecting data, manage access, and defend against common threats.
 author: VanMSFT
 ms.author: vanto
 ms.service: azure-sql-database
@@ -8,7 +8,7 @@ ms.subservice: security
 ms.topic: concept-article
 ms.custom: horz-security
 ms.date: 11/14/2025
-ai-usage: ai-assisted
+ai-usage: ai-generated
 ---
 
 # Secure your Azure SQL Database
@@ -33,7 +33,7 @@ Network security for Azure SQL Database helps prevent unauthorized connections, 
 
 - **Integrate with Azure Virtual Networks**: Use virtual network rules to allow traffic only from specific subnets within your Azure virtual networks. This provides an additional layer of network isolation beyond IP-based rules. For more information, see [Virtual network rules for Azure SQL Database](vnet-service-endpoint-rule-overview.md).
 
-- **Enable connection encryption**: Configure all client connections to use encryption in transit. Azure SQL Database supports TLS 1.2 by default, ensuring data is protected while moving between clients and the database. TLS 1.3 is also available. For more information, see [Connectivity architecture](connectivity-architecture.md).
+- **Enable connection encryption**: Configure all client connections to use encryption in transit. Azure SQL Database supports Transport Layer Security (TLS) 1.2 by default, ensuring data is protected while moving between clients and the database. TLS 1.3 is also available. For more information, see [Connectivity architecture](connectivity-architecture.md).
 
 - **Disable public access when using private endpoints**: When using private endpoints, disable public network access entirely to ensure all connections go through the private endpoint. This provides the highest level of network security. For more information, see [Deny public network access](connectivity-settings.md#deny-public-network-access).
 
@@ -71,7 +71,7 @@ Controlling privileged access prevents unauthorized changes, reduces the impact 
 
 - **Use database roles for access management**: Leverage built-in database roles and create custom roles to implement role-based security. Assign users to roles rather than granting individual permissions to simplify management and reduce errors. For more information, see [Database-level roles](/sql/relational-databases/security/authentication-access/database-level-roles).
 
-- **Implement just-in-time access**: Use Azure AD Privileged Identity Management (PIM) to provide time-limited, approval-based access to administrative roles. This ensures users only have elevated privileges when needed. For more information, see [Privileged Identity Management](/azure/active-directory/privileged-identity-management/pim-configure).
+- **Implement just-in-time access**: Use Microsoft Entra Privileged Identity Management (PIM) to provide time-limited, approval-based access to administrative roles. This ensures users only have elevated privileges when needed. For more information, see [Privileged Identity Management](/azure/active-directory/privileged-identity-management/pim-configure).
 
 ## Data protection
 
@@ -89,7 +89,7 @@ Data protection safeguards your information through encryption, access controls,
 
 - **Implement column-level security**: Grant permissions at the column level to restrict access to sensitive data. Only provide SELECT, UPDATE, or REFERENCES permissions to users who specifically need access to sensitive columns. For more information, see [Column-level security](/sql/relational-databases/security/encryption/encrypt-a-column-of-data).
 
-- **Use Row-Level Security (RLS)**: Implement RLS to ensure users can only access data rows that are relevant to them. This provides application-level security without requiring significant application changes and is ideal for multi-tenant scenarios. For more information, see [Row-Level Security](/sql/relational-databases/security/row-level-security).
+- **Use Row-Level Security (RLS)**: Implement RLS to ensure users can only access data rows that are relevant to them. This provides application-level security without requiring significant application changes and is ideal for multitenant scenarios. For more information, see [Row-Level Security](/sql/relational-databases/security/row-level-security).
 
 ## Backup and recovery
 
