@@ -334,6 +334,8 @@
         href: database/active-geo-replication-configure-portal.md
     - name: Security
       items:
+      - name: Secure your Azure SQL Database
+        href: database/secure-database.md
       - name: Always Encrypted with secure enclaves
         href: database/always-encrypted-enclaves-getting-started.md
         items:
