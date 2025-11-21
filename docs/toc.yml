@@ -8397,13 +8397,6 @@ items:
         href: tools/configuration-manager/sql-server-integration-services-properties-advanced-tab.md
     - name: SQL Full-text Filter Daemon Launcher
       href: tools/configuration-manager/sql-full-text-filter-daemon-launcher-sql-server-configuration-manager.md
-      items:
-      - name: Log On Tab
-        href: tools/configuration-manager/sql-full-text-filter-daemon-launcher-log-on-tab.md
-      - name: Service Tab
-        href: tools/configuration-manager/sql-full-text-filter-daemon-launcher-service-tab.md
-      - name: Advanced
-        href: tools/configuration-manager/sql-full-text-filter-daemon-launcher-advanced.md
     - name: Unknown service
       items:
       - name: Log On Tab
