@@ -10663,7 +10663,7 @@
     {
       "source_path": "docs/sql-server/ai-artificial-intelligence-intelligent-applications.md",
       "redirect_url": "/sql/sql-server/artificial-intelligence-intelligent-applications",
-      "redirect_document_id": false  
+      "redirect_document_id": false
     },
     {
       "source_path": "docs/sql-server/sql-server-privacy-ver15.md",
@@ -48003,6 +48003,21 @@
     {
       "source_path": "docs/2014/tools/configuration-manager/sql-full-text-filter-daemon-launcher-sql-server-configuration-manager.md",
       "redirect_url": "/previous-versions/sql/2014/tools/configuration-manager/sql-full-text-filter-daemon-launcher-sql-server-configuration-manager",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/tools/configuration-manager/sql-full-text-filter-daemon-launcher-log-on-tab.md",
+      "redirect_url": "/sql/tools/configuration-manager/sql-full-text-filter-daemon-launcher-sql-server-configuration-manager",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/tools/configuration-manager/sql-full-text-filter-daemon-launcher-service-tab.md",
+      "redirect_url": "/sql/tools/configuration-manager/sql-full-text-filter-daemon-launcher-sql-server-configuration-manager",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/tools/configuration-manager/sql-full-text-filter-daemon-launcher-advanced.md",
+      "redirect_url": "/sql/tools/configuration-manager/sql-full-text-filter-daemon-launcher-sql-server-configuration-manager",
       "redirect_document_id": false
     },
     {
