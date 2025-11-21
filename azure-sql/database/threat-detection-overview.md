@@ -9,7 +9,7 @@ ms.date: 11/21/2025
 ms.service: azure-sql
 ms.subservice: security
 ms.topic: concept-article
-ai-usage: ai.assisted
+ai-usage: ai-assisted
 ms.custom:
   - sqldbrb=2
   - sfi-image-nochange
