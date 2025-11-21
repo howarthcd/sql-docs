@@ -4,7 +4,7 @@ description: Create a single database in Azure SQL Database using an Azure Resou
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: mathoma
-ms.date: 11/19/2025
+ms.date: 09/17/2024
 ms.service: azure-sql-database
 ms.subservice: deployment-configuration
 ms.topic: quickstart

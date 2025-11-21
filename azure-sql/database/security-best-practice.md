@@ -5,7 +5,7 @@ description: This article provides common security requirements and best practic
 author: VanMSFT
 ms.author: vanto
 ms.reviewer: wiassaf, mathoma, randolphwest
-ms.date: 11/19/2025
+ms.date: 06/13/2025
 ms.service: azure-sql
 ms.subservice: security
 ms.topic: article

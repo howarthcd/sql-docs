@@ -5,7 +5,7 @@ description: This guide teaches you to migrate your Oracle schemas to SQL Server
 author: nilabjaball
 ms.author: niball
 ms.reviewer: mathoma, randolphwest
-ms.date: 11/19/2025
+ms.date: 09/17/2025
 ms.service: azure-vm-sql-server
 ms.subservice: migration-guide
 ms.topic: how-to
