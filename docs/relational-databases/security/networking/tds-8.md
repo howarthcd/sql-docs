@@ -10,6 +10,7 @@ ms.subservice: security
 ms.topic: conceptual
 ms.custom:
   - ignite-2025
+ai-usage: ai-assisted
 monikerRange: ">=sql-server-ver16 || >=sql-server-linux-ver16 || =azuresqldb-current || =azuresqldb-mi-current || =fabric-sqldb"
 ---
 
