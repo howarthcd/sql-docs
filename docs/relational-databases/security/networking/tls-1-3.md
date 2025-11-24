@@ -6,7 +6,7 @@ ms.author: srbozovi
 ms.date: 11/24/2025
 ms.service: sql
 ms.subservice: security
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - ignite-2025
 monikerRange: ">=sql-server-ver16 || =azuresqldb-mi-current || =azuresqldb-current || >=sql-server-linux-ver16 || =fabric-sqldb"
