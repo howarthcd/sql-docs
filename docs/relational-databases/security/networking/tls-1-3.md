@@ -3,7 +3,7 @@ title: TLS 1.3 support
 description: This article discusses TLS 1.3 support with SQL Server 2022 and Azure SQL Database.
 author: srdan-bozovic-msft
 ms.author: srbozovi
-ms.date: 11/18/2025
+ms.date: 11/24/2025
 ms.service: sql
 ms.subservice: security
 ms.topic: conceptual
@@ -61,6 +61,7 @@ Currently, the following operating systems support TLS 1.3:
 - [Merge replication](../../replication/merge/merge-replication.md#configure-tls-13-encryption)
 - [Snapshot replication](../../replication/snapshot-replication.md#configure-tls-13-encryption)
 - [Log shipping](../../../database-engine/log-shipping/about-log-shipping-sql-server.md#enforce-tls-13-encryption)
+- [Database Mail](../../database-mail/database-mail.md)
 
 ### Setup limitations
 
