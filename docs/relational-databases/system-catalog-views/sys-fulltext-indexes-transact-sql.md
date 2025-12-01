@@ -29,6 +29,7 @@ monikerRange: "=azuresqldb-current||>=sql-server-2016||>=sql-server-linux-2017||
 |-----------------|---------------|-----------------|  
 |**object_id**|**int**|ID of the object to which this full-text index belongs.|  
 |**unique_index_id**|**int**|ID of the corresponding unique, non-full-text index that is used to relate the full-text index to the rows.|  
+|**index_version**|**int**|**Applies to:** [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)] and later. <br/><br/> Version of full-text filter and wordbreaker components that are used to populate and query this index. This is controlled by the `FULLTEXT_INDEX_VERSION` database scoped configuration. See [ALTER DATABASE SCOPED CONFIGURATION](../../t-sql/statements/alter-database-scoped-configuration-transact-sql.md#fulltext_index_version) for details. <br/><br/> In the case of an in-place upgrade from [!INCLUDE [sql-server-2022](../../includes/sssql22-md.md)] or prior to [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)]) or later, existing indexes are assigned `index_version` = `1`. |
 |**fulltext_catalog_id**|**int**|ID of the full-text catalog in which the full-text index resides.|  
 |**is_enabled**|**bit**|1 = Full-text index is currently enabled.|  
 |**change_tracking_state**|**char(1)**|State of change-tracking.<br /><br /> M = Manual<br /><br /> A = Auto<br /><br /> O = Off|  
@@ -70,5 +71,4 @@ GO
  [DROP FULLTEXT INDEX &#40;Transact-SQL&#41;](../../t-sql/statements/drop-fulltext-index-transact-sql.md)   
  [CREATE FULLTEXT INDEX &#40;Transact-SQL&#41;](../../t-sql/statements/create-fulltext-index-transact-sql.md)   
  [ALTER FULLTEXT INDEX &#40;Transact-SQL&#41;](../../t-sql/statements/alter-fulltext-index-transact-sql.md)  
-  
   

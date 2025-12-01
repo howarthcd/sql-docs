@@ -57,6 +57,7 @@ The following settings are supported in [!INCLUDE [ssazure-sqldb](../../includes
 - Specify the number of minutes a paused resumable index operation is paused before it is automatically aborted by the [!INCLUDE [ssDE-md](../../includes/ssde-md.md)].
 - Enable or disable waiting for locks at low priority for asynchronous statistics update.
 - Enable or disable uploading ledger digests to Azure Blob Storage.
+- Set the default [full-text index](../../relational-databases/search/full-text-search.md) version (1, 2).
 
 This setting is only available in [!INCLUDE [ssazuresynapse-md](../../includes/ssazuresynapse-md.md)].
 
@@ -116,6 +117,7 @@ ALTER DATABASE SCOPED CONFIGURATION
     | OPTIONAL_PARAMETER_PLAN_OPTIMIZATION = { ON | OFF }
     | ALLOW_STALE_VECTOR_INDEX = { ON | OFF }
     | PREVIEW_FEATURES = { ON | OFF }
+    | FULLTEXT_INDEX_VERSION = <version>
 }
 ```
 
@@ -546,6 +548,25 @@ The vector index isn't updated when new data is inserted or updated in the table
 
 > [!NOTE]  
 > The `ALLOW_STALE_VECTOR_INDEX` database scoped configuration option isn't currently available in [!INCLUDE [sssql25-md](../../includes/sssql25-md.md)].
+
+#### FULLTEXT_INDEX_VERSION
+
+**Applies to:** [!INCLUDE [ssNoVersion](../../includes/ssnoversion-md.md)] (Starting with [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)]), [!INCLUDE [ssazure-sqldb](../../includes/ssazure-sqldb.md)], and [!INCLUDE [ssazuremi](../../includes/ssazuremi-md.md)]
+
+Sets the full-text index version to use when creating or rebuilding indexes. This configuration only takes effect when issuing either a `CREATE FULLTEXT INDEX` statement for new indexes or an `ALTER FULLTEXT CATALOG ... REBUILD` statement to rebuild all indexes in a catalog.
+
+As of [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)], the available versions are: 
+
+| Version | Comments |
+|---------|----------|
+|`1`| All new and rebuilt indexes as described above will use the legacy full-text filter and wordbreaker components included in [!INCLUDE [sql-server-2022](../../includes/sssql22-md.md)] and prior for future populations and queries. As these components are no longer included from [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)] onward, they must be manually copied from an older instance. |
+|`2`| Default. New and rebuilt indexes will use the new full-text filter and wordbreaker components included in [!INCLUDE [sql-server-2025](../../includes/sssql25-md.md)] for future populations and queries. |
+
+The `FULLTEXT_INDEX_VERSION` configuration also controls which full-text components are reported and/or used by the following system stored procedures, views, and functions:
+- [sp_help_fulltext_system_components ](../../relational-databases/system-stored-procedures/sp-help-fulltext-system-components-transact-sql.md)
+- [sys.fulltext_languages](../../relational-databases/system-catalog-views/sys-fulltext-languages-transact-sql.md)
+- [sys.fulltext_document_types](../../relational-databases/system-catalog-views/sys-fulltext-document-types-transact-sql.md)
+- [sys.dm_fts_parser](../../relational-databases/system-dynamic-management-views/sys-dm-fts-parser-transact-sql.md)
 
 <a id="preview-features"></a>
 
