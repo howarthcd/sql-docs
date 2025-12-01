@@ -95,6 +95,8 @@ SQL Server 2025 introduces secure-by-default configurations for several features
 
 - **Replication**: (Transactional, Snapshot, Merge) Uses Microsoft OLE DB Driver for SQL Server version 19 with `Encrypt=Mandatory` and requires valid certificates with `TrustServerCertificate=False`.
 
+- **Database Mail**: The default settings are `Encrypt=Optional` and `TrustServerCertificate=True`. When TLS 1.3 is enforced, these values change to `Encrypt=Strict` and `TrustServerCertificate=False`. By default, Azure SQL Managed Instance uses the TLS 1.3 protocol.
+
 - **PolyBase**: Uses ODBC Driver for SQL Server version 18 with `Encrypt=Yes` (`Mandatory`). PolyBase allows `TrustServerCertificate=True` for self-signed scenarios.
 
 - **SQL VSS Writer**: When connecting to a SQL Server 2025 instance with `Encryption=Strict`, SQL VSS Writer will use TLS 1.3 and TDS 8.0 for the non-Virtual Device Interface (VDI) part of that connection.
