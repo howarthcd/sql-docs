@@ -4,7 +4,7 @@ description: "OPENROWSET BULK function reads data from an external data source."
 author: MikeRayMSFT
 ms.author: mikeray
 ms.reviewer: randolphwest, hudequei, wiassaf, jovanpop, fresantos
-ms.date: 09/08/2025
+ms.date: 12/01/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
