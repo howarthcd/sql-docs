@@ -34,7 +34,7 @@ SSDT is installed as a Visual Studio component, both for [online installation](#
 
 ## Install SSDT with Visual Studio
 
-If [Visual Studio 2026](/visualstudio/install/install-visual-studio?preserve-view=true&view=vs-2022) or [Visual Studio 2012](/visualstudio/install/install-visual-studio?preserve-view=true&view=vs-2019) is already installed, you can edit the list of workloads to include SSDT. If you don't have Visual Studio 2019/2022 installed, then you can download and install [Visual Studio 2026](https://visualstudio.microsoft.com/downloads/).
+If [Visual Studio 2026](/visualstudio/install/install-visual-studio?preserve-view=true&view=vs-2026) or [Visual Studio 2022](/visualstudio/install/install-visual-studio?preserve-view=true&view=vs-2022) is already installed, you can edit the list of workloads to include SSDT. If you don't have Visual Studio 2022 or 2026 installed, then you can download and install [Visual Studio 2026](https://visualstudio.microsoft.com/downloads/).
 
 To modify the installed Visual Studio workloads to include SSDT, use the Visual Studio Installer.
 
@@ -103,8 +103,8 @@ Supported SQL versions in Visual Studio 2026:
 | Project templates | SQL platforms supported |
 | --- | --- |
 | Relational databases | [!INCLUDE [sssql16-md](../includes/sssql16-md.md)] - [!INCLUDE [sssql22-md](../includes/sssql25-md.md)]<br /><br />Azure SQL Database, Azure SQL Managed Instance<br /><br />Azure Synapse Analytics Dedicated Pools<br />Azure Synapse Analytics Serverless Pools<br /><br />Warehouse in Microsoft Fabric<br />SQL database in Microsoft Fabric |
-| Analysis Services models<br /><br />Reporting Services reports | SQL Server 2016 - SQL Server 2025 |
-| Integration Services packages | SQL Server 2019 - SQL Server 2025 |
+| Analysis Services models<br /><br />Reporting Services reports | [!INCLUDE [sssql16-md](../includes/sssql16-md.md)] - [!INCLUDE [sssql25-md](../includes/sssql25-md.md)] |
+| Integration Services packages | [!INCLUDE [sssql19-md](../includes/sssql19-md.md)] - [!INCLUDE [sssql25-md](../includes/sssql25-md.md)] |
 
 ### [Supported SQL versions in Visual Studio 2022](#tab/vs2022)
 
@@ -113,8 +113,8 @@ Supported SQL versions in Visual Studio 2022:
 | Project templates | SQL platforms supported |
 | --- | --- |
 | Relational databases | [!INCLUDE [sssql16-md](../includes/sssql16-md.md)] - [!INCLUDE [sssql22-md](../includes/sssql22-md.md)]<br /><br />Azure SQL Database, Azure SQL Managed Instance<br /><br />Azure Synapse Analytics Dedicated Pools<br />Azure Synapse Analytics Serverless Pools (requires VS2022 17.7) |
-| Analysis Services models<br /><br />Reporting Services reports | SQL Server 2016 - SQL Server 2022 |
-| Integration Services packages | SQL Server 2019 - SQL Server 2022 |
+| Analysis Services models<br /><br />Reporting Services reports | [!INCLUDE [sssql16-md](../includes/sssql16-md.md)] - [!INCLUDE [sssql22-md](../includes/sssql22-md.md)] |
+| Integration Services packages | [!INCLUDE [sssql19-md](../includes/sssql19-md.md)] - [!INCLUDE [sssql22-md](../includes/sssql22-md.md)] |
 
 ### [Supported SQL versions in Visual Studio 2019](#tab/vs2019)
 
@@ -122,9 +122,9 @@ Supported SQL versions in Visual Studio 2019:
 
 | Project templates | SQL platforms supported |
 | --- | --- |
-| Relational databases | SQL Server 2012 - SQL Server 2019<br /><br />Azure SQL Database, Azure SQL Managed Instance<br /><br />Azure Synapse Analytics (dedicated pools only) |
-| Analysis Services models<br /><br />Reporting Services reports | SQL Server 2008 - SQL Server 2019 |
-| Integration Services packages | SQL Server 2012 - SQL Server 2022 |
+| Relational databases | [!INCLUDE [sssql11-md](../includes/sssql11-md.md)] - [!INCLUDE [sssql19-md](../includes/sssql19-md.md)]<br /><br />Azure SQL Database, Azure SQL Managed Instance<br /><br />Azure Synapse Analytics (dedicated pools only) |
+| Analysis Services models<br /><br />Reporting Services reports | [!INCLUDE [sql2008-md](../includes/sql2008-md.md)] - [!INCLUDE [sssql19-md](../includes/sssql19-md.md)] |
+| Integration Services packages | [!INCLUDE [sssql11-md](../includes/sssql11-md.md)] - [!INCLUDE [sssql22-md](../includes/sssql22-md.md)] |
 
 ---
 
