@@ -8,7 +8,7 @@ ms.reviewer: vanto, mathoma
 ms.date: 06/25/2025
 ms.service: azure-sql-database
 ms.subservice: security
-ms.topic: conceptual
+ms.topic: article
 monikerRange: "=azuresql || =azuresql-db"
 ---
 
@@ -67,7 +67,7 @@ The following diagram represents the steps for a scenario that utilizes an Azure
 
 **On the ISV tenant**
 
-1. [Assign the user-assigned managed identity](authentication-azure-ad-user-assigned-managed-identity.md#set-a-managed-identity-in-the-azure-portal) created as the **Primary identity** in the Azure SQL resource **Identity** menu in the [Azure portal](https://portal.azure.com)
+1. [Assign the user-assigned managed identity](authentication-azure-ad-user-assigned-managed-identity.md#set-a-user-managed-identity-in-the-azure-portal) created as the **Primary identity** in the Azure SQL resource **Identity** menu in the [Azure portal](https://portal.azure.com)
 
 1. Assign the **Federated client identity** in the same **Identity** menu, and use the application name
 

@@ -1,24 +1,24 @@
 ---
-title: Managed identity in Microsoft Entra for Azure SQL
+title: Managed Identity in Microsoft Entra for Azure SQL
 titleSuffix: Azure SQL Database & Azure SQL Managed Instance
 description: Learn about system assigned and user assigned managed identities in Microsoft Entra for Azure SQL Database and Azure SQL Managed Instance.
 author: VanMSFT
 ms.author: vanto
-ms.reviewer: vanto, wiassaf, mathoma
-ms.date: 04/08/2025
+ms.reviewer: wiassaf, mathoma
+ms.date: 12/02/2025
 ms.service: azure-sql
 ms.subservice: security
-ms.topic: conceptual
-monikerRange: "= azuresql || = azuresql-db || = azuresql-mi"
+ms.topic: how-to
 ms.custom:
   - has-azure-ad-ps-ref
   - azure-ad-ref-level-one-done
   - sfi-image-nochange
+monikerRange: "=azuresql || =azuresql-db || =azuresql-mi"
 ---
 
 # Managed identities in Microsoft Entra for Azure SQL
 
-[!INCLUDE[appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
+[!INCLUDE [appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
 
 Microsoft Entra ID ([formerly Azure Active Directory](/entra/fundamentals/new-name)) supports two types of managed identities: system-assigned managed identity (SMI) and user-assigned managed identity (UMI). For more information, see [Managed identity types](/entra/identity/managed-identities-azure-resources/overview#managed-identity-types).
 
@@ -28,7 +28,7 @@ Previously, only an SMI could be assigned to the Azure SQL Managed Instance or S
 
 In addition to using a UMI and an SMI as the instance or server identity, you can use them to access the database by using the SQL connection string option `Authentication=Active Directory Managed Identity`. You need to create a SQL user from the managed identity in the target database by using the [CREATE USER](/sql/t-sql/statements/create-user-transact-sql) statement. For more information, see [Using Microsoft Entra authentication with SqlClient](/sql/connect/ado-net/sql/azure-active-directory-authentication).
 
-To retrieve the current UMIs or SMI for Azure SQL Managed instance or Azure SQL Database, see [Get or set a managed identity for a logical server or managed instance](#get-or-set-a-managed-identity-for-a-logical-server-or-managed-instance) later in this article.
+To retrieve the current UMIs or SMI for Azure SQL Managed instance or Azure SQL Database, see [Get or set a managed identity for a logical server or managed instance](#get-or-set-a-managed-identity-for-a-logical-server-or-sql-managed-instance) later in this article.
 
 ## Benefits of using user-assigned managed identities
 
@@ -38,16 +38,18 @@ There are several benefits of using a UMI as a server identity:
 - In the past, you needed the Microsoft Entra ID [Directory Readers](authentication-aad-directory-readers-role.md) role when using an SMI as the server or instance identity. With the introduction of accessing Microsoft Entra ID through [Microsoft Graph](/graph/auth/auth-concepts), users who are concerned with giving high-level permissions such as the Directory Readers role to the SMI or UMI can alternatively give lower-level permissions so that the server or instance identity can access Microsoft Graph. 
 
   For more information on providing Directory Readers permissions and its function, see [Directory Readers role in Microsoft Entra ID for Azure SQL](authentication-aad-directory-readers-role.md).
-- Users can choose a specific UMI to be the server or instance identity for all databases or managed instances in the tenant. Or they can have multiple UMIs assigned to different servers or instances. 
+- Users can choose a specific UMI to be the server or instance identity for all databases or managed instances in the tenant. Or they can have multiple UMIs assigned to different servers or instances.
 
   UMIs can be used in different servers to represent different features. For example, a UMI can serve transparent data encryption (TDE) in one server, and a UMI can serve Microsoft Entra authentication in another server.
 - You need a UMI to create a [logical server in Azure](logical-servers.md) configured with TDE with customer-managed keys (CMKs). For more information, see [Customer-managed transparent data encryption using user-assigned managed identity](transparent-data-encryption-byok-identity.md).
 - UMIs are independent from logical servers or managed instances. When a logical server or instance is deleted, the SMI is also deleted. UMIs aren't deleted with the server.
 
-> [!NOTE]
-> You must enable the instance identity (SMI or UMI) to allow support for Microsoft Entra authentication in SQL Managed Instance. For SQL Database, enabling the server identity is optional and required only if a Microsoft Entra service principal (Microsoft Entra application) oversees creating and managing Microsoft Entra users, groups, or applications in the server. For more information, see [Microsoft Entra service principal with Azure SQL](authentication-aad-service-principal.md).
+> [!NOTE]  
+> You must enable the instance identity (SMI or UMI) to allow support for Microsoft Entra authentication in SQL Managed Instance. For SQL Database, enabling the server identity is optional and required only if a Microsoft Entra service principal (Microsoft Entra application) oversees creating and managing Microsoft Entra users, groups, or applications in the server. For more information, see [Microsoft Entra service principals with Azure SQL](authentication-aad-service-principal.md).
 
-## <a id="creating-a-user-assigned-managed-identity"></a> Create a user-assigned managed identity
+<a id="creating-a-user-assigned-managed-identity"></a>
+
+## Create a user-assigned managed identity
 
 For information on how to create a UMI, see [Manage user-assigned managed identities](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
 
@@ -57,7 +59,7 @@ After the UMI is created, some permissions are needed to allow the UMI to read f
 
 These permissions should be granted before you provision a logical server or managed instance. After you grant the permissions to the UMI, they're enabled for all servers or instances that are created with the UMI assigned as a server identity.
 
-> [!IMPORTANT]
+> [!IMPORTANT]  
 > Only a [Privileged Role Administrator](/entra/identity/role-based-access-control/permissions-reference#privileged-role-administrator) or higher role can grant these permissions.
 
 - [User.Read.All](/graph/permissions-reference#user-permissions): Allows access to Microsoft Entra user information.
@@ -68,26 +70,26 @@ These permissions should be granted before you provision a logical server or man
 
 The same Microsoft Graph applications permissions are needed with the SMI.
 
-Applies only to **Azure SQL Database**: Using an SMI gives an opportunity to not explicitly provision the Microsoft Graph permissions. The Microsoft Entra users can still be created without the needed Microsoft Graph permission by using the `CREATE USER` T-SQL syntax. This would require the `SID` and `TYPE` syntax, as described in the article, [CREATE USER (Transact-SQL)](/sql/t-sql/statements/create-user-transact-sql#syntax).
+Applies only to **Azure SQL Database**: Using an SMI gives an opportunity to not explicitly provision the Microsoft Graph permissions. The Microsoft Entra users can still be created without the needed Microsoft Graph permission by using the `CREATE USER` T-SQL syntax. This would require the `SID` and `TYPE` syntax, as described in the article, [CREATE USER](/sql/t-sql/statements/create-user-transact-sql#syntax).
 
-```syntaxsql 
-CREATE USER   
-    {  
-    Microsoft_Entra_principal FROM EXTERNAL PROVIDER [ WITH <limited_options_list> [ ,... ] ]    
-    | Microsoft_Entra_principal WITH <options_list> [ ,... ] 
-    }  
- [ ; ]  
-  
-<limited_options_list> ::=  
-      DEFAULT_SCHEMA = schema_name  
+```syntaxsql
+CREATE USER
+    {
+    Microsoft_Entra_principal FROM EXTERNAL PROVIDER [ WITH <limited_options_list> [ ,... ] ]
+    | Microsoft_Entra_principal WITH <options_list> [ ,... ]
+    }
+ [ ; ]
+
+<limited_options_list> ::=
+      DEFAULT_SCHEMA = schema_name
     | OBJECT_ID = 'objectid'
-<options_list> ::=  
-      DEFAULT_SCHEMA = schema_name  
-    | SID = sid  
+<options_list> ::=
+      DEFAULT_SCHEMA = schema_name
+    | SID = sid
     | TYPE = { X | E }
 ```
 
-The above syntax allows creation of Microsoft Entra users *without validation.* For this to work, the `Object Id` of the Microsoft Entra principal would have to be supplied and used as an `SID` in the T-SQL statement, as explained in [Create a contained database user from a Microsoft Entra principal without validation](/sql/t-sql/statements/create-user-transact-sql#k-create-a-contained-database-user-from-a-microsoft-entra-principal-without-validation).  
+The above syntax allows creation of Microsoft Entra users *without validation.* For this to work, the `Object Id` of the Microsoft Entra principal would have to be supplied and used as an `SID` in the T-SQL statement, as explained in [Create a contained database user from a Microsoft Entra principal without validation](/sql/t-sql/statements/create-user-transact-sql#k-create-a-contained-database-user-from-a-microsoft-entra-principal-without-validation).
 
 The validity check of the **Object Id** is the responsibility of the user running the T-SQL statement.
 
@@ -100,8 +102,8 @@ To run the script, you must sign in as a user with a Privileged Role Administrat
 The script grants the `User.Read.All`, `GroupMember.Read.All`, and `Application.Read.ALL` permissions to a managed identity to access [Microsoft Graph](/graph/auth/auth-concepts#microsoft-graph-permissions).
 
 ```powershell
-# Script to assign permissions to an existing UMI 
-# The following required Microsoft Graph permissions will be assigned: 
+# Script to assign permissions to an existing UMI
+# The following required Microsoft Graph permissions will be assigned:
 #   User.Read.All
 #   GroupMember.Read.All
 #   Application.Read.All
@@ -125,9 +127,9 @@ $MSGraphSP
 # -----------     --                                   -----                                --------------      --------------------
 # Microsoft Graph 47d73278-e43c-4cc2-a606-c500b66883ef 00000003-0000-0000-c000-000000000000 AzureADMultipleOrgs Application
 
-$MSI = Get-MgServicePrincipal -Filter "DisplayName eq '$MSIName'" 
+$MSI = Get-MgServicePrincipal -Filter "DisplayName eq '$MSIName'"
 if($MSI.Count -gt 1)
-{ 
+{
 Write-Output "More than 1 principal found with that name, please find your principal and copy its object ID. Replace the above line with the syntax $MSI = Get-MgServicePrincipal -ServicePrincipalId <your_object_id>"
 Exit
 }
@@ -146,9 +148,9 @@ $MSGraphAppRoles = $MSGraphSP.AppRoles | Where-Object {($_.Value -in $Permission
 foreach($AppRole in $MSGraphAppRoles)
 {
     $AppRoleAssignment = @{
-	    principalId = $MSI.Id
-	    resourceId = $MSGraphSP.Id
-	    appRoleId = $AppRole.Id
+        principalId = $MSI.Id
+        resourceId = $MSGraphSP.Id
+        appRoleId = $AppRole.Id
     }
 
     New-MgServicePrincipalAppRoleAssignment `
@@ -161,28 +163,52 @@ foreach($AppRole in $MSGraphAppRoles)
 
 To check permissions for a UMI, go to the [Azure portal](https://portal.azure.com). In the **Microsoft Entra ID** resource, go to **Enterprise applications**. Select **All Applications** for **Application type**, and search for the UMI that was created.
 
-:::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/azure-ad-search-enterprise-applications.png" alt-text="Screenshot of enterprise application settings in the Azure portal.":::
+:::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/azure-ad-search-enterprise-applications.png" alt-text="Screenshot of enterprise application settings in the Azure portal." lightbox="media/authentication-azure-ad-user-assigned-managed-identity/azure-ad-search-enterprise-applications.png":::
 
 Select the UMI, and go to the **Permissions** settings under **Security**.
 
-:::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/azure-ad-check-user-assigned-managed-identity-permissions.png" alt-text="Screenshot of user-assigned managed identity permissions.":::
+:::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/azure-ad-check-user-assigned-managed-identity-permissions.png" alt-text="Screenshot of user-assigned managed identity permissions." lightbox="media/authentication-azure-ad-user-assigned-managed-identity/azure-ad-check-user-assigned-managed-identity-permissions.png":::
 
 <a id="manage-a-managed-identity-for-a-server-or-instance"></a>
 
-## Get or set a managed identity for a logical server or managed instance
+## Get or set a managed identity for a logical server or SQL managed instance
 
-To create a server by using a UMI, see the following guide: [Create an Azure SQL logical server by using a user-assigned managed identity](authentication-azure-ad-user-assigned-managed-identity-create-server.md).
+To create a server or instance by using a UMI, see the following guides:
+-  [Create an Azure SQL Database server with a user-assigned managed identity](authentication-azure-ad-user-assigned-managed-identity-create-server.md).
+-  [Create a SQL managed instance by using a user-assigned managed identity](../managed-instance/authentication-azure-ad-user-assigned-managed-identity-create-managed-instance.md)
 
-### Get the SMI for Azure SQL Database logical server
+### Set a SMI
+
+To set the system managed identity for the Azure SQL Database logical server in the [Azure portal](https://portal.azure.com), follow these steps:
+
+1. Go to your **SQL server** or **SQL managed instance** resource.
+1. Under **Security**, select **Identity**.
+1. Under **System assigned managed identity**, set the **Status** to **On**:
+
+   :::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/logical-server-identity.png" alt-text="Screenshot of the identity pane for the logical server in the Azure portal." lightbox="media/authentication-azure-ad-user-assigned-managed-identity/logical-server-identity.png":::
+
+1. Select **Save** to save your changes.
+
+To set the system managed identity for Azure SQL Managed Instance in the [Azure portal](https://portal.azure.com), follow these steps:
+
+1. Go to your **SQL managed instance** resource.
+1. Under **Security**, select **Identity**.
+1. Under **System assigned managed identity**, set the **Status** to **On**.
+
+   :::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/managed-instance-identity.png" alt-text="Screenshot of the identity pane for the SQL managed instance in the Azure portal." lightbox="media/authentication-azure-ad-user-assigned-managed-identity/managed-instance-identity.png":::
+
+1. Select **Save** to save your changes.
+
+### Get the SMI
 
 The Azure portal displays the system-assigned managed identity (SMI) ID in the **Properties** menu of the Azure SQL Database logical server.
 
-:::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/get-system-assigned-managed-identity-azure-sql-server-azure-portal.png" alt-text="Screenshot of the Azure portal page for an Azure SQL Database logical server. In the Properties menu, the System Assigned Managed Identity is highlighted.":::
+:::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/get-system-assigned-managed-identity-azure-sql-server-azure-portal.png" alt-text="Screenshot of the Azure portal page for an Azure SQL Database logical server. In the Properties menu, the System Assigned Managed Identity is highlighted." lightbox="media/authentication-azure-ad-user-assigned-managed-identity/get-system-assigned-managed-identity-azure-sql-server-azure-portal.png":::
 
-- To retrieve the UMIs for Azure SQL Managed Instance or Azure SQL Database, use the following PowerShell or Azure CLI examples.
-- To retrieve the SMI for Azure SQL Managed Instance, use the following PowerShell or Azure CLI examples.
+- To retrieve the UMIs for Azure SQL Managed Instance or Azure SQL Database, use the PowerShell or Azure CLI examples later in this article.
+- To retrieve the SMI for Azure SQL Managed Instance, use the PowerShell or Azure CLI examples later in this article.
 
-### Set a managed identity in the Azure portal
+### Set a user managed identity in the Azure portal
 
 To set the user-managed identity for the Azure SQL Database logical server or Azure SQL Managed Instance in the [Azure portal](https://portal.azure.com):
 
@@ -191,7 +217,7 @@ To set the user-managed identity for the Azure SQL Database logical server or Az
 1. Under **User assigned managed identity**, select **Add**.
 1. Select a subscription, and then for **Primary identity**, select a managed identity for the subscription. Then choose the **Select** button.
 
-:::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/existing-server-select-managed-identity.png" alt-text="Azure portal screenshot of selecting a user-assigned managed identity when configuring an existing server identity.":::
+:::image type="content" source="media/authentication-azure-ad-user-assigned-managed-identity/existing-server-select-managed-identity.png" alt-text="Screenshot of Azure portal screenshot of selecting a user-assigned managed identity when configuring an existing server identity." lightbox="media/authentication-azure-ad-user-assigned-managed-identity/existing-server-select-managed-identity.png":::
 
 ### Create or set a managed identity by using the Azure CLI
 
@@ -220,13 +246,13 @@ The Azure CLI 2.26.0 (or later) is required to run these commands with a UMI.
 - To provision a new managed instance with a UMI, use the [az sql mi create](/cli/azure/sql/mi#az-sql-mi-create) command.
 - To obtain the system-assigned and user-assigned managed identities for managed instances, use the [az sql mi show](/cli/azure/sql/mi#az-sql-mi-show) command.
   - For example, to retrieve the UMI(s) for a managed instance, look for the `principalId` of each:
-  
+
     ```azurecli
     az sql mi show --resource-group "resourcegroupnamehere" --name "sql-mi-name-here" --query identity.userAssignedIdentities
     ```
 
   - To retrieve the SMI of a managed instance:
-  
+
     ```azurecli
     az sql mi show --resource-group "resourcegroupnamehere" --name "sql-mi-name-here" --query identity.principalId
     ```
@@ -245,7 +271,7 @@ The Azure CLI 2.26.0 (or later) is required to run these commands with a UMI.
 
     ```powershell
     $MI = Get-AzSqlServer -ResourceGroupName "resourcegroupnamehere" -Name "sql-logical-server-name-here"
-    $MI.Identity.UserAssignedIdentities | ConvertTo-Json 
+    $MI.Identity.UserAssignedIdentities | ConvertTo-Json
     ```
 
   - To retrieve the SMI of an Azure SQL Database logical server:
@@ -265,7 +291,7 @@ The Azure CLI 2.26.0 (or later) is required to run these commands with a UMI.
 
     ```powershell
     $MI = Get-AzSqlInstance -ResourceGroupName "resourcegroupnamehere" -Name "sql-mi-name-here"
-    $MI.Identity.UserAssignedIdentities | ConvertTo-Json 
+    $MI.Identity.UserAssignedIdentities | ConvertTo-Json
     ```
 
   - To retrieve the SMI of a managed instance:
@@ -285,7 +311,7 @@ To update the UMI settings for the server, you can also use the REST API provisi
 
 To update the UMI settings for the server, you can also use the Azure Resource Manager template (ARM template) used in [Create a logical server by using a user-assigned managed identity](authentication-azure-ad-user-assigned-managed-identity-create-server.md) or [Create a managed instance by using a user-assigned managed identity](../managed-instance/authentication-azure-ad-user-assigned-managed-identity-create-managed-instance.md). Rerun the provisioning command in the guide with the updated user-assigned managed identity property that you want to update.
 
-> [!NOTE]
+> [!NOTE]  
 > You can't change the server administrator or password, or change the Microsoft Entra admin, by rerunning the provisioning command for the ARM template.
 
 ## Limitations and known issues
