@@ -5,7 +5,7 @@ description: Learn about point-in-time restore, which enables you to roll back a
 author: dinethi
 ms.author: dinethi
 ms.reviewer: wiassaf, mathoma, strrodic, mlandzic
-ms.date: 07/10/2025
+ms.date: 12/05/2025
 ms.service: azure-sql-managed-instance
 ms.subservice: backup-restore
 ms.topic: how-to
@@ -211,31 +211,9 @@ It's essential to acknowledge that geo-restore serves as an appropriate disaster
 
 For more information about business continuity choices, see [Overview of business continuity](../database/business-continuity-high-availability-disaster-recover-hadr-overview.md).
 
-## Security risks of restoring backups from untrusted sources
+## Security risk of restoring backups from untrusted sources
 
-This section outlines the security risks associated with restoring backups to Azure SQL Managed Instance from untrusted sources.
-
-### Why this matters 
-
-Restoring SQL backup files (`.bak`) introduces a potential risk if the backup originates from an untrusted source. The security risk is exacerbated further when SQL managed instances are shared by multiple applications, as it amplifies the area of threat. While backups that remain within a trusted boundary pose no security issue, restoring a malicious backup can compromise the security of the entire environment.
-
-A malicious `.bak` file can: 
-- Take over the SQL managed instance.
-- Escalate privileges and gain unauthorized access to underlying virtual machine (VMs) that hosts the SQL managed instance.
-
-This attack occurs before any validating scripts or security checks can execute, which makes it extremely dangerous. Restoring an untrusted backup is equivalent to running untrusted applications on a critical virtual machine, and introducing arbitrary code execution into your environment. 
-
-### Best practices
-
-Since Azure SQL Managed Instance is ring-fenced and isolated from other workloads, backup restore is supported, which is why extra care must be taken when restoring backups.
-
-Follow these backup security best practices to reduce the threat to Azure SQL Managed Instance:
-- Treat restoring backups as a high-risk operation.
-- Reduce the threat service area by using isolated instances.
-- Only allow trusted backups. Never restore backups from unknown or external sources.
-- Only allow backups that remained within a trusted boundary. Ensure backups originate from within the trusted boundary.
-- Do not bypass security controls for convenience.
-
+[!INCLUDE [backup-restore-security-risk](../../docs/includes/backup-restore-security-risk.md)]
 
 ## Limitations
 
