@@ -35,7 +35,7 @@ This article lists the currently known issues with [Azure SQL Managed Instance](
 | [msdb table for manual backups doesn't preserve the username](#msdb-table-for-manual-backups-doesnt-preserve-the-username) | Nov 2022 | Resolved | Aug 2023 |
 | [When using SQL Server authentication, usernames with '@' aren't supported](#when-using-sql-server-authentication-usernames-with--arent-supported) | Oct 2021 | Resolved | Feb 2022 |
 | [Misleading error message on Azure portal suggesting recreation of the Service Principal](#misleading-error-message-on-azure-portal-suggesting-recreation-of-the-service-principal) | Sep 2021 | | Oct 2021 |
-| [Changing the connection type doesn't affect connections through the failover group endpoint](#changing-the-connection-type-doesnt-affect-connections-through-the-failover-group-endpoint) | Jan 2021 | Has Workaround | |
+| [Changing the connection type doesn't affect connections through the failover group endpoint](#changing-the-connection-type-doesnt-affect-connections-through-the-failover-group-endpoint) | Jan 2021 | Resolved | Nov 2025 |
 | [Distributed transactions can be executed after removing SQL managed instance from Server Trust Group](#distributed-transactions-can-be-executed-after-removing-sql-managed-instance-from-server-trust-group) | Oct 2020 | Has Workaround | |
 | [Can't create SQL Managed Instance with the same name as logical server previously deleted](#cant-create-sql-managed-instance-with-the-same-name-as-logical-server-previously-deleted) | Aug 2020 | Has Workaround | |
 | [Service Principal can't access Microsoft Entra ID and AKV](#service-principal-cant-access-azure-ad-and-akv) | Aug 2020 | Has Workaround | |
@@ -142,12 +142,6 @@ EXECUTE msdb.dbo.sysmail_add_principalprofile_sp
 GO
 ```
 
-
-### Changing the connection type doesn't affect connections through the failover group endpoint
-
-If an instance participates in a [failover group](failover-group-sql-mi.md), changing the instance's [connection type](connection-types-overview.md) doesn't take effect for the connections established through the failover group listener endpoint.
-
-**Workaround**: Drop and recreate failover group after changing the connection type.
 
 <a id="procedure-sp_send_dbmail-may-transiently-fail-when-query-parameter-is-used"></a>
 
@@ -263,6 +257,12 @@ If transactional replication is enabled on a database in a failover group, the S
 Error logs that are available in SQL Managed Instance aren't persisted, and their size isn't included in the maximum storage limit. Error logs might be automatically erased if failover occurs. There might be gaps in the error log history because SQL Managed Instance was moved several times on several virtual machines.
 
 ## Resolved
+
+### Changing the connection type doesn't affect connections through the failover group endpoint
+
+**(Resolved in November 2025)**
+
+If an instance participates in a [failover group](failover-group-sql-mi.md), changing the instance's [connection type](connection-types-overview.md) doesn't take effect for the connections established through the failover group listener endpoint.
 
 ### Temporary instance inaccessibility using the failover group listener during scaling operation
 
