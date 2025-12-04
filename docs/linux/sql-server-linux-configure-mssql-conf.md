@@ -3,7 +3,7 @@ title: Configure SQL Server Settings on Linux
 description: This article describes how to use the mssql-conf tool to configure SQL Server settings on Linux.
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 07/03/2025
+ms.date: 12/04/2025
 ms.service: sql
 ms.subservice: linux
 ms.topic: install-set-up-deploy
@@ -177,7 +177,7 @@ ms.custom:
   docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<password>" \
   -p 5433:1433 --name sql1 \
   -v /container/sql1:/var/opt/mssql \
-  -d mcr.microsoft.com/mssql/server:2019-latest
+  -d mcr.microsoft.com/mssql/server:2025-latest
   ```
 
   > [!CAUTION]  
@@ -241,7 +241,7 @@ sudo /opt/mssql/bin/mssql-conf set sqlagent.errorlogginglevel <level>
 
 ## Configure Microsoft Entra authentication
 
-Starting with [!INCLUDE [sssql22-md](../includes/sssql22-md.md)], you can configure Microsoft Entra ID for [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. To configure Microsoft Entra ID, you must install the Azure extension for [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] following the installation of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. For information on how to configure Microsoft Entra ID, see [Tutorial: Set up Microsoft Entra authentication for SQL Server](../relational-databases/security/authentication-access/azure-ad-authentication-sql-server-setup-tutorial.md).
+Starting with [!INCLUDE [sssql22-md](../includes/sssql22-md.md)], you can configure Microsoft Entra ID for [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. To configure Microsoft Entra ID, you must install the Azure extension for [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] following the installation of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. For information on how to configure Microsoft Entra ID, see [Tutorial: Set up Microsoft Entra authentication for SQL Server with app registration](../relational-databases/security/authentication-access/azure-ad-authentication-sql-server-setup-tutorial.md).
 
 <a id="change-the-default-azure-ad-certificate-path"></a>
 
@@ -662,8 +662,8 @@ sudo systemctl restart mssql-server
 
 For information on how this is used with availability groups, see the following two articles.
 
-- [Configure SQL Server Always On Availability Group for high availability on Linux](sql-server-linux-availability-group-configure-ha.md)
-- [Configure a SQL Server Availability Group for read-scale on Linux](sql-server-linux-availability-group-configure-rs.md)
+- [Configure SQL Server availability group for high availability on Linux](sql-server-linux-availability-group-configure-ha.md)
+- [Configure a SQL Server availability group for read-scale on Linux](sql-server-linux-availability-group-configure-rs.md)
 
 <a id="localaudit"></a>
 

@@ -3,7 +3,7 @@ title: Install SQL Server Full-Text Search on Linux
 description: Learn how to install SQL Server Full-Text Search on Linux. Full-Text Search enables you to run full-text queries against character-based data in SQL Server tables.
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 07/03/2025
+ms.date: 12/04/2025
 ms.service: sql
 ms.subservice: linux
 ms.topic: install-set-up-deploy
@@ -15,7 +15,9 @@ ms.custom:
 
 [!INCLUDE [SQL Server - Linux](../includes/applies-to-version/sql-linux.md)]
 
-The following steps install [Full-Text Search](../relational-databases/search/full-text-search.md) (**mssql-server-fts**) on Linux. Full-Text Search enables you to run full-text queries against character-based data in [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] tables. For known issues for this release, see the [Release notes for SQL Server 2022 on Linux](sql-server-linux-release-notes-2022.md).
+The following steps install [Full-Text Search](../relational-databases/search/full-text-search.md) (**mssql-server-fts**) on Linux. Full-Text Search enables you to run full-text queries against character-based data in [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] tables.
+
+[!INCLUDE [editions-supported-features-linux](../includes/editions-supported-features-linux.md)]
 
 > [!NOTE]  
 > Before installing [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] Full-Text Search, first [install SQL Server](sql-server-linux-setup.md#platforms). This configures the keys and repositories that you use when installing the **mssql-server-fts** package.
@@ -72,7 +74,7 @@ sudo apt-get update
 sudo apt-get install -y mssql-server-fts
 ```
 
-If you need an offline installation, locate the Full-text Search package download in the [Release notes for SQL Server 2022 on Linux](sql-server-linux-release-notes-2022.md). Then use the same offline installation steps described in the article [Install SQL Server](sql-server-linux-setup.md#offline).
+If you need an offline installation, locate the Full-text Search package download in the [Release notes for SQL Server 2025 on Linux](sql-server-linux-release-notes-2025.md). Then use the same offline installation steps described in the article [Install SQL Server](sql-server-linux-setup.md#offline).
 
 ---
 

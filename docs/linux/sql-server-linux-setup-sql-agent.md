@@ -3,7 +3,7 @@ title: Configure the SQL Server Agent on Linux
 description: Learn how to enable or install the SQL Server Agent on Linux. Starting with SQL Server 2017 CU4, SQL Server Agent is included with the mssql-server package.
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 05/19/2025
+ms.date: 12/04/2025
 ms.service: sql
 ms.subservice: linux
 ms.topic: install-set-up-deploy
@@ -18,7 +18,9 @@ ms.custom:
 
 This article describes how to enable or install the SQL Server Agent on Linux.
 
-The [SQL Server Agent](/ssms/agent/sql-server-agent) runs scheduled SQL Server jobs. Starting with [!INCLUDE [sssql17-md](../includes/sssql17-md.md)] CU 4, SQL Server Agent is included with the **mssql-server** package and is disabled by default. For information on the features supported for this release of the SQL Server Agent along with version information, see [Release notes for SQL Server 2017 on Linux](sql-server-linux-release-notes-2017.md).
+The [SQL Server Agent](/ssms/agent/sql-server-agent) runs scheduled SQL Server jobs. Starting with [!INCLUDE [sssql17-md](../includes/sssql17-md.md)] CU 4, SQL Server Agent is included with the **mssql-server** package and is disabled by default.
+
+[!INCLUDE [editions-supported-features-linux](../includes/editions-supported-features-linux.md)]
 
 ## Instructions
 
