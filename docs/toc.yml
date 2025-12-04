@@ -9149,8 +9149,10 @@ items:
         href: linux/sql-server-linux-setup-machine-learning-docker.md
       - name: Install SQL Server Java Language Extension
         href: linux/sql-server-linux-setup-language-extensions-java.md
-      - name: Configure repositories
+      - name: Configure repositories (up to SQL Server 2022)
         href: linux/sql-server-linux-change-repo.md
+      - name: Configure repositories (SQL Server 2025 and later)
+        href: linux/sql-server-linux-change-repo-2025.md
     - name: Configure
       items:
       - name: Configure with mssql-conf

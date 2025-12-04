@@ -3,10 +3,10 @@ title: Installation Guidance for SQL Server on Linux
 description: Install, update, and uninstall SQL Server on Linux. This article covers online, offline, and unattended scenarios.
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 05/02/2025
+ms.date: 12/05/2025
 ms.service: sql
 ms.subservice: linux
-ms.topic: conceptual
+ms.topic: article
 ms.custom:
   - intro-installation
   - linux-related-content
@@ -101,7 +101,16 @@ If you use **Network File System (NFS)** remote shares in production, note the f
 
 ## Configure source repositories
 
+::: moniker range="<=sql-server-linux-ver16 || <=sql-server-ver16"
+
 When you install or upgrade [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)], you get the latest version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] from your configured Microsoft repository. The quickstarts use the Cumulative Update **CU** repository for [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. For more information on repositories and how to configure them, see [Configure repositories for installing and upgrading SQL Server on Linux](sql-server-linux-change-repo.md).
+
+::: moniker-end
+::: moniker range=">=sql-server-linux-ver17 || >=sql-server-ver17"
+
+When you install or upgrade [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)], you get the latest version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] from your configured Microsoft repository. The quickstarts use the Cumulative Update **CU** repository for [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. For more information on repositories and how to configure them, see [Configure repositories for installing and upgrading SQL Server 2025 on Linux](sql-server-linux-change-repo-2025.md).
+
+::: moniker-end
 
 <a id="platforms"></a>
 
@@ -134,7 +143,16 @@ To update the `mssql-server` package to the latest release, use one of the follo
 
 These commands download the newest package and replace the binaries located under `/opt/mssql/`. The user generated databases and system databases aren't affected by this operation.
 
+::: moniker range="<=sql-server-linux-ver16 || <=sql-server-ver16"
+
 To upgrade [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)], first [change your configured repository](sql-server-linux-change-repo.md) to the desired version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. Then use the same `update` command to upgrade your version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. This step is only possible if the upgrade path is supported between the two repositories.
+
+::: moniker-end
+::: moniker range=">=sql-server-linux-ver17 || >=sql-server-ver17"
+
+To upgrade [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)], first [change your configured repository](sql-server-linux-change-repo-2025.md) to the desired version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. Then use the same `update` command to upgrade your version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. This step is only possible if the upgrade path is supported between the two repositories.
+
+::: moniker-end
 
 <a id="rollback"></a>
 
