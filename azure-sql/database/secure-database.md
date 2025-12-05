@@ -7,7 +7,7 @@ ms.service: azure-sql-database
 ms.subservice: security
 ms.topic: concept-article
 ms.custom: horz-security
-ms.date: 11/14/2025
+ms.date: 12/05/2025
 ai-usage: ai-generated
 ---
 
@@ -27,7 +27,7 @@ Network security for Azure SQL Database helps prevent unauthorized connections, 
 
 - **Choose appropriate connection policy**: Understand the difference between Proxy and Redirect connection policies. Redirect provides lower latency and is recommended for connections from within Azure, while Proxy is required for connections from outside Azure. For more information, see [Azure SQL Database connectivity architecture](connectivity-architecture.md).
 
-- **Configure server-level firewall rules**: Control access to your logical server by configuring IP firewall rules that specify which IP addresses or ranges can connect. Use the principle of least privilege by only allowing necessary IP addresses. For more information, see [Azure SQL Database and Azure Synapse IP firewall rules](firewall-configure.md).
+- **Configure server-level firewall rules**: Control access to your [logical server in Azure](logical-servers.md) by configuring IP firewall rules that specify which IP addresses or ranges can connect. Use the principle of least privilege by only allowing necessary IP addresses. For more information, see [Azure SQL Database and Azure Synapse IP firewall rules](firewall-configure.md).
 
 - **Configure database-level firewall rules**: For more granular control, configure database-level firewall rules that apply to individual databases. This allows you to implement per-database access policies. For more information, see [Database-level firewall rules](firewall-configure.md).
 
@@ -41,7 +41,7 @@ Network security for Azure SQL Database helps prevent unauthorized connections, 
 
 Strong identity and authentication controls ensure only authorized users and applications can access your Azure SQL Database resources while providing centralized identity management and easier account lifecycle control.
 
-- **Configure a Microsoft Entra admin**: Designate a Microsoft Entra administrator (formerly Azure Active Directory) for your logical server to enable centralized identity management and advanced security features. This admin can manage access and authentication policies. For more information, see [Configure Microsoft Entra authentication](authentication-aad-configure.md).
+- **Configure a Microsoft Entra admin**: Designate a Microsoft Entra (formerly Azure Active Directory) administrator  for your logical server to enable centralized identity management and advanced security features. This admin can manage access and authentication policies. For more information, see [Configure Microsoft Entra authentication](authentication-aad-configure.md).
 
 - **Use Microsoft Entra authentication**: Prefer Microsoft Entra authentication over SQL authentication for centralized identity management and easier account lifecycle control. Microsoft Entra ID provides superior security and enables advanced features like conditional access and multifactor authentication. For more information, see [Microsoft Entra authentication](authentication-aad-overview.md).
 
@@ -83,7 +83,7 @@ Data protection safeguards your information through encryption, access controls,
 
 - **Use ledger for tamper-evident data**: Enable ledger to create an immutable record of changes to sensitive data, providing tamper-evident logging. Ledger tables provide cryptographic proof of data integrity and can help meet regulatory requirements. For more information, see [Ledger](ledger-overview.md).
 
-- **Use Dynamic Data Masking**: Apply dynamic data masking to obfuscate sensitive data for nonprivileged users while preserving data functionality for applications. This helps prevent unauthorized access to sensitive information without requiring application changes. For more information, see [Dynamic Data Masking](dynamic-data-masking-overview.md).
+- **Use dynamic data masking**: Apply dynamic data masking to obfuscate sensitive data for nonprivileged users while preserving data functionality for applications. This helps prevent unauthorized access to sensitive information without requiring application changes. For more information, see [Dynamic Data Masking](dynamic-data-masking-overview.md).
 
 - **Classify and label sensitive data**: Use SQL Data Discovery and Classification to identify, classify, and label sensitive data in your databases. This enables better protection and compliance reporting, and helps you understand where sensitive data resides. Integration with Microsoft Purview provides enhanced data governance capabilities. For more information, see [Data Discovery and Classification](data-discovery-and-classification-overview.md) and [Microsoft Purview integration](/azure/purview/register-scan-azure-sql-database).
 
@@ -101,7 +101,7 @@ Reliable backup and recovery processes protect your data from loss due to failur
 
 - **Use long-term retention for compliance**: Configure long-term backup retention (LTR) for compliance requirements that exceed the default retention period. LTR allows you to store full backups for up to 10 years. For more information, see [Long-term retention](long-term-retention-overview.md).
 
-- **Test backup and restore procedures**: Regularly test your backup and restore procedures to ensure they work correctly and meet your recovery time objectives. Validate that restored databases are fully functional and data integrity is maintained. For more information, see [Recover a database](recovery-using-backups.md).
+- **Test backup and restore procedures**: Regularly test your backup and restore procedures to ensure they work correctly and meet your recovery time objectives (RTO). Validate that restored databases are fully functional and data integrity is maintained. For more information, see [Recover a database](recovery-using-backups.md).
 
 - **Monitor backup activity**: Track backup operations to ensure they complete successfully. Use Azure Monitor and configure alerts for backup failures. For more information, see [Monitor and troubleshoot backup storage consumption](automated-backups-overview.md#monitor-costs).
 
@@ -131,7 +131,7 @@ Comprehensive monitoring and threat detection help you identify security issues,
 
 Regularly assessing your Azure SQL Database environment helps identify vulnerabilities and improve your security posture while ensuring compliance with security standards.
 
-- **Run vulnerability assessments**: Use SQL Vulnerability Assessment in the Azure portal or Azure Data Studio to discover and remediate potential database vulnerabilities. Schedule regular scans and track remediation progress. For more information, see [SQL Vulnerability Assessment](sql-vulnerability-assessment.md).
+- **Run vulnerability assessments**: Use SQL Vulnerability Assessment in the Azure portal to discover and remediate potential database vulnerabilities. Schedule regular scans and track remediation progress. For more information, see [SQL Vulnerability Assessment](sql-vulnerability-assessment.md).
 
 - **Classify and label sensitive data**: Use SQL Data Discovery and Classification to identify and label sensitive data for better protection and compliance. Classification metadata can be used by other security features like auditing and dynamic data masking. For more information, see [Data Discovery and Classification](data-discovery-and-classification-overview.md).
 
