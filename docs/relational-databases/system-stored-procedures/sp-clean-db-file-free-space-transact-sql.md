@@ -4,7 +4,7 @@ description: Removes residual information left on database pages in a database f
 author: markingmyname
 ms.author: maghan
 ms.reviewer: randolphwest, dfurman
-ms.date: 12/06/2025
+ms.date: 12/08/2025
 ms.service: sql
 ms.subservice: system-objects
 ms.topic: "reference"
@@ -22,7 +22,7 @@ dev_langs:
 
 [!INCLUDE [sql-asdbmi](../../includes/applies-to-version/sql-asdbmi.md)]
 
-Removes residual information on database pages. `sp_clean_db_file_free_space` cleans all pages in only one file of a database.
+Removes residual information on data pages. `sp_clean_db_file_free_space` cleans all pages in only one file of a database.
 
 :::image type="icon" source="../../includes/media/topic-link-icon.svg" border="false"::: [Transact-SQL syntax conventions](../../t-sql/language-elements/transact-sql-syntax-conventions-transact-sql.md)
 
