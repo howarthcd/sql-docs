@@ -448,7 +448,7 @@ The format file should be used if:
 
 - The data file contains greater or fewer columns than the table or view.
 - The columns are in a different order.
-- The column delimiters vary.
+- The column delimiters vary (varying column delimiters are not supported in Fabric Data Warehouse. In Fabric Data Warehouse the first delimiter defined in the format file is applied to all columns.)
 - There are other changes in the data format. Format files are typically created by using the **bcp** utility and modified with a text editor as needed. For more information, see [bcp Utility](../../tools/bcp-utility.md) and [Create a format file with bcp](../../relational-databases/import-export/create-a-format-file-sql-server.md).
 
 Beginning with [!INCLUDE [sssql17-md](../../includes/sssql17-md.md)], and in Azure SQL Database, `format_file_path` can be in Azure Storage.
