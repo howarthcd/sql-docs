@@ -68,6 +68,8 @@ You must have an Ubuntu 18.04 machine with **at least 2 GB** of memory.
 
 To install Ubuntu 18.04 on your own machine, go to <https://releases.ubuntu.com/18.04/>. You can also create Ubuntu virtual machines in Azure. See [Tutorial: Create and Manage Linux VMs with the Azure CLI](/azure/virtual-machines/linux/tutorial-manage-vm).
 
+If you previously installed a preview version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)], you must first remove the old repository before following these steps. For more information, see [Configure repositories for installing and upgrading SQL Server on Linux](sql-server-linux-change-repo.md).
+
 ::: moniker-end
 <!--SQL Server 2019 on Linux-->
 ::: moniker range="=sql-server-linux-ver15 || =sql-server-ver15"
@@ -75,6 +77,8 @@ To install Ubuntu 18.04 on your own machine, go to <https://releases.ubuntu.com/
 You must have an Ubuntu 20.04 machine with **at least 2 GB** of memory.
 
 To install Ubuntu 20.04 on your own machine, go to <https://releases.ubuntu.com/20.04/>. You can also create Ubuntu virtual machines in Azure. See [Tutorial: Create and Manage Linux VMs with the Azure CLI](/azure/virtual-machines/linux/tutorial-manage-vm).
+
+If you previously installed a preview version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)], you must first remove the old repository before following these steps. For more information, see [Configure repositories for installing and upgrading SQL Server on Linux](sql-server-linux-change-repo.md).
 
 ::: moniker-end
 <!--SQL Server 2022 on Linux-->
@@ -84,6 +88,8 @@ You must have an Ubuntu 20.04 machine with **at least 2 GB** of memory.
 
 To install Ubuntu 20.04 on your own machine, go to <https://releases.ubuntu.com/20.04/>. You can also create Ubuntu virtual machines in Azure. See [Tutorial: Create and Manage Linux VMs with the Azure CLI](/azure/virtual-machines/linux/tutorial-manage-vm).
 
+If you previously installed a preview version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)], you must first remove the old repository before following these steps. For more information, see [Configure repositories for installing and upgrading SQL Server on Linux](sql-server-linux-change-repo.md).
+
 ::: moniker-end
 <!--SQL Server 2025 on Linux-->
 ::: moniker range=">=sql-server-linux-ver17 || >=sql-server-ver17"
@@ -92,9 +98,9 @@ You must have an Ubuntu 22.04 machine with **at least 2 GB** of memory.
 
 To install Ubuntu 22.04 on your own machine, go to <https://releases.ubuntu.com/22.04/>. You can also create Ubuntu virtual machines in Azure. See [Tutorial: Create and Manage Linux VMs with the Azure CLI](/azure/virtual-machines/linux/tutorial-manage-vm).
 
-::: moniker-end
+If you previously installed a preview version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)], you must first remove the old repository before following these steps. For more information, see [Configure repositories for installing and upgrading SQL Server 2025 on Linux](sql-server-linux-change-repo-2025.md).
 
-If you previously installed a preview version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)], you must first remove the old repository before following these steps. For more information, see [Configure repositories for installing and upgrading SQL Server on Linux](sql-server-linux-change-repo.md).
+::: moniker-end
 
 The [Windows Subsystem for Linux](/windows/wsl/about) isn't supported as an installation target for [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)].
 

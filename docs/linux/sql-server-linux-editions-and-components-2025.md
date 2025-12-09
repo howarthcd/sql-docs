@@ -189,21 +189,44 @@ The Developer editions continue to support only one client for [SQL Server Distr
 
 | Feature | Enterprise | Standard | Express |
 | --- | :---: | :---: | :---: |
-| JSON | Yes | Yes | Yes |
-| Query Store | Yes | Yes | Yes |
-| Temporal | Yes | Yes | Yes |
+| Native JSON data type | Yes | Yes | Yes |
+| JSON indexing | Yes | Yes | Yes |
 | Native XML support | Yes | Yes | Yes |
 | XML indexing | Yes | Yes | Yes |
+| XML compression | Yes | Yes | Yes |
 | `MERGE` and upsert capabilities | Yes | Yes | Yes |
-| Date and time data types | Yes | Yes | Yes |
-| Internationalization support | Yes | Yes | Yes |
+| UTF-8 and UTF-16 support | Yes | Yes | Yes |
+| Graph tables | Yes | Yes | Yes |
+| Temporal tables | Yes | Yes | Yes |
+| Time series support | Yes | Yes | Yes |
+| Regular expressions support | Yes | Yes | Yes |
+| Fuzzy string matching support <sup>4</sup> | Yes | Yes | Yes |
 | Full-text and semantic search | Yes | Yes | Yes |
-| Specification of language in query | Yes | Yes | Yes |
-| Service Broker (messaging and queuing) | Yes | Yes | No <sup>1</sup> |
+| Basic R integration <sup>1</sup> | Yes | Yes | Yes |
+| Advanced R integration <sup>2</sup> | Yes | No | No |
+| Basic Python integration | Yes | Yes | Yes |
+| Advanced Python integration | Yes | No | No |
+| Java language runtime integration | Yes | Yes | Yes |
+| Specification of external language in query | Yes | Yes | Yes |
+| Distributed queries with linked servers <sup>5</sup> | Yes | Yes | Yes |
+| External REST endpoint invocation support | Yes | Yes | Yes |
+| Query Store | Yes | Yes | Yes |
+| Query Store on by default for new databases | Yes | Yes | Yes |
+| Query Store hints | Yes | Yes | Yes |
+| Query Store on secondary replicas | Yes | No | No |
+| Service Broker (messaging and queuing) | Yes | Yes | No <sup>3</sup> |
 | Transact-SQL endpoints | Yes | Yes | No |
-| Graph | Yes | Yes | Yes |
+| Database mail | Yes | Yes | No |
 
-<sup>1</sup> Client only.
+<sup>1</sup> Basic integration is limited to 2 cores and in-memory data sets.
+
+<sup>2</sup> Advanced integration can use all available cores for parallel processing of data sets at any size subject to hardware limits.
+
+<sup>3</sup> Client only.
+
+<sup>4</sup> Requires [PREVIEW_FEATURES database scoped configuration](../t-sql/statements/alter-database-scoped-configuration-transact-sql.md#preview-features).
+
+<sup>5</sup> Using SQL Server authentication for SQL Server linked servers as target and source only.
 
 ## Integration Services
 
