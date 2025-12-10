@@ -4028,6 +4028,7 @@ SET
   | <vorder>
   | <timestamp>
   | <result_set_caching>
+  | <proactive_statistics_refresh>
 }
 ;
 
@@ -4046,10 +4047,14 @@ SET
     TIMESTAMP = {CURRENT_TIMESTAMP | 'YYYY-MM-DDTHH:MM:SS.SS' }  
 }
 
-
 <result_set_caching> ::=
 {    
     RESULT_SET_CACHING { ON | OFF } 
+}
+
+<proactive_statistics_refresh> ::=
+{    
+    PROACTIVE_STATISTICS_REFRESH = { ON | OFF } 
 }
 ```
 
@@ -4069,7 +4074,12 @@ Updates the timestamp for an existing warehouse snapshot in Fabric Data Warehous
 
 #### RESULT_SET_CACHING
 
-Enables or disables result set caching (preview) for the current item. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).
+Enables or disables result set caching (preview) for the target item. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching). During Preview, the default setting of this feature is OFF.
+
+#### PROACTIVE_STATISTICS_REFRESH
+
+Enables or disables Proactive Statistics Refresh for the target item. For more information, see [Statistics](/fabric/data-warehouse/statistics).
+The default is ON. We recommend that you use the default setting for most items.
 
 ## Permissions
 
