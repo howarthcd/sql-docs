@@ -27,7 +27,7 @@ ms.custom:
   
 -   To download [!INCLUDE[sssql15-md](../includes/sssql16-md.md)], go to  **[Evaluation Center](https://www.microsoft.com/evalcenter/evaluate-sql-server-2016)**.  
   
--   Have an Azure account? Then go **[here](https://azuremarketplace.microsoft.com/marketplace/apps/microsoftsqlserver.sql2019-ws2019?tab=Overview)** to spin up a Virtual Machine with [!INCLUDE[ssnoversion](../includes/ssnoversion-md.md)] already installed.  
+-   Have an Azure account? Then go to the **[Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/microsoftsqlserver.sql2019-ws2019?tab=Overview)** to spin up a Virtual Machine with [!INCLUDE[ssnoversion](../includes/ssnoversion-md.md)] already installed.  
   
 ##  Improved Performance  
   

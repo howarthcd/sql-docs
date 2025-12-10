@@ -74,7 +74,7 @@ Learn more about the [recommended migration process](../migration-guides/managed
 ## Related content
 
 - [Features comparison: Azure SQL Database and Azure SQL Managed Instance](../database/features-comparison.md)
-- [details and known issues here](transact-sql-tsql-differences-sql-server.md)
+- [T-SQL differences between SQL Server and Azure SQL Managed Instance](transact-sql-tsql-differences-sql-server.md)
 - [Technical characteristics of SQL Managed Instance](resource-limits.md#service-tier-characteristics)
 - [Azure SQL Managed Instance content reference](how-to-content-reference-guide.md)
 - [Azure SQL migration extension for Azure Data Studio](/azure/dms/migration-using-azure-data-studio)

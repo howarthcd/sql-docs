@@ -65,9 +65,9 @@ This section clarifies the monikers that refer to product versions. It also list
 
 ## Related links
 
-* ADO.NET 4.6 was released on July 20, 2015. A blog announcement from the .NET team is available [here](https://devblogs.microsoft.com/dotnet/announcing-net-framework-4-6/).
-* ADO.NET 4.5 was released on August 15, 2012. A blog announcement from the .NET team is available [here](https://devblogs.microsoft.com/dotnet/announcing-the-release-of-net-framework-4-5-rtm-product-and-source-code/).
-  * A blog post about ADO.NET 4.5.1 is available [here](https://devblogs.microsoft.com/dotnet/announcing-the-net-framework-4-5-1-preview/).
+* ADO.NET 4.6 was released on July 20, 2015. See the [.NET team blog announcement](https://devblogs.microsoft.com/dotnet/announcing-net-framework-4-6/).
+* ADO.NET 4.5 was released on August 15, 2012. See the [.NET team blog announcement](https://devblogs.microsoft.com/dotnet/announcing-the-release-of-net-framework-4-5-rtm-product-and-source-code/).
+  * See the [.NET team blog post about ADO.NET 4.5.1](https://devblogs.microsoft.com/dotnet/announcing-the-net-framework-4-5-1-preview/).
 
 * Microsoft ODBC Driver 17 for SQL Server
 https://aka.ms/downloadmsodbcsql

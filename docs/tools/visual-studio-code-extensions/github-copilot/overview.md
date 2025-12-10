@@ -109,7 +109,7 @@ GitHub Copilot for the MSSQL extension is designed for developers who work with 
 
 ### Install Visual Studio Code
 
-1. Download Visual Studio Code [here](https://code.visualstudio.com/download).
+1. Download [Visual Studio Code](https://code.visualstudio.com/download).
 1. Complete the installation following the wizard.
 
 ## Install the MSSQL extension in Visual Studio Code

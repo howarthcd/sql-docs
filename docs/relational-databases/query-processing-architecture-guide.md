@@ -840,7 +840,7 @@ The `recompile_cause` column of `sql_statement_recompile` XEvent contains an int
 > The trace event `SQL:StmtRecompile` also reports statement-level recompilations, and this trace event can also be used to track and debug recompilations.
 >
 > Whereas `SP:Recompile` generates only for stored procedures and triggers, `SQL:StmtRecompile` generates for stored procedures, triggers, ad hoc batches, batches that are executed by using `sp_executesql`, prepared queries, and dynamic SQL.
-> The *EventSubClass* column of `SP:Recompile` and `SQL:StmtRecompile` contains an integer code that indicates the reason for the recompilation. The codes are described [here](../relational-databases/event-classes/sql-stmtrecompile-event-class.md).
+> The *EventSubClass* column of `SP:Recompile` and `SQL:StmtRecompile` contains an integer code that indicates the reason for the recompilation. The codes are described in [SQL:StmtRecompile Event Class](event-classes/sql-stmtrecompile-event-class.md).
 
 > [!NOTE]  
 > When the `AUTO_UPDATE_STATISTICS` database option is set to `ON`, queries are recompiled when they target tables or indexed views whose statistics have been updated or whose cardinalities have changed significantly since the last execution.

@@ -121,7 +121,7 @@ To find the correct applies-to include file for your article, use the following 
 - [Markdown basics](https://docs.github.com/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github)
 
 > [!TIP]  
-> If you have product feedback rather than documentation feedback, [provide feedback on the SQL Server product here](https://feedback.azure.com/forums/908035-sql-server).
+> If you have product feedback rather than documentation feedback, [provide feedback](https://feedback.azure.com/forums/908035-sql-server).
 
 ## Related content
 

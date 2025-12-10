@@ -448,7 +448,7 @@ Use the **General** page of the **Foreach Loop Editor** dialog box to name and d
 ####  <a name="ForeachAzureBlob"></a> Enumerator = Foreach Azure Blob Enumerator  
  The  **Azure Blob Enumerator** enables an SSIS package to enumerate blob files in the specified blob location. You can store the name of the enumerated blob file in a variable and use it in tasks inside the Foreach Loop Container.  
   
- The **Azure Blob Enumerator** is a component of the SQL Server Integration Services (SSIS) Feature Pack for Azure for [!INCLUDE[sssql16-md](../../includes/sssql16-md.md)]. Download the Feature Pack [here](https://go.microsoft.com/fwlink/?LinkID=626967).  
+ The **Azure Blob Enumerator** is a component of the SQL Server Integration Services (SSIS) Feature Pack for Azure for [!INCLUDE[sssql16-md](../../includes/sssql16-md.md)]. Download the [Feature Pack](https://go.microsoft.com/fwlink/?LinkID=626967).  
   
  **Azure storage connection manager**  
  Select an existing Azure Storage Connection Manager or create a new one that refers to an Azure Storage Account.  
@@ -500,7 +500,7 @@ Specifies whether to search recursively within the specified folder.
 ***Notes on Service Principal Permission Configuration***
 
 Data Lake Storage Gen2 permission is determined by both [RBAC](/azure/storage/common/storage-auth-aad-rbac-portal#assign-rbac-roles-using-the-azure-portal) and [ACLs](/azure/storage/blobs/data-lake-storage-how-to-set-permissions-storage-explorer).
-Pay attention that ACLs are configured using the Object ID (OID) of the service principal for the app registration as detailed [here](/azure/storage/blobs/data-lake-storage-access-control#how-do-i-set-acls-correctly-for-a-service-principal).
+Pay attention that ACLs are configured using the Object ID (OID) of the service principal for the app registration. See [How do I set ACLs correctly for a service principal?](/azure/storage/blobs/data-lake-storage-access-control#how-do-i-set-acls-correctly-for-a-service-principal)
 This is different from the Application (client) ID that is used with RBAC configuration.
 When a security principal is granted RBAC data permissions through a built-in role, or through a custom role, these permissions are evaluated first upon authorization of a request.
 If the requested operation is authorized by the security principal's RBAC assignments, then authorization is immediately resolved and no additional ACL checks are performed.

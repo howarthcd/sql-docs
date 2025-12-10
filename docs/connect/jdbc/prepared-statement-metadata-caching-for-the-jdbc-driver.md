@@ -22,7 +22,7 @@ Since version 6.1.6-preview, an improvement in performance was implemented throu
 > Users can change the default value with the following method:
 > setServerPreparedStatementDiscardThreshold(int value)
 
-One more change introduced from 6.1.6-preview is that before this version, the driver would always call `sp_prepexec`. Now, for the first execution of a prepared statement, driver calls `sp_executesql` and for the rest it executes `sp_prepexec` and assigns a handle to it. More details can be found [here](https://github.com/Microsoft/mssql-jdbc/wiki/PreparedStatement-metadata-caching).
+One more change introduced from 6.1.6-preview is that before this version, the driver would always call `sp_prepexec`. Now, for the first execution of a prepared statement, driver calls `sp_executesql` and for the rest it executes `sp_prepexec` and assigns a handle to it. For more information, see [PreparedStatement metadata caching](https://github.com/Microsoft/mssql-jdbc/wiki/PreparedStatement-metadata-caching).
 
 Starting from the 11.2 release, following the initial `sp_executesql` call, the driver can execute either `sp_prepare` or `sp_prepexec` for additional calls, depending on the value specified in the `prepareMethod` connection string property. For more information, see [Setting the connection properties](setting-the-connection-properties.md).
 

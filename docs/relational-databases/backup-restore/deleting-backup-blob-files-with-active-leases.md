@@ -26,7 +26,7 @@ The follow steps describe how to clean up after failed backup or restore activit
   
 1. **Identify blobs with leases:** If you have a script or a process that runs the backup processes, you might be able to capture the failure within the script or process and use that to clean up the blobs.  You can also use the LeaseStats and LeastState properties to identify blobs with leases on them. Once you have identified the blobs, review the list and verify the validity of the backup file before deleting the blob.  
   
-1. **Break the lease:** An authorized request can break the lease without supplying a lease ID. See [here](/rest/api/storageservices/Lease-Blob) for more information.  
+1. **Break the lease:** An authorized request can break the lease without supplying a lease ID. For more information, see [Lease Blob](/rest/api/storageservices/Lease-Blob).
   
     > [!TIP]  
     > SQL Server issues a lease ID to establish exclusive access during the restore operation. The restore lease ID is BAC2BAC2BAC2BAC2BAC2BAC2BAC2BAC2.  

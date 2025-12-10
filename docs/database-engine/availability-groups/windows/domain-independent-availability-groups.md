@@ -15,7 +15,7 @@ helpviewer_keywords:
 
 [!INCLUDE [SQL Server](../../../includes/applies-to-version/sqlserver.md)]
 
-Always On availability groups (AGs) require an underlying Windows Server Failover Cluster (WSFC). Deploying a WSFC through Windows Server 2012 R2 required that the servers participating in a WSFC, also known as nodes, were joined to the same domain. For more information on Active Directory Domain Services (AD DS), see [here](/previous-versions/windows/it-pro/windows-server-2003/cc759073(v=ws.10)).
+Always On availability groups (AGs) require an underlying Windows Server Failover Cluster (WSFC). Deploying a WSFC through Windows Server 2012 R2 required that the servers participating in a WSFC, also known as nodes, were joined to the same domain. For more information on Active Directory Domain Services (AD DS), see [What Are Domains and Forests?](/previous-versions/windows/it-pro/windows-server-2003/cc759073(v=ws.10))
 
 The dependency on AD DS and WSFC is more complex than previously deployed with a database mirroring (DBM) configuration, since DBM can be deployed across multiple data centers using certificates, without any such dependencies. A traditional availability group spanning more than one data center requires that all servers must be joined to the same Active Directory domain. Different domains, even trusted domains, don't work. All the servers must be nodes of the same WSFC. The following figure shows this configuration. [!INCLUDE [sssql16-md](../../../includes/sssql16-md.md)] and later versions also have distributed AGs, which achieve this goal in a different way.
 

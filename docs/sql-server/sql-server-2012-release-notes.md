@@ -192,7 +192,7 @@ The following items describe the prerequisite installation behavior during SQL S
 
 - To make sure that the Visual Studio component can be installed correctly, SQL Server requires you to install an update. SQL Server Setup checks for the presence of this update and then requires you to download and install the update before you can continue with the SQL Server installation. To avoid the interruption during SQL Server Setup, you can download and install the update as described below before running SQL Server Setup (or you can install all the updates for the .NET Framework 3.5 SP1 that are available on Windows Update):
 
-  - If you install SQL Server 2012 on a computer with the Windows Vista SP2 or Windows Server 2008 SP2 operating system, you can get the required update from [here](https://support.microsoft.com/en-us?kbid=956250).
+  - If you install SQL Server 2012 on a computer with the Windows Vista SP2 or Windows Server 2008 SP2 operating system, you can get the required update from [KB956250](https://support.microsoft.com/help/956250).
 
   - If you install SQL Server 2012 on a computer with the Windows 7 SP1 or Windows Server 2008 R2 SP1 operating system, this update is already installed on the computer.
 

@@ -40,7 +40,7 @@ spec:
  template:
   metadata:
    labels:
-    app: mssql # this has to be the same as .spec.selector.matchLabels, as documented [here](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/):
+    app: mssql # this has to be the same as .spec.selector.matchLabels. See <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/>:
   spec:
    securityContext:
      fsGroup: 10001

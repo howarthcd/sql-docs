@@ -342,7 +342,7 @@ The [quickstart](quickstart-install-connect-docker.md) in the previous section r
 > [!NOTE]  
 > Web edition isn't available in [!INCLUDE [sssql25-md](../includes/sssql25-md.md)] and later versions.
 
-- You can only use SQL Server in a production environment if you have a valid license. You can obtain a free SQL Server Express production license [here](https://go.microsoft.com/fwlink/?linkid=857693). SQL Server Standard and Enterprise edition licenses are available through [Microsoft Volume Licensing](https://www.microsoft.com/licensing).
+- You can only use SQL Server in a production environment if you have a valid license. You can [obtain a free SQL Server Express production license](https://go.microsoft.com/fwlink/?linkid=857693). SQL Server Standard and Enterprise edition licenses are available through [Microsoft Volume Licensing](https://www.microsoft.com/licensing).
 
 - The Developer container image can be configured to run the production editions as well.
 
