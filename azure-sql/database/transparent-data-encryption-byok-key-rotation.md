@@ -65,7 +65,7 @@ For installation, see [Install the Azure CLI](/cli/azure/install-azure-cli).
 Automatic rotation in a server, database, or managed instance can be used with automatic key rotation in Azure Key Vault to enable end-to-end zero touch rotation for TDE keys.
 
 > [!NOTE]
-> If the server or managed instance has geo-replication configured, prior to enabling automatic rotation, additional guidelines need to be followed as described [here](transparent-data-encryption-byok-overview.md#geo-replication-considerations-when-configuring-automated-rotation-of-the-tde-protector).  
+> If the server or managed instance has geo-replication configured, prior to enabling automatic rotation, see [Geo-replication considerations when configuring automated rotation of the TDE protector](transparent-data-encryption-byok-overview.md#geo-replication-considerations-when-configuring-automated-rotation-of-the-tde-protector).  
 
 # [Portal](#tab/azure-portal)
 

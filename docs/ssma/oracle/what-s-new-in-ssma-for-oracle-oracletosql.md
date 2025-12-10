@@ -353,9 +353,9 @@ The v8.0 release of SSMA for Oracle is enhanced with targeted fixes designed to 
 
   :::image type="content" source="../media/ssma-oracle-ext-pack.png" alt-text="Screenshot of SSMA for Oracle Extension Pack.":::
 
-  Some features, including Tester and Server-side data migration, aren't supported when targeting Azure SQL Managed Instance. Read more about it [here](https://techcommunity.microsoft.com/category/azuredatabases/blog/microsoftdatamigration).
+  Some features, including Tester and Server-side data migration, aren't supported when targeting Azure SQL Managed Instance.
 
-- Post-conversion **Fix advisor**. Learn more about it [here](https://techcommunity.microsoft.com/category/azuredatabases/blog/microsoftdatamigration).
+- Post-conversion **Fix advisor**.
 
 - Preliminary database/schema selection.
 

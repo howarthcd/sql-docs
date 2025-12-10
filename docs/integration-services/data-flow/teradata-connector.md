@@ -29,7 +29,7 @@ Microsoft Connector supports the following Microsoft SQL Server products for Ter
 Microsoft Connector for Teradata depends on Teradata Tools and Utilities (TTU) 20.00.
 
 > [!NOTE]
-> TTU has discontinued support for 32-bit Teradata Parallel Transporter (TPT). Consequently, Microsoft Connector for Teradata has discontinued support for 32-bit and Visual Studio 2019. The TTU 17.10 based [rev. 284](#rev-284) is the final version with 32-bit and Visual Studio 2019 support. It can be downloaded from the same page as latest version [here](https://www.microsoft.com/download/details.aspx?id=100599).
+> TTU has discontinued support for 32-bit Teradata Parallel Transporter (TPT). Consequently, Microsoft Connector for Teradata has discontinued support for 32-bit and Visual Studio 2019. The TTU 17.10 based [rev. 284](#rev-284) is the final version with 32-bit and Visual Studio 2019 support. Download the [latest version](https://www.microsoft.com/download/details.aspx?id=100599).
 
 ## Installation
 

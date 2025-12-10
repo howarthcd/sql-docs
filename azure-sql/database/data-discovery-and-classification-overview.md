@@ -300,7 +300,7 @@ You can use the following SQL drivers to retrieve classification metadata:
 ## FAQ - Advanced classification capabilities
 
 **Question**: Will [Microsoft Purview](/azure/purview/overview) replace SQL Data Discovery & Classification or will SQL Data Discovery & Classification be retired soon?
-**Answer**: We continue to support SQL Data Discovery & Classification and encourage you to adopt [Microsoft Purview](/azure/purview/overview) which has richer capabilities to drive advanced classification capabilities and data governance. If we decide to retire any service, feature, API or SKU, you'll receive advance notice including a migration or transition path. Learn more about Microsoft Lifecycle policies [here](/lifecycle/index).
+**Answer**: We continue to support SQL Data Discovery & Classification and encourage you to adopt [Microsoft Purview](/azure/purview/overview) which has richer capabilities to drive advanced classification capabilities and data governance. If we decide to retire any service, feature, API or SKU, you'll receive advance notice including a migration or transition path. For more information, see the [Microsoft Lifecycle policies](/lifecycle/index).
 
 ## Next steps
 

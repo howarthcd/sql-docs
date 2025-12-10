@@ -22,7 +22,7 @@ ms.topic: conceptual
 
 ## Enabling Always Encrypted with secure enclaves
 
-Support for Always Encrypted with secure enclaves is available in the PHP Drivers for SQL Server starting with 5.8.0. Always Encrypted with secure enclaves requires SQL Server 2019 or later and version 17.4+ of the ODBC driver. Further details on general requirements for Always Encrypted with the PHP Drivers for SQL Server are available [here](using-always-encrypted-php-drivers.md).
+Support for Always Encrypted with secure enclaves is available in the PHP Drivers for SQL Server starting with 5.8.0. Always Encrypted with secure enclaves requires SQL Server 2019 or later and version 17.4+ of the ODBC driver. For general requirements for Always Encrypted with the PHP Drivers for SQL Server are available, see [Using Always Encrypted with the PHP Drivers for SQL Server](using-always-encrypted-php-drivers.md).
 
 Always Encrypted with secure enclaves ensures the security of encrypted data by attesting the enclave - that is, verifying the enclave against an external attestation service. To use secure enclaves, the `ColumnEncryption` keyword must identify the attestation type and protocol along with associated attestation data, separated by a comma. Version 17.4 of the ODBC driver supports only Virtualization-Based Security (VBS) and the Host Guardian Service (HGS) protocol for the enclave type and protocol. The associated attestation data is the URL of the attestation server. Thus, the following setting would be added to the connection string:
 
@@ -32,7 +32,7 @@ ColumnEncryption=VBS-HGS,http://attestationserver.mydomain/Attestation
 
 If the protocol is incorrect, the driver will not recognize it, connection will fail, and an error will be returned. If only the attestation URL is incorrect, connection will succeed and an error will be thrown when an enclave-enabled computation is attempted, but otherwise the behavior will be identical to the original Always Encrypted behavior. Setting `ColumnEncryption` to `enabled` will provide regular Always Encrypted functionality, but attempting an enclave-enabled operation will return an error.
 
-Full details for configuring your environment to support Always Encrypted with secure enclaves, including setting up the Host Guardian Service and creating the required encryption keys, can be found [here](../../relational-databases/security/encryption/configure-always-encrypted-enclaves.md).
+For details for configuring your environment to support Always Encrypted with secure enclaves, including setting up the Host Guardian Service and creating the required encryption keys, see [Configure and use Always Encrypted with secure enclaves](../../relational-databases/security/encryption/configure-always-encrypted-enclaves.md).
 
 ## Examples
 

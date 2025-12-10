@@ -30,7 +30,7 @@ Allows you to pick maxdop settings greater than 1 for insert/select operations. 
 
 ## OptimizeCommonSubExpressions
 
-Improves query performance by eliminating data movement for common subexpression in SQL query optimizer. Detailed explanation of this feature can be found [here](common-sub-expression-elimination.md).
+Improves query performance by eliminating data movement for common subexpression in SQL query optimizer. For a detailed explanation of this feature, see [Common subexpression elimination explained](common-sub-expression-elimination.md).
 
 ## UseCatalogQueries
 

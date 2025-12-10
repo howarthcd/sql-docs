@@ -82,7 +82,7 @@ The installer lists available Visual Studio instances to add SSDT tools. If Visu
 > [!IMPORTANT]  
 >
 > - Before installing SSDT for Visual Studio 2017 (15.9.10), uninstall *Analysis Services Projects* and *Reporting Services Projects* extensions if they're already installed, and close all VS instances.
-> - Removed the inbox component Power Query Source for SQL Server 2017. Now we have announced Power Query Source for SQL Server 2017 & 2019 as out-of-box component, which can be downloaded [here](https://www.microsoft.com/download/details.aspx?id=100619).
+> - Removed the inbox component Power Query Source for SQL Server 2017. Now we have announced Power Query Source for SQL Server 2017 & 2019 as out-of-box component. [Download component](https://www.microsoft.com/download/details.aspx?id=100619).
 > - To design packages using Oracle and Teradata connectors and targeting an earlier version of SQL Server before [!INCLUDE [sssql19-md](../includes/sssql19-md.md)], in addition to the [Microsoft Oracle Connector for SQL 2019](https://www.microsoft.com/download/details.aspx?id=58228) and [Microsoft Teradata Connector for SQL 2019](https://www.microsoft.com/download/details.aspx?id=100599), you need to also install the corresponding version of Microsoft Connector for Oracle and Teradata by Attunity.
 > - [Microsoft Connector Version 5.0 for Oracle and Teradata by Attunity targeting SQL Server 2017](https://www.microsoft.com/download/details.aspx?id=55179)
 > - [Microsoft Connector Version 4.0 for Oracle and Teradata by Attunity targeting SQL Server 2016](https://www.microsoft.com/download/details.aspx?id=52950)
@@ -381,8 +381,8 @@ For available options, run `SSDT-Setup-ENU.exe /help`
 
 | New Item | Details |
 | --- | --- |
-| Integration Services (SSIS) | Removed the inbox component Power Query Source for SQL Server 2017. Now we have announced Power Query Source for SQL Server 2017 & 2019 as out-of-box component, which can be downloaded [here](https://www.microsoft.com/download/details.aspx?id=100619). |
-| Integration Services (SSIS) | Removed the inbox component Microsoft Oracle Connector for SQL Server 2019. Now we have announced Microsoft Oracle Connector for SQL Server 2019 as out-of-box component, which can be downloaded [here](https://www.microsoft.com/download/details.aspx?id=58228). |
+| Integration Services (SSIS) | Removed the inbox component Power Query Source for SQL Server 2017. Now we have announced Power Query Source for SQL Server 2017 & 2019 as out-of-box component. [Download component](https://www.microsoft.com/download/details.aspx?id=100619). |
+| Integration Services (SSIS) | Removed the inbox component Microsoft Oracle Connector for SQL Server 2019. Now we have announced Microsoft Oracle Connector for SQL Server 2019 as out-of-box component. [Download component](https://www.microsoft.com/download/details.aspx?id=58228). |
 | Integration Services (SSIS) | Fixed an issue that SSIS debugger might occasionally fail to be launched due to IDtsHost interface not registered when target server version is SQL Server 2017 or 2019. |
 | Integration Services (SSIS) | Fixed major UI layout issues in high DPI mode. |
 | Integration Services (SSIS) | Upgraded .NET framework version to 4.7 for script task/component when the target server version is SQL Server 2019. |

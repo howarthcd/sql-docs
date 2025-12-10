@@ -81,7 +81,7 @@ PolyBase now support reading delimited text files that are in UTF16 (LE) encodin
 Release date - December 2018
 
 ### Common subexpression elimination
-APS CU7.3 improves query performance with common subexpression elimination in SQL query optimizer. The improvement improves queries in two ways. The first benefit is the ability to identify and eliminate such expressions help reduce SQL compilation time. The second and more important benefit is data movement operations for these redundant subexpressions are eliminated thus execution time for queries becomes faster. Detailed explanation of this feature can be found [here](common-sub-expression-elimination.md).
+APS CU7.3 improves query performance with common subexpression elimination in SQL query optimizer. The improvement improves queries in two ways. The first benefit is the ability to identify and eliminate such expressions help reduce SQL compilation time. The second and more important benefit is data movement operations for these redundant subexpressions are eliminated thus execution time for queries becomes faster. For a detailed explanation of this feature, see [Common subexpression elimination explained](common-sub-expression-elimination.md).
 
 ### APS Informatica connector for Informatica 10.2.0 published
 We have released a new version of Informatica connectors for APS that works with Informatica version 10.2.0 and 10.2.0 Hotfix 1. The new connectors can be downloaded from [download site](https://www.microsoft.com/download/details.aspx?id=57472).
@@ -186,7 +186,7 @@ APS AU7 introduces Feature Switch in [Configuration Manager](launch-the-configur
 ### Known Issues
 With APS AU7 software, an Intel BIOS update is provided which fixes a problem described as *speculative execution side-channel attacks*. The attacks aim to exploit what are called *Spectre and Meltdown vulnerabilities*. Although packaged together with APS, the BIOS update is installed manually, and not as part of the APS AU7 software install.
 
-Microsoft advises all customers to install the BIOS updated. Microsoft has measured the effect of Kernel Virtual Address Shadowing (KVAS), Kernel Page Table Indirection (KPTI) and Indirect Branch Prediction mitigation (IBP) on various SQL workloads in various environments. The measurements found significant degradation on some workloads. Based on the results, the recommendation is that you test the performance effect of enabling BIOS update before you deploy them in a production environment. See SQL Server guidance [here](https://support.microsoft.com/help/4073225/guidance-protect-sql-server-against-spectre-meltdown).
+Microsoft advises all customers to install the BIOS updated. Microsoft has measured the effect of Kernel Virtual Address Shadowing (KVAS), Kernel Page Table Indirection (KPTI) and Indirect Branch Prediction mitigation (IBP) on various SQL workloads in various environments. The measurements found significant degradation on some workloads. Based on the results, the recommendation is that you test the performance effect of enabling BIOS update before you deploy them in a production environment. For SQL Server guidance, see [KB4073225](https://support.microsoft.com/help/4073225/).
 
 ::: moniker-end
 ::: moniker range=">= aps-pdw-2016 "

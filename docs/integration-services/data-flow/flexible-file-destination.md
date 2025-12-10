@@ -31,7 +31,7 @@ Following properties are available on the **Flexible File Destination Editor**.
 - **File Connection Manager Type:** Specifies the source connection manager type. Then choose an existing one of the specified type or create a new one.
 - **Folder Path:** Specifies the destination folder path.
 - **File Name:** Specifies the destination file name.
-- **File Format:** Specifies the destination file format. Supported formats are **Text**, **Avro**, **ORC**, **Parquet**. Java is required for ORC/Parquet. See [here](../../integration-services/azure-feature-pack-for-integration-services-ssis.md#dependency-on-java) for details.
+- **File Format:** Specifies the destination file format. Supported formats are **Text**, **Avro**, **ORC**, **Parquet**. Java is required for ORC/Parquet. For more information, see [Dependency on Java](../../integration-services/azure-feature-pack-for-integration-services-ssis.md#dependency-on-java).
 - **Column delimiter character:** Specifies the character to use as column delimiter (multi-character delimiters are not supported).
 - **First row as the column name:** Specifies whether to write column names to first row.
 - **Compress the file:** Specifies whether to compress the file.
@@ -58,7 +58,7 @@ This is done with [RBAC](/azure/storage/common/storage-auth-aad-rbac-portal#assi
 For blob storage, write permission is granted by assigning at least **Storage Blob Data Contributor** role.
 
 For Data Lake Storage Gen2, permission is determined by both RBAC and [ACLs](/azure/storage/blobs/data-lake-storage-how-to-set-permissions-storage-explorer).
-Pay attention that ACLs are configured using the Object ID (OID) of the service principal for the app registration as detailed [here](/azure/storage/blobs/data-lake-storage-access-control#how-do-i-set-acls-correctly-for-a-service-principal).
+Pay attention that ACLs are configured using the Object ID (OID) of the service principal for the app registration. See [How do I set ACLs correctly for a service principal?](/azure/storage/blobs/data-lake-storage-access-control#how-do-i-set-acls-correctly-for-a-service-principal)
 This is different from the Application (client) ID that is used with RBAC configuration.
 When a security principal is granted RBAC data permissions through a built-in role, or through a custom role, these permissions are evaluated first upon authorization of a request.
 If the requested operation is authorized by the security principal's RBAC assignments, then authorization is immediately resolved and no additional ACL checks are performed.

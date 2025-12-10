@@ -263,7 +263,7 @@ The v8.0 release of SSMA for MySQL is enhanced with targeted fixes designed to i
 
   :::image type="content" source="../media/ssma-newproject-managed-instance.png" alt-text="Screenshot of SQL Managed Instance project.":::
 
-- Post-conversion **Fix advisor**. For more information, see more about it [here](https://techcommunity.microsoft.com/blog/microsoftdatamigration/accelerate-your-oracle-migrations-with-new-machine-learning-capabilities-in-ssma/368733).
+- Post-conversion **Fix advisor**. For more information, see [Accelerate your Oracle migrations with new machine learning capabilities in SSMA](https://techcommunity.microsoft.com/blog/microsoftdatamigration/accelerate-your-oracle-migrations-with-new-machine-learning-capabilities-in-ssma/368733).
 
 - Preliminary database/schema selection.
 

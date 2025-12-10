@@ -338,7 +338,7 @@ The v8.0 release of SSMA for Db2 is enhanced to provide targeted fixes designed 
 
 :::image type="content" source="../media/ssma-newproject-managed-instance.png" alt-text="Screenshot of SQL MI project.":::
 
-- Post-conversion **Fix advisor**. Learn more about it [here](https://techcommunity.microsoft.com/category/azuredatabases/blog/microsoftdatamigration).
+- Post-conversion **Fix advisor**.
 
 - Preliminary database/schema selection.
 

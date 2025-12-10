@@ -21,7 +21,7 @@ f1_keywords:
  The **Azure Data Lake Store Destination** is a component of the [SQL Server Integration Services (SSIS) Feature Pack for Azure](../../integration-services/azure-feature-pack-for-integration-services-ssis.md).
  
 > [!NOTE]
-> To ensure that the Azure Data Lake Store Connection Manager and the components that use it - that is, the Azure Data Lake Store Source and the Azure Data Lake Store Destination - can connect to services, make sure you download the latest version of the Azure Feature Pack [here](https://www.microsoft.com/download/details.aspx?id=49492). 
+> To ensure that the Azure Data Lake Store Connection Manager and the components that use it - that is, the Azure Data Lake Store Source and the Azure Data Lake Store Destination - can connect to services, make sure you [download the latest version of the Azure Feature Pack](https://www.microsoft.com/download/details.aspx?id=49492).
 
 **Configure the Azure Data Lake Store Destination**
 
@@ -35,6 +35,6 @@ f1_keywords:
   
        If the file format is Text, you must specify the **Column delimiter character** value. Also  select **Column names in the first data row** if the first row in the file contains column names.  
 
-       If the file format is ORC, Java is required. See [here](../../integration-services/azure-feature-pack-for-integration-services-ssis.md#dependency-on-java) for details.
+       If the file format is ORC, Java is required. For more information, see [Dependency on Java](../../integration-services/azure-feature-pack-for-integration-services-ssis.md#dependency-on-java).
   
 3.  After specifying the connection information, switch to the **Columns** page to map source columns to destination columns for the SSIS data flow.  
