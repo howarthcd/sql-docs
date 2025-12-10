@@ -4,7 +4,7 @@ description: This guide teaches you to migrate your SQL Server databases to Azur
 author: rwestMSFT
 ms.author: randolphwest
 ms.reviewer: mathoma, danil
-ms.date: 11/15/2025
+ms.date: 12/10/2025
 ms.service: azure-sql-managed-instance
 ms.subservice: migration-guide
 ms.topic: how-to
@@ -21,17 +21,18 @@ Complete [pre-migration](../pre-migration.md) steps before continuing.
 
 ## Migrate
 
-After you complete the steps for the [pre-migration stage](../pre-migration.md), you're ready to perform the schema and data migration.
+After you complete the steps for the [pre-migration stage](../pre-migration.md), you're ready to perform the schema and data migration.
 
 Migrate your data using your chosen [migration method](overview.md#compare-migration-options).
 
 *This section provides general migration steps for the following recommended migration options*:
 
+- SQL Server migration experience in Azure Arc
+
+- Azure Database Migration Service (DMS), which offers migration with near-zero downtime
 - Managed Instance link
 - Log Replay Service (LRS)
 - Native `RESTORE DATABASE FROM URL`, which uses native backups from SQL Server and requires some downtime
-- Azure Database Migration Service (DMS), which offers migration with near-zero downtime
-- SQL Server migration in Azure Arc
 
 SQL Managed Instance targets user scenarios that require mass database migration from on-premises or SQL Server on Azure Virtual Machines implementations. It's the optimal choice when you need to lift and shift the back end of applications that regularly use instance level and cross-database functionalities. If this is your scenario, you can move an entire instance to a corresponding environment in Azure without the need to rearchitect your applications.
 
@@ -48,90 +49,25 @@ Migrate your SQL Server enabled by Azure Arc instance to Azure SQL Managed Insta
 
 Database migration provides a built-in migration experience, using the Managed Instance link or Log Replay Service (LRS) methods behind the scenes, while simplifying configuration, management, and monitoring of the migration process.
 
-### Managed Instance link
+## SQL Server migration in Azure Arc
 
-This section provides high-level steps to migrate from SQL Server to Azure SQL Managed Instance with minimal downtime by using the Managed Instance link. For detailed instructions, see [Migrate with the link](/azure/azure-sql/managed-instance/managed-instance-link-migrate).
+Migrate SQL Server instances enabled by Azure Arc to SQL Managed Instance through the Azure portal. SQL Managed Instance provides a fully managed PaaS solution for lift-and-shift migrations. The process includes assessing readiness, selecting a target, migrating data, and monitoring progress.
 
-To migrate with the link, follow these steps:
+Two integrated methods are available:
 
-1. Create your target SQL managed instance: [Azure portal](/azure/azure-sql/managed-instance/instance-create-quickstart), [PowerShell](/azure/azure-sql/managed-instance/scripts/create-configure-managed-instance-powershell), [Azure CLI](/azure/azure-sql/managed-instance/scripts/create-configure-managed-instance-cli).
-1. [Prepare your environment for the link](/azure/azure-sql/managed-instance/managed-instance-link-preparation).
-1. Configure the link with [SSMS](/azure/azure-sql/managed-instance/managed-instance-link-configure-how-to-ssms) or [scripts](/azure/azure-sql/managed-instance/managed-instance-link-configure-how-to-scripts).
-1. Stop the workload.
-1. Validate data on the target instance.
-1. [Fail over the link](/azure/azure-sql/managed-instance/managed-instance-link-failover-how-to).
+- Managed Instance link for near real-time replication with minimal downtime,
 
-### Log Replay Service (LRS)
+- Log Replay Service for continuous backup and restore.
 
-This section provides high-level steps to migrate from SQL Server to SQL Managed Instance with minimal downtime by using the Log Replay Service (LRS). For detailed instructions, review [Migrate databases from SQL Server by using Log Replay Service](/azure/azure-sql/managed-instance/log-replay-service-migrate).
+Microsoft Copilot assists throughout the migration. Migration supports SQL Server 2012 and later versions, and automates most steps.
 
-To migrate with LRS, follow these steps:
-
-1. Create an [Azure storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) with a [blob container](/azure/storage/blobs/storage-quickstart-blobs-portal).
-1. Authenticate to your Blob Storage storage account using a SAS token or a managed identity and validate access.
-1. Be sure to [configure your folder structure correctly](/azure/azure-sql/managed-instance/log-replay-service-migrate#migrate-multiple-databases) if you plan to migrate multiple databases.
-1. Upload your backups to your storage account by either copying your backups, or taking backups directly using [BACKUP TO URL](/sql/relational-databases/backup-restore/sql-server-backup-to-url).
-1. Determine if you want to run LRS in autocomplete or continuous mode.
-1. Start LRS.
-1. Monitor migration progress.
-1. Complete the migration (if in continuous mode).
-
-### Back up and restore
-
-A key capability of SQL Managed Instance is the ability to natively restore database backup (`.bak`) files stored in [Azure Storage](https://azure.microsoft.com/services/storage/). This feature makes database migration straightforward. Backing up and restoring are asynchronous operations, based on the size of your database.
-
-The following diagram provides a high-level overview of the process:
-
-:::image type="content" source="media/guide/migration-restore.png" alt-text="Diagram shows SQL Server with an arrow labeled BACKUP / Upload to URL flowing to Azure Storage and a second arrow labeled RESTORE from URL flowing from Azure Storage to a SQL managed instance." lightbox="media/guide/migration-restore.png":::
-
-> [!NOTE]  
-> The time to take the backup, upload it to Azure storage, and perform a native restore operation to SQL Managed Instance depends on the size of the database. Factor in sufficient downtime to accommodate the operation for large databases.
-
-The following table provides more information about the methods you can use, depending on the source SQL Server version you're running:
-
-| Step | SQL Engine and version | Backup/restore method |
-| --- | --- | --- |
-| **Put backup to Azure Storage** | Before 2012 with Service Pack 1 CU2 | Upload `.bak` file directly to Azure Storage |
-| | 2012 SP1 CU2 - 2016 | Direct backup using deprecated [WITH CREDENTIAL](/sql/t-sql/statements/restore-statements-transact-sql) syntax |
-| | 2016 and later versions | Direct backup using [WITH SAS CREDENTIAL](/sql/relational-databases/backup-restore/sql-server-backup-to-url) |
-| **Restore from Azure Storage to a managed instance** | | [RESTORE FROM URL with SAS CREDENTIAL](/azure/azure-sql/managed-instance/restore-sample-database-quickstart) |
-
-> [!IMPORTANT]  
-> When you migrate a database protected with [transparent data encryption (TDE)](/azure/azure-sql/database/transparent-data-encryption-tde-overview) to a SQL managed instance using the native restore option, you need to migrate the corresponding certificate from the SQL Server instance (on-premises, or SQL Server on an Azure VM) before restoring the database. For detailed information, see [Migrate a certificate of a TDE-protected database to Azure SQL Managed Instance](/azure/azure-sql/managed-instance/tde-certificate-migrate).
->
-> Restoring system databases isn't supported. To migrate instance-level objects (stored in `master` or `msdb` databases), script them out and run Transact-SQL (T-SQL) scripts on the destination instance.
-
-To migrate using backup and restore, follow these steps:
-
-1. Back up your database to Azure Blob Storage. For example, use [backup to url](/sql/relational-databases/backup-restore/sql-server-backup-to-url) in [SQL Server Management Studio](/ssms/sql-server-management-studio-ssms). Use the [Microsoft Azure Tool](https://go.microsoft.com/fwlink/?LinkID=324399) to support databases earlier than SQL Server 2012 with Service Pack 1 CU2.
-1. Connect to your SQL managed instance using SQL Server Management Studio (SSMS).
-1. Create a credential using a Shared Access Signature to access your Azure Blob storage account with your database backups. For example:
-
-   ```sql
-   CREATE CREDENTIAL [https://mitutorials.blob.core.windows.net/databases]
-   WITH IDENTITY = 'SHARED ACCESS SIGNATURE',
-        SECRET = '<secret>'
-   ```
-
-1. Restore the backup from the Azure storage blob container. For example:
-
-   ```sql
-   RESTORE DATABASE [TargetDatabaseName]
-   FROM URL = 'https://mitutorials.blob.core.windows.net/databases/WideWorldImporters-Standard.bak'
-   ```
-
-1. When the restore completes, view the database in **Object Explorer** within SSMS.
-
-To learn more about this migration option, see [Quickstart: Restore a database to Azure SQL Managed Instance with SSMS](/azure/azure-sql/managed-instance/restore-sample-database-quickstart).
-
-> [!NOTE]  
-> A database restore operation is asynchronous and can be retried. You might get an error in SSMS if the connection breaks, or a timeout expires. Azure SQL Database keeps trying to restore the database in the background, and you can track the progress of the restore by using the [sys.dm_exec_requests](/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-requests-transact-sql) and [sys.dm_operation_status](/sql/relational-databases/system-dynamic-management-views/sys-dm-operation-status-azure-sql-database) views.
+For more information, see [Migration to Azure SQL Managed Instance - SQL Server migration in Azure Arc](/sql/sql-server/azure-arc/migrate-to-azure-sql-managed-instance?tabs=mi-link).
 
 ### Azure Database Migration Service (Azure DMS)
 
 This section provides high-level steps to migrate from SQL Server to SQL Managed Instance with minimal downtime by using Azure DMS. For detailed information, see [Tutorial: Migrate SQL Server to Azure SQL Managed Instance online](/azure/dms/tutorial-sql-server-managed-instance-online-ads).
 
-To migrate using DMS from the Azure portal, follow these steps:
+To migrate using DMS from the **Azure portal,** follow these steps:
 
 1. Open the [Azure portal](https://portal.azure.com/).
 
@@ -161,7 +97,7 @@ To migrate using DMS from the Azure portal, follow these steps:
    1. Ensure all database backups have the status Restored in the monitoring details page.
    1. Select Complete cutover in the monitoring details page.
 
-      For detailed instructions, see [Tutorial: Migrate SQL Server to Azure SQL Managed Instance with DMS](/data-migration/sql-server/managed-instance/database-migration-service).
+      For detailed instructions, see [Tutorial: Migrate SQL Server to Azure SQL Managed Instance with DMS](database-migration-service.md).
 
 To migrate using DMS with Azure Data Studio, follow these steps:
 
@@ -193,19 +129,84 @@ To migrate using DMS with Azure Data Studio, follow these steps:
 
    1. Select Complete cutover in the monitoring details page.
 
-## SQL Server migration in Azure Arc
+### Managed Instance link
 
-Migrate SQL Server instances enabled by Azure Arc to SQL Managed Instance through the Azure portal. SQL Managed Instance provides a fully managed PaaS solution for lift-and-shift migrations. The process includes assessing readiness, selecting a target, migrating data, and monitoring progress.
+This section provides high-level steps to migrate from SQL Server to Azure SQL Managed Instance with minimal downtime by using the Managed Instance link. For detailed instructions, see [Migrate with the link](/azure/azure-sql/managed-instance/managed-instance-link-migrate).
 
-Two integrated methods are available:
+To migrate with the link, follow these steps:
 
-- Managed Instance link for near real-time replication with minimal downtime,
+1. Create your target SQL managed instance: [Azure portal](/azure/azure-sql/managed-instance/instance-create-quickstart), [PowerShell](/azure/azure-sql/managed-instance/scripts/create-configure-managed-instance-powershell), [Azure CLI](/azure/azure-sql/managed-instance/scripts/create-configure-managed-instance-cli).
+1. [Prepare your environment for the link](/azure/azure-sql/managed-instance/managed-instance-link-preparation).
+1. Configure the link with [SSMS](/azure/azure-sql/managed-instance/managed-instance-link-configure-how-to-ssms) or [scripts](/azure/azure-sql/managed-instance/managed-instance-link-configure-how-to-scripts).
+1. Stop the workload.
+1. Validate data on the target instance.
+1. [Fail over the link](/azure/azure-sql/managed-instance/managed-instance-link-failover-how-to).
 
-- Log Replay Service for continuous backup and restore.
+### Log Replay Service (LRS)
 
-Microsoft Copilot assists throughout the migration. Migration supports SQL Server 2012 and later versions, and automates most steps.
+This section provides high-level steps to migrate from SQL Server to SQL Managed Instance with minimal downtime by using the Log Replay Service (LRS). For detailed instructions, review [Migrate databases from SQL Server by using Log Replay Service](/azure/azure-sql/managed-instance/log-replay-service-migrate).
 
-For more information, see [Migration to Azure SQL Managed Instance - SQL Server migration in Azure Arc](/sql/sql-server/azure-arc/migrate-to-azure-sql-managed-instance?tabs=mi-link).
+To migrate with LRS, follow these steps:
+
+1. Create an [Azure storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) with a [blob container](/azure/storage/blobs/storage-quickstart-blobs-portal).
+1. Authenticate to your Blob Storage storage account using a SAS token or a managed identity and validate access.
+1. Be sure to [configure your folder structure correctly](/azure/azure-sql/managed-instance/log-replay-service-migrate#migrate-multiple-databases) if you plan to migrate multiple databases.
+1. Upload your backups to your storage account by either copying your backups, or taking backups directly using [BACKUP TO URL](/sql/relational-databases/backup-restore/sql-server-backup-to-url).
+1. Determine if you want to run LRS in autocomplete or continuous mode.
+1. Start LRS.
+1. Monitor migration progress.
+1. Complete the migration (if in continuous mode).
+
+### Backup and restore
+
+A key capability of SQL Managed Instance is the ability to natively restore database backup (`.bak`) files stored in [Azure Storage](https://azure.microsoft.com/services/storage/). This feature makes database migration straightforward. Backing up and restoring are asynchronous operations, based on the size of your database.
+
+The following diagram provides a high-level overview of the process:
+
+:::image type="content" source="media/guide/migration-restore.png" alt-text="Diagram shows SQL Server with an arrow labeled BACKUP / Upload to URL flowing to Azure Storage and a second arrow labeled RESTORE from URL flowing from Azure Storage to a SQL managed instance." lightbox="media/guide/migration-restore.png":::
+
+> [!NOTE]  
+> The time to take the backup, upload it to Azure storage, and perform a native restore operation to SQL Managed Instance depends on the size of the database. Factor in sufficient downtime to accommodate the operation for large databases.
+
+The following table provides more information about the methods you can use, depending on the source SQL Server version you're running:
+
+| Step | SQL Engine and version | Backup/restore method |
+| --- | --- | --- |
+| **Put backup to Azure Storage** | Before 2012 with Service Pack 1 CU2 | Upload `.bak` file directly to Azure Storage |
+| | 2012 SP1 CU2 - 2016 | Direct backup using deprecated [WITH CREDENTIAL](/sql/t-sql/statements/restore-statements-transact-sql) syntax |
+| | 2016 and later versions | Direct backup using [WITH SAS CREDENTIAL](/sql/relational-databases/backup-restore/sql-server-backup-to-url) |
+| **Restore from Azure Storage to a managed instance** | | [RESTORE FROM URL with SAS CREDENTIAL](/azure/azure-sql/managed-instance/restore-sample-database-quickstart) |
+
+> [!IMPORTANT]  
+> When you migrate a database protected with [transparent data encryption (TDE)](/azure/azure-sql/database/transparent-data-encryption-tde-overview) to a SQL managed instance using the native restore option, you need to migrate the corresponding certificate from the SQL Server instance (on-premises, or SQL Server on an Azure VM) before restoring the database. For detailed information, see [Migrate a SQL Server TDE certificate to Azure SQL Managed Instance](/azure/azure-sql/managed-instance/tde-certificate-migrate).
+>
+> Restoring system databases isn't supported. To migrate instance-level objects (stored in `master` or `msdb` databases), script them out and run Transact-SQL (T-SQL) scripts on the destination instance.
+
+To migrate using backup and restore, follow these steps:
+
+1. Back up your database to Azure Blob Storage. For example, use [backup to url](/sql/relational-databases/backup-restore/sql-server-backup-to-url) in [SQL Server Management Studio](/ssms/sql-server-management-studio-ssms). Use the [Microsoft Azure Tool](https://go.microsoft.com/fwlink/?LinkID=324399) to support databases earlier than SQL Server 2012 with Service Pack 1 CU2.
+1. Connect to your SQL managed instance using SQL Server Management Studio (SSMS).
+1. Create a credential using a Shared Access Signature to access your Azure Blob storage account with your database backups. For example:
+
+   ```sql
+   CREATE CREDENTIAL [https://mitutorials.blob.core.windows.net/databases]
+   WITH IDENTITY = 'SHARED ACCESS SIGNATURE',
+        SECRET = '<secret>';
+   ```
+
+1. Restore the backup from the Azure storage blob container. For example:
+
+   ```sql
+   RESTORE DATABASE [TargetDatabaseName]
+   FROM URL = 'https://mitutorials.blob.core.windows.net/databases/WideWorldImporters-Standard.bak';
+   ```
+
+1. When the restore completes, view the database in **Object Explorer** within SSMS.
+
+To learn more about this migration option, see [Quickstart: Restore a database to Azure SQL Managed Instance with SSMS](/azure/azure-sql/managed-instance/restore-sample-database-quickstart).
+
+> [!NOTE]  
+> A database restore operation is asynchronous and can be retried. You might get an error in SSMS if the connection breaks, or a timeout expires. Azure SQL Database keeps trying to restore the database in the background, and you can track the progress of the restore by using the [sys.dm_exec_requests](/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-requests-transact-sql) and [sys.dm_operation_status](/sql/relational-databases/system-dynamic-management-views/sys-dm-operation-status-azure-sql-database) views.
 
 ## Data sync and cutover
 
@@ -218,7 +219,7 @@ After you verify that data is the same on both source and target, you can cut ov
 
 ## Post-migration
 
-After you successfully complete the migration stage, go through a series of post-migration tasks to ensure that everything is functioning smoothly and efficiently.
+After you successfully complete the migration stage, go through a series of post-migration tasks to ensure that everything is functioning smoothly and efficiently.
 
 The post-migration phase is crucial for reconciling any data accuracy issues, verifying completeness, and addressing performance issues with the workload.
 
@@ -245,7 +246,7 @@ The test approach for database migration consists of the following activities:
 
 Take advantage of the advanced cloud-based features offered by SQL Managed Instance, such as [built-in high availability](/azure/azure-sql/database/high-availability-sla-local-zone-redundancy), [threat detection](/azure/azure-sql/database/azure-defender-for-sql), and [monitoring and tuning your workload](/azure/azure-sql/database/monitor-tune-overview).
 
-[Azure SQL Analytics](/azure/azure-sql/database/monitor-tune-overview) allows you to monitor a large set of SQL managed instances in a centralized manner.
+Monitor a large set of SQL managed instances in a centralized manner with [Monitor and performance tuning in Azure SQL Database and Azure SQL Managed Instance](/azure/azure-sql/database/monitor-tune-overview).
 
 Some SQL Server features are only available when you change the [database compatibility level](/sql/relational-databases/databases/view-or-change-the-compatibility-level-of-a-database) to the latest compatibility level.
 
@@ -253,7 +254,7 @@ Some SQL Server features are only available when you change the [database compat
 
 - [Services and tools available for data migration scenarios](/azure/dms/dms-tools-matrix)
 - [Service Tiers in Azure SQL Managed Instance](/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview#service-tiers)
-- [T-SQL differences between SQL Server & Azure SQL Managed Instance](/azure/azure-sql/managed-instance/transact-sql-tsql-differences-sql-server)
+- [T-SQL differences between SQL Server and Azure SQL Managed Instance](/azure/azure-sql/managed-instance/transact-sql-tsql-differences-sql-server)
 - [Migrate databases with Azure SQL migration extension for Azure Data Studio](/azure/dms/dms-overview#migrate-databases-with-azure-sql-migration-extension-for-azure-data-studio)
 - [Tutorial: Migrate SQL Server to Azure SQL Managed Instance with DMS](database-migration-service.md)
 - [Cloud Adoption Framework for Azure](/azure/cloud-adoption-framework/migrate/azure-best-practices/contoso-migration-scale)
