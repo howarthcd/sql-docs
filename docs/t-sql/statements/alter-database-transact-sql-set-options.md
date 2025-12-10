@@ -4,7 +4,7 @@ description: Learn how to set database options such as Automatic tuning, encrypt
 author: markingmyname
 ms.author: maghan
 ms.reviewer: randolphwest, wiassaf
-ms.date: 06/11/2025
+ms.date: 12/10/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
