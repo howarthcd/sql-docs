@@ -1,9 +1,10 @@
 ---
 title: "sys.databases (Transact-SQL)"
-description: sys.databases (Transact-SQL)
+description: The sys.databases system catalog view contains one row per database.
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 08/20/2025
+ms.reviewer: wiassaf
+ms.date: 12/10/2025
 ms.service: sql
 ms.subservice: system-objects
 ms.topic: "reference"
