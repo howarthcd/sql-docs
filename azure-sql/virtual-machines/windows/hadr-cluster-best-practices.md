@@ -422,7 +422,7 @@ You might encounter issues while setting up a Windows failover cluster or its co
 
 If you are on Windows Server 2019, and you don't see a Windows Cluster IP, you have configured [Distributed Network Name](failover-cluster-instance-distributed-network-name-dnn-configure.md), which is only supported on SQL Server 2019. If you have previous versions of SQL Server, you can remove and [Recreate the Cluster using Network Name](availability-group-manually-configure-tutorial.md#create-the-cluster).
 
-Review other Windows Failover [Clustering Events Errors and their Solutions here](/windows-server/failover-clustering/system-events)
+Review other Windows Failover [Failover Clustering system log events](/windows-server/failover-clustering/system-events) and their solutions.
 
 ## Next steps
 

@@ -342,7 +342,7 @@ Specifies that the primary replica synchronously commit availability group confi
 - Requires the data mirroring endpoint of the CONFIGURATION_ONLY replica to be type `WITNESS`.
 - Can't be altered.
 - Isn't valid when `CLUSTER_TYPE = WSFC`.
-- The options `failover_mode` and `seeding_mode` aren't supported when `availability_mode` is set to `configuration_only` for a replica. A sample is shown [here](../../linux/sql-server-linux-availability-group-configure-ha.md).
+- The options `failover_mode` and `seeding_mode` aren't supported when `availability_mode` is set to `configuration_only` for a replica. A sample is shown in the [availability group configuration](../../linux/sql-server-linux-availability-group-configure-ha.md) article.
 
    For more information, see [Configuration only replica](../../linux/sql-server-linux-availability-group-ha.md).
   

@@ -59,7 +59,7 @@ Overview:
 
 ### Step 1: Access Wizard and Intro Page
 
-Access the wizard as described [here](#started).
+Access the wizard as described in [Getting Started](#started).
 
 The first page of the wizard is the welcome page. If you don't want to see this page again, feel free to select **Do not show this starting page again.**
 

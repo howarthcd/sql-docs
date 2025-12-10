@@ -43,7 +43,7 @@ Configure updatable subscriptions on the **Updatable Subscriptions** page of the
 
     * **Use a linked server or remote server that you have already defined.** Select this option if you have defined a remote server or linked server between the Subscriber and the Publisher using [sp_addserver (Transact-SQL)](../../../relational-databases/system-stored-procedures/sp-addserver-transact-sql.md), [sp_addlinkedserver (Transact-SQL)](../../../relational-databases/system-stored-procedures/sp-addlinkedserver-transact-sql.md), SQL Server Management Studio, or another method.
 
-    For information about the permissions required by the linked server account, see the **Queued Updating Subscriptions** of [enter link description here](../../../relational-databases/replication/security/secure-the-subscriber.md).
+    For information about the permissions required by the linked server account, see the **Queued Updating Subscriptions** of [Secure the Subscriber](../../../relational-databases/replication/security/secure-the-subscriber.md).
 
 8. Complete the wizard.
 
@@ -72,7 +72,7 @@ Configure updatable subscriptions on the **Updatable Subscriptions** page of the
 
     * **Use a linked server or remote server that you have already defined.** Select this option if you have defined a remote server or linked server between the Subscriber and the Publisher using [sp_addserver (Transact-SQL)](../../../relational-databases/system-stored-procedures/sp-addserver-transact-sql.md), [sp_addlinkedserver (Transact-SQL)](../../../relational-databases/system-stored-procedures/sp-addlinkedserver-transact-sql.md), SQL Server Management Studio, or another method.
 
-    For information about the permissions required by the linked server account, see the **Queued Updating Subscriptions** of [enter link description here](../../../relational-databases/replication/security/secure-the-subscriber.md).
+    For information about the permissions required by the linked server account, see the **Queued Updating Subscriptions** of [Secure the Subscriber](../../../relational-databases/replication/security/secure-the-subscriber.md).
 
 11. Complete the wizard.
 

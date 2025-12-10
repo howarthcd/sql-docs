@@ -40,7 +40,7 @@ For links to videos and other training resources to help you learn [!INCLUDE[ssM
 
 ## Internet Explorer and Silverlight
 - When you install [!INCLUDE[ssMDSshort_md](../includes/ssmdsshort-md.md)] on a Windows Server 2012 machine, you may have to configure Internet Explorer Enhanced Security to allow scripting for the Web application site. Otherwise, browsing to the site on the server computer will fail.
-- Prior to [!INCLUDE[sqlv15](../includes/sssql19-md.md)], to work in the Web application, Silverlight 5 must be installed on the client computer. If you do not have the required version of Silverlight, you will be prompted to install it when you navigate to an area of the Web application that requires it. You can install Silverlight 5 from **[here](https://www.microsoft.com/silverlight/)**.
+- Prior to [!INCLUDE[sqlv15](../includes/sssql19-md.md)], to work in the Web application, Silverlight 5 must be installed on the client computer. If you do not have the required version of Silverlight, you will be prompted to install it when you navigate to an area of the Web application that requires it.
 - Starting in [!INCLUDE[sqlv15](../includes/sssql19-md.md)], HTML controls replace all former Silverlight components, therefore the Silverlight dependency removed. More browsers, including Chrome and Edge, now work for accessing the Master Data Services web app.
 
 ## [!INCLUDE[ssMDSshort_md](../includes/ssmdsshort-md.md)] on an Azure Virtual Machine

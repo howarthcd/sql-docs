@@ -61,7 +61,7 @@ In this step, you'll create a new Azure SQL Database logical server and a new da
    - **Server name**: Enter *mysqlserver*, and add some characters for uniqueness. We can't provide an exact server name to use because server names must be globally unique for all servers in Azure, not just unique within a subscription. So enter something like mysqlserver135, and the portal lets you know if it's available or not.
    - **Location**: Select a location from the dropdown list.
       > [!IMPORTANT]
-      > You need to select a location (an Azure region) that supports both the DC-series hardware and Microsoft Azure Attestation. For the list of regions supporting DC-series, see [DC-series availability](service-tiers-sql-database-vcore.md#dc-series). [Here](https://azure.microsoft.com/global-infrastructure/services/?products=azure-attestation) is the regional availability of Microsoft Azure Attestation.
+      > You need to select a location (an Azure region) that supports both the DC-series hardware and Microsoft Azure Attestation. For the list of regions supporting DC-series, see [DC-series availability](service-tiers-sql-database-vcore.md#dc-series). See the [regional availability of Microsoft Azure Attestation](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=azure-attestation).
    - **Authentication method**: Select **Use SQL Authentication**
    - **Server admin login**: Enter an admin login name, for example: *azureuser*.
    - **Password**: Enter a password that meets requirements, and enter it again in the **Confirm password** field.
@@ -108,7 +108,7 @@ In this step, you'll create a new Azure SQL Database logical server and a new da
 1. Create a new resource group.
 
    > [!IMPORTANT]
-   > You need to create your resource group in a region (location) that supports both the DC-series hardware and Microsoft Azure Attestation. For the list of regions supporting DC-series, see [DC-series availability](service-tiers-sql-database-vcore.md#dc-series). [Here](https://azure.microsoft.com/global-infrastructure/services/?products=azure-attestation) is the regional availability of Microsoft Azure Attestation.
+   > You need to create your resource group in a region (location) that supports both the DC-series hardware and Microsoft Azure Attestation. For the list of regions supporting DC-series, see [DC-series availability](service-tiers-sql-database-vcore.md#dc-series). See the [regional availability of Microsoft Azure Attestation](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=azure-attestation).
 
    ```powershell
    $resourceGroupName = "<your new resource group name>"

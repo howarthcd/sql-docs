@@ -358,7 +358,7 @@ This article describes an online migration from an on-premises SQL Server to a S
 1. Select **Next** to continue.
 
    > [!IMPORTANT]  
-   > If loopback check functionality is enabled and the source SQL Server and file share are on the same computer, then source won't be able to access the files hare using FQDN. To fix this issue, disable loopback check functionality using the instructions [here](/troubleshoot/windows-server/networking/accessing-server-locally-with-fqdn-cname-alias-denied)
+   > If loopback check functionality is enabled and the source SQL Server and file share are on the same computer, then source won't be able to access the files hare using FQDN. To fix this issue, disable loopback check functionality using the instructions in [KB926642](/troubleshoot/windows-server/networking/accessing-server-locally-with-fqdn-cname-alias-denied).
 
    - The [Azure SQL migration extension for Azure Data Studio](/azure/dms/migration-using-azure-data-studio) no longer requires specific configurations on your Azure Storage account network settings to migrate your SQL Server databases to Azure. However, depending on your database backup location and desired storage account network settings, there are a few steps needed to ensure your resources can access the Azure Storage account. See the following table for the various migration scenarios and network configurations:
 

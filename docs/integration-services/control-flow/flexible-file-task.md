@@ -58,7 +58,7 @@ This is done with [RBAC](/azure/storage/common/storage-auth-aad-rbac-portal#assi
 For blob storage, read and write permissions are granted by assigning at least **Storage Blob Data Reader** and **Storage Blob Data Contributor** roles, respectively.
 
 For Data Lake Storage Gen2, permission is determined by both RBAC and [ACLs](/azure/storage/blobs/data-lake-storage-how-to-set-permissions-storage-explorer).
-Pay attention that ACLs are configured using the Object ID (OID) of the service principal for the app registration as detailed [here](/azure/storage/blobs/data-lake-storage-access-control#how-do-i-set-acls-correctly-for-a-service-principal).
+Pay attention that ACLs are configured using the Object ID (OID) of the service principal for the app registration. See [How do I set ACLs correctly for a service principal?](/azure/storage/blobs/data-lake-storage-access-control#how-do-i-set-acls-correctly-for-a-service-principal)
 This is different from the Application (client) ID that is used with RBAC configuration.
 When a security principal is granted RBAC data permissions through a built-in role, or through a custom role, these permissions are evaluated first upon authorization of a request.
 If the requested operation is authorized by the security principal's RBAC assignments, then authorization is immediately resolved and no additional ACL checks are performed.

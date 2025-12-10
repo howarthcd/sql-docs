@@ -36,13 +36,13 @@ Performing these steps in order ensures that old versions of the client library 
 
 **2. Upgrade your scripts.** If you're using **PowerShell** scripts to manage shards, [download the new library version](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/) and copy it into the directory from which you execute scripts.
 
-**3. Upgrade your split-merge service.** If you use the elastic database split-merge tool to reorganize sharded data, [download and deploy the latest version of the tool](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge/). Detailed upgrade steps for the Service can be found [here](elastic-scale-overview-split-and-merge.md).
+**3. Upgrade your split-merge service.** If you use the elastic database split-merge tool to reorganize sharded data, [download and deploy the latest version of the tool](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge/). For detailed upgrade steps, see [Moving data between scaled-out cloud databases](elastic-scale-overview-split-and-merge.md).
 
 **4. Upgrade your Shard Map Manager databases**. Upgrade the metadata supporting your Shard Maps in Azure SQL Database.  There are two ways you can accomplish this, using PowerShell or C#. Both options are shown below.
 
 ***Option 1: Upgrade metadata using PowerShell***
 
-1. Download the latest command-line utility for NuGet from [here](https://nuget.org/nuget.exe) and save to a folder.
+1. Download the [latest command-line utility for NuGet](https://nuget.org/nuget.exe) and save to a folder.
 1. Open a Command Prompt, navigate to the same folder, and issue the command:
    `nuget install Microsoft.Azure.SqlDatabase.ElasticScale.Client`
 1. Navigate to the subfolder containing the new client DLL version you have downloaded, for example:

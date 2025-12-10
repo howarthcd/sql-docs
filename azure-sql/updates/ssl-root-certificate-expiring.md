@@ -68,7 +68,7 @@ No. Since the change is only on the client side to connect to the server, there'
 
 ### What if I can't get a scheduled downtime for this change?
 
-Since the clients used for connecting to the server needs to be updating the certificate information as described in the fix section [here](./ssl-root-certificate-expiring.md#what-do-i-need-to-do-to-maintain-connectivity), we don't need to a downtime for the server in this case.
+Since the clients used for connecting to the server needs to be updating the certificate information as described in the [fix section](ssl-root-certificate-expiring.md#what-do-i-need-to-do-to-maintain-connectivity), we don't need to a downtime for the server in this case.
 
 ### If I create a new server after November 30, 2020, will I be impacted?
 
