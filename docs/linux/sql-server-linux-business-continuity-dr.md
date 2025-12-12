@@ -3,10 +3,10 @@ title: Business Continuity and Database Recovery - SQL Server on Linux
 description: This article is an overview of business continuity solutions for high availability and disaster recovery in SQL Server. It focuses on availability scenarios.
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 07/03/2025
+ms.date: 12/11/2025
 ms.service: sql
 ms.subservice: linux
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - linux-related-content
 monikerRange: ">=sql-server-linux-2017 || >=sql-server-2017"
@@ -19,5 +19,5 @@ monikerRange: ">=sql-server-linux-2017 || >=sql-server-2017"
 
 ## Related content
 
-- [Configure SQL Server Always On Availability Group for high availability on Linux](sql-server-linux-availability-group-configure-ha.md)
+- [Configure SQL Server availability group for high availability on Linux](sql-server-linux-availability-group-configure-ha.md)
 - [Always On availability group failover on Linux](sql-server-linux-availability-group-failover-ha.md)
