@@ -218,7 +218,7 @@ If a serverless database is paused, the first connection attempt resumes the dat
 
 ### Latency
 
-The latency to auto-resume and auto-pause a serverless database is generally around one minute, but can be under five seconds. The latency to auto-pause is generally around 1-10 minutes.
+The latency is generally in the order of one minute to auto-resume and 1-10 minutes to auto-pause. The latency for either operation can be as low as the order of one second.
 
 ### Customer managed transparent data encryption (BYOK)
 
