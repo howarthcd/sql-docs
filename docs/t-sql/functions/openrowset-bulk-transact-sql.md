@@ -4,7 +4,7 @@ description: "OPENROWSET BULK function reads data from an external data source."
 author: MikeRayMSFT
 ms.author: mikeray
 ms.reviewer: randolphwest, hudequei, wiassaf, jovanpop, fresantos
-ms.date: 12/01/2025
+ms.date: 12/12/2025
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -165,11 +165,9 @@ Beginning with [!INCLUDE [sssql17-md](../../includes/sssql17-md.md)], the *data_
 - `abfss://<container>@<storage>.dfs.core.windows.net/<file path>` to access Azure Data Lake Storage
 - `https://onelake.dfs.fabric.microsoft.com/<workspaceId>/<lakehouseId>/Files/<file path>` - to access OneLake in Microsoft Fabric
 
-When accessing data stored in Azure Data Lake Storage Gen2, use the `abfss://<container>@<storage>.dfs.core.windows.net/<file path>` or `https://<storage>.dfs.core.windows.net/<container>/<file path>` URI formats instead of the Blob endpoint.
+When accessing data stored in Azure Data Lake Storage Gen2, use the `abfss://<container>@<storage>.dfs.core.windows.net/<file path>` or `https://<storage>.dfs.core.windows.net/<container>/<file path>` URI formats instead of the blob endpoint. Both provide full support for the hierarchical namespace (HNS), which enables directory semantics, optimized file operations, and POSIX-style access control lists (ACLs). 
 
-The DFS and ABFS schemes provide full support for the hierarchical namespace (HNS), which enables directory semantics, optimized file operations, and POSIX-style access control lists (ACLs). 
-
-In contrast, the Blob endpoint does not expose HNS features and treats all paths as flat object keys. This can lead to reduced performance, limited directory behavior, and incompatibility with engines that expect ADLS Gen2 filesystem semantics.
+In contrast, the `blob` endpoint does not expose hierarchical namespace features and treats all paths as flat object keys. This can lead to reduced performance, limited directory behavior, and incompatibility with engines that expect Azure Data Lake Storage Gen2 filesystem semantics.
 
 > [!NOTE]
 > This article and the supported URI patterns differ on different platforms. For the URI patterns that are available in SQL Server, Azure SQL Database, and Azure SQL Managed Instance, [select the product in the version dropdown list](openrowset-bulk-transact-sql.md?view=sql-server-ver17&preserve-view=true#bulk-data_file_path).
