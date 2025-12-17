@@ -54,6 +54,14 @@ You can use SQL Database auditing to:
 - Permissions required to view Audit logs:
   - `VIEW DATABASE SECURITY AUDIT` permission in user database
 
+### Recommended Auditing Approach for Large OLTP Workloads
+
+- For environments with many databases running heavy OLTP workloads, using server‑level auditing with default settings can lead to extremely large audit volumes, often hundreds of GBs to multiple TBs across the logical server. Since all events from all databases are written into the same audit folder, querying audit logs for a single database becomes slow and operationally expensive.
+
+- To improve performance and reduce noise:
+   - Switch to database‑level auditing so each database writes to its own audit log folder, making retrieval faster and reducing the total volume scanned.
+   - Review the audit configuration to determine whether capturing all batch‑completed events is necessary, or if a custom filtered configuration can meet your security and compliance requirements
+    
 ## Auditing limitations
 
 - Enabling auditing on a paused **Azure Synapse SQL pool** isn't supported. To enable auditing, resume the **Synapse SQL pool**.
