@@ -21,7 +21,7 @@ dev_langs:
 ---
 # DATE_BUCKET (Transact-SQL)
 
-[!INCLUDE [sqlserver2022-asde-fabricsqldb](../../includes/applies-to-version/sqlserver2022-asdb-asmi-asde-fabricse-fabricdw-fabricsqldb.md)]
+[!INCLUDE [sqlserver2022-asde-fabricsqldb](../../includes/applies-to-version/sqlserver2022-asdb-asmi-fabricse-fabricdw-fabricsqldb.md)]
 
 This function returns the date-time value corresponding to the start of each date-time bucket from the timestamp defined by the *origin* parameter, or the default origin value of `1900-01-01 00:00:00.000` if the origin parameter isn't specified.
 
