@@ -256,6 +256,18 @@ After a VM is associated with a Log Analytics workspace, it can't be changed fro
 
 This error indicates that results are no longer retained in the Log Analytics workspace, based on its retention policy. You can [change the retention period](/azure/azure-monitor/logs/manage-cost-storage#change-the-data-retention-period) for the workspace.
 
+### SQL best practice assessment not enabled in Azure portal after enabling via Azure Policy or other automation
+
+The names of the data collection rule and data collection rule association for **SQL best practice assessment** follow a specific *case-sensitive* naming convention. If **SQL best practice assessment** is enabled by using an Azure Policy, or some other form of automation, which creates a name that fails to follow the appropriate naming convention, **SQL best practices assessment** won't be enabled. 
+
+Both the data collection rule and data collection rule association names are *case sensitive*, with `DCR` and `DCRA` capitalized, while the rest of the name must be lower case.
+
+The names must use the following naming conventions:
+
+- The data collection rule must be named using the `<guid>_<regionname>_DCR_<number>` naming convention, such as the following example: `37e0cae3-c2bd-44f3-85af-975f28b08871_eastus2_DCR_1`
+- The data collection rule association must be named using the `<guid>_<regionname>_DCRA_<number>` naming convention, such as the following example: `37e0cae3-c2bd-44f3-85af-975f28b08871_eastus2_DCRA_1`
+
+
 ## Related content
 
 - [Automatic registration with SQL IaaS Agent extension](sql-agent-extension-automatic-registration-all-vms.md)
