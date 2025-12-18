@@ -62,6 +62,7 @@ This section lists the release notes by date, starting with the most recent rele
 
 | Date of release | Extension version |
 | --- | --- |
+| [December 2025](#december-2025) | `1.1.3238.350` |
 | [October 2025](#october-2025) | `1.1.3211.337` |
 | [September 15, 2025](#september-15-2025) | `1.1.3176.319` |
 | [August 2025](#august-2025) | `1.1.3139.313` |
@@ -78,6 +79,14 @@ This section lists the release notes by date, starting with the most recent rele
 | [January 2025](#january-2025) | `1.1.2914.231` |
 | [November 2024](#november-2024) | `1.1.2859.223` |
 | [October 2024](#october-2024) | `1.1.2830.214` |
+
+### December 2025
+
+**Extension version**: `1.1.3238.350`
+
+Certain limitations in [US Government Virginia](us-government-region.md) are lifted.
+
+- [Failover cluster instances support](support-for-fci.md) is now generally available in Azure Government Virginia region.
 
 ### November 2025
 

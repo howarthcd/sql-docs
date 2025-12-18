@@ -6,7 +6,7 @@ metadata:
   author: MashaMSFT
   ms.author: mathoma
   ms.reviewer: urmilano, danil, nnikolic, wiassaf, mathoma
-  ms.date: 08/07/2025
+  ms.date: 12/18/2025
   ms.service: azure-sql-managed-instance
   ms.subservice: service-overview
   ms.topic: faq
@@ -606,10 +606,6 @@ sections:
 
   - name: Next-gen General Purpose service tier upgrade
     questions:
-
-      - question: My instance is part of a failover group and when I tried to enable the Next-gen General Purpose upgrade for my instance, it failed. Why? 
-        answer: |
-          For instances inside of a failover group, changing the service tier to, or from, the Next-gen General Purpose tier isn't supported. You must first delete the failover group before modifying either replica, and then [re-create the failover group](failover-group-configure-sql-mi.md#create-the-failover-group) after the change takes effect. 
 
       - question: Why can't I enable zone redundancy for my Next-gen General Purpose SQL Managed Instance?
         answer: |
