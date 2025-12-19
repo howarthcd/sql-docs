@@ -130,10 +130,6 @@ sections:
           - Subscribe to Activity Log events for when usage records are not received when expected or when recurring billing starts or is happening.
           Review [Manage recurrent billing for pay-as-you go licenses](manage-pay-as-you-go-transition.md) for details. 
 
-      - question: Can I enable recurring pay-as-you-go billing for my Arc-enabled SQL Servers that use the license with SA to ensure continuous reclassification?
-        answer: |
-          No. Recurring billing is a feature of pay-as-you-go subscriptions.
-
 additionalContent: |
 
      ## Related content
