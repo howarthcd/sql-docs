@@ -1,10 +1,10 @@
 ---
-title: "Quickstart: Python SQL Driver - mssql-python Connect to a SQL database from a Jupyter Notebook in Visual Studio Code"
+title: "Quickstart: Python SQL Driver - mssql-python Connect to a SQL Database from a Jupyter Notebook in Visual Studio Code"
 description: This quickstart describes connect to your SQL database from a Jupyter Notebook in Visual Studio Code.
 author: dlevy-msft-sql
 ms.author: dlevy
 ms.reviewer: vanto, randolphwest
-ms.date: 11/18/2025
+ms.date: 12/29/2025
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: quickstart-sdk
@@ -25,7 +25,7 @@ The `mssql-python` driver doesn't require any external dependencies on Windows m
 
 - Python 3
 
-  - If you don't already have Python, install the **Python runtime** and **Python Package Index (PyPI) package manager** from [python.org](https://www.python.org/downloads/).
+  - If you don't already have Python, install the **Python runtime** and **pip package manager** from [python.org](https://www.python.org/downloads/).
 
   - Prefer to not use your own environment? Open as a devcontainer using [GitHub Codespaces](https://github.com/features/codespaces).
 
