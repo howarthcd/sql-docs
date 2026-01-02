@@ -228,6 +228,9 @@ ALTER AVAILABILITY GROUP [ag1] JOIN WITH (CLUSTER_TYPE = EXTERNAL);
 ALTER AVAILABILITY GROUP [ag1] GRANT CREATE ANY DATABASE;
 ```
 
+> [!NOTE]  
+> For a configuration replica, only the join step is needed.
+
 [!INCLUDE [Create Post](includes/cluster-availability-group-create-post.md)]
 
 > [!IMPORTANT]  
