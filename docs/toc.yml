@@ -9305,7 +9305,7 @@ items:
           - name: Pacemaker basics
             href: linux/sql-server-linux-pacemaker-basics.md
           - name: Configure an AG
-            href: linux/sql-server-linux-availability-group-configure-ha.md
+            href: linux/high-availability/availability-groups-configure.md
           - name: Configure on RHEL, SLES, and Ubuntu
             href: linux/sql-server-linux-availability-group-cluster-pacemaker.md
           - name: Configure failover

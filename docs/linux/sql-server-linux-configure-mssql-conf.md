@@ -665,7 +665,7 @@ sudo systemctl restart mssql-server
 
 For information on how this is used with availability groups, see the following two articles.
 
-- [Configure SQL Server availability group for high availability on Linux](sql-server-linux-availability-group-configure-ha.md)
+- [Configure SQL Server availability group for high availability on Linux](high-availability/availability-groups-configure.md)
 - [Configure a SQL Server availability group for read-scale on Linux](sql-server-linux-availability-group-configure-rs.md)
 
 <a id="localaudit"></a>
