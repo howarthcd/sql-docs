@@ -64381,6 +64381,26 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "docs/ssma/access/find-databases-wizard-select-locations-accesstosql.md",
+      "redirect_url": "/sql/ssma/access/find-databases-wizard-accesstosql",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/ssma/access/find-databases-wizard-select-files-accesstosql.md",
+      "redirect_url": "/sql/ssma/access/find-databases-wizard-accesstosql",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/ssma/access/find-databases-wizard-verify-selection-accesstosql.md",
+      "redirect_url": "/sql/ssma/access/find-databases-wizard-accesstosql",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/ssma/access/shortcut-keys-accesstosql.md",
+      "redirect_url": "/sql/ssma/access/menu-commands-and-other-shortcut-keys-accesstosql",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "docs/ssma/db2/legal-notice-db2tosql.md",
       "redirect_url": "/sql/ssma/sql-server-migration-assistant",
       "redirect_document_id": false
@@ -67183,6 +67203,11 @@
     {
       "source_path": "docs/linux/sql-server-linux-availability-group-cluster-ubuntu.md",
       "redirect_url": "/sql/linux/sql-server-linux-availability-group-cluster-pacemaker",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/linux/sql-server-linux-availability-group-configure-ha.md",
+      "redirect_url": "/sql/linux/high-availability/availability-groups-configure",
       "redirect_document_id": false
     },
     {
