@@ -67206,6 +67206,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "docs/linux/sql-server-linux-availability-group-configure-ha.md",
+      "redirect_url": "/sql/linux/high-availability/availability-groups-configure",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "docs/relational-databases/system-tables/cdc-change-feed-tables-transact-sql.md",
       "redirect_url": "/sql/relational-databases/system-tables/changefeed-change-feed-tables-transact-sql",
       "redirect_document_id": false

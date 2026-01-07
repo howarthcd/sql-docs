@@ -240,7 +240,7 @@ The following features and services aren't available for [!INCLUDE [sssql22](../
 | **High Availability** | Database mirroring | This feature is [deprecated](../database-engine/database-mirroring/database-mirroring-sql-server.md). Use Always On availability groups instead. |
 | **Security** | Extensible Key Management (EKM) | Extensible Key Management using Azure Key Vault is available for SQL Server on Linux environments, starting with [!INCLUDE [sssql22-md](../includes/sssql22-md.md)] CU 12. Follow the instructions from [Step 5: Configure SQL Server](../relational-databases/security/encryption/setup-steps-for-extensible-key-management-using-the-azure-key-vault.md#step-5-configure-sql-server) onward. |
 | | Windows integrated authentication for linked servers | |
-| | Windows integrated authentication for availability group (AG) endpoints | Create and use certificate based endpoint authentication for availability groups. For more information, see [Configure SQL Server availability group for high availability on Linux](sql-server-linux-availability-group-configure-ha.md). |
+| | Windows integrated authentication for availability group (AG) endpoints | Create and use certificate based endpoint authentication for availability groups. For more information, see [Configure SQL Server availability group for high availability on Linux](high-availability/availability-groups-configure.md). |
 | | Always Encrypted with secure enclaves | |
 | | TLS 1.3 | |
 | | SQL Server on Linux deployments aren't FIPS compliant | |
