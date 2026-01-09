@@ -1,7 +1,7 @@
 ---
 title: "Deploy the SQL Server Reporting Services Report Viewer web part on a SharePoint site"
 description: For SQL Server Reporting Services, you can manually add the Report Viewer custom web part to a SharePoint product.
-ms.date: 09/25/2024
+ms.date: 01/09/2026
 ms.service: reporting-services
 ms.subservice: report-server-sharepoint
 ms.topic: install-set-up-deploy
@@ -12,7 +12,7 @@ ms.custom:
 
 # Deploy the SQL Server Reporting Services Report Viewer web part on a SharePoint site
 
-[!INCLUDE[ssrs-appliesto](../../includes/ssrs-appliesto.md)] [!INCLUDE[ssrs-appliesto-2008r2-and-later](../../includes/ssrs-appliesto-2008r2-and-later.md)]  [!INCLUDE[ssrs-appliesto-pbirsi](../../includes/ssrs-appliesto-pbirs.md)] [!INCLUDE[ssrs-appliesto-sharepoint-2013-2016](../../includes/ssrs-appliesto-sharepoint-2013-2016.md)] [!INCLUDE[ssrs-appliesto-not-sharepoint-online](../../includes/ssrs-appliesto-not-sharepoint-online.md)]
+[!INCLUDE[ssrs-appliesto](../../includes/ssrs-appliesto.md)] [!INCLUDE[ssrs-appliesto-2008r2-and-later](../../includes/ssrs-appliesto-2008r2-and-later.md)]  [!INCLUDE[ssrs-appliesto-pbirsi](../../includes/ssrs-appliesto-pbirs.md)] [!INCLUDE[ssrs-appliesto-sharepoint-2013-2016](../../includes/ssrs-appliesto-sharepoint-2013-2016.md)]
 
 The Report Viewer web part is a custom web part that can be used to view SQL Server Reporting Services (native mode) reports within your SharePoint site. You can use the web part to view, navigate, print, and export reports on a report server. The Report Viewer web part is associated with report definition (.rdl) files that a SQL Server Reporting Services report server or a Power BI Report Server processes. This Report Viewer web part can't be used with Power BI reports hosted in Power BI Report Server.
 
