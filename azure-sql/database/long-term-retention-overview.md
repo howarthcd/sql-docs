@@ -8,7 +8,7 @@ ms.reviewer: dinethi, mathoma, randolphwest, strrodic
 ms.date: 09/25/2025
 ms.service: azure-sql
 ms.subservice: backup-restore
-ms.topic: conceptual
+ms.topic: concept-article
 monikerRange: "=azuresql || =azuresql-db || =azuresql-mi"
 ---
 # Long-term retention backups - Azure SQL Database and Azure SQL Managed Instance
