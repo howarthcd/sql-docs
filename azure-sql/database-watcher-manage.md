@@ -5,7 +5,7 @@ description: Database watcher setup and configuration details
 author: lcwright
 ms.author: lancewright
 ms.reviewer: wiassaf, dfurman
-ms.date: 05/04/2025
+ms.date: 01/12/2026
 ms.service: azure-sql
 ms.subservice: monitoring
 ms.topic: how-to
@@ -150,6 +150,8 @@ To enable database watcher monitoring for an Azure SQL database, elastic pool, o
 By default, a watcher uses Microsoft Entra authentication when connecting to SQL targets. If you want the watcher to use SQL authentication, check the **Use SQL authentication** box and enter the required details. For more information, see [Additional configuration to use SQL authentication](#additional-configuration-to-use-sql-authentication).
 
 ### Remove SQL targets from a watcher
+
+If there is a delete or a read-only [lock](/azure/azure-resource-manager/management/lock-resources) on the watcher, its resource group, or its subscription, remove the lock. You can add the locks again after SQL targets are removed successfully.
 
 To remove one or more targets, open the **SQL targets** page, select the targets you want to remove in the list, and select **Delete**. 
 
