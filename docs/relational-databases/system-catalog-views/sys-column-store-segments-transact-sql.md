@@ -52,11 +52,11 @@ Returns one row for each column segment in a columnstore index. There is one col
 
 The columnstore segment encoding type is selected by the [!INCLUDE[ssDE-md](../../includes/ssde-md.md)] by analyzing the segment data with the goal of achieving the lowest storage cost. If data is mostly distinct, the [!INCLUDE[ssDE-md](../../includes/ssde-md.md)] uses value-based encoding. If data is mostly not distinct, the [!INCLUDE[ssDE-md](../../includes/ssde-md.md)] uses hash-based encoding. The choice between string-based and value-based encoding is related to the type of data being stored, whether string data or binary data. All encodings take advantage of bit-packing and run-length encoding when possible.
 
-Columnstore segment elimination applies to numeric, date, and time data types, and the **datetimeoffset** data type with scale less than or equal to two. Beginning in [!INCLUDE[sssql22-md](../../includes/sssql22-md.md)], segment elimination capabilities extend to string and binary data types, the **uniqueidentifier** data type, and the **datetimeoffset** data type for scale greater than two. Segment elimination does not apply to LOB data types such as **varchar(max)**, **nvarchar(max)**, and **varbinary(max)**. For more information, see [What's new in columnstore indexes](../indexes/columnstore-indexes-what-s-new.md#sql-server-2022-16x).
+Columnstore segment elimination applies to numeric, date, and time data types, and the **datetimeoffset** data type with scale less than or equal to two. Beginning in [!INCLUDE[sssql22-md](../../includes/sssql22-md.md)], segment elimination capabilities expand to string and binary data types, the **uniqueidentifier** data type, and the **datetimeoffset** data type for scale greater than two. Segment elimination does not apply to LOB data types such as **varchar(max)**, **nvarchar(max)**, and **varbinary(max)**. For more information, see [What's new in columnstore indexes](../indexes/columnstore-indexes-what-s-new.md#sql-server-2022-16x).
 
 ## Permissions
 
-All columns require at least `VIEW DEFINITION` permission on the view. The following columns return `NULL` unless the user also has the `SELECT` permission: `has_nulls`, `base_id`, `magnitude`, `min_data_id`, `max_data_id`, and `null_value`.
+The `VIEW DEFINITION` permission on the view is required. The following columns return `NULL` unless the user also has the `SELECT` permission: `has_nulls`, `base_id`, `magnitude`, `min_data_id`, `max_data_id`, and `null_value`.
 
 [!INCLUDE[ssCatViewPerm](../../includes/sscatviewperm-md.md)] For more information, see [Metadata Visibility Configuration](../../relational-databases/security/metadata-visibility-configuration.md).
 
@@ -73,17 +73,17 @@ INNER JOIN sys.partitions AS p
 INNER JOIN sys.indexes AS i
     ON p.object_id = i.object_id
 WHERE i.type = 5 OR i.type = 6
-GROUP BY i.name, p.object_id, p.index_id, i.type_desc ;
+GROUP BY i.name, p.object_id, p.index_id, i.type_desc;
 ```
 
 ## Related content
 
+- [Columnstore Indexes Guide](../indexes/columnstore-indexes-overview.md)
+- [Performance tuning with ordered columnstore indexes](../indexes/ordered-columnstore-indexes.md)
 - [Object Catalog Views (Transact-SQL)](../../relational-databases/system-catalog-views/object-catalog-views-transact-sql.md)
 - [Catalog Views (Transact-SQL)](../../relational-databases/system-catalog-views/catalog-views-transact-sql.md)
 - [Querying the SQL Server System Catalog FAQ](../../relational-databases/system-catalog-views/querying-the-sql-server-system-catalog-faq.yml)
 - [sys.columns (Transact-SQL)](../../relational-databases/system-catalog-views/sys-columns-transact-sql.md)
 - [sys.all_columns (Transact-SQL)](../../relational-databases/system-catalog-views/sys-all-columns-transact-sql.md)
 - [sys.computed_columns (Transact-SQL)](../../relational-databases/system-catalog-views/sys-computed-columns-transact-sql.md)
-- [Columnstore Indexes Guide](../indexes/columnstore-indexes-overview.md)
-- [Performance tuning with ordered columnstore indexes](../indexes/ordered-columnstore-indexes.md)
 - [sys.column_store_dictionaries (Transact-SQL)](../../relational-databases/system-catalog-views/sys-column-store-dictionaries-transact-sql.md)

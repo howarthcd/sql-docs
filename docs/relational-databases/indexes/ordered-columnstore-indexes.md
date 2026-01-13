@@ -62,7 +62,7 @@ You can create or rebuild ordered columnstore indexes online only in some SQL pl
 
 In SQL Server, online index operations aren't available in all editions. For more information, see [Editions and supported features of SQL Server 2025](../../sql-server/editions-and-components-of-sql-server-2025.md) and [Perform index operations online](perform-index-operations-online.md).
 
-The [sys.column_store_segments](../system-catalog-views/sys-column-store-segments-transact-sql.md) system view helps you find the number of segment overlaps for certain data types and encodings. Use a [sample script](https://github.com/microsoft/sql-server-samples/blob/master/samples/features/columnstore/ordered-columnstore/order-quality.sql) to determine the order quality for eligible columns of all columnstore indexes in the current database.
+For certain data types and encodings, the [sys.column_store_segments](../system-catalog-views/sys-column-store-segments-transact-sql.md) system view can help you find the number of segment overlaps. A [sample script](https://github.com/microsoft/sql-server-samples/blob/master/samples/features/columnstore/ordered-columnstore/order-quality.sql) based on this view determines the order quality for eligible columns of all columnstore indexes in the current database.
 
 ## Query performance
 
