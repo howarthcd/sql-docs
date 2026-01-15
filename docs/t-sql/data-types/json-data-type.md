@@ -4,7 +4,7 @@ description: The native JSON data type provides advantages for storing JSON data
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: randolphwest, jovanpop, umajay
-ms.date: 11/18/2025
+ms.date: 01/14/2026
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -102,6 +102,26 @@ SET d.modify('$.b', 'def')
 WHERE id = 1;
 ```
 
+## Valid data
+
+Input to the **json** data type must be a JSON object or a JSON array. Scalars, booleans, and `NULL` values are not supported. The JSON data type conforms to IETF RFC 4627 which allows only a JSON object or array. The **json** data type and all JSON functions only work with IETF RFC 4627 compliant JSON documents.
+
+The [ISJSON](../functions/isjson-transact-sql.md) function can be used to validate a string that contains JSON document conforms to IETF RFC 8259. An IETF RFC 8259 conformant JSON document contains only a JSON scalar value at top level. 
+
+For example:
+
+```sql
+DECLARE @true JSON = 'true'; -- invalid
+DECLARE @false JSON = 'false'; -- invalid
+DECLARE @number JSON = '1234.56'; -- invalid
+DECLARE @string JSON = '"contoso"'; -- invalid
+DECLARE @null JSON = 'null' -- invalid
+
+DECLARE @null JSON = NULL -- valid
+DECLARE @object JSON = '{}' -- valid
+DECLARE @array JSON = '[]' -- valid
+```
+
 ## Function support
 
 All JSON functions support the **json** data type with no code changes or usage difference necessary.
@@ -146,8 +166,6 @@ The behavior of `CAST ( ... AS JSON)` returns a **json** data type, but the [sp_
 Currently, the `OPENJSON()` function doesn't accept the **json** data type in some platforms. Currently, it's an implicit conversion. Explicitly convert to **nvarchar(max)** first.
 
 - In [!INCLUDE [sssql25-md](../../includes/sssql25-md.md)], the `OPENJSON()` function does support **json**. For more information, see [Key JSON capabilities in SQL Server 2025](../../relational-databases/json/json-data-sql-server.md#key-json-capabilities).
-
-The top-level type must be a JSON Object or a JSON Array. Scalars, booleans, and null values are not supported.
 
 ### Size limitations
 
