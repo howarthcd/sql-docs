@@ -6,7 +6,7 @@ ms.author: davidengel
 ms.date: "11/13/2020"
 ms.service: sql
 ms.subservice: connectivity
-ms.topic: article
+ms.topic: concept-article
 ms.custom: sfi-ropc-nochange
 ---
 # Connection strings in ADO.NET
