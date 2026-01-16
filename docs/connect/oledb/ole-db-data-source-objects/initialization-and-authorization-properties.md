@@ -4,7 +4,7 @@ description: Learn how the OLE DB Driver for SQL Server interprets OLE DB initia
 author: David-Engel
 ms.author: davidengel
 ms.reviewer: randolphwest
-ms.date: 12/11/2025
+ms.date: 01/16/2026
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: "reference"

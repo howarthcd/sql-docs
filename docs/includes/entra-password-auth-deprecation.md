@@ -1,7 +1,7 @@
 ---
 author: David-Engel
 ms.author: davidengel
-ms.date: 11/03/2025
+ms.date: 01/16/2026
 ms.service: sql
 ms.topic: include
 ---

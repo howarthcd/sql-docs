@@ -4,7 +4,7 @@ description: This article describes the options available when creating a new DS
 author: David-Engel
 ms.author: davidengel
 ms.reviewer: randolphwest
-ms.date: 10/24/2025
+ms.date: 01/16/2026
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: concept-article

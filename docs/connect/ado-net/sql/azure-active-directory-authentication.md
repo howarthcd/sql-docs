@@ -4,7 +4,7 @@ description: Describes how to use supported Microsoft Entra authentication modes
 author: David-Engel
 ms.author: davidengel
 ms.reviewer: davidengel
-ms.date: 10/24/2025
+ms.date: 01/16/2026
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: integration

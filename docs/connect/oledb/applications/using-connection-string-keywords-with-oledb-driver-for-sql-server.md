@@ -4,7 +4,7 @@ description: "Some APIs in OLE DB Driver for SQL Server use connection strings, 
 author: David-Engel
 ms.author: davidengel
 ms.reviewer: vanto, randolphwest
-ms.date: 12/11/2025
+ms.date: 01/16/2026
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: how-to
