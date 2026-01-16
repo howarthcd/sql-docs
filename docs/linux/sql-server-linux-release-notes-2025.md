@@ -36,10 +36,11 @@ Most existing client tools that target [!INCLUDE [ssNoVersion](../includes/ssnov
 
 ## Latest versions for all packages
 
-This section lists the latest versions of each package per distribution, for [!INCLUDE [ssSQL25](../includes/sssql25-md.md)]. The following table shows the most recent release, which is **GA**. For full release history, see [Release history for SQL Server 2025 on Linux](/troubleshoot/sql/releases/linux/release-history-2025).
+This section lists the latest versions of each package per distribution, for [!INCLUDE [ssSQL25](../includes/sssql25-md.md)]. The following table shows the most recent release, which is **CU 1**. For full release history, see [Release history for SQL Server 2025 on Linux](/troubleshoot/sql/releases/linux/release-history-2025).
 
 | Version | Release | Date | Build | KB article |
 | --- | --- | --- | --- | --- |
+| [!INCLUDE [ssSQL25](../includes/sssql25-md.md)] | CU 1 | 2026-01-15 | 17.0.4005.7 | [Support article](/troubleshoot/sql/releases/sqlserver-2025/cumulativeupdate1) |
 | [!INCLUDE [ssSQL25](../includes/sssql25-md.md)] | GA | 2025-11-18 | 17.0.1000.7 | |
 
 > [!NOTE]  
@@ -52,17 +53,17 @@ This section lists the latest versions of each package per distribution, for [!I
 | Distribution | Package name | Package version | Download |
 | --- | --- | --- | --- |
 | **Red Hat Enterprise Linux** | | | |
-| RHEL 10 (in preview) | Database Engine | 17.0.1000.7-7 | [Database Engine RPM package](https://packages.microsoft.com/rhel/10/mssql-server-preview/Packages/m/mssql-server-17.0.1000.7-7_preview.x86_64.rpm) |
-| RHEL 10 (in preview) | Extensibility | 17.0.1000.7-7 | [Extensibility RPM package](https://packages.microsoft.com/rhel/10/mssql-server-preview/Packages/m/mssql-server-extensibility-17.0.1000.7-7_preview.x86_64.rpm) |
-| RHEL 10 (in preview) | Full-Text Search | 17.0.1000.7-7 | [Full-Text Search RPM package](https://packages.microsoft.com/rhel/10/mssql-server-preview/Packages/m/mssql-server-fts-17.0.1000.7-7_preview.x86_64.rpm) |
-| RHEL 10 (in preview) | High Availability | 17.0.1000.7-7 | [High Availability RPM package](https://packages.microsoft.com/rhel/10/mssql-server-preview/Packages/m/mssql-server-ha-17.0.1000.7-7_preview.x86_64.rpm) |
-| RHEL 10 (in preview) | PolyBase | 17.0.1000.7-7 | [PolyBase RPM package](https://packages.microsoft.com/rhel/10/mssql-server-preview/Packages/m/mssql-server-polybase-17.0.1000.7-7_preview.x86_64.rpm) |
+| RHEL 10 | Database Engine | 17.0.4005.7-2 | [Database Engine RPM package](https://packages.microsoft.com/rhel/10/mssql-server-2025/Packages/m/mssql-server-17.0.4005.7-2.x86_64.rpm) |
+| RHEL 10 | Extensibility | 17.0.4005.7-2 | [Extensibility RPM package](https://packages.microsoft.com/rhel/10/mssql-server-2025/Packages/m/mssql-server-extensibility-17.0.4005.7-2.x86_64.rpm) |
+| RHEL 10 | Full-Text Search | 17.0.4005.7-2 | [Full-Text Search RPM package](https://packages.microsoft.com/rhel/10/mssql-server-2025/Packages/m/mssql-server-fts-17.0.4005.7-2.x86_64.rpm) |
+| RHEL 10 | High Availability | 17.0.4005.7-2 | [High Availability RPM package](https://packages.microsoft.com/rhel/10/mssql-server-2025/Packages/m/mssql-server-ha-17.0.4005.7-2.x86_64.rpm) |
+| RHEL 10 | PolyBase | 17.0.4005.7-2 | [PolyBase RPM package](https://packages.microsoft.com/rhel/10/mssql-server-2025/Packages/m/mssql-server-polybase-17.0.4005.7-2.x86_64.rpm) |
 | **Ubuntu** | | | |
-| Ubuntu 24.04 (in preview) | Database Engine | 17.0.1000.7-7 | [Database Engine Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-preview/pool/main/m/mssql-server/mssql-server_17.0.1000.7-7-preview_amd64.deb) |
-| Ubuntu 24.04 (in preview) | Extensibility | 17.0.1000.7-7 | [Extensibility Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-preview/pool/main/m/mssql-server-extensibility/mssql-server-extensibility_17.0.1000.7-7-preview_amd64.deb) |
-| Ubuntu 24.04 (in preview) | Full-Text Search | 17.0.1000.7-7 | [Full-Text Search Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-preview/pool/main/m/mssql-server-fts/mssql-server-fts_17.0.1000.7-7-preview_amd64.deb) |
-| Ubuntu 24.04 (in preview) | High Availability | 17.0.1000.7-7 | [High Availability Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-preview/pool/main/m/mssql-server-ha/mssql-server-ha_17.0.1000.7-7-preview_amd64.deb) |
-| Ubuntu 24.04 (in preview) | PolyBase | 17.0.1000.7-7 | [PolyBase Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-preview/pool/main/m/mssql-server-polybase/mssql-server-polybase_17.0.1000.7-7-preview_amd64.deb) |
+| Ubuntu 24.04 | Database Engine | 17.0.4005.7-2 | [Database Engine Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-2025/pool/main/m/mssql-server/mssql-server_17.0.4005.7-2_amd64.deb) |
+| Ubuntu 24.04 | Extensibility | 17.0.4005.7-2 | [Extensibility Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-2025/pool/main/m/mssql-server-extensibility/mssql-server-extensibility_17.0.4005.7-2_amd64.deb) |
+| Ubuntu 24.04 | Full-Text Search | 17.0.4005.7-2 | [Full-Text Search Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-2025/pool/main/m/mssql-server-fts/mssql-server-fts_17.0.4005.7-2_amd64.deb) |
+| Ubuntu 24.04 | High Availability | 17.0.4005.7-2 | [High Availability Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-2025/pool/main/m/mssql-server-ha/mssql-server-ha_17.0.4005.7-2_amd64.deb) |
+| Ubuntu 24.04 | PolyBase | 17.0.4005.7-2 | [PolyBase Debian package](https://packages.microsoft.com/ubuntu/24.04/mssql-server-2025/pool/main/m/mssql-server-polybase/mssql-server-polybase_17.0.4005.7-2_amd64.deb) |
 
 <a id="cuinstall"></a>
 
@@ -88,6 +89,7 @@ The following table lists the release history for [!INCLUDE [ssSQL25](../include
 
 | Release | Version | Release date |
 | --- | --- | --- |
+| [CU 1](/troubleshoot/sql/releases/linux/release-history-2025#17-0-4005) | 17.0.4005.7 | 2026-01-15 |
 | [GA](/troubleshoot/sql/releases/linux/release-history-2025#17-0-1000) | 17.0.1000.7 | 2025-11-18 |
 
 ## Known issues
