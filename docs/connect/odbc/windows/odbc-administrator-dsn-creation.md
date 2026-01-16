@@ -7,7 +7,7 @@ ms.reviewer: randolphwest
 ms.date: 06/05/2025
 ms.service: sql
 ms.subservice: connectivity
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 # ODBC Data Source Administrator DSN options
 
