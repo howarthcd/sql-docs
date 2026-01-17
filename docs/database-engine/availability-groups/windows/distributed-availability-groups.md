@@ -7,7 +7,7 @@ ms.reviewer: randolphwest
 ms.date: 05/19/2025
 ms.service: sql
 ms.subservice: availability-groups
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - intro-overview
   - build-2025

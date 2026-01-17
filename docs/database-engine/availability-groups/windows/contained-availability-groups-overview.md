@@ -7,7 +7,7 @@ ms.reviewer: randolphwest
 ms.date: 01/14/2026
 ms.service: sql
 ms.subservice: high-availability
-ms.topic: article
+ms.topic: overview
 ms.custom:
   - build-2025
   - sfi-ropc-blocked
