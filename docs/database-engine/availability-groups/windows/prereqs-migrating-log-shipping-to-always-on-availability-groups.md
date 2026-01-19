@@ -7,7 +7,7 @@ ms.reviewer: maghan
 ms.date: 02/01/2024 
 ms.service: sql
 ms.subservice: availability-groups
-ms.topic: conceptual
+ms.topic: checklist
 ms.custom:
   - intro-migration
 helpviewer_keywords:

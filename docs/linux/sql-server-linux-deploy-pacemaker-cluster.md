@@ -298,7 +298,7 @@ Configuring Ubuntu is similar to RHEL. However, there's one major difference: in
 1. Authorize the nodes. In this example, `NodeX` is the name of the node.
 
    ```bash
-   sudo pcs cluster auth <Node1 Node2 ... NodeN> -u hacluster
+   sudo pcs host auth <Node1 Node2 ... NodeN> -u hacluster
    ```
 
 1. Create the cluster. In this example, `PMClusterName` is the name you assign to the Pacemaker cluster, and `Nodelist` is the list of node names separated by a space.
@@ -306,13 +306,7 @@ Configuring Ubuntu is similar to RHEL. However, there's one major difference: in
    ```bash
    sudo pcs cluster setup <PMClusterName Nodelist>
    ```
-
-1. Start the cluster on all nodes.
-
-   ```bash
-   sudo pcs cluster setup <PMClusterName Nodelist>
-   ```
-
+   
 1. Enable the cluster to start when the computer starts.
 
    ```bash

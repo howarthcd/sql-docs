@@ -6,7 +6,7 @@ ms.author: chugu
 ms.date: "02/06/2024"
 ms.service: sql
 ms.subservice: integration-services
-ms.topic: conceptual
+ms.topic: install-set-up-deploy
 ---
 # Change Data Capture Service for Oracle by Attunity
 
