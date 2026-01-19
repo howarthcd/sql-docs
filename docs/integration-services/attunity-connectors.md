@@ -7,7 +7,7 @@ ms.reviewer: randolphwest
 ms.date: 01/02/2026
 ms.service: sql
 ms.subservice: integration-services
-ms.topic: article
+ms.topic: concept-article
 ---
 # Microsoft Connectors for Oracle and Teradata by Attunity for Integration Services (SSIS)
 

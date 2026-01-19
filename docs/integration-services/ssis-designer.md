@@ -6,7 +6,7 @@ ms.author: chugu
 ms.date: "09/01/2016"
 ms.service: sql
 ms.subservice: integration-services
-ms.topic: conceptual
+ms.topic: concept-article
 f1_keywords:
   - "sql13.dts.designer.controlflowwindow.f1"
   - "sql13.dts.designer.dataflowwindow.f1"
