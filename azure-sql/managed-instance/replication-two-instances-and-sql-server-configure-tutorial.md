@@ -4,7 +4,7 @@ description: "A tutorial that configures replication between a publisher SQL man
 author: MladjoA
 ms.author: mlandzic
 ms.reviewer: mathoma
-ms.date: 12/31/2025
+ms.date: 01/20/2026
 ms.service: azure-sql-managed-instance
 ms.subservice: security
 ms.topic: tutorial
@@ -47,17 +47,41 @@ To complete the tutorial, make sure you have the following prerequisites:
 - The latest version of [Azure PowerShell](/powershell/azure/install-az-ps).
 - Ports 445 and 1433 allow SQL traffic on both the Azure firewall and the Windows Firewall.
 
+### Required names and network settings
+
+This tutorial uses the following resource names and settings:
+
+| Resource | Name | Notes |
+|---|---|---|
+| Publisher SQL managed instance | `sql-mi-publisher` | Append random characters for uniqueness |
+| Publisher virtual network | `vnet-sql-mi-publisher` | Hosts the publisher instance |
+| Distributor SQL managed instance | `sql-mi-distributor` | Must be in same VNet as publisher |
+| SQL Server VM (subscriber) | `sql-vm-subscriber` | Use a supported SQL Server version per the [supportability matrix](replication-transactional-overview.md#supportability-matrix) |
+| Subscriber virtual network | `sql-vm-subscriber-vnet` | Requires VNet peering to publisher VNet |
+| Private DNS zone | `repldns.com` | Arbitrary name for DNS routing |
+| Required ports | 445 (SMB), 1433 (SQL) | Must be open on Azure Firewall and Windows Firewall |
+
 ## Create the resource group
 
-Use the following PowerShell code snippet to create a new resource group:
+Use the following PowerShell code snippet to create a new resource group.
+
+Set your variables:
 
 ```powershell-interactive
-# set variables
 $ResourceGroupName = "SQLMI-Repl"
 $Location = "East US 2"
+```
 
-# Create a new resource group
-New-AzResourceGroup -Name  $ResourceGroupName -Location $Location
+Create the resource group:
+
+```powershell-interactive
+New-AzResourceGroup -Name $ResourceGroupName -Location $Location
+```
+
+Verify the resource group was created:
+
+```powershell-interactive
+Get-AzResourceGroup -Name $ResourceGroupName | Select-Object ResourceGroupName, Location
 ```
 
 ## Create two SQL managed instances
@@ -72,7 +96,7 @@ Create two SQL managed instances within this new resource group using the [Azure
 For more information about creating a SQL managed instance, see [Quickstart: Create Azure SQL Managed Instance](instance-create-quickstart.md).
 
   > [!NOTE]  
-  > For the sake of simplicity, and because it's the most common configuration, this tutorial suggests placing the distributor SQL managed instance within the same virtual network as the publisher. However, it's possible to create the distributor in a separate virtual network. To do so, you'll need to configure VNet peering between the virtual networks of the publisher and distributor, and then configure VNet peering between the virtual networks of the distributor and subscriber.
+  > For simplicity, this tutorial places the distributor SQL managed instance in the same virtual network as the publisher. However, you can create the distributor in a separate virtual network with appropriate VNet peering.
 
 ## Create a SQL Server VM
 
@@ -87,48 +111,54 @@ For more information about deploying a SQL Server VM to Azure, see [Quickstart: 
 
 ## Configure VNet peering
 
-Configure VNet peering to enable communication between the virtual network of the two SQL managed instances, and the virtual network of SQL Server. To do so, use this PowerShell code snippet:
+Configure VNet peering to enable communication between the virtual network of the two SQL managed instances, and the virtual network of SQL Server.
+
+Set your variables:
 
 ```powershell-interactive
-# Set variables
 $SubscriptionId = '<SubscriptionID>'
 $resourceGroup = 'SQLMI-Repl'
 $pubvNet = 'sql-mi-publisher-vnet'
 $subvNet = 'sql-vm-subscriber-vnet'
 $pubsubName = 'Pub-to-Sub-Peer'
 $subpubName = 'Sub-to-Pub-Peer'
+```
 
-$virtualNetwork1 = Get-AzVirtualNetwork `
-  -ResourceGroupName $resourceGroup `
-  -Name $pubvNet
+Retrieve the virtual networks:
 
- $virtualNetwork2 = Get-AzVirtualNetwork `
-  -ResourceGroupName $resourceGroup `
-  -Name $subvNet
+```powershell-interactive
+$virtualNetwork1 = Get-AzVirtualNetwork -ResourceGroupName $resourceGroup -Name $pubvNet
+$virtualNetwork2 = Get-AzVirtualNetwork -ResourceGroupName $resourceGroup -Name $subvNet
+```
 
-# Configure VNet peering from publisher to subscriber
+Configure VNet peering from publisher to subscriber:
+
+```powershell-interactive
 Add-AzVirtualNetworkPeering `
   -Name $pubsubName `
   -VirtualNetwork $virtualNetwork1 `
   -RemoteVirtualNetworkId $virtualNetwork2.Id
+```
 
-# Configure VNet peering from subscriber to publisher
+Configure VNet peering from subscriber to publisher:
+
+```powershell-interactive
 Add-AzVirtualNetworkPeering `
   -Name $subpubName `
   -VirtualNetwork $virtualNetwork2 `
   -RemoteVirtualNetworkId $virtualNetwork1.Id
+```
 
-# Check status of peering on the publisher VNet; should say connected
-Get-AzVirtualNetworkPeering `
- -ResourceGroupName $resourceGroup `
- -VirtualNetworkName $pubvNet `
- | Select PeeringState
+Verify peering status on the publisher VNet (should return `Connected`):
 
-# Check status of peering on the subscriber VNet; should say connected
-Get-AzVirtualNetworkPeering `
- -ResourceGroupName $resourceGroup `
- -VirtualNetworkName $subvNet `
- | Select PeeringState
+```powershell-interactive
+Get-AzVirtualNetworkPeering -ResourceGroupName $resourceGroup -VirtualNetworkName $pubvNet | Select-Object PeeringState
+```
+
+Verify peering status on the subscriber VNet (should return `Connected`):
+
+```powershell-interactive
+Get-AzVirtualNetworkPeering -ResourceGroupName $resourceGroup -VirtualNetworkName $subvNet | Select-Object PeeringState
 ```
 
 Once VNet peering is established, test connectivity by launching SQL Server Management Studio (SSMS) on the SQL Server host and connecting to both SQL managed instances. For more information on connecting to a SQL managed instance using SSMS, see [Use SSMS to connect to SQL Managed Instance](point-to-site-p2s-configure.md#connect-with-ssms).
@@ -181,17 +211,22 @@ A private DNS zone allows DNS routing between the SQL managed instances and SQL 
 
 [Create an Azure storage account](/azure/storage/common/storage-account-create#create-a-storage-account) for the working directory, and then create a [file share](/azure/storage/files/storage-how-to-create-file-share) within the storage account.
 
-Copy the file share path in the format of:
+### Storage configuration values
 
-`\\storage-account-name.file.core.windows.net\file-share-name`
+You need the following values when configuring distribution:
 
-Example: `\\replstorage.file.core.windows.net\replshare`
+- **Working directory path format**: `\\<storage-account-name>.file.core.windows.net\<file-share-name>`
+- **Storage connection string format**: `DefaultEndpointsProtocol=https;AccountName=<Storage-Account-Name>;AccountKey=<key>;EndpointSuffix=core.windows.net`
 
-Copy the storage access key connection string in the format of:
+> [!IMPORTANT]
+> Use only backslashes (`\`) in the working directory path. Forward slashes (`/`) cause connection errors.
 
-`DefaultEndpointsProtocol=https;AccountName=<Storage-Account-Name>;AccountKey=****;EndpointSuffix=core.windows.net`
+**Example values used in this tutorial**:
 
-Example: `DefaultEndpointsProtocol=https;AccountName=replstorage;AccountKey=123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ==;EndpointSuffix=core.windows.net`
+| Parameter | Example value |
+|---|---|
+| Working directory | `\\replstorage.file.core.windows.net\replshare` |
+| Connection string | `DefaultEndpointsProtocol=https;AccountName=replstorage;AccountKey=123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ==;EndpointSuffix=core.windows.net` |
 
 For more information, see [Manage storage account access keys](/azure/storage/common/storage-account-keys-manage).
 
@@ -201,87 +236,139 @@ Create a new database on the publisher SQL managed instance. To do so, follow th
 
 1. Launch SQL Server Management Studio on SQL Server.
 1. Connect to the publisher SQL managed instance (`sql-mi-publisher`).
-1. Open a **New Query** window, and execute the following T-SQL query to create the database.
+1. Open a **New Query** window, and execute the following T-SQL queries.
+
+Drop the database if it exists and create a new one:
 
 ```sql
--- Create the databases
-USE [master]
+USE [master];
 GO
 
--- Drop database if it exists
 IF EXISTS (SELECT * FROM sys.sysdatabases WHERE name = 'ReplTutorial')
 BEGIN
-    DROP DATABASE ReplTutorial
+    DROP DATABASE ReplTutorial;
 END
 GO
 
--- Create new database
-CREATE DATABASE [ReplTutorial]
+CREATE DATABASE [ReplTutorial];
+GO
+```
+
+Create the replication test table:
+
+```sql
+USE [ReplTutorial];
 GO
 
--- Create table
-USE [ReplTutorial]
-GO
 CREATE TABLE ReplTest (
    ID INT NOT NULL PRIMARY KEY,
    c1 VARCHAR(100) NOT NULL,
    dt1 DATETIME NOT NULL DEFAULT getdate()
-)
-GO
-
--- Populate table with data
-USE [ReplTutorial]
-GO
-
-INSERT INTO ReplTest (ID, c1) VALUES (6, 'pub')
-INSERT INTO ReplTest (ID, c1) VALUES (2, 'pub')
-INSERT INTO ReplTest (ID, c1) VALUES (3, 'pub')
-INSERT INTO ReplTest (ID, c1) VALUES (4, 'pub')
-INSERT INTO ReplTest (ID, c1) VALUES (5, 'pub')
-GO
-SELECT * FROM ReplTest
+);
 GO
 ```
 
+Insert sample data:
+
+```sql
+USE [ReplTutorial];
+GO
+
+INSERT INTO ReplTest (ID, c1) VALUES (6, 'pub');
+INSERT INTO ReplTest (ID, c1) VALUES (2, 'pub');
+INSERT INTO ReplTest (ID, c1) VALUES (3, 'pub');
+INSERT INTO ReplTest (ID, c1) VALUES (4, 'pub');
+INSERT INTO ReplTest (ID, c1) VALUES (5, 'pub');
+GO
+```
+
+Verify the data was inserted:
+
+```sql
+SELECT * FROM ReplTest;
+GO
+```
+
+Expected output: 5 rows with IDs 2, 3, 4, 5, and 6.
+
 ## Configure distribution
 
-Once connectivity is established and you have a sample database, you can configure distribution on your distributor SQL managed instance (`sql-mi-distributor`). To do so, follow these steps:
+Once connectivity is established and you have a sample database, you can configure distribution on your distributor SQL managed instance (`sql-mi-distributor`).
+
+### Distribution configuration parameters
+
+Collect the following values before configuring distribution:
+
+| Parameter | Description | Example |
+|---|---|---|
+| Distributor DNS name | FQDN of the distributor instance | `sql-mi-distributor.b6bf57.database.windows.net` |
+| Publisher DNS name | FQDN of the publisher instance | `sql-mi-publisher.b6bf57.database.windows.net` |
+| `@working_directory` | Azure Files share path (use backslashes only) | `\\replstorage.file.core.windows.net\replshare` |
+| `@storage_connection_string` | Storage account connection string | `DefaultEndpointsProtocol=https;AccountName=replstorage;...` |
+| `@security_mode` | Authentication mode (0 = SQL auth) | `0` |
+| `@login` / `@password` | SQL login credentials | `azureuser` |
+
+### Configure the distributor instance
 
 1. Launch SQL Server Management Studio on SQL Server.
 1. Connect to the distributor SQL managed instance (`sql-mi-distributor`).
-1. Open a **New Query** window, and run the following Transact-SQL code to configure distribution on the distributor SQL managed instance:
+1. Open a **New Query** window and run the following commands.
 
-   ```sql
-   EXECUTE sp_adddistributor
-       @distributor = 'sql-mi-distributor.b6bf57.database.windows.net',
-       @password = '<distributor_admin_password>';
+Add the distributor:
 
-   EXECUTE sp_adddistributiondb @database = N'distribution';
+```sql
+EXECUTE sp_adddistributor
+    @distributor = 'sql-mi-distributor.b6bf57.database.windows.net',
+    @password = '<distributor_admin_password>';
+```
 
-   EXECUTE sp_adddistpublisher
-       @publisher = 'sql-mi-publisher.b6bf57.database.windows.net', -- primary publisher@distribution_db = N'distribution',
-       @security_mode = 0,
-       @login = N'azureuser',
-       @password = N'<publisher_password>',
-       @working_directory = N'\\replstorage.file.core.windows.net\replshare',
-       @storage_connection_string = N'<storage_connection_string>' -- example:
-       @storage_connection_string = N'DefaultEndpointsProtocol = https;AccountName = replstorage;AccountKey = 123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ = = ;EndpointSuffix = core.windows.net';
-   ```
+Create the distribution database:
 
-   > [!NOTE]  
-   > Be sure to use only backslashes (`\`) for the `@working_directory` parameter. Using a forward slash (`/`) can cause an error when connecting to the file share.
+```sql
+EXECUTE sp_adddistributiondb @database = N'distribution';
+```
+
+Verify the distribution database was created:
+
+```sql
+SELECT name FROM sys.databases WHERE name = 'distribution';
+```
+
+Add the publisher to the distributor:
+
+```sql
+EXECUTE sp_adddistpublisher
+    @publisher = 'sql-mi-publisher.b6bf57.database.windows.net',
+    @distribution_db = N'distribution',
+    @security_mode = 0,
+    @login = N'azureuser',
+    @password = N'<publisher_password>',
+    @working_directory = N'\\replstorage.file.core.windows.net\replshare',
+    @storage_connection_string = N'DefaultEndpointsProtocol=https;AccountName=replstorage;AccountKey=123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ==;EndpointSuffix=core.windows.net';
+```
+
+> [!NOTE]
+> Use only backslashes (`\`) for the `@working_directory` parameter. Forward slashes (`/`) cause connection errors.
+
+### Register the distributor at the publisher
 
 1. Connect to the publisher SQL managed instance (`sql-mi-publisher`).
-1. Open a **New Query** window, and run the following Transact-SQL code to register the distributor at the publisher:
+1. Open a **New Query** window and run the following command to register the distributor:
 
-   ```sql
-   USE master;
-   GO
+```sql
+USE master;
+GO
 
-   EXECUTE sys.sp_adddistributor
-       @distributor = 'sql-mi-distributor.b6bf57.database.windows.net',
-       @password = '<distributor_admin_password>';
-   ```
+EXECUTE sys.sp_adddistributor
+    @distributor = 'sql-mi-distributor.b6bf57.database.windows.net',
+    @password = '<distributor_admin_password>';
+```
+
+Verify the distributor is registered:
+
+```sql
+SELECT * FROM sys.servers WHERE is_distributor = 1;
+```
 
 ## Create the publication
 
@@ -310,56 +397,102 @@ Once the publication has been created, you can create the subscription. To do so
 
 1. Launch SQL Server Management Studio on SQL Server.
 1. Connect to the publisher SQL managed instance (`sql-mi-publisher`).
-1. Open a **New Query** window and run the following Transact-SQL code to add the subscription and distribution agent. Use the DNS as part of the subscriber name.
+1. Open a **New Query** window and run the following Transact-SQL commands. Use the DNS name configured in the private DNS zone as part of the subscriber name.
+
+### Subscription parameters
+
+| Parameter | Value | Description |
+|---|---|---|
+| `@subscriber` | `sql-vm-subscriber.repldns.com` | Subscriber DNS name (from private DNS zone) |
+| `@destination_db` | `ReplSub` | Database on the subscriber |
+| `@subscription_type` | `Push` | Distributor pushes changes to subscriber |
+| `@sync_type` | `automatic` | Automatic initial synchronization |
+
+Add the subscription:
 
 ```sql
-use [ReplTutorial]
-exec sp_addsubscription
-@publication = N'ReplTest',
-@subscriber = N'sql-vm-subscriber.repldns.com', -- include the DNS configured in the private DNS zone
-@destination_db = N'ReplSub',
-@subscription_type = N'Push',
-@sync_type = N'automatic',
-@article = N'all',
-@update_mode = N'read only',
-@subscriber_type = 0
-
-exec sp_addpushsubscription_agent
-@publication = N'ReplTest',
-@subscriber = N'sql-vm-subscriber.repldns.com', -- include the DNS configured in the private DNS zone
-@subscriber_db = N'ReplSub',
-@job_login = N'azureuser',
-@job_password = '<Complex Password>',
-@subscriber_security_mode = 0,
-@subscriber_login = N'azureuser',
-@subscriber_password = '<Complex Password>',
-@dts_package_location = N'Distributor'
+USE [ReplTutorial];
 GO
+
+EXEC sp_addsubscription
+    @publication = N'ReplTest',
+    @subscriber = N'sql-vm-subscriber.repldns.com',
+    @destination_db = N'ReplSub',
+    @subscription_type = N'Push',
+    @sync_type = N'automatic',
+    @article = N'all',
+    @update_mode = N'read only',
+    @subscriber_type = 0;
+```
+
+Add the push subscription agent:
+
+```sql
+EXEC sp_addpushsubscription_agent
+    @publication = N'ReplTest',
+    @subscriber = N'sql-vm-subscriber.repldns.com',
+    @subscriber_db = N'ReplSub',
+    @job_login = N'azureuser',
+    @job_password = '<Complex Password>',
+    @subscriber_security_mode = 0,
+    @subscriber_login = N'azureuser',
+    @subscriber_password = '<Complex Password>',
+    @dts_package_location = N'Distributor';
+GO
+```
+
+Verify the subscription was created:
+
+```sql
+SELECT * FROM distribution.dbo.MSsubscriptions;
 ```
 
 ## Test replication
 
 Once replication has been configured, you can test it by inserting new items on the publisher and watching the changes propagate to the subscriber.
 
-Run the following T-SQL snippet to view the rows on the subscriber:
+### View initial data on the subscriber
+
+Connect to the SQL Server subscriber and run the following query:
 
 ```sql
 USE ReplSub;
 GO
 
-SELECT *
-FROM dbo.ReplTest;
+SELECT * FROM dbo.ReplTest;
 ```
 
-Run the following T-SQL snippet to insert additional rows on the publisher, and then check the rows again on the subscriber.
+Expected output: 5 rows with IDs 2, 3, 4, 5, and 6 (the initial data from the publisher).
+
+### Insert new data on the publisher
+
+Connect to the publisher SQL managed instance (`sql-mi-publisher`) and insert a new row:
 
 ```sql
 USE ReplTutorial;
 GO
 
-INSERT INTO ReplTest (ID, c1)
-VALUES (15, 'pub');
+INSERT INTO ReplTest (ID, c1) VALUES (15, 'pub');
 ```
+
+Verify the insert on the publisher:
+
+```sql
+SELECT * FROM ReplTest WHERE ID = 15;
+```
+
+### Verify replication to the subscriber
+
+After a few moments, connect to the subscriber and verify the new row replicated:
+
+```sql
+USE ReplSub;
+GO
+
+SELECT * FROM dbo.ReplTest WHERE ID = 15;
+```
+
+Expected output: 1 row with ID 15 and c1 value 'pub'.
 
 ## Clean up resources
 
