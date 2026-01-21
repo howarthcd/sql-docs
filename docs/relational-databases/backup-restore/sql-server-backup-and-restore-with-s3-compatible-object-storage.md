@@ -7,7 +7,7 @@ ms.reviewer: randolphwest
 ms.date: 01/07/2025
 ms.service: sql
 ms.subservice: backup-restore
-ms.topic: conceptual
+ms.topic: concept-article
 monikerRange: ">=sql-server-ver16 || >=sql-server-linux-ver16"
 ---
 

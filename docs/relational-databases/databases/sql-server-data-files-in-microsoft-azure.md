@@ -6,7 +6,7 @@ ms.author: mikeray
 ms.date: 03/01/2023
 ms.service: sql
 ms.subservice: supportability
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 # SQL Server data files in Microsoft Azure
 

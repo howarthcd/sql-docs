@@ -7,7 +7,7 @@ ms.reviewer: randolphwest
 ms.date: 01/12/2023
 ms.service: sql
 ms.subservice: backup-restore
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 # SQL Server VSS Writer logging
 

@@ -6,7 +6,7 @@ ms.author: wiassaf
 ms.reviewer: randolphwest, dfurman
 ms.date: 12/29/2025
 ms.service: sql
-ms.topic: article
+ms.topic: concept-article
 ms.custom:
   - P360
   - ignite-2025

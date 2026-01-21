@@ -6,7 +6,7 @@ ms.author: randolphwest
 ms.date: 07/15/2025
 ms.service: sql
 ms.subservice: data-movement
-ms.topic: conceptual
+ms.topic: concept-article
 monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017 || =azuresqldb-mi-current"
 ---
 # Import and export data from SQL Server and Azure SQL Database
