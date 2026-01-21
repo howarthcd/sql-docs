@@ -7,7 +7,7 @@ ms.reviewer: wiassaf
 ms.date: "01/17/2023"
 ms.service: sql
 ms.subservice: supportability
-ms.topic: conceptual
+ms.topic: concept-article
 helpviewer_keywords:
   - "multiserver queries"
   - "central management server"

@@ -31,6 +31,18 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 The template used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/sqlmi-new-vnet/).
 
+**Key template parameters**
+
+| Parameter name             | Default / Example        | Allowed values / Constraints          | Description                                   |
+|----------------------------|--------------------------|---------------------------------------|-----------------------------------------------|
+| managedInstanceName        | sqlmi                    | 1–63 characters                       | Name of the SQL managed instance         |
+| location                   | resourceGroup().location | Azure regions that support SQL managed instance     | Region for all resources                      |
+| administratorLogin         | sqladmin                 | Cannot be reserved words              | SQL administrator login                      |
+| administratorLoginPassword | —                        | Minimum length and complexity enforced| SQL administrator password                   |
+| vCores                     | 8                        | Valid vCore values per SKU            | Compute size of the instance                  |
+| storageSizeInGB            | 256                      | Min/Max per service tier              | Storage allocated to the instance             |
+| subnetAddressPrefix        | 10.0.0.0/24              | Dedicated, delegated subnet required  | Subnet for the managed instance               |
+
 :::code language="json" source="~/../quickstart-templates/quickstarts/microsoft.sql/sqlmi-new-vnet/azuredeploy.json":::
 
 These resources are defined in the template:
@@ -46,8 +58,19 @@ More template samples can be found in [Azure Quickstart Templates](https://azure
 
 Select **Try it** from the following PowerShell code block to open Azure Cloud Shell.
 
+**Deployment checklist**
+
+1. Verify prerequisites:
+   - Active Azure subscription
+   - Required permissions (SQL Managed Instance Contributor or Microsoft.Sql/managedInstances/write)
+2. Run the deployment command (PowerShell or Azure CLI) using the snippets below.
+3. Verify success:
+   - In the Azure portal, the deployment shows **Succeeded**
+   - The SQL managed instance appears in the target resource group with state **Creating** or **Ready**
+<!-- Added a numbered deployment checklist to clarify prerequisites, execution steps, and success verification. -->
+
 > [!IMPORTANT]
-> Deploying a managed instance is a long-running operation. Deployment of the first instance in the subnet typically takes much longer than deploying into a subnet with existing managed instances. For average provisioning times, see [SQL Managed Instance management operations](management-operations-duration.md).
+> Deploying a SQL managed instance is a long-running operation. Deployment of the first instance in the subnet typically takes much longer than deploying into a subnet with existing managed instances. For average provisioning times, see [SQL Managed Instance management operations](management-operations-duration.md).
 
 # [PowerShell](#tab/azure-powershell)
 
