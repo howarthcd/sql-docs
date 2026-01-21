@@ -5,7 +5,7 @@ author: David-Engel
 ms.author: davidengel
 ms.date: "01/19/2017"
 ms.service: sql
-ms.subservice: connectivity
+ms.subservice: concept-article
 ms.topic: conceptual
 helpviewer_keywords:
   - "result sets [ODBC], determining if created"
