@@ -6,7 +6,7 @@ ms.author: wiassaf
 ms.date: "12/21/2021"
 ms.service: sql
 ms.subservice: configuration
-ms.topic: conceptual
+ms.topic: concept-article
 f1_keywords:
   - "sql13.swb.databaseproperties.options.f1"
 ---
