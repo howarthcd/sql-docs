@@ -7,7 +7,7 @@ ms.reviewer: mathoma, wiassaf, hudequei, randolphwest
 ms.date: 11/18/2025
 ms.service: sql
 ms.subservice: backup-restore
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - devx-track-azurepowershell
   - ignite-2025

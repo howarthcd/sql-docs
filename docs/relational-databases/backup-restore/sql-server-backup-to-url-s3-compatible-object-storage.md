@@ -7,7 +7,7 @@ ms.reviewer: hudequei
 ms.date: 04/18/2024
 ms.service: sql
 ms.subservice: backup-restore
-ms.topic: conceptual
+ms.topic: concept-article
 monikerRange: ">=sql-server-ver16||>=sql-server-linux-ver16"
 ---
 # SQL Server back up to URL for S3-compatible object storage
