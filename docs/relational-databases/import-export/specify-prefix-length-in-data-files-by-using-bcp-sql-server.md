@@ -6,7 +6,7 @@ ms.author: randolphwest
 ms.date: "07/28/2016"
 ms.service: sql
 ms.subservice: data-movement
-ms.topic: conceptual
+ms.topic: concept-article
 helpviewer_keywords:
   - "bcp utility [SQL Server], prefix length"
   - "prefix length [SQL Server]"
