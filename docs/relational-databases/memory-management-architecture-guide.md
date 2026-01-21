@@ -6,7 +6,7 @@ ms.author: randolphwest
 ms.date: 12/29/2025
 ms.service: sql
 ms.subservice: supportability
-ms.topic: article
+ms.topic: concept-article
 ms.custom:
   - ignite-2025
 helpviewer_keywords:
