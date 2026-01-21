@@ -22,7 +22,11 @@ dev_langs:
 
 [!INCLUDE [Azure SQL Database Azure SQL Managed Instance](../../includes/applies-to-version/asdb-asdbmi.md)]
 
-Returns state information for each database that participates in primary and secondary replicas. On a secondary replica, returns one row for every secondary database on the instance. On the primary replica, returns one row for the primary database, and an additional row for each secondary database.
+Returns state information for each database that participates in primary and secondary replicas.
+
+- On secondary replicas that participate in an availability group, auto-failover group, or active geo-replication, this view returns one row for every secondary database on the instance. Read scale-out replicas don't appear as separate secondary rows in this view.
+
+- On the primary replica, this view returns one row for the primary database, and for Azure SQL Database geo-replicated or failover group databases, an additional row for each secondary database.
 
 > [!IMPORTANT]  
 > Depending on the action and higher-level states, database-state information might be unavailable or out of date. Furthermore, the values have only local relevance.
@@ -64,7 +68,7 @@ Returns state information for each database that participates in primary and sec
 | `last_commit_lsn` | **numeric(25,0)** | Actual log sequence number corresponding to the last commit record in the transaction log.<br /><br />On the primary database, this corresponds to the last commit record processed. Rows for secondary databases show the log sequence number that the secondary replica has sent to the primary replica.<br /><br />On the secondary replica, this is the last commit record that was redone. |
 | `last_commit_time` | **datetime** | Time corresponding to the last commit record.<br /><br />On the secondary database, this time is the same as on the primary database.<br /><br />On the primary replica, each secondary database row displays the time that the secondary replica that hosts that secondary database has reported back to the primary replica. The difference in time between the primary-database row and a given secondary-database row represents approximately the recovery point objective (RPO), assuming that the redo process is caught up and that the progress has been reported back to the primary replica by the secondary replica. |
 | `low_water_mark_for_ghosts` | **bigint** | A monotonically increasing number for the database indicating a low water mark used by ghost and persistent version store cleanup on the primary database. If a write workload is running on the primary but this number isn't increasing over time, it implies that ghost and persistent version store cleanup might be held up. To decide which ghost rows and which row versions to clean up, the primary replica uses the minimum value of this column for this database across all replicas (including the primary replica). |
-| `secondary_lag_seconds` | **bigint** | The number of seconds that the secondary replica is behind the primary replica during synchronization.<br /><br />**Applies to**: [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)] and later versions. |
+| `secondary_lag_seconds` | **bigint** | The number of seconds that the secondary replica is behind the primary replica during synchronization.<br /><br />Doesn't apply to read scale-out replicas.<br /><br />**Applies to**: [!INCLUDE [sssql16-md](../../includes/sssql16-md.md)] and later versions. |
 | `quorum_commit_lsn` | **numeric(25,0)** | Identified for informational purposes only. Not supported. Future compatibility isn't guaranteed. |
 | `quorum_commit_time` | **datetime** | Identified for informational purposes only. Not supported. Future compatibility isn't guaranteed. |
 
