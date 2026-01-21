@@ -6,7 +6,7 @@ ms.author: randolphwest
 ms.date: 06/24/2025
 ms.service: sql
 ms.subservice: supportability
-ms.topic: conceptual
+ms.topic: concept-article
 helpviewer_keywords:
   - "I/O guide"
   - "I/O guidance"
