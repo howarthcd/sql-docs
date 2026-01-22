@@ -4,7 +4,7 @@ description: Learn how to use the Reporting Services History page in SQL Server 
 ms.date: 09/25/2024
 ms.service: reporting-services
 ms.subservice: tools
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - updatefrequency5
 f1_keywords:

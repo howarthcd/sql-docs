@@ -6,7 +6,7 @@ ms.author: petebro
 ms.date: 05/19/2025
 ms.service: reporting-services
 ms.subservice: tools
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - updatefrequency5
 monikerRange: ">=sql-server-2016"
