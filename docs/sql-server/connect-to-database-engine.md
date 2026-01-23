@@ -6,7 +6,7 @@ ms.author: randolphwest
 ms.date: 09/11/2025
 ms.service: sql
 ms.subservice: connectivity
-ms.topic: conceptual
+ms.topic: how-to
 ---
 
 # Connect to the Database Engine

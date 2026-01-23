@@ -7,7 +7,7 @@ ms.reviewer: sureshka, randolphwest
 ms.date: 02/28/2025
 ms.service: sql
 ms.subservice: release-landing
-ms.topic: conceptual
+ms.topic: concept-article
 monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017"
 ---
 
