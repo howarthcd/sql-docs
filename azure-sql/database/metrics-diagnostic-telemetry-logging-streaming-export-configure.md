@@ -512,11 +512,11 @@ The following tables document the telemetry details available for all logs. For 
 | `ElasticPoolName_s` | Name of the elastic pool for the database, if any |
 | `DatabaseName_s` | Name of the database |
 | `ResourceId` | Resource URI |
-| `query_hash_s` | Query hash |
-| `query_plan_hash_s` | Query plan hash |
+| `query_hash_s` <sup>1</sup> | Query hash |
+| `query_plan_hash_s` <sup>1</sup> | Query plan hash |
 | `statement_sql_handle_s` | Statement sql handle |
-| `interval_start_time_d` <sup>1</sup> | Internal identifier for the start of the statistics interval. |
-| `interval_end_time_d` <sup>1</sup> | Internal identifier for the end of the statistics interval. |
+| `interval_start_time_d` <sup>2</sup> | Internal identifier for the start of the statistics interval. |
+| `interval_end_time_d` <sup>2</sup> | Internal identifier for the end of the statistics interval. |
 | `logical_io_writes_d` | Total number of logical IO writes |
 | `max_logical_io_writes_d` | Max number of logical IO writes per execution |
 | `physical_io_reads_d` | Total number of physical IO reads |
@@ -542,7 +542,9 @@ The following tables document the telemetry details available for all logs. For 
 | `query_id_d` | ID of the query in Query Store |
 | `plan_id_d` | ID of the plan in Query Store |
 
-<sup>1</sup> Use the [example Kusto query](#examples) to convert this value into a useable timestamp.
+<sup>1</sup> To find matching queries and query plans in Query Store, see [Find matching queries and query plans in Query Store](#b-find-matching-queries-and-query-plans-in-query-store) later in this article.
+
+<sup>2</sup> To convert this value into a useable timestamp, see [Convert the interval start and end times to datetime values](#a-convert-the-interval-start-and-end-times-to-datetime-values) later in this article.
 
 For more information, see [sys.query_store_runtime_stats](/sql/relational-databases/system-catalog-views/sys-query-store-runtime-stats-transact-sql).
 
@@ -573,16 +575,18 @@ For more information, see [sys.query_store_runtime_stats](/sql/relational-databa
 | `total_query_wait_time_ms_d` | Total wait time of the query on the specific wait category |
 | `max_query_wait_time_ms_d` | Max wait time of the query in individual execution on the specific wait category |
 | `query_param_type_d` | 0 |
-| `query_hash_s` | Query hash in Query Store |
-| `query_plan_hash_s` | Query plan hash in Query Store |
+| `query_hash_s` <sup>1</sup> | Query hash in Query Store |
+| `query_plan_hash_s` <sup>1</sup> | Query plan hash in Query Store |
 | `statement_sql_handle_s` | Statement handle in Query Store |
-| `interval_start_time_d` <sup>1</sup> | Internal identifier for the start of the statistics interval. |
-| `interval_end_time_d` <sup>1</sup> | Internal identifier for the end of the statistics interval. |
+| `interval_start_time_d` <sup>2</sup> | Internal identifier for the start of the statistics interval. |
+| `interval_end_time_d` <sup>2</sup> | Internal identifier for the end of the statistics interval. |
 | `count_executions_d` | Count of executions of the query |
 | `query_id_d` | ID of the query in Query Store |
 | `plan_id_d` | ID of the plan in Query Store |
 
-<sup>1</sup> Use the [example Kusto query](#examples) to convert this value into a useable timestamp.
+<sup>1</sup> To find matching queries and query plans in Query Store, see [Find matching queries and query plans in Query Store](#b-find-matching-queries-and-query-plans-in-query-store) later in this article.
+
+<sup>2</sup> To convert this value into a useable timestamp, see [Convert the interval start and end times to datetime values](#a-convert-the-interval-start-and-end-times-to-datetime-values) later in this article.
 
 For more information, see [sys.query_store_wait_stats](/sql/relational-databases/system-catalog-views/sys-query-store-wait-stats-transact-sql).
 
@@ -610,8 +614,10 @@ For more information, see [sys.query_store_wait_stats](/sql/relational-databases
 | `error_number_d` | Error code |
 | `Severity` | Severity of the error |
 | `state_d` | State of the error |
-| `query_hash_s` | Query hash of the failed query, if available |
-| `query_plan_hash_s` | Query plan hash of the failed query, if available |
+| `query_hash_s` <sup>1</sup> | Query hash of the failed query, if available |
+| `query_plan_hash_s` <sup>1</sup> | Query plan hash of the failed query, if available |
+
+<sup>1</sup> To find matching queries and query plans in Query Store, see [Find matching queries and query plans in Query Store](#b-find-matching-queries-and-query-plans-in-query-store) later in this article.
 
 For more information, see [Database Engine events and errors](/sql/relational-databases/errors-events/database-engine-events-and-errors).
 
@@ -664,8 +670,10 @@ For more information about database wait statistics, see [sys.dm_os_wait_stats](
 | `DatabaseName_s` | Name of the database |
 | `ResourceId` | Resource URI |
 | `error_state_d` | A numeric state value associated with the query timeout (an [attention](/sql/relational-databases/errors-events/mssqlserver-3617-database-engine-error) event) |
-| `query_hash_s` | Query hash, if available |
-| `query_plan_hash_s` | Query plan hash, if available |
+| `query_hash_s` <sup>1</sup> | Query hash, if available |
+| `query_plan_hash_s` <sup>1</sup> | Query plan hash, if available |
+
+<sup>1</sup> To find matching queries and query plans in Query Store, see [Find matching queries and query plans in Query Store](#b-find-matching-queries-and-query-plans-in-query-store) later in this article.
 
 #### Blockings dataset
 
@@ -742,13 +750,7 @@ For more information about database wait statistics, see [sys.dm_os_wait_stats](
 | `Event_s` | Type of Automatic tuning event |
 | `Timestamp_t` | Last updated timestamp |
 
-The `query_hash_s` and `query_plan_hash_s` properties appear as numeric values. To find matching queries and query plans in [Monitor performance by using the Query Store](/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store), use the following T-SQL expression. It converts numeric hash values to binary hash values used in [sys.query_store_query](/sql/relational-databases/system-catalog-views/sys-query-store-query-transact-sql) and [sys.query_store_plan](/sql/relational-databases/system-catalog-views/sys-query-store-plan-transact-sql):
 
-```sql
-SELECT CAST(CAST(hash_value as BIGINT) AS BINARY(8));
-```
-
-Replace the `hash_value` placeholder with the actual `query_hash_s` or `query_plan_hash_s` numeric value.
 
 #### Intelligent Insights dataset
 
@@ -756,7 +758,9 @@ For more information, see [Use the Intelligent Insights performance diagnostics 
 
 ## Examples
 
-The following Kusto query converts the `interval_start_time_d` and `interval_end_time_d` columns in the [Query Store runtime statistics](#query-store-runtime-statistics) and [Query Store wait statistics](#query-store-wait-statistics) datasets from internal values into `datetime` values.
+### A. Convert the interval start and end times to datetime values
+
+The following Kusto expression converts the `interval_start_time_d` and `interval_end_time_d` columns in the [Query Store runtime statistics](#query-store-runtime-statistics) and [Query Store wait statistics](#query-store-wait-statistics) datasets from internal values into `datetime` values.
 
 ```kusto
 | extend interval_start_time_date = interval_start_time_d / 4294967296,
@@ -766,6 +770,18 @@ The following Kusto query converts the `interval_start_time_d` and `interval_end
 | project interval_start_date_time = datetime(1900-1-1) + time(1d) * interval_start_time_date + time(1s) * (interval_start_time_time / 300.0),
           interval_end_date_time = datetime(1900-1-1) + time(1d) * interval_end_time_date + time(1s) * (interval_end_time_time / 300.0)
 ```
+
+### B. Find matching queries and query plans in Query Store
+
+The `query_hash_s` and `query_plan_hash_s` properties appear as numeric values in the Query Store [runtime](#query-store-runtime-statistics) and [wait](#query-store-wait-statistics) statistics, and the [Errors](#errors-dataset) and [Time-outs](#time-outs-dataset) datasets.
+
+To find matching queries and query plans in [Query Store](/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store), use the following T-SQL expression. It converts numeric hash values to binary hash values used in [sys.query_store_query](/sql/relational-databases/system-catalog-views/sys-query-store-query-transact-sql) and [sys.query_store_plan](/sql/relational-databases/system-catalog-views/sys-query-store-plan-transact-sql).
+
+```sql
+SELECT CAST(CAST(<hash_value> as BIGINT) AS BINARY(8));
+```
+
+Replace `<hash_value>` with the actual `query_hash_s` or `query_plan_hash_s` numeric value.
 
 ## Next steps
 
