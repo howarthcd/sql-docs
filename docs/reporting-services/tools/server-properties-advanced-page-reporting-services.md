@@ -145,6 +145,9 @@ Branding option to add a custom hyperlink. Default values are **empty**.
 | CustomUrlLabel | Defines the text shown as the URL label in the top right navigation bar in the web portal (for example, `Go to Contoso`) |
 | CustomUrlValue  | Defines the URL (for example, `http://www.contoso.com`) | 
 
+### DisableMSRBConnect
+Specifies if connected mode rendering from Microsoft Report Builder are disabled on the Report Server. When enabled, all connected mode requests from MSRB clients will be rejected. The default value is **True**.
+
 ### EditSessionCacheLimit
 Specifies the number of data cache entries that can be active in a report edit session. The default number is 5.  
 
