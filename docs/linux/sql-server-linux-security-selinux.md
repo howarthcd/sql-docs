@@ -3,7 +3,8 @@ title: Get Started with SQL Server on SELinux
 description: Learn about installing and configuring SQL Server on SELinux, using a Red Hat Enterprise Linux distribution.
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 10/20/2025
+ms.reviewer: amitkh
+ms.date: 01/23/2026
 ms.service: sql
 ms.subservice: linux
 ms.topic: how-to
@@ -12,7 +13,7 @@ ms.custom:
 ---
 # Get started with SQL Server on SELinux
 
-This article guides you in getting started with [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] as a *confined service* on a Security-Enhanced Linux (SELinux) distribution based on Red Hat Enterprise Linux (RHEL).
+This article helps you get started with [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] as a *confined service* on a Security-Enhanced Linux (SELinux) distribution based on Red Hat Enterprise Linux (RHEL).
 
 ## What is Security-Enhanced Linux?
 
@@ -28,7 +29,7 @@ A *confined service* with SELinux means that it's restricted by security rules, 
 
 ## Prerequisites
 
-1. SELinux should be enabled and in `enforcing` mode. You can check the SELinux status by running the command `sestatus`.
+1. Enable SELinux and set it to `enforcing` mode. Check the SELinux status by running the `sestatus` command.
 
    ```bash
    sestatus
@@ -54,6 +55,58 @@ A *confined service* with SELinux means that it's restricted by security rules, 
 > [!NOTE]  
 > If any of the prerequisites aren't met, [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] runs as an *unconfined service*.
 
+### Minimum RHEL minor version requirement
+
+To run [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] as a confined application on RHEL 9, you must use a minimum RHEL minor version. This requirement exists because of point-release dependencies in SELinux packages. The `mssql-server-selinux` package, which you need to run [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] in confined mode, depends on the `selinux-policy` and `selinux-policy-base` packages.
+
+#### Steps to identify minimum RHEL minor version
+
+1. Add the [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] repository that contains `mssql-server-selinux`.
+
+   For [!INCLUDE [sssql25-md](../includes/sssql25-md.md)]:
+
+   ```bash
+   sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/9/mssql-server-2025.repo
+   ```
+
+   For [!INCLUDE [sssql22-md](../includes/sssql22-md.md)]:
+
+   ```bash
+   sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/9/mssql-server-2022.repo
+   ```
+
+1. Run the following command to view the SELinux policy dependencies:
+
+   ```bash
+   sudo dnf repoquery --requires mssql-server-selinux | egrep '^selinux-policy(-base)?'
+   ```
+
+1. In the output, find the highest distribution tag or point-release entry, such as `.el9_6`. The suffix shows the *minimum required* RHEL 9 minor release for that policy build. For example, `.el9_6` maps to RHEL 9.6.
+
+   Here's example output:
+
+   ```bash
+   $ sudo dnf repoquery --requires mssql-server-selinux | egrep '^selinux-policy(-base)?'
+   selinux-policy >= 38.1.11-2.el9_2.4
+   selinux-policy >= 38.1.23-1.el9
+   selinux-policy >= 38.1.23-1.el9_3.2
+   selinux-policy >= 38.1.35-2.el9_4
+   selinux-policy >= 38.1.35-2.el9_4.2
+   selinux-policy >= 38.1.45-3.el9_5
+   selinux-policy >= 38.1.53-5.el9_6
+   selinux-policy >= 38.1.65-1.el9
+   selinux-policy-base >= 38.1.11-2.el9_2.4
+   selinux-policy-base >= 38.1.23-1.el9
+   selinux-policy-base >= 38.1.23-1.el9_3.2
+   selinux-policy-base >= 38.1.35-2.el9_4
+   selinux-policy-base >= 38.1.35-2.el9_4.2
+   selinux-policy-base >= 38.1.45-3.el9_5
+   selinux-policy-base >= 38.1.53-5.el9_6
+   selinux-policy-base >= 38.1.65-1.el9
+   ```
+
+   In this example, the highest minor-version-tagged requirement is `38.1.53-5.el9_6`. So, you need at least RHEL 9.6 to install [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] with SELinux (`mssql-server-selinux`), and run it as a confined application on RHEL 9.
+
 ## Install SQL Server as a confined service
 
 By default, the `mssql-server` package installs [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] without the SELinux policy, and [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] runs as an unconfined service. The `mssql-server` package installation automatically enables the `selinux_execmode` Boolean. You can verify that [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] is running unconfined using the following command:
@@ -68,7 +121,7 @@ Here's the expected output.
 system_u:system_r:unconfined_service_t:s0 48265 ? 00:00:02 sqlservr
 ```
 
-Once you install the `mssql-server-selinux` package, it enables a custom SELinux policy that confines the `sqlservr` process. When you install this policy, the `selinuxuser_execmod` Boolean is reset, and is replaced by a policy named `mssql`, which confines the `sqlservr` process in the new `mssql_server_t` domain.
+When you install the `mssql-server-selinux` package, it enables a custom SELinux policy that confines the `sqlservr` process. When you install this policy, the `selinuxuser_execmod` Boolean is reset, and is replaced by a policy named `mssql`. This policy confines the `sqlservr` process in the new `mssql_server_t` domain.
 
 ```bash
 ps -eZ | grep sqlservr
@@ -82,20 +135,20 @@ system_u:system_r:mssql_server_t:s0 48941 ?      00:00:02 sqlservr
 
 ## SQL Server and SELinux types
 
-When the optional SELinux policy is installed with the `mssql-server-selinux` package, some new types are defined:
+When you install the optional SELinux policy using the `mssql-server-selinux` package, it defines some new types:
 
 | SELinux policy | Description |
 | --- | --- |
 | `mssql_opt_t` | Install files of mssql-server to `/opt/mssql` |
 | `mssql_server_exec_t` | Executable files at `/opt/mssql/bin/` |
-| `mssql_paldumper_exec_t` | Executables and scripts which require special permissions to manage core dumps |
+| `mssql_paldumper_exec_t` | Executables and scripts that require special permissions to manage core dumps |
 | `mssql_conf_exec_t` | Management tool at `/opt/mssql/bin/mssql-conf` |
 | `mssql_var_t` | Label for files at `/var/opt/mssql` |
 | `mssql_db_t` | Label for the database files at `/var/opt/mssql/data` |
 
 ## Examples
 
-The following example demonstrates changing the database location when [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] is running as a confined service.
+The following example demonstrates changing the database location when [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] runs as a confined service.
 
 1. Create the desired directories and label them as `mssql_db_t`.
 
@@ -106,7 +159,7 @@ The following example demonstrates changing the database location when [!INCLUDE
    sudo restorecon -R -v /opt/mydb
    ```
 
-   The command `semanage fcontext` manages the SELinux file context mapping. The `-a` parameter adds a new file context rule, and the `-t` parameter defines the SELinux type to be applied, which in this case is `mssql_db_t` for [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] database files. Finally, the path pattern is specified, which is `/opt/mydb` in this example, and all the files and subdirectories within it.
+   The command `semanage fcontext` manages the SELinux file context mapping. The `-a` parameter adds a new file context rule, and the `-t` parameter defines the SELinux type to apply, which in this case is `mssql_db_t` for [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] database files. Finally, the command specifies the path pattern, which is `/opt/mydb` in this example, and includes all the files and subdirectories within it.
 
 1. Set the default database location using **mssql-conf**, and run the setup.
 
@@ -136,10 +189,10 @@ The following example demonstrates changing the database location when [!INCLUDE
    -rw-rw----. 1 mssql mssql system_u:object_r:mssql_db_t:s0 8388608 Aug  2 14:27 TestDatabase.mdf
    ```
 
-   In the previous example, you can see the file has the `mssql_db_t` (type) associated with the new files created.
+   In the previous example, you can see the file has the `mssql_db_t` type associated with the new files created.
 
 ## Related content
 
-- [Security limitations for SQL Server on Linux](sql-server-linux-security-overview.md)
+- [Security considerations for SQL Server on Linux](sql-server-linux-security-overview.md)
 - [Walkthrough for the security features of SQL Server on Linux](sql-server-linux-security-get-started.md)
-- [Quickstart: Install SQL Server and create a database on Red Hat](quickstart-install-connect-red-hat.md)
+- [Quickstart: Install SQL Server and create a database on Red Hat Enterprise Linux](quickstart-install-connect-red-hat.md)
