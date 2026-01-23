@@ -7,7 +7,7 @@ ms.reviewer: wopeter, randolphwest
 ms.date: 06/16/2025
 ms.service: sql
 ms.subservice: release-landing
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # SQL Server privacy supplement
