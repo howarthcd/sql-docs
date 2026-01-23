@@ -7,7 +7,7 @@ ms.reviewer: randolphwest
 ms.date: 12/15/2025
 ms.service: sql
 ms.subservice: release-landing
-ms.topic: article
+ms.topic: reference
 monikerRange: ">=aps-pdw-2016 || =azuresqldb-current || =azure-sqldw-latest || >=sql-server-2016 || >=sql-server-linux-2017"
 ---
 # SQL Server include files for versioning and applies-to
