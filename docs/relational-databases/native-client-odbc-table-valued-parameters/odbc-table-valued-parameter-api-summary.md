@@ -25,12 +25,12 @@ These functions help an application discover the structure of table-valued param
 
 | Function | Purpose |
 |----------|----------|
-| [SQLColumns](../../relational-databases/native-client-odbc-api/sqlcolumns.md) | Retrieves column metadata for a table‑valued parameter or table type. |
-| [SQLDescribeParam](../../relational-databases/native-client-odbc-api/sqldescribeparam.md) | Returns metadata for a table‑valued parameter  parameter, including type, precision, and scale. |
-| [SQLGetTypeInfo](../../relational-databases/native-client-odbc-api/sqlgettypeinfo.md) | Retrieves the SQL data types supported by the driver for table‑valued parameter columns. |
-| [SQLPrimaryKeys](../../relational-databases/native-client-odbc-api/sqlprimarykeys.md) | Provides information about key columns in table types used with table‑valued parameters. |
-| [SQLProcedureColumns](../../relational-databases/native-client-odbc-api/sqlprocedurecolumns.md) | Retrieves metadata for table‑valued parameter-related stored procedure parameters. |
-| [SQLTables](../../relational-databases/native-client-odbc-api/sqltables.md) | Lists tables and table types available as sources for table‑valued parameter  declarations. |
+| [SQLColumns](../../relational-databases/native-client-odbc-api/sqlcolumns.md) | Retrieves column metadata for a table‑valued parameter or table type |
+| [SQLDescribeParam](../../relational-databases/native-client-odbc-api/sqldescribeparam.md) | Returns metadata for a table‑valued parameter  parameter, including type, precision, and scale |
+| [SQLGetTypeInfo](../../relational-databases/native-client-odbc-api/sqlgettypeinfo.md) | Retrieves the SQL data types supported by the driver for table‑valued parameter columns |
+| [SQLPrimaryKeys](../../relational-databases/native-client-odbc-api/sqlprimarykeys.md) | Provides information about key columns in table types used with table‑valued parameters |
+| [SQLProcedureColumns](../../relational-databases/native-client-odbc-api/sqlprocedurecolumns.md) | Retrieves metadata for table‑valued parameter-related stored procedure parameters |
+| [SQLTables](../../relational-databases/native-client-odbc-api/sqltables.md) | Lists tables and table types available as sources for table‑valued parameter  declarations |
 
 ## Table‑valued parameter parameter binding and data transmission
 
@@ -38,9 +38,9 @@ These functions handle binding structured data to parameters, passing the data t
 
 | Function | Purpose |
 |----------|---------|
-| [SQLBindParameter](../../relational-databases/native-client-odbc-api/sqlbindparameter.md) | Binds a table-valued parameter to an application buffer or rowset. |
-| [SQLParamData](../../relational-databases/native-client-odbc-api/sqlparamdata.md) | Retrieves the next part of a streamed table‑valued parameter  parameter when using data-at-execution. |
-| [SQLPutData](../../relational-databases/native-client-odbc-api/sqlputdata.md) | Sends table‑valued parameter  data in chunks during data-at-execution operations. |
+| [SQLBindParameter](../../relational-databases/native-client-odbc-api/sqlbindparameter.md) | Binds a table-valued parameter to an application buffer or rowset |
+| [SQLParamData](../../relational-databases/native-client-odbc-api/sqlparamdata.md) | Retrieves the next part of a streamed table‑valued parameter  parameter when using data-at-execution |
+| [SQLPutData](../../relational-databases/native-client-odbc-api/sqlputdata.md) | Sends table‑valued parameter  data in chunks during data-at-execution operations |
 
 ## Statement execution for table‑valued parameters
 
@@ -48,8 +48,8 @@ These functions execute SQL statements that reference table‑valued parameters 
 
 | Function | Purpose |
 |----------|---------|
-| [SQLExecDirect](../../relational-databases/native-client-odbc-api/sqlexecdirect.md) | Executes a SQL statement that uses table‑valued parameters without preparing it first. |
-| [SQLExecute](../../relational-databases/native-client-odbc-api/sqlexecute.md) | Executes a previously prepared SQL statement that includes table‑valued parameter  parameters. |
+| [SQLExecDirect](../../relational-databases/native-client-odbc-api/sqlexecdirect.md) | Executes a SQL statement that uses table‑valued parameters without preparing it first |
+| [SQLExecute](../../relational-databases/native-client-odbc-api/sqlexecute.md) | Executes a previously prepared SQL statement that includes table‑valued parameter  parameters |
 
 ## Descriptor and attribute management for table‑valued parameters
 
@@ -57,11 +57,11 @@ Use these functions to manage descriptor fields and statement attributes require
 
 | Function | Purpose |
 |----------|---------|
-| [SQLGetDescField](../../relational-databases/native-client-odbc-api/sqlgetdescfield.md) | Retrieves descriptor metadata for table‑valued parameter  columns or rowsets. |
-| [SQLSetDescField](../../relational-databases/native-client-odbc-api/sqlsetdescfield.md) | Sets descriptor metadata for table‑valued parameter  columns or rowsets. |
-| [SQLSetDescRec](../../relational-databases/native-client-odbc-api/sqlsetdescrec.md) | Sets a full descriptor record for structured table‑valued parameter  data. |
-| [SQLGetStmtAttr](../../relational-databases/native-client-odbc-api/sqlgetstmtattr.md) | Retrieves statement attributes affecting table‑valued parameter  execution behavior. |
-| [SQLSetStmtAttr](../../relational-databases/native-client-odbc-api/sqlsetstmtattr.md) | Sets statement attributes such as rowset sizes or streaming flags for table‑valued parameter  operations. |
+| [SQLGetDescField](../../relational-databases/native-client-odbc-api/sqlgetdescfield.md) | Retrieves descriptor metadata for table‑valued parameter  columns or rowsets |
+| [SQLSetDescField](../../relational-databases/native-client-odbc-api/sqlsetdescfield.md) | Sets descriptor metadata for table‑valued parameter  columns or rowsets |
+| [SQLSetDescRec](../../relational-databases/native-client-odbc-api/sqlsetdescrec.md) | Sets a full descriptor record for structured table‑valued parameter  data |
+| [SQLGetStmtAttr](../../relational-databases/native-client-odbc-api/sqlgetstmtattr.md) | Retrieves statement attributes affecting table‑valued parameter  execution behavior |
+| [SQLSetStmtAttr](../../relational-databases/native-client-odbc-api/sqlsetstmtattr.md) | Sets statement attributes such as rowset sizes or streaming flags for table‑valued parameter  operations |
 
 ## Diagnostics and error handling for table‑valued parameters
 
@@ -69,7 +69,7 @@ Use these functions to help your applications detect errors, warnings, or status
 
 | Function | Purpose |
 |----------|---------|
-| [SQLGetDiagField](../../relational-databases/native-client-odbc-api/sqlgetdiagfield.md) | Retrieves diagnostic information generated during table‑valued parameter  processing. |
+| [SQLGetDiagField](../../relational-databases/native-client-odbc-api/sqlgetdiagfield.md) | Retrieves diagnostic information generated during table‑valued parameter  processing |
 
 ## Related content
 

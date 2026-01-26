@@ -27,11 +27,11 @@ These classes define how SQL Server clients resolve servers, use network librari
 
 | Class | Description |
 |-------|-------------|
-| [ClientNetLibInfo](../../relational-databases/wmi-provider-configuration-classes/clientnetlibinfo-class/clientnetlibinfo-class.md) | Returns information about installed client network libraries and protocols. |
-| [ClientNetworkProtocol](../../relational-databases/wmi-provider-configuration-classes/clientnetworkprotocol-class/clientnetworkprotocol-class.md) | Represents a specific client network protocol configuration (such as TCP/IP or Named Pipes). |
-| [ClientNetworkProtocolProperty](../../relational-databases/wmi-provider-configuration-classes/clientnetworkprotocolproperty-class/clientnetworkprotocolproperty-class.md) | Exposes protocol‑level settings for client network protocols. |
-| [ClientSettings](../../relational-databases/wmi-provider-configuration-classes/clientsettings-class.md) | Provides high‑level client configuration, including resolution behavior and defaults. |
-| [ClientSettingsGeneralFlag](../../relational-databases/wmi-provider-configuration-classes/clientsettingsgeneralflag-class/clientsettingsgeneralflag-class.md) | Represents general client flags used to toggle or control client features. |
+| [ClientNetLibInfo](../../relational-databases/wmi-provider-configuration-classes/clientnetlibinfo-class/clientnetlibinfo-class.md) | Returns information about installed client network libraries and protocols |
+| [ClientNetworkProtocol](../../relational-databases/wmi-provider-configuration-classes/clientnetworkprotocol-class/clientnetworkprotocol-class.md) | Represents a specific client network protocol configuration (such as TCP/IP or Named Pipes) |
+| [ClientNetworkProtocolProperty](../../relational-databases/wmi-provider-configuration-classes/clientnetworkprotocolproperty-class/clientnetworkprotocolproperty-class.md) | Exposes protocol‑level settings for client network protocols |
+| [ClientSettings](../../relational-databases/wmi-provider-configuration-classes/clientsettings-class.md) | Provides high‑level client configuration, including resolution behavior and defaults |
+| [ClientSettingsGeneralFlag](../../relational-databases/wmi-provider-configuration-classes/clientsettingsgeneralflag-class/clientsettingsgeneralflag-class.md) | Represents general client flags used to toggle or control client features |
 
 ## Server Networking & Protocol Configuration
 
@@ -39,9 +39,9 @@ These classes control server‑side networking options such as protocol enableme
 
 | Class | Description |
 |-------|-------------|
-| [ServerNetworkProtocol](../../relational-databases/wmi-provider-configuration-classes/servernetworkprotocol-class/servernetworkprotocol-class.md) | Represents a server‑side network protocol (TCP/IP, Named Pipes, Shared Memory). |
-| [ServerNetworkProtocolIPAddress](../../relational-databases/wmi-provider-configuration-classes/servernetworkprotocolipaddress-class/servernetworkprotocolipaddress-class.md) | Represents IP address‑specific bindings and configuration for SQL Server network protocols. |
-| [ServerNetworkProtocolProperty](../../relational-databases/wmi-provider-configuration-classes/servernetworkprotocolproperty-class/servernetworkprotocolproperty-class.md) | Exposes protocol‑level configurable settings such as ports and packet behavior. |
+| [ServerNetworkProtocol](../../relational-databases/wmi-provider-configuration-classes/servernetworkprotocol-class/servernetworkprotocol-class.md) | Represents a server‑side network protocol (TCP/IP, Named Pipes, Shared Memory) |
+| [ServerNetworkProtocolIPAddress](../../relational-databases/wmi-provider-configuration-classes/servernetworkprotocolipaddress-class/servernetworkprotocolipaddress-class.md) | Represents IP address‑specific bindings and configuration for SQL Server network protocols |
+| [ServerNetworkProtocolProperty](../../relational-databases/wmi-provider-configuration-classes/servernetworkprotocolproperty-class/servernetworkprotocolproperty-class.md) | Exposes protocol‑level configurable settings such as ports and packet behavior |
 
 ## Server settings, flags, and instance metadata
 
@@ -49,10 +49,10 @@ These classes provide information you can use to query or control SQL Server ins
 
 | Class | Description |
 |-------|-------------|
-| [ServerSettings](../../relational-databases/wmi-provider-configuration-classes/serversettings-class/serversettings-class.md) | Defines general SQL Server instance configuration settings. |
-| [ServerSettingsGeneralFlag](../../relational-databases/wmi-provider-configuration-classes/serversettingsgeneralflag-class/serversettingsgeneralflag-class.md) | Represents configurable flags that enable or disable server‑level features. |
-| [CInstance](../../relational-databases/wmi-provider-configuration-classes/cinstance-class.md) | Provides details for clustered SQL Server instances in failover cluster environments. |
-| [SInstance](../../relational-databases/wmi-provider-configuration-classes/sinstance-class/sinstance-class.md) | Represents a standalone SQL Server instance, including identity and configuration metadata. |
+| [ServerSettings](../../relational-databases/wmi-provider-configuration-classes/serversettings-class/serversettings-class.md) | Defines general SQL Server instance configuration settings |
+| [ServerSettingsGeneralFlag](../../relational-databases/wmi-provider-configuration-classes/serversettingsgeneralflag-class/serversettingsgeneralflag-class.md) | Represents configurable flags that enable or disable server‑level features |
+| [CInstance](../../relational-databases/wmi-provider-configuration-classes/cinstance-class.md) | Provides details for clustered SQL Server instances in failover cluster environments |
+| [SInstance](../../relational-databases/wmi-provider-configuration-classes/sinstance-class/sinstance-class.md) | Represents a standalone SQL Server instance, including identity and configuration metadata |
 
 ## SQL Server services and alias management
 
@@ -60,9 +60,9 @@ Use these classes to manage SQL Server services, such as starting, stopping, and
 
 | Class | Description |
 |-------|-------------|
-| [SqlService](../../relational-databases/wmi-provider-configuration-classes/sqlservice-class/sqlservice-class.md) | Represents a SQL‑related Windows service, such as SQL Server, SQL Agent, or Browser, and allows you to manage its state. |
-| [SqlServiceAdvancedProperty](../../relational-databases/wmi-provider-configuration-classes/sqlserviceadvancedproperty-class/sqlserviceadvancedproperty-class.md) | Exposes advanced service configuration properties. |
-| [SqlServerAlias](../../relational-databases/wmi-provider-configuration-classes/sqlserveralias-class/sqlserveralias-class.md) | Represents client‑side alias definitions for redirecting SQL Server connections. |
+| [SqlService](../../relational-databases/wmi-provider-configuration-classes/sqlservice-class/sqlservice-class.md) | Represents a SQL‑related Windows service, such as SQL Server, SQL Agent, or Browser, and allows you to manage its state |
+| [SqlServiceAdvancedProperty](../../relational-databases/wmi-provider-configuration-classes/sqlserviceadvancedproperty-class/sqlserviceadvancedproperty-class.md) | Exposes advanced service configuration properties |
+| [SqlServerAlias](../../relational-databases/wmi-provider-configuration-classes/sqlserveralias-class/sqlserveralias-class.md) | Represents client‑side alias definitions for redirecting SQL Server connections |
 
 ## SQL Server error log and diagnostic classes
 
@@ -70,8 +70,8 @@ These classes expose SQL Server error log metadata and error events. By using th
 
 | Class | Description |
 |-------|-------------|
-| [SqlErrorLogEvent](../../relational-databases/wmi-provider-configuration-classes/sqlerrorlogevent-class.md) | Represents individual events recorded in the SQL Server error log. |
-| [SqlErrorLogFile](../../relational-databases/wmi-provider-configuration-classes/sqlerrorlogfile-class.md) | Provides metadata about SQL Server error log files, including paths, sizes, and rollover behavior. |
+| [SqlErrorLogEvent](../../relational-databases/wmi-provider-configuration-classes/sqlerrorlogevent-class.md) | Represents individual events recorded in the SQL Server error log |
+| [SqlErrorLogFile](../../relational-databases/wmi-provider-configuration-classes/sqlerrorlogfile-class.md) | Provides metadata about SQL Server error log files, including paths, sizes, and rollover behavior |
 
 ## Security and certificate configuration
 
@@ -79,7 +79,7 @@ These classes support client and server certificate management for encrypted con
 
 | Class | Description |
 |-------|-------------|
-| [SecurityCertificate](../../relational-databases/wmi-provider-configuration-classes/securitycertificate-class/securitycertificate-class.md) | Represents certificates that SQL Server uses for encrypted network communication. |
+| [SecurityCertificate](../../relational-databases/wmi-provider-configuration-classes/securitycertificate-class/securitycertificate-class.md) | Represents certificates that SQL Server uses for encrypted network communication |
 
 ## Related content
 
