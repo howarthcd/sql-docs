@@ -11,7 +11,7 @@ helpviewer_keywords:
   - "date/time [ODBC], API support"
 ---
 
-## ODBC API support for enhanced date and time features
+# ODBC API support for enhanced date and time features
 
 [!INCLUDE [SQL Server Azure SQL Database Synapse Analytics PDW](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw.md)]
 
