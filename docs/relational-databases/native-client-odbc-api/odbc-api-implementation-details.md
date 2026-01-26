@@ -1,13 +1,17 @@
 ---
-title: ODBC API Implementation Details
-description: Learn how the ODBC API processes function calls, manages handles, interacts with drivers, and controls diagnostics in SQL Server and Azure SQL products.
-author: your-alias-here
-ms.author: your-msauthor
-ms.reviewer: maghan
+title: "ODBC API Implementation Details"
+description: "ODBC API Implementation Details"
+author: markingmyname
+ms.author: maghan
 ms.date: 01/26/2026
 ms.service: sql
-ms.subservice: connectivity
-ms.topic: reference
+ms.subservice: native-client
+ms.topic: "reference"
+helpviewer_keywords:
+  - "ODBC, functions"
+  - "SQL Server Native Client ODBC driver, SQL Server-specific behaviors"
+  - "ODBC, SQL Server-specific behaviors"
+  - "functions [ODBC]"
 ---
 
 # ODBC API implementation details
