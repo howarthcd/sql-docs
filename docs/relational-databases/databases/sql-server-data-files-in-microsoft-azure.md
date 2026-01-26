@@ -193,7 +193,7 @@ Starting with SQL Server 2014, a new SQL Server object has been added to be used
 
 ## <a id="bkmk_Troubleshooting"></a> Troubleshoot for SQL Server Data Files in Microsoft Azure
 
-To avoid errors due to unsupported features or limitations, first review [Limitations](#bkmk_limitations).
+To avoid errors due to unsupported features or limitations, first review [Limitations](#bkmk_Limitations).
 
 > [!NOTE]
 > **Need step-by-step guidance?** Many common issues can be avoided by following the correct setup procedures. See our [Tutorial: Use Azure Blob Storage with SQL Server databases](../tutorial-use-azure-blob-storage-service-with-sql-server.md) for detailed implementation steps.  
