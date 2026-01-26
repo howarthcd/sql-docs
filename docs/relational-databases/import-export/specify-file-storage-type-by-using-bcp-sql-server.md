@@ -16,21 +16,23 @@ helpviewer_keywords:
 monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current"
 ---
 # Specify file storage type using bcp (SQL Server)
+
 [!INCLUDE[SQL Server Azure SQL Database Synapse Analytics PDW](../../includes/applies-to-version/sql-asdb-asdbmi-asa-pdw.md)]
-  The *file storage type* describes how data is stored in the data file. Data can be exported to a data file as its database table type (native format), in its character representation (character format), or as any data type where implicit conversion is supported; for example, copying a **smallint** as an **int**. User-defined data types are exported as their base types.  
+The *file storage type* describes how the data file stores data. You can export data to a data file as its database table type (native format), in its character representation (character format), or as any data type where implicit conversion is supported. For example, you can copy a **smallint** as an **int**. The system exports user-defined data types as their base types.  
   
-## The bcp Prompt for File Storage Type  
- If an interactive **bcp** command contains the **in** or **out** option without either the format file switch (**-f**) or a data-format switch (**-n**, **-c**, **-w**, or **-N**), the command prompts for the file storage type of each data field, as follows:  
-  
- `Enter the file storage type of field <field_name> [<default>]:`  
-  
- Your response to this prompt depends on the task you perform, as follows:  
-  
--   To bulk export data from an instance of [!INCLUDE[msCoName](../../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] to a data file in the most compact storage possible (native data format), accept the default file storage types that are provided by **bcp**. For a list of the native file storage types, see "Native File Storage Types," later in this topic.  
-  
--   To bulk export data from an instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] to a data file in character format, specify **char** as the file storage type for all columns in the table.  
-  
--   To bulk import data to an instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] from a data file, specify the file storage type as **char** for types stored in character format and, for data stored in native data type format, specify one of the file storage types, as appropriate:  
+## The bcp Prompt for File Storage Type
+
+When an interactive **bcp** command contains the **in** or **out** option without either the format file switch (**-f**) or a data-format switch (**-n**, **-c**, **-w**, or **-N**), the command prompts for the file storage type of each data field:
+
+`Enter the file storage type of field <field_name> [<default>]:`
+
+Your response depends on the task you perform:
+
+- To bulk export data from an instance of [!INCLUDE[msCoName](../../includes/msconame-md.md)] [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] to a data file in the most compact storage possible (native data format), accept the default file storage types that **bcp** provides. For a list of the native file storage types, see "Native File Storage Types," later in this article.
+
+- To bulk export data from an instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] to a data file in character format, specify **char** as the file storage type for all columns in the table.
+
+- To bulk import data to an instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] from a data file, specify **char** as the file storage type for types stored in character format. For data stored in native data type format, specify one of the appropriate file storage types:  
   
     |File storage type|Enter at command prompt|  
     |-----------------------|-----------------------------|  
@@ -68,10 +70,11 @@ monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-s
   
      \*The interaction of field length, prefix length, and terminators determines the amount of storage space that is allocated in a data file for noncharacter data that is exported as the **char** file storage type.  
   
-     \*\* The **ntext**, **text**, and **image** data types will be removed in a future version of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]. In new development work, avoid using these data types, and plan to modify applications that currently use them. Use **nvarchar(max)**, **varchar(max)**, and **varbinary(max)** instead.  
-  
-## Native File Storage Types  
- Each native file storage type is recorded in the format file as a corresponding host file data type.  
+     \*\* The **ntext**, **text**, and **image** data types will be removed in a future version of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]. In new development work, avoid using these data types, and plan to modify applications that currently use them. Use **nvarchar(max)**, **varchar(max)**, and **varbinary(max)** instead.
+
+## Native File Storage Types
+
+Each native file storage type is recorded in the format file as a corresponding host file data type.  
   
 |File storage type|Host file data type|  
 |-----------------------|-------------------------|  
@@ -104,25 +107,25 @@ monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-s
   
  \*Data files that are stored in character format use **char** as the file storage type. Therefore, for character data files, SQLCHAR is the only data type that appears in a format file.  
   
- \*\*You cannot bulk import data into **text**, **ntext**, and **image** columns that have DEFAULT values.  
-  
-## Additional Considerations for File Storage Types  
- When you bulk export data from an instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] to a data file:  
-  
--   You can always specify **char** as the file storage type.  
-  
--   If you enter a file storage type that represents an invalid implicit conversion, **bcp** fails; for example, though you can specify **int** for **smallint** data, if you specify **smallint** for **int** data, overflow errors result.  
-  
--   When noncharacter data types such as **float**, **money**, **datetime**, or **int** are stored as their database types, the data is written to the data file in the [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] native format.  
-  
-    > [!NOTE]  
-    >  After you interactively specify all of the fields in a **bcp** command, the command prompts you save your responses for each field in a non-XML format file. For more information on non-XML format files, see [Non-XML Format Files &#40;SQL Server&#41;](../../relational-databases/import-export/non-xml-format-files-sql-server.md).  
-  
-## See Also  
- [bcp Utility](../../tools/bcp-utility.md)   
- [Data Types &#40;Transact-SQL&#41;](../../t-sql/data-types/data-types-transact-sql.md)   
- [Specify Field Length by Using bcp &#40;SQL Server&#41;](../../relational-databases/import-export/specify-field-length-by-using-bcp-sql-server.md)   
- [Specify Field and Row Terminators &#40;SQL Server&#41;](../../relational-databases/import-export/specify-field-and-row-terminators-sql-server.md)   
- [Specify Prefix Length in Data Files by Using bcp &#40;SQL Server&#41;](../../relational-databases/import-export/specify-prefix-length-in-data-files-by-using-bcp-sql-server.md)  
-  
-  
+ \*\*You cannot bulk import data into **text**, **ntext**, and **image** columns that have DEFAULT values.
+
+## Additional Considerations for File Storage Types
+
+When you bulk export data from an instance of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] to a data file:
+
+- You can always specify **char** as the file storage type.
+
+- If you enter a file storage type that represents an invalid implicit conversion, **bcp** fails; for example, though you can specify **int** for **smallint** data, if you specify **smallint** for **int** data, overflow errors result.
+
+- When noncharacter data types such as **float**, **money**, **datetime**, or **int** are stored as their database types, the data is written to the data file in the [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)] native format.
+
+  > [!NOTE]
+  > After you interactively specify all of the fields in a **bcp** command, the command prompts you save your responses for each field in a non-XML format file. For more information on non-XML format files, see [Non-XML Format Files &#40;SQL Server&#41;](../../relational-databases/import-export/non-xml-format-files-sql-server.md).
+
+## See Also
+
+[bcp Utility](../../tools/bcp-utility.md)
+[Data Types &#40;Transact-SQL&#41;](../../t-sql/data-types/data-types-transact-sql.md)
+[Specify Field Length by Using bcp &#40;SQL Server&#41;](../../relational-databases/import-export/specify-field-length-by-using-bcp-sql-server.md)
+[Specify Field and Row Terminators &#40;SQL Server&#41;](../../relational-databases/import-export/specify-field-and-row-terminators-sql-server.md)
+[Specify Prefix Length in Data Files by Using bcp &#40;SQL Server&#41;](../../relational-databases/import-export/specify-prefix-length-in-data-files-by-using-bcp-sql-server.md)

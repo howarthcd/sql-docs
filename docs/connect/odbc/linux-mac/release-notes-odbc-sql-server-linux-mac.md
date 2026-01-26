@@ -32,7 +32,7 @@ GeneMi.  2019/04/03.
 
 | New item | Details |
 | :------- | :------ |
-| New data type | Added support for new Vector data type (float32). |
+| New data type | Added support for new Vector data type (float32). See [Vector data type (ODBC)](../vector-data-type.md) for usage and examples. |
 | ConcatNullYieldsNull property | Added support for ConcatNullYieldsNull as a connection string property. |
 | New distributions supported. | Azure Linux 3.0 ARM, Debian Linux 13, RedHat Linux 10, Ubuntu Linux 25.10 |
 | Azure Linux License | Changed License Acceptance Process for Azure Linux. |

@@ -74,6 +74,7 @@ monikerRange: ">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-s
 |**UDT** (a user-defined data type)|8|8|8|8|  
 |**XML**|8|8|8|8|  
 |**sql_variant**|8|8|8|8|  
+|**vector**|2|2|NA|NA|  
   
  \*The **ntext**, **text**, and **image** data types will be removed in a future version of [!INCLUDE[ssNoVersion](../../includes/ssnoversion-md.md)]. Avoid using these data types in new development work, and plan to modify applications that currently use them. Use **nvarchar(max)**, **varchar(max)**, and **varbinary(max)** instead.  
   

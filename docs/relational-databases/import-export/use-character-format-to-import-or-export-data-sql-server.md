@@ -42,6 +42,8 @@ When using character format, consider:
 
 - The [bcp utility](../../tools/bcp-utility.md) exports [money](../../t-sql/data-types/money-and-smallmoney-transact-sql.md) values as character-format data files with four digits after the decimal point and without any digit-grouping symbols such as comma separators. For example, a [money](../../t-sql/data-types/money-and-smallmoney-transact-sql.md) column that contains the value `1,234,567.123456` is bulk exported to a data file as the character string `1234567.1235`.
 
+- Vector type columns do not support conversion to or from character format. Hence bulk import or export of vector columns in character format is not supported.
+
 ## Command options for character format
 
 You can import character format data into a table using [bcp](../../tools/bcp-utility.md), [BULK INSERT (Transact-SQL)](../../t-sql/statements/bulk-insert-transact-sql.md), or [OPENROWSET (BULK)](../../t-sql/functions/openrowset-bulk-transact-sql.md). For a [bcp](../../tools/bcp-utility.md) command or [BULK INSERT (Transact-SQL)](../../t-sql/statements/bulk-insert-transact-sql.md) statement, you can specify the data format in the statement. For an [OPENROWSET (BULK)](../../t-sql/functions/openrowset-bulk-transact-sql.md) statement, you must specify the data format in a format file.

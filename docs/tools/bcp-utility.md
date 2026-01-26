@@ -39,10 +39,10 @@ The bulk copy program utility (**bcp**) bulk copies data between an instance of 
 
 For using **bcp** on Linux, see [Install the sqlcmd and bcp SQL Server command-line tools on Linux](../linux/sql-server-linux-setup-tools.md). For detailed information about using **bcp** with Azure Synapse Analytics, see [Load data with bcp](/azure/sql-data-warehouse/sql-data-warehouse-load-with-bcp).
 
-The **bcp** utility can be used to import large numbers of new rows into [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)] tables or to export data out of tables into data files. Except when used with the `queryout` option, the utility requires no knowledge of [!INCLUDE [tsql](../includes/tsql-md.md)]. To import data into a table, you must either use a format file created for that table, or understand the structure of the table and the types of data that are valid for its columns.
+You can use the **bcp** utility to import large numbers of new rows into [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)] tables or to export data from tables into data files. Except when you use it with the `queryout` option, the utility requires no knowledge of [!INCLUDE [tsql](../includes/tsql-md.md)]. To import data into a table, you must either use a format file created for that table or understand the table structure and the valid data types for its columns.
 
 > [!NOTE]  
-> If you use **bcp** to back up your data, create a format file to record the data format. **bcp** data files **don't include** any schema or format information, so if a table or view is dropped and you don't have a format file, you might be unable to import the data.
+> If you use **bcp** to back up your data, create a format file to record the data format. **bcp** data files **do not include** any schema or format information, so if a table or view is dropped and you do not have a format file, you might be unable to import the data.
 
 :::image type="icon" source="../includes/media/topic-link-icon.svg" border="false"::: For the syntax conventions that are used for the **bcp** syntax, see [Transact-SQL syntax conventions](../t-sql/language-elements/transact-sql-syntax-conventions-transact-sql.md).
 
@@ -150,7 +150,7 @@ bcp [database_name.] schema.{table_name | view_name | "query"}
 
 - The line terminator is a newline (`\n`).
 
-- Character mode is the preferred format for **bcp** format files, and data files that don't contain extended characters.
+- Character mode is the preferred format for **bcp** format files, and data files that do not contain extended characters.
 
 - A backslash (`\`) on a command-line argument must either be quoted or escaped. For example, to specify a newline as a custom row terminator, you must use one of the following mechanisms:
 
@@ -184,8 +184,8 @@ The following table lists the command-line options available in **bcp**, and whi
 | [**-l *login_timeout***](#-l-login_timeout) | Yes | Yes |
 | [**-L *last_row***](#-l-last_row) | Yes | Yes |
 | [**-m *max_errors***](#-m-max_errors) | Yes | Yes |
-| [**-n**](#-n-native) | Yes | Yes |
-| [**-N**](#-n-unicode) | Yes | No |
+| [**-n**](#-n) | Yes | Yes |
+| [**-N**](#-n-1) | Yes | No |
 | [**-o *output_file***](#-o-output_file) | Yes | No |
 | [**-P *password***](#-p-password) | Yes | Yes |
 | [**-q**](#-q) | Yes | Yes |
@@ -195,24 +195,24 @@ The following table lists the command-line options available in **bcp**, and whi
 | [**-t *field_term***](#-t-field_term) | Yes | Yes |
 | [**-T**](#-t) | Yes | Yes |
 | [**-U *login_id***](#-u-login_id) | Yes | Yes |
-| [**-u**](#-u) | Yes <sup>1</sup> | Yes |
+| [**-u**](#-u) | Yes ^1^ | Yes |
 | [**-v**](#-v) | Yes | Yes |
 | [**-V (80 \| 90 \| 100 \| 110 \| 120 \| 130 \| 140 \| 150 \| 160 \| 170 )**](#-v--80--90--100--110--120--130--140--150--160--170-) | Yes | No |
 | [**-w**](#-w) | Yes | Yes |
 | [**-x**](#-x) | Yes | No |
-| [**-Y\[s\|m\|o\]**](#-ysmo) | Yes <sup>1</sup> | Yes |
+| [**-Y\[s\|m\|o\]**](#-ysmo) | Yes ^1^ | Yes |
 
-Yes<sup>1</sup> [!INCLUDE [sssql25-md](../includes/sssql25-md.md)] and later versions.
+Yes^1^ [!INCLUDE [sssql25-md](../includes/sssql25-md.md)] and later versions.
 
-#### *database_name*
+### *database_name*
 
 The name of the database in which the specified table or view resides. If not specified, this is the default database for the user.
 
 You can also explicitly specify the database name with `-d`.
 
-#### *schema*
+### *schema*
 
-The name of the owner of the table or view. *schema* is optional if the user performing the operation owns the specified table or view. If *schema* isn't specified, and the user performing the operation doesn't own the specified table or view, [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)] returns an error message, and the operation is canceled.
+The name of the owner of the table or view. *schema* is optional if the user performing the operation owns the specified table or view. If *schema* is not specified, and the user performing the operation does not own the specified table or view, [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)] returns an error message, and the operation is canceled.
 
 #### *table_name*
 
@@ -254,17 +254,17 @@ Creates a format file based on the option specified (`-n`, `-c`, `-w`, or `-N`) 
 
 Specifies the number of bytes, per network packet, sent to and from the server. A server configuration option can be set by using [!INCLUDE [ssManStudioFull](../includes/ssmanstudiofull-md.md)] (or the `sp_configure` system stored procedure). However, the server configuration option can be overridden on an individual basis by using this option. *packet_size* can be from 4,096 bytes to 65,535 bytes; the default is `4096`.
 
-Increased packet size can enhance performance of bulk-copy operations. If a larger packet is requested but can't be granted, the default is used. The performance statistics generated by the **bcp** utility show the packet size used.
+Increased packet size can enhance performance of bulk-copy operations. If a larger packet is requested but cannot be granted, the default is used. The performance statistics generated by the **bcp** utility show the packet size used.
 
 #### -b *batch_size*
 
 Specifies the number of rows per batch of imported data. Each batch is imported and logged as a separate transaction that imports the whole batch before being committed. By default, all the rows in the data file are imported as one batch. To distribute the rows among multiple batches, specify a *batch_size* that is smaller than the number of rows in the data file. If the transaction for any batch fails, only insertions from the current batch are rolled back. Batches already imported by committed transactions are unaffected by a later failure.
 
-Don't use this option with the `-h "ROWS_PER_BATCH=<bb>"` option.
+Do not use this option with the `-h "ROWS_PER_BATCH=<bb>"` option.
 
 #### -c
 
-Performs the operation using a character data type. This option doesn't prompt for each field; it uses **char** as the storage type, without prefixes and with `\t` (tab character) as the field separator and `\r\n` (newline character) as the row terminator. `-c` isn't compatible with `-w`.
+Performs the operation using a character data type. This option does not prompt for each field; it uses **char** as the storage type, without prefixes and with `\t` (tab character) as the field separator and `\r\n` (newline character) as the row terminator. `-c` is not compatible with `-w`.
 
 For more information, see [Use character format to import or export data (SQL Server)](../relational-databases/import-export/use-character-format-to-import-or-export-data-sql-server.md).
 
@@ -279,13 +279,13 @@ You should specify a collation name for each column in a format file, except whe
 | Code page value | Description |
 | --- | --- |
 | `ACP` | [!INCLUDE [vcpransi](../includes/vcpransi-md.md)]/Microsoft Windows (ISO 1252). |
-| `OEM` | Default code page used by the client. This is the default code page used if `-C` isn't specified. |
+| `OEM` | Default code page used by the client. This is the default code page used if `-C` is not specified. |
 | `RAW` | No conversion from one code page to another occurs. This is the fastest option because no conversion occurs. |
-| `<code_page>` | Specific code page number; for example, 850.<br /><br />Versions before version 13 ([!INCLUDE [sssql15-md](../includes/sssql16-md.md)]) don't support code page 65001 (UTF-8 encoding). Versions beginning with 13 can import UTF-8 encoding to earlier versions of [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)]. |
+| `<code_page>` | Specific code page number; for example, 850.  \n  \nVersions before version 13 ([!INCLUDE [sssql15-md](../includes/sssql16-md.md)]) do not support code page 65001 (UTF-8 encoding). Versions beginning with 13 can import UTF-8 encoding to earlier versions of [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)]. |
 
 #### -d *database_name*
 
-Specifies the database to connect to. By default, **bcp** connects to the user's default database. If `-d <database_name>` and a three part name (database_name.schema.table, passed as the first parameter to **bcp**) are specified, an error occurs because you can't specify the database name twice. If *database_name* begins with a hyphen (`-`) or a forward slash (`/`), don't add a space between `-d` and the database name.
+Specifies the database to connect to. By default, **bcp** connects to the user's default database. If `-d <database_name>` and a three part name (database_name.schema.table, passed as the first parameter to **bcp**) are specified, an error occurs because you cannot specify the database name twice. If *database_name* begins with a hyphen (`-`) or a forward slash (`/`), do not add a space between `-d` and the database name.
 
 #### -D
 
@@ -294,22 +294,22 @@ Causes the value passed to the `bcp -S` option to be interpreted as a data sourc
 A DSN can be used to:
 
 - embed driver options to simplify command lines,
-- enforce driver options that aren't otherwise accessible from the command line such as MultiSubnetFailover,
+- enforce driver options that are not otherwise accessible from the command line such as MultiSubnetFailover,
 - or to help protect sensitive credentials from being discoverable as command line arguments.
 
 For more information, see [DSN support in sqlcmd and bcp](sqlcmd/sqlcmd-utility.md#dsn-support-in-sqlcmd-and-bcp).
 
 #### -e *err_file*
 
-Specifies the full path of an error file used to store any rows that the **bcp** utility can't transfer from the file to the database. Error messages from the **bcp** command go to the workstation of the user. If this option isn't used, an error file isn't created.
+Specifies the full path of an error file used to store any rows that the **bcp** utility cannot transfer from the file to the database. Error messages from the **bcp** command go to the workstation of the user. If this option is not used, an error file is not created.
 
-If *err_file* begins with a hyphen (`-`) or a forward slash (`/`), don't include a space between `-e` and the *err_file* value.
+If *err_file* begins with a hyphen (`-`) or a forward slash (`/`), do not include a space between `-e` and the *err_file* value.
 
 #### -E
 
-Specifies that identity value or values in the imported data file are to be used for the identity column. If `-E` isn't given, the identity values for this column in the data file being imported are ignored, and [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)] automatically assigns unique values based on the seed and increment values specified during table creation. For more information, see [DBCC CHECKIDENT](../t-sql/database-console-commands/dbcc-checkident-transact-sql.md).
+Specifies that identity value or values in the imported data file are to be used for the identity column. If `-E` is not given, the identity values for this column in the data file being imported are ignored, and [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)] automatically assigns unique values based on the seed and increment values specified during table creation. For more information, see [DBCC CHECKIDENT](../t-sql/database-console-commands/dbcc-checkident-transact-sql.md).
 
-If the data file doesn't contain values for the identity column in the table or view, use a format file to specify that the identity column in the table or view should be skipped when importing data. [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)] automatically assigns unique values for the column.
+If the data file does not contain values for the identity column in the table or view, use a format file to specify that the identity column in the table or view should be skipped when importing data. [!INCLUDE [ssNoVersion](../includes/ssnoversion-md.md)] automatically assigns unique values for the column.
 
 The `-E` option has a special permissions requirement. For more information, see "[Remarks](#remarks)" later in this article.
 
@@ -322,7 +322,7 @@ Specifies the full path of a format file. The meaning of this option depends on 
 - If used with the `in` or `out` option, `-f` requires an existing format file.
 
   > [!NOTE]  
-  > Using a format file in with the `in` or `out` option is optional. In the absence of the `-f` option, if `-n`, `-c`, `-w`, or `-N` isn't specified, the command prompts for format information and lets you save your responses in a format file (whose default file name is `bcp.fmt`).
+  > Using a format file in with the `in` or `out` option is optional. In the absence of the `-f` option, if `-n`, `-c`, `-w`, or `-N` is not specified, the command prompts for format information and lets you save your responses in a format file (whose default file name is `bcp.fmt`).
 
 If *format_file* begins with a hyphen (`-`) or a forward slash (`/`), don't include a space between `-f` and the *format_file* value.
 
@@ -566,15 +566,11 @@ A row that can't be copied by the **bcp** utility is ignored and is counted as o
 > [!NOTE]  
 > The `-m` option also doesn't apply to converting the **money** or **bigint** data types.
 
-<a id="-n-native"></a>
-
 #### -n
 
 Performs the bulk-copy operation using the native (database) data types of the data. This option doesn't prompt for each field; it uses the native values.
 
 For more information, see [Use native format to import or export data (SQL Server)](../relational-databases/import-export/use-native-format-to-import-or-export-data-sql-server.md).
-
-<a id="-n-unicode"></a>
 
 #### -N
 

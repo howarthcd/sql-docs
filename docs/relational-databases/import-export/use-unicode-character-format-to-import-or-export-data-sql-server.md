@@ -30,6 +30,8 @@ When using Unicode character format, consider:
 
 - The [sql_variant](../../t-sql/data-types/sql-variant-transact-sql.md) data that is stored in a Unicode character-format data file operates in the same way it operates in a character-format data file, except that the data is stored as [nchar](../../t-sql/data-types/nchar-and-nvarchar-transact-sql.md) instead of [char](../../t-sql/data-types/char-and-varchar-transact-sql.md) data. For more information about character format, see [Collation and Unicode support](../collations/collation-and-unicode-support.md).
 
+- Vector type columns do not support conversion to or from character format. Hence bulk import or export of vector columns in character format is not supported.
+
 ## Special considerations for Using Unicode character format, bcp, and a format file
 
 Unicode character format data files follow the conventions for Unicode files. The first two bytes of the file are hexadecimal numbers, 0xFFFE. These bytes serve as byte-order marks (BOM), specifying whether the high-order byte is stored first or last in the file. The [bcp Utility](../../tools/bcp-utility.md) might misinterpret the BOM and cause part of your import process to fail; you might receive an error message similar as follows:

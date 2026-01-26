@@ -28,7 +28,7 @@ For the ARM64 driver: [Chinese (Simplified)](https://go.microsoft.com/fwlink/?li
 
 | Feature added | Details |
 | :------- | :------ |
-| New data type | Added support for new Vector data type (float32). |
+| New data type | Added support for new Vector data type (float32). See [Vector data type (ODBC)](../vector-data-type.md) for usage and examples. |
 | ConcatNullYieldsNull property | Added support for ConcatNullYieldsNull property as both a connection string property and a registry key option. |
 | New distribution supported | Added x86 support on Windows ARM64. |
 
