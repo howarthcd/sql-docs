@@ -32,7 +32,7 @@ These functions help an application discover the structure of table-valued param
 | [SQLProcedureColumns](../../relational-databases/native-client-odbc-api/sqlprocedurecolumns.md) | Retrieves metadata for table‑valued parameter-related stored procedure parameters |
 | [SQLTables](../../relational-databases/native-client-odbc-api/sqltables.md) | Lists tables and table types available as sources for table‑valued parameter  declarations |
 
-## Table‑valued parameter parameter binding and data transmission
+## Table‑valued parameter binding and data transmission
 
 These functions handle binding structured data to parameters, passing the data to the server, or streaming rows during execution.
 
