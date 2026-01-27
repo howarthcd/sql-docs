@@ -4,7 +4,7 @@ description: Learn about installing and configuring SQL Server on SELinux, using
 author: rwestMSFT
 ms.author: randolphwest
 ms.reviewer: amitkh
-ms.date: 01/23/2026
+ms.date: 01/27/2026
 ms.service: sql
 ms.subservice: linux
 ms.topic: how-to
@@ -63,46 +63,40 @@ To run [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] as a confined 
 
 1. Add the [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] repository that contains `mssql-server-selinux`.
 
-   For [!INCLUDE [sssql25-md](../includes/sssql25-md.md)]:
+   For [!INCLUDE [sssql25-md](../includes/sssql25-md.md)] on RHEL 9:
 
    ```bash
    sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/9/mssql-server-2025.repo
    ```
 
-   For [!INCLUDE [sssql22-md](../includes/sssql22-md.md)]:
+   For [!INCLUDE [sssql22-md](../includes/sssql22-md.md)] on RHEL 9:
 
    ```bash
    sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/9/mssql-server-2022.repo
    ```
 
+   > [!NOTE]  
+   > If you plan to install on RHEL 10, then change to the RHEL 10 repositories.
+
 1. Run the following command to view the SELinux policy dependencies:
 
    ```bash
-   sudo dnf repoquery --requires mssql-server-selinux | egrep '^selinux-policy(-base)?'
+   sudo dnf repoquery --requires --latest-limit=1 mssql-server-selinux | egrep '^selinux-policy(-base)?'
    ```
 
-1. In the output, find the highest distribution tag or point-release entry, such as `.el9_6`. The suffix shows the *minimum required* RHEL 9 minor release for that policy build. For example, `.el9_6` maps to RHEL 9.6.
+1. The output includes the minimum SELinux policy version required, indicated by a suffix such as `.el9_6`. This suffix represents the minimum RHEL 9 minor release that the policy was built for. For example, `.el9_6` corresponds to RHEL 9.6.
+
+   If no such suffix appears in the output, refer to Red Hat documentation to determine the minimum RHEL minor version associated with that SELinux policy build. In the following example, the required SELinux base version is `38.1.53-5`.
+
+   ```bash
+   sudo dnf repoquery --requires --latest-limit=1 mssql-server-selinux | egrep '^selinux-policy(-base)?'
+   ```
 
    Here's example output:
 
-   ```bash
-   $ sudo dnf repoquery --requires mssql-server-selinux | egrep '^selinux-policy(-base)?'
-   selinux-policy >= 38.1.11-2.el9_2.4
-   selinux-policy >= 38.1.23-1.el9
-   selinux-policy >= 38.1.23-1.el9_3.2
-   selinux-policy >= 38.1.35-2.el9_4
-   selinux-policy >= 38.1.35-2.el9_4.2
-   selinux-policy >= 38.1.45-3.el9_5
+   ```output
    selinux-policy >= 38.1.53-5.el9_6
-   selinux-policy >= 38.1.65-1.el9
-   selinux-policy-base >= 38.1.11-2.el9_2.4
-   selinux-policy-base >= 38.1.23-1.el9
-   selinux-policy-base >= 38.1.23-1.el9_3.2
-   selinux-policy-base >= 38.1.35-2.el9_4
-   selinux-policy-base >= 38.1.35-2.el9_4.2
-   selinux-policy-base >= 38.1.45-3.el9_5
    selinux-policy-base >= 38.1.53-5.el9_6
-   selinux-policy-base >= 38.1.65-1.el9
    ```
 
    In this example, the highest minor-version-tagged requirement is `38.1.53-5.el9_6`. So, you need at least RHEL 9.6 to install [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] with SELinux (`mssql-server-selinux`), and run it as a confined application on RHEL 9.
