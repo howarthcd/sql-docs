@@ -36,9 +36,6 @@ This article provides different syntax, arguments, remarks, permissions, and exa
 
 ::: moniker range="=fabric"
 
-> [!NOTE]
-> In Fabric Data Warehouse, `MERGE` is in preview.
-
 ::: moniker-end
 
 :::image type="icon" source="../../includes/media/topic-link-icon.svg" border="false"::: [Transact-SQL syntax conventions](../../t-sql/language-elements/transact-sql-syntax-conventions-transact-sql.md)
