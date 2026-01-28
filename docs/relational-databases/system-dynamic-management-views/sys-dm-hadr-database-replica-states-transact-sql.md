@@ -74,7 +74,7 @@ The values of the `end_of_log_lsn`, `last_hardened_lsn`, `last_received_lsn`, `l
 
 `end_of_log_lsn`, `last_hardened_lsn`, and `recovery_lsn` are flush LSNs. For example, `last_hardened_lsn` indicates the start of the next block past the blocks that are already on disk. So any LSN less the value of `last_hardened_lsn` is on disk. LSNs that are greater than or equal to this value aren't flushed.
 
-Of the LSN values returned by `sys.dm_hadr_database_replica_states`, only `last_redone_lsn` is a real LSN.
+Of the LSN values returned by `sys.dm_hadr_database_replica_states`, only `last_redone_lsn` and `last_commit_lsn` are real LSNs.
 
 ## Permissions
 
