@@ -4,7 +4,7 @@ description: The MERGE statement runs insert, update, or delete operations on a 
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: emtehran, randolphwest
-ms.date: 09/08/2025
+ms.date: 01/27/2026
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -33,10 +33,6 @@ monikerRange: "=azuresqldb-current || =azuresqldb-mi-current || >=sql-server-201
 The `MERGE` statement runs insert, update, or delete operations on a target table from the results of a join with a source table. For example, synchronize two tables by inserting, updating, or deleting rows in one table based on differences found in the other table.
 
 This article provides different syntax, arguments, remarks, permissions, and examples based on the selected product version. Select your desired product version from the version dropdown list.
-
-::: moniker range="=fabric"
-
-::: moniker-end
 
 :::image type="icon" source="../../includes/media/topic-link-icon.svg" border="false"::: [Transact-SQL syntax conventions](../../t-sql/language-elements/transact-sql-syntax-conventions-transact-sql.md)
 
