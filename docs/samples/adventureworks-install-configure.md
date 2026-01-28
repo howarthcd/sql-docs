@@ -4,7 +4,7 @@ description: Follow these instructions to download and install AdventureWorks sa
 author: MashaMSFT
 ms.author: mathoma
 ms.reviewer: randolphwest
-ms.date: 11/18/2025
+ms.date: 01/28/2026
 ms.service: sql
 ms.subservice: samples
 ms.topic: concept-article
@@ -30,8 +30,8 @@ For more information about samples, see the [Samples GitHub repository](https://
 
 Use these links to download the appropriate sample database for your scenario.
 
-- **OLTP** data is for most typical online transaction processing workloads.
-- **Data Warehouse (DW)** data is for data warehousing workloads.
+- **OLTP** data works for most typical online transaction processing workloads.
+- **Data Warehouse (DW)** data works for data warehousing workloads.
 - **Lightweight (LT)** data is a lightweight and pared down version of the **OLTP** sample.
 
 If you're not sure what you need, start with the OLTP version that matches your SQL Server version.
@@ -48,7 +48,7 @@ If you're not sure what you need, start with the OLTP version that matches your 
 | [AdventureWorks2012.bak](https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2012.bak) | [AdventureWorksDW2012.bak](https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksDW2012.bak) | [AdventureWorksLT2012.bak](https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2012.bak) |
 | [AdventureWorks2008R2.bak](https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks2008r2/adventure-works-2008r2-oltp.bak) | [AdventureWorksDW2008R2.bak](https://github.com/microsoft/sql-server-samples/releases/download/adventureworks2008r2/adventure-works-2008r2-dw.bak) | N/A |
 
-You can find additional files on GitHub:
+You can find more files on GitHub:
 
 - [SQL Server 2014 - 2025](https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks)
 - [SQL Server 2012](https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks2012)
@@ -56,15 +56,15 @@ You can find additional files on GitHub:
 
 ## Restore to SQL Server
 
-You can use the `.bak` file to restore your sample database to your [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] instance. You can do so using the [RESTORE](../t-sql/statements/restore-statements-transact-sql.md) T-SQL command, or using the graphical interface (GUI) in [SSMS](/ssms/sql-server-management-studio-ssms), the [MSSQL extension](https://aka.ms/mssql-marketplace) for [Visual Studio Code](https://code.visualstudio.com/docs), or any T-SQL query tool.
+Use the `.bak` file to restore your sample database to your [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] instance. You can restore the database by using the [RESTORE Statements](../t-sql/statements/restore-statements-transact-sql.md) T-SQL command, or by using the graphical interface (GUI) in [SSMS](/ssms/sql-server-management-studio-ssms), the [MSSQL extension for Visual Studio Code](../tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code.md), or any T-SQL query tool.
 
 ### [SSMS](#tab/ssms)
 
-If you're not familiar with using SSMS, you can review [Connect and query using SSMS](/ssms/quickstarts/ssms-connect-query-sql-server) to get started.
+If you're not familiar with using SSMS, review [Connect and query using SSMS](/ssms/quickstarts/ssms-connect-query-sql-server) to get started.
 
 To restore your database in SSMS, follow these steps:
 
-1. Download the appropriate `.bak` file from one of links provided in the [Download backup files](#download-backup-files) section of this article.
+1. Download the appropriate `.bak` file from one of the links provided in the [Download backup files](#download-backup-files) section of this article.
 1. Move the `.bak` file to your [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] backup location. This location varies depending on your installation location, instance name, and version of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)]. For example, the default location for a default instance of [!INCLUDE [sssql22-md](../includes/sssql22-md.md)] is:
 
    ```output
@@ -84,7 +84,7 @@ To restore your database in SSMS, follow these steps:
 
    :::image type="content" source="media/adventureworks-install-configure/restore-db-wizard-ssms.png" alt-text="Screenshot showing the Restore Database window. The backup set to restore and the OK option are highlighted." lightbox="media/adventureworks-install-configure/restore-db-wizard-ssms.png":::
 
-For more information on restoring a [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] database, see [Restore a database backup using SSMS](../relational-databases/backup-restore/restore-a-database-backup-using-ssms.md).
+For more information on restoring a [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] database, see [Restore a Database Backup Using SSMS](../relational-databases/backup-restore/restore-a-database-backup-using-ssms.md).
 
 ### [Transact-SQL (T-SQL)](#tab/tsql)
 
@@ -147,7 +147,7 @@ Follow these steps to deploy a new sample `AdventureWorksLT` database in Azure S
 
 1. Select **Next: Tags**.
 
-1. Consider using Azure tags. For example, the "Owner" or "CreatedBy" tag to identify who created the resource, and the Environment tag to identify whether this resource is in Production, Development, etc. For more information, see [Develop your naming and tagging strategy for Azure resources](/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging).
+1. Consider using Azure tags. For example, use the `Owner` or `CreatedBy` tag to identify who created the resource, and use the `Environment` tag to identify whether this resource is in Production, Development, or another environment. For more information, see [Develop your naming and tagging strategy for Azure resources](/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging).
 
 1. Select **Create** to create your new SQL Database, which is the restored copy of the `AdventureWorksLT` database.
 
@@ -173,7 +173,7 @@ To load a sample `AdventureWorksLT` database in a new SQL database in Microsoft 
 
 Instead of restoring a database, you can use scripts to create the `AdventureWorks` databases, regardless of version.
 
-You can use the following scripts to create the entire `AdventureWorks` database:
+Use the following scripts to create the entire `AdventureWorks` database:
 
 - [AdventureWorks OLTP scripts zip](https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks-oltp-install-script.zip)
 - [AdventureWorks DW scripts zip](https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksDW-data-warehouse-install-script.zip)
@@ -182,6 +182,6 @@ You can find additional information about using the scripts on [GitHub](https://
 
 ## Related content
 
-- [Database Engine tutorials](../relational-databases/database-engine-tutorials.md)
+- [Database Engine Tutorials](../relational-databases/database-engine-tutorials.md)
 - [Quickstart: Connect and query a SQL Server instance using SSMS](/ssms/quickstarts/ssms-connect-query-sql-server)
 - [What is the MSSQL extension for Visual Studio Code?](../tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code.md)

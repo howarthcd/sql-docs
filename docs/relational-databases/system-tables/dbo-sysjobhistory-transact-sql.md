@@ -51,7 +51,9 @@ This table is stored in the `msdb` database.
 
 ## Examples
 
-The following [!INCLUDE [tsql](../../includes/tsql-md.md)] query converts the `run_date` and `run_time` columns into a **datetime** column named `LastRunStartDateTime`. The `run_duration` column is converted into an **int** column named `LastRunDurationSeconds`. These two columns are then used to calculate the `LastRunFinishDateTime`. The `run_duration` column is also converted into a more user-friendly format. You can run the script in [!INCLUDE [ssManStudioFull](../../includes/ssmanstudiofull-md.md)] or Azure Data Studio.
+The following [!INCLUDE [tsql](../../includes/tsql-md.md)] query converts the `run_date` and `run_time` columns into a **datetime** column named `LastRunStartDateTime`. The `run_duration` column is converted into an **int** column named `LastRunDurationSeconds`. These two columns are then used to calculate the `LastRunFinishDateTime`. The `run_duration` column is also converted into a more user-friendly format.
+
+[!INCLUDE [connect-instance-client](../../includes/connect-instance-client.md)]
 
 ```sql
 SET NOCOUNT ON;
