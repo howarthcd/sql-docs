@@ -4074,7 +4074,7 @@ Updates the timestamp for an existing warehouse snapshot in Fabric Data Warehous
 
 #### RESULT_SET_CACHING
 
-Enables or disables result set caching (preview) for the target item. During preview, the default setting of this feature is `OFF`. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).
+Enables or disables result set caching for the target item. The default setting of this feature is `ON`. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).
 
 #### PROACTIVE_STATISTICS_REFRESH
 
@@ -4102,15 +4102,17 @@ To check the current status of Delta Lake Log publishing on all warehouses, of y
 SELECT [name], [DATA_LAKE_LOG_PUBLISHING_DESC] FROM sys.databases;
 ```
 
-### B. Set and check result set caching (preview)
+<a id="set-and-check-result-set-caching-preview"></a>
 
-The following T-SQL command will enable the item `MyDataWarehouse` to begin creating and applying result set cache (preview) to applicable `SELECT` queries. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).
+### B. Set and check result set caching
+
+The following T-SQL command will enable the item `MyDataWarehouse` to begin creating and applying result set cache to applicable `SELECT` queries. For more information, see [Result set caching](/fabric/data-warehouse/result-set-caching).
 
 ```sql
 ALTER DATABASE [MyDataWarehouse] SET RESULT_SET_CACHING ON;
 ```
 
-The column `is_result_set_caching_on` from [sys.databases](../../relational-databases/system-catalog-views/sys-databases-transact-sql.md?view=fabric&preserve-view=true) can then be checked to confirm that result set caching (preview) has been enabled.
+The column `is_result_set_caching_on` from [sys.databases](../../relational-databases/system-catalog-views/sys-databases-transact-sql.md?view=fabric&preserve-view=true) can then be checked to confirm that result set caching has been enabled.
 
 ```sql
 SELECT [name], [is_result_set_caching_on] FROM sys.databases;
