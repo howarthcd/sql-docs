@@ -4,7 +4,7 @@ description: Install and use the SQL Database Projects extension for Visual Stud
 author: dzsquared
 ms.author: drskwier
 ms.reviewer: randolphwest, maghan
-ms.date: 01/19/2026
+ms.date: 01/28/2026
 ms.service: sql
 ms.subservice: sql-database-projects
 ms.topic: concept-article
@@ -15,8 +15,6 @@ ms.custom:
 ---
 
 # SQL Database Projects extension
-
-[!INCLUDE [azure-data-studio-deprecation](../../../includes/azure-data-studio-deprecation.md)]
 
 The SQL Database Projects extension is a Visual Studio Code extension for developing SQL databases in a project-based development environment. Compatible databases include SQL Server, Azure SQL Database, Azure SQL Managed Instance, Warehouse in Fabric, and SQL database in Fabric. A SQL project is a local representation of SQL objects that comprise the schema for a single database, such as tables, stored procedures, or functions. When you build a SQL Database project, you create a `.dacpac` file. You can update new and existing databases to match the contents of the `.dacpac` by publishing the SQL Database project with the SQL Database Projects extension or by publishing the `.dacpac` with the [SqlPackage](../../sqlpackage/sqlpackage-publish.md) command line interface.
 
@@ -42,7 +40,7 @@ The SQL Database Projects extension provides the following features:
 
 You can install the SQL Database Project extension in Visual Studio Code.
 
-The SQL Database Projects extension is installed with the [mssql](/sql/tools/visual-studio-code/sql-server-develop-use-vscode) extension for Visual Studio Code.
+The SQL Database Projects extension is installed with the [MSSQL extension](../mssql/mssql-extension-visual-studio-code.md) for Visual Studio Code.
 
 ## Dependencies
 
