@@ -3,7 +3,7 @@ title: "SQL to C: Date"
 description: "SQL to C: Date"
 author: David-Engel
 ms.author: davidengel
-ms.date: "01/19/2017"
+ms.date: 01/28/2026
 ms.service: sql
 ms.subservice: connectivity
 ms.topic: reference
@@ -13,11 +13,15 @@ helpviewer_keywords:
   - "data conversions from SQL to C types [ODBC], date"
 ---
 # SQL to C: Date
+
 The identifier for the date ODBC SQL data type is:  
   
  SQL_TYPE_DATE  
   
- The following table shows the ODBC C data types to which date SQL data may be converted. For an explanation of the columns and terms in the table, see [Converting Data from SQL to C Data Types](../../../odbc/reference/appendixes/converting-data-from-sql-to-c-data-types.md).  
+ The following table shows the ODBC C data types to which the driver can convert date SQL data. For an explanation of the columns and terms in the table, see [Converting Data from SQL to C Data Types](../../../odbc/reference/appendixes/converting-data-from-sql-to-c-data-types.md).
+
+> [!NOTE]
+> For character conversions, *BufferLength* must include space for the null terminator. A date string is 10 characters long (yyyy-mm-dd), so *BufferLength* must be at least 11 bytes to avoid truncation.  
   
 |C type identifier|Test|**TargetValuePtr*|**StrLen_or_IndPtr*|SQLSTATE|  
 |-----------------------|----------|------------------------|----------------------------|--------------|  
@@ -29,8 +33,13 @@ The identifier for the date ODBC SQL data type is:
   
  [a]   The value of *BufferLength* is ignored for this conversion. The driver assumes that the size of **TargetValuePtr* is the size of the C data type.  
   
- [b]   The time fields of the timestamp structure are set to zero.  
+ [b]   The driver sets the time fields of the timestamp structure to zero.  
   
  [c]   This is the size of the corresponding C data type.  
   
- When date SQL data is converted to character C data, the resulting string is in the "*yyyy*-*mm*-*dd*" format. This format is not affected by the Windows country/region setting.
+ When the driver converts date SQL data to character C data, the resulting string is in the "*yyyy*-*mm*-*dd*" format. This format isn't affected by the Windows country/region setting.
+## Related content
+
+- [Converting Data from SQL to C Data Types](../../../odbc/reference/appendixes/converting-data-from-sql-to-c-data-types.md)
+- [SQL to C: Timestamp](../../../odbc/reference/appendixes/sql-to-c-timestamp.md)
+- [Data Type Identifiers and Descriptors](../../../odbc/reference/appendixes/data-type-identifiers-and-descriptors.md)
