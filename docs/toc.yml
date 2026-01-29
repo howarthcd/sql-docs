@@ -8685,6 +8685,8 @@ items:
       href: tools/sql-database-projects/get-started.md
     - name: SQL projects tools
       href: tools/sql-database-projects/sql-projects-tools.md
+    - name: SQL projects automation
+      href: tools/sql-database-projects/sql-projects-automation.md
     - name: Tutorials
       items:
       - name: Creating and deploying a SQL project
