@@ -4,7 +4,7 @@ description: Getting started using the SQL Database Projects extension for Visua
 author: dzsquared
 ms.author: drskwier
 ms.reviewer: randolphwest, maghan
-ms.date: 01/19/2026
+ms.date: 01/28/2026
 ms.service: sql
 ms.subservice: sql-database-projects
 ms.topic: get-started
@@ -16,13 +16,11 @@ ms.custom:
 
 # Get started with the SQL Database Projects extension
 
-[!INCLUDE [azure-data-studio-deprecation](../../../includes/azure-data-studio-deprecation.md)]
-
-This article describes three ways to get started with the SQL Database Projects extension:
+This article describes the following ways to get started with the SQL Database Projects extension in Visual Studio Code:
 
 1. [Create a new database project](#create-an-empty-database-project) by going to the **Database Projects** view or by searching for **Database Projects: New** in the command palette.
 
-1. [Existing database projects](#open-an-existing-project) can be opened via **Database Projects: Open existing** in the command palette.
+1. You can open [existing database projects](#open-an-existing-project) using **Database Projects: Open existing** in the command palette.
 
 1. [Start from an existing database](#create-a-database-project-from-an-existing-database) by using **Database Projects: Create Project from Database** from the command palette or by selecting **Create Project from Database** in the **Connections** view.
 
@@ -44,7 +42,7 @@ The extension opens the empty project and makes it visible in the **Database Pro
 
 ## Open an existing project
 
-In the **Database Projects** view, select the **Open Project** button and open an existing `.sqlproj` file from the file picker that appears. Existing projects can originate from Visual Studio Code or [Visual Studio SQL Server Data Tools](../../../ssdt/sql-server-data-tools.md).
+In the **Database Projects** view, select the **Open Project** button and open an existing `.sqlproj` file from the file picker that appears. Existing projects can originate from Visual Studio Code or [SQL Server Data Tools](../../../ssdt/sql-server-data-tools.md).
 
 The project opens and you can see its contents in the **Database Projects** view for editing.
 
@@ -58,7 +56,7 @@ In the **Connections** view, connect to the SQL instance that contains the datab
 
 :::image type="content" source="media/sql-database-projects-extension/create-project-from-database.png" alt-text="Screenshot of create Project from Database dialog." lightbox="media/sql-database-projects-extension/create-project-from-database.png":::
 
-The folder structure setting is set to *Schema/Object Type* by default and offers different ways to automatically organize the existing objects when they're scripted out. The options for the folder structure setting are:
+The folder structure setting is set to *Schema/Object Type* by default, and offers different ways to automatically organize the existing objects when they're scripted out. The options for the folder structure setting are:
 
 - File: a single file is created for all the objects.
 - Flat: a single folder is created for all the objects, with each object in an individual file.
@@ -90,7 +88,7 @@ For more information about schema comparison and SQL projects, see the [Schema c
 
 ### Update project from database
 
-If you make changes to a database that you didn't make to the SQL project yet, you can update the SQL project from the state of the database. To update the project, select **Update Project from Database** from the context menu of a database in the **Connections** view or from the context menu of a SQL project in the **Database Projects** view. Keeping a SQL project up to date with changes in a database is one method of source control for database changes.
+If you make changes to a database that you didn't make to the SQL project, you can update the SQL project from the state of the database. To update the project, select **Update Project from Database** from the context menu of a database in the **Connections** view or from the context menu of a SQL project in the **Database Projects** view. Keeping a SQL project up to date with changes in a database is one method of source control for database changes.
 
 :::image type="content" source="media/sql-database-projects-extension/update-project-from-database.png" alt-text="Screenshot of update Project from Database dialog." lightbox="media/sql-database-projects-extension/update-project-from-database.png":::
 
