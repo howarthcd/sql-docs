@@ -17,9 +17,9 @@ monikerRange: "=sql-server-ver17 || =sql-server-linux-ver17"
 
 # Set custom password policy for SQL logins in SQL Server on Linux
 
-[!INCLUDE [sqlserver2025-linux](../includes/applies-to-version/sqlserver2025-linux.md)]
+[!INCLUDE [sqlserver2022-and-later-linux](../includes/applies-to-version/sqlserver2022-and-later-linux.md)]
 
-This article describes how you can set up and manage SQL login password policies for SQL Server on Linux.
+This article describes how you can set up and manage SQL login password policies, starting with [!INCLUDE [sssql22-md](../includes/sssql22-md.md)] Cumulative Update (CU) 23, and [!INCLUDE [sssql25-md](../includes/sssql25-md.md)].
 
 Password policies are a crucial aspect of securing any database environment. They enforce:
 
@@ -142,7 +142,7 @@ Run the following **mssql-conf** commands to set each policy configuration prope
 
 ## Limitations
 
-Currently, the `minimumpasswordlength` can't be set to more than 14 characters.
+Currently, the `passwordminimumlength` can't be set to more than 14 characters.
 
 After updating the group password policy in Active Directory, you must manually run the `adutil updatepasswordpolicy` command to update `mssql.conf`. This command doesn't run automatically. Ensure the Linux machine running SQL Server is part of the domain, or manually set it using **mssql-conf**.
 
