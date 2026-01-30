@@ -29,6 +29,9 @@ Database portability is the ability to move a database schema and data between d
   
 - [Import](sqlpackage-import.md): Imports the schema and table data from a BACPAC file into a new user database. 
 
+> [!IMPORTANT]
+> Protect your `.bacpac` and `.dacpac` files by securing them appropriately. The data contained in these files is compressed but not encrypted. `.bacpac` files contain the data from a database by default, and a `.dacpac` can contain data when the option is specified during extract.
+
 ## Deployments
 
 Database deployments are the process of updating a database schema to match a desired state, such as adding columns to a table or changing the contents of a stored procedure. SqlPackage supports database deployments through the [Publish](sqlpackage-publish.md) and [Extract](sqlpackage-extract.md) actions. The Publish action updates a database schema to match the contents of a source .dacpac file, while the Extract action creates a data-tier application (.dacpac) file containing the schema or schema and user data from a connected SQL database. SqlPackage enables deployments against both new or existing databases from the same artifact (.dacpac) by automatically creating a deployment plan that applies the necessary changes to the target database. The deployment plan can be reviewed before applying the changes to the target database with either the [Script](sqlpackage-script.md) or [DeployReport](sqlpackage-deploy-drift-report.md) actions.

@@ -4,7 +4,7 @@ description: "This overview reviews the tooling for SQL database projects."
 author: dzsquared
 ms.author: drskwier
 ms.reviewer: randolphwest
-ms.date: 12/03/2025
+ms.date: 01/29/2026
 ms.service: sql
 ms.subservice: sql-database-projects
 ms.topic: overview
@@ -28,7 +28,7 @@ Tools included in this article:
 
 These tools provide a graphical interface for SQL projects, a T-SQL editor, and a build and publish process.
 
-[SQL Database Projects extension](../visual-studio-code-extensions/sql-database-projects/sql-database-projects-extension.md) is an extension for **VS Code**. This extension provides a graphical interface for SQL projects, a T-SQL editor, and a build and publish process. The extension is also available in **Azure Data Studio** with the same functionality.
+[SQL Database Projects extension](../visual-studio-code-extensions/sql-database-projects/sql-database-projects-extension.md) is an extension for **Visual Studio Code**. This extension provides a graphical interface for SQL projects, a T-SQL editor, and a build and publish process.
 
 [SQL Server Data Tools](../../ssdt/sql-server-data-tools.md) (SSDT) is a **Visual Studio** component that provides a graphical interface for SQL projects. SSDT provides a visual designer for tables, a T-SQL editor, and a build and publish process.
 
@@ -52,15 +52,15 @@ These tools provide a graphical interface for SQL projects, a T-SQL editor, and 
 | Publish profile creation | Yes | Yes | Yes |
 | SQL files can be added by placing in project folder | Yes | No | Yes |
 | SQL files can be excluded from build | Yes | Yes | No |
-| [Pre/post deployment scripts](concepts/pre-post-deployment-scripts.md) | Yes | Yes | Yes |
+| [Pre-deployment and post-deployment scripts](concepts/pre-post-deployment-scripts.md) | Yes | Yes | Yes |
 | New object templates | Yes<sup>3</sup> | Yes | Yes<sup>3</sup> |
 | Project files can be organized into folders | Yes | Yes | Yes |
 | [Schema comparison](concepts/schema-comparison.md) project to database | Yes | Yes | Yes |
 | [Schema comparison](concepts/schema-comparison.md) database to project | Yes | Yes | No |
 | Graphical table designer | No | Yes | Yes |
-| [Code analysis](concepts/sql-code-analysis/sql-code-analysis.md) – enable/disable rules GUI | No | Yes | No |
-| Project properties – build output settings | No | Yes | Yes |
-| Project properties – database settings GUI | No | Yes | No |
+| [Code analysis](concepts/sql-code-analysis/sql-code-analysis.md) - enable/disable rules GUI | No | Yes | No |
+| Project properties - build output settings | No | Yes | Yes |
+| Project properties - database settings GUI | No | Yes | No |
 | Project run [code analysis](concepts/sql-code-analysis/sql-code-analysis.md) | Yes | Yes | No |
 | Object renaming and refactoring | No | Yes | No |
 | Intellisense provided in database files from project model | No | Yes | No |
@@ -99,7 +99,7 @@ Developers have shared their projects utilizing extensibility points around SQL 
 ## Related content
 
 - [Project-Oriented Offline Database Development](../../ssdt/project-oriented-offline-database-development.md)
-- [SQL Database Projects extension](/azure-data-studio/extensions/sql-database-project-extension)
+- [SQL Database Projects extension](../visual-studio-code-extensions/sql-database-projects/sql-database-projects-extension.md)
 - [SqlPackage](../sqlpackage/sqlpackage.md)
 - [GitHub sql-action](https://github.com/azure/sql-action)
 - [Azure DevOps SQL deployments](/azure/devops/pipelines/targets/azure-sqldb)
