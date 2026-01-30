@@ -25,7 +25,7 @@ This article describes breaking changes between Microsoft OLE DB Driver 19 for S
 
 | Area | Version 18 and earlier | Version 19+ |
 | --- | --- | --- |
-| Default encryption | `Optional` (unencrypted) | `Mandatory` (encrypted) |
+| Default encryption (`Encrypt`) setting | `no` (no encryption or the server can require encryption) | `Mandatory` (encryption required) |
 | `Encrypt` property type | `VT_BOOL` | `VT_BSTR` |
 | `Encrypt` valid values | `no`/`yes` | `no`/`yes`/`true`/`false`/`Optional`/`Mandatory`/`Strict` |
 | Certificate validation | Skipped when client sets `Encrypt=no` | Always evaluated when encryption occurs |
@@ -202,7 +202,7 @@ For more information, see [Use Microsoft Entra ID](features/using-azure-active-d
 
 ### Connection fails with certificate validation error
 
-**Symptom**: Connection fails with an error about certificate validation or an untrusted certificate.
+**Symptom**: Connection fails with a certificate validation error or untrusted certificate message.
 
 **Cause**: Version 19 defaults to `Encrypt=Mandatory`, which requires a valid server certificate. Version 18 defaulted to `Encrypt=no` (unencrypted).
 
@@ -214,7 +214,7 @@ For more information, see [Use Microsoft Entra ID](features/using-azure-active-d
 
 ### Connection fails with "Server Certificate can only be used with strict encryption"
 
-**Symptom**: Connection fails when using the `ServerCertificate` property.
+**Symptom**: Connection fails when you use the `ServerCertificate` property.
 
 **Cause**: The `ServerCertificate` property requires `Encrypt=Strict`.
 
