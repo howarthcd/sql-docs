@@ -63,6 +63,9 @@ Tooling support for data-tier applications enables developers and database admin
 
 ### DACPAC and BACPAC packages
 
+> [!IMPORTANT]
+> Protect your `.bacpac` and `.dacpac` files by securing them appropriately. The data contained in these files is compressed but not encrypted. `.bacpac` files contain the data from a database by default, and a `.dacpac` can contain data when the option is specified during extract.
+
 The following tools support the `.dacpac` and `.bacpac` formats:
 
 - [SqlPackage CLI](../../../sqlpackage/sqlpackage.md)
