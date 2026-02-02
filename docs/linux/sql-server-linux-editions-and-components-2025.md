@@ -51,7 +51,7 @@ For a list of [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] feature
 
 ## SQL Server editions
 
-[!INCLUDE [sql-server-editions](../includes/paragraph-content/sql-server-editions-2.md)]
+[!INCLUDE [sql-server-editions](../includes/paragraph-content/sql-server-editions-linux.md)]
 
 ## Use SQL Server with client/server applications
 
@@ -317,7 +317,7 @@ The following features and services aren't available for [!INCLUDE [sssql25](../
 | | Reporting Services | [Configure Power BI Report Server catalog databases for SQL Server on Linux](sql-server-linux-configure-power-bi-report-server-catalog.md). Run [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] Reporting Services (SSRS) on Windows, and host the catalog databases for SSRS on [!INCLUDE [ssnoversion-md](../includes/ssnoversion-md.md)] on Linux deployments. |
 
 > [!NOTE]  
-> The latest [!INCLUDE [sssql25-md](../includes/sssql25-md.md)] features that depend on Azure Arc agent, including Microsoft Entra Authentication (previously known as Azure Active Directory authentication), Microsoft Purview, Pay-as-you-go (PAYG) for SQL Server, and Defender integration, are currently not supported for SQL Server deployed in containers. [!INCLUDE [ssazurearc-md](../includes/ssazurearc.md)] [doesn't support SQL Server running in containers](../sql-server/azure-arc/overview.md#unsupported-configurations).
+> The latest [!INCLUDE [sssql25-md](../includes/sssql25-md.md)] features that depend on Azure Arc agent, including Microsoft Entra Authentication (previously known as Azure Active Directory authentication), Microsoft Purview, Pay-as-you-go for SQL Server, and Defender integration, are currently not supported for SQL Server deployed in containers. [!INCLUDE [ssazurearc-md](../includes/ssazurearc.md)] [doesn't support SQL Server running in containers](../sql-server/azure-arc/overview.md#unsupported-configurations).
 
 [!INCLUDE [editions-supported-features-windows](../includes/editions-supported-features-windows.md)]
 
