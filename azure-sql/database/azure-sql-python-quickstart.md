@@ -26,9 +26,9 @@ This quickstart describes how to connect an application to a database in Azure S
 
 - An [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccountpython/).
 - An Azure SQL database configured with Microsoft Entra authentication. You can create one using the [Quickstart: Create a single database - Azure SQL Database](single-database-create-quickstart.md).
-- The latest version of the [Azure CLI](/cli/azure/get-started-with-azure-cli).
 - Visual Studio Code with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 - Python 3.10 or later.
+- The [Azure CLI](/cli/azure/install-azure-cli) (required for `ActiveDirectoryDefault` authentication).
 
 ## Configure the database
 
@@ -97,9 +97,9 @@ For local development, create a `.env` file in your project folder to store your
 
 The mssql-python driver has built-in support for Microsoft Entra authentication. Use the `Authentication` parameter to specify the authentication method.
 
-## [DefaultAzureCredential](#tab/sql-default)
+## [ActiveDirectoryDefault](#tab/sql-default)
 
-`ActiveDirectoryDefault` automatically discovers credentials from multiple sources (Azure CLI, environment variables, Visual Studio, etc.) without requiring interactive login. This is convenient for local development but is slower due to credential discovery.
+`ActiveDirectoryDefault` automatically discovers credentials from multiple sources (Visual Studio Code, Azure CLI, environment variables, etc.) without requiring interactive login. This is convenient for local development but is slower due to credential discovery.
 
 ```text
 AZURE_SQL_CONNECTIONSTRING=Server=<database-server-name>.database.windows.net;Database=<database-name>;Authentication=ActiveDirectoryDefault;Encrypt=yes;TrustServerCertificate=no;
