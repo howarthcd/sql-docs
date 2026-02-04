@@ -44,8 +44,8 @@ Returns information for accelerated database recovery (ADR) persistent version s
 | `secondary_low_water_mark` | **bigint** | The low water mark aggregated for queries on readable secondaries. The value is a transaction ID and can be matched with `oldest_active_transaction_id` and `oldest_aborted_transaction_id`. |
 | `offrow_version_cleaner_start_time` | **datetime2(7)** | The start time of the last sweep that cleaned up off-row versions. |
 | `offrow_version_cleaner_end_time` | **datetime2(7)** | The end time of the last sweep that cleaned up off-row versions. If start time has value but the end time doesn't, it means PVS cleanup is ongoing on this database. |
-| `aborted_version_cleaner_start_time` | **datetime2(7)** | The start timestamp of the last sweep that cleaned up aborted transactions and in-row versions. |
-| `aborted_version_cleaner_end_time` | **datetime2(7)** | The end timestamp of last sweep that cleaned up aborted transactions and in-row versions. If start time has value but the end time doesn't, it means PVS cleanup is ongoing on this database. |
+| `aborted_version_cleaner_start_time` | **datetime2(7)** | The start timestamp of the last sweep that cleaned up aborted transactions. |
+| `aborted_version_cleaner_end_time` | **datetime2(7)** | The end timestamp of last sweep that cleaned up aborted transactions. If start time has value but the end time doesn't, it means PVS cleanup is ongoing on this database. |
 | `pvs_off_row_page_skipped_low_water_mark` | **bigint** | The number of pages skipped during cleanup due to hold up from secondary read queries. |
 | `pvs_off_row_page_skipped_transaction_not_cleaned` | **bigint** | The number of pages skipped during cleanup due to aborted transactions. Note this value doesn't reflect the PVS hold up from aborted transactions since the version cleaner uses a min threshold for aborted transaction version cleanup. Can be ignored when troubleshooting large PVS issues. |
 | `pvs_off_row_page_skipped_oldest_active_xdesid` | **bigint** | The number of pages skipped during cleanup due to the oldest active transaction. |
