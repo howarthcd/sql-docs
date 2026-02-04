@@ -99,7 +99,7 @@ The mssql-python driver has built-in support for Microsoft Entra authentication.
 
 ## [ActiveDirectoryDefault](#tab/sql-default)
 
-`ActiveDirectoryDefault` automatically discovers credentials from multiple sources (Visual Studio Code, Azure CLI, environment variables, etc.) without requiring interactive login. This is convenient for local development but is slower due to credential discovery.
+`ActiveDirectoryDefault` automatically discovers credentials from multiple sources (Visual Studio Code, Azure CLI, environment variables, etc.) without requiring interactive login. This method is convenient for local development but slower due to credential discovery.
 
 ```text
 AZURE_SQL_CONNECTIONSTRING=Server=<database-server-name>.database.windows.net;Database=<database-name>;Authentication=ActiveDirectoryDefault;Encrypt=yes;TrustServerCertificate=no;
