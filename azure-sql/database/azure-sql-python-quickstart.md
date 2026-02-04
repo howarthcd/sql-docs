@@ -121,7 +121,7 @@ AZURE_SQL_CONNECTIONSTRING=Server=<database-server-name>.database.windows.net;Da
 
 ## [SQL Authentication](#tab/sql-auth)
 
-You can directly authenticate to a SQL Server instance using a username and password.
+You can authenticate directly to a SQL Server instance using a username and password.
 
 ```text
 AZURE_SQL_CONNECTIONSTRING=Server=<database-server-name>.database.windows.net;Database=<database-name>;UID=<user-name>;PWD=<user-password>;Encrypt=yes;TrustServerCertificate=no;
