@@ -1,8 +1,6 @@
 ---
 title: "Power BI Report Server Integration (Configuration Manager)"
 description: Learn how to integrate your report server with Power BI.
-author: kfollis
-ms.author: kfollis
 ms.reviewer: randolphwest
 ms.date: 01/07/2026
 ms.service: reporting-services

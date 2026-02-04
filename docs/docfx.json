@@ -194,16 +194,19 @@
       "author": {
         "azdata/**/*.md": "swells",
         "**/*/index.yml": "MikeRayMSFT",
-        "reporting-services/**/*.md": "nidenyse",
+        "reporting-services/**/*.md": "JulCsc",
         "dmx/**/*.md": "KayUnkroth",
         "mdx/**/*.md": "KayUnkroth"
       },
       "ms.author": {
         "azdata/**/*.md": "seanw",
         "**/*/index.yml": "mikeray",
-        "reporting-services/**/*.md": "dniwenshuti",
+        "reporting-services/**/*.md": "juliacawthra",
         "dmx/**/*.md": "kayu",
         "mdx/**/*.md": "kayu"
+      },
+      "ms.reviewer": {
+        "reporting-services/**/*.md": "dniwenshuti"
       },
       "ms.date": {
         "azdata/**/*.md": "02/09/2021"
