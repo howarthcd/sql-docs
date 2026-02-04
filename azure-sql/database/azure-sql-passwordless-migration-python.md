@@ -70,7 +70,7 @@ To update the referenced connection string (`AZURE_SQL_CONNECTIONSTRING`) for lo
 AZURE_SQL_CONNECTIONSTRING=Server=tcp:<database-server-name>.database.windows.net,1433;Database=<database-name>;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;Authentication=ActiveDirectoryDefault
 ```
 
-`ActiveDirectoryDefault` automatically discovers credentials from multiple sources (Azure CLI, environment variables, Visual Studio, etc.) without requiring interactive login. This is convenient for development but adds latency as it tries each credential source in sequence.
+`ActiveDirectoryDefault` automatically discovers credentials from multiple sources (Azure CLI, environment variables, Visual Studio, etc.) without requiring interactive login. This approach is convenient for development but adds latency because it tries each credential source in sequence.
 
 > [!IMPORTANT]
 > `ActiveDirectoryDefault` is intended for local development only. It tries multiple authentication methods in sequence, which adds latency and can cause unexpected behavior in production. For production applications, use the specific authentication method for your scenario:
