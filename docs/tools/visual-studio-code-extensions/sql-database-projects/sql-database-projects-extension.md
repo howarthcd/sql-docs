@@ -113,4 +113,5 @@ In the following example `.code-workspace` file, the `folders` array lists all f
 
 - [What are SQL database projects?](../../sql-database-projects/sql-database-projects.md)
 - [Get started with the SQL Database Projects extension](getting-started-sql-database-projects-extension.md)
+- [Publish SQL database projects from Visual Studio Code](publish-database-project.md)
 - [Get help with the SQL Database Projects extension](https://github.com/microsoft/azuredatastudio/issues)

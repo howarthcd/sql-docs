@@ -42,6 +42,7 @@ msbuild AdventureWorks/AdventureWorks.sqlproj
 
 ## Related content
 
+- [Publish SQL database projects from Visual Studio Code](publish-database-project.md)
 - [SQL Database Projects extension](sql-database-projects-extension.md)
 - [Tutorial: Create and deploy a SQL project](../../sql-database-projects/tutorials/create-deploy-sql-project.md)
 - [Get help with the SQL Database Projects extension](https://github.com/microsoft/azuredatastudio/issues)

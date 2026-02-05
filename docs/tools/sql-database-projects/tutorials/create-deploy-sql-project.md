@@ -385,4 +385,5 @@ GitHub deployments can be further secured by establishing an environment relatio
 
 - [Compare a database and a project](../howto/compare-database-project.md)
 - [Convert an original SQL project to an SDK-style project](../howto/convert-original-sql-project.md)
+- [Publish SQL database projects from Visual Studio Code](../../visual-studio-code-extensions/sql-database-projects/publish-database-project.md)
 - [SqlPackage Publish parameters, properties, and SQLCMD variables](../../sqlpackage/sqlpackage-publish.md)
