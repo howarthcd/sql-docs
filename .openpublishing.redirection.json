@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "docs/odbc/reference/introduction-to-odbc.md",
+      "redirect_url": "/sql/odbc/reference/odbc-overview",
+      "redirect_document_id": true
+    },
+    {
       "source_path": "docs/sql-server/applies-to-includes.md",
       "redirect_url": "/sql/sql-server/sql-server-docs-contribute",
       "redirect_document_id": false
@@ -67727,6 +67732,11 @@
     {
       "source_path": "docs/connect/python/pymssql/python-sql-driver-pymssql-quickstart.md",
       "redirect_url": "/sql/connect/python/mssql-python/python-sql-driver-mssql-python-quickstart",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/connect/jdbc/programming-guide-for-jdbc-sql-driver.md",
+      "redirect_url": "/sql/connect/jdbc/connecting-to-sql-server-with-the-jdbc-driver",
       "redirect_document_id": false
     }
   ]
