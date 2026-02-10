@@ -1,29 +1,30 @@
 ---
-title: Vector data type (ODBC)
-description: Guidance for using the new Vector SQL data type through the Microsoft ODBC driver for SQL Server.
+title: "Vector Data Type (ODBC)"
+description: Guidance for using the new vector SQL data type through the Microsoft ODBC driver for SQL Server.
 author: David-Engel
 ms.author: davidengel
-ai-usage: ai-assisted
-ms.date: "01/23/2026"
+ms.reviewer: randolphwest
+ms.date: 02/10/2026
 ms.service: sql
 ms.subservice: connectivity
-ms.topic: conceptual
+ms.topic: article
+ai-usage: ai-assisted
 ---
 # Vector data type (ODBC)
 
-This article documents the `VECTOR` SQL data type as implemented by the Microsoft ODBC Driver for SQL Server starting in version 18.6.1.1. This document outlines the Microsoft driver's behavior for `VECTOR`, and provides usage guidance, API-specific notes, and code snippets. For an overview of vector data types, see [Vector data type](../../t-sql/data-types/vector-data-type.md).
+This article documents the **vector** SQL data type as implemented by the Microsoft ODBC Driver for SQL Server starting in version 18.6.1.1. This document outlines the Microsoft driver's behavior for **vector**, and provides usage guidance, API-specific notes, and code snippets. For an overview of vector data types, see [Vector data type](../../t-sql/data-types/vector-data-type.md).
 
 ## Overview
 
-The Microsoft ODBC Driver for SQL Server natively supports the vector data type. Applications can efficiently store, retrieve, and process fixed-dimension numerical embeddings commonly used in machine learning and AI workloads. The driver exposes vector support through standard ODBC APIs and C data types. Applications can interoperate with SQL Server vector columns without changing existing ODBC workflows.
+The Microsoft ODBC Driver for SQL Server natively supports the **vector** data type. Applications can efficiently store, retrieve, and process fixed-dimension numerical embeddings commonly used in machine learning and AI workloads. The driver exposes vector support through standard ODBC APIs and C data types. Applications can interoperate with SQL Server vector columns without changing existing ODBC workflows.
 
-**Applies to:** Microsoft ODBC Driver for SQL Server 18.6.1.1 and later.
+**Applies to**: Microsoft ODBC Driver for SQL Server 18.6.1.1 and later versions.
 
-For the Microsoft driver (18.6.1.1), Vector support is disabled by default and must be explicitly enabled.
+For the Microsoft driver (18.6.1.1), vector support is disabled by default and must be explicitly enabled.
 
-## Native C Representation
+## Native C representation
 
-When vector support is enabled, vector columns are exchanged using a typed C structure `SQL_SS_VECTOR_STRUCT`.
+When vector support is enabled, **vector** columns are exchanged using a typed C structure named `SQL_SS_VECTOR_STRUCT`.
 
 ```c
     typedef struct tagSQL_SS_VECTOR_STRUCT {
@@ -36,17 +37,20 @@ When vector support is enabled, vector columns are exchanged using a typed C str
 ```
 
 - `dimension`: describes the number of elements in the vector
-- `type`: identifies the base element type (currently float32)
+- `type`: identifies the base element type (currently `float32`)
 - `data.f32`: points to the application buffer containing vector values
 
-## Enabling vector support
+## Enable vector support
 
-- The Microsoft driver exposes a driver-specific C binding `SQL_C_SS_VECTOR` and supports `SQL_C_BINARY` for vector output when you configure the connection/driver option `vectorTypeSupport` with the `v1` value. In practice:
-  - When you enable `vectorTypeSupport=v1`, retrieval APIs (for example, `SQLGetData` and `SQLBindCol`) can return vector columns as either `SQL_C_SS_VECTOR` or `SQL_C_BINARY`. `SQL_C_SS_VECTOR` returns the vector in a compact, typed form. `SQL_C_BINARY` returns a varbinary payload.
-  - For input/parameter binding, the Microsoft driver (18.6.1.1 with `vectorTypeSupport=v1`) supports both `SQL_C_SS_VECTOR` and `SQL_C_BINARY`. `SQL_C_SS_VECTOR` provides a typed, compact input binding. `SQL_C_BINARY` is equivalent and portable. Use `SQL_C_SS_VECTOR` when you want the driver to treat the payload as a native vector type.
-  - When `vectorTypeSupport=off`, vector columns appear as varchar(max) containing JSON arrays.
+- The Microsoft driver exposes a driver-specific C binding `SQL_C_SS_VECTOR` and supports `SQL_C_BINARY` for vector output when you configure the connection or driver option `vectorTypeSupport` with the `v1` value. In practice:
 
-Applications must also set the ODBC version to ODBC 3.8 before using vector‑specific types:
+  - When you enable `vectorTypeSupport=v1`, retrieval APIs (for example, `SQLGetData` and `SQLBindCol`) can return **vector** columns as either `SQL_C_SS_VECTOR` or `SQL_C_BINARY`. `SQL_C_SS_VECTOR` returns the vector in a compact, typed form. `SQL_C_BINARY` returns a **varbinary** payload.
+
+  - For input or parameter binding, the Microsoft driver (18.6.1.1 with `vectorTypeSupport=v1`) supports both `SQL_C_SS_VECTOR` and `SQL_C_BINARY`. `SQL_C_SS_VECTOR` provides a typed, compact input binding. `SQL_C_BINARY` is equivalent and portable. Use `SQL_C_SS_VECTOR` when you want the driver to treat the payload as a native **vector** type.
+
+  - When `vectorTypeSupport=off`, vector columns appear as **varchar(max)** containing JSON arrays.
+
+Applications must also set the ODBC version to ODBC 3.8 before using vector-specific types:
 
 ```c
     SQLSetEnvAttr(
@@ -56,52 +60,55 @@ Applications must also set the ODBC version to ODBC 3.8 before using vector‑sp
     0);
 ```
 
-## Supported Binding Formats
+## Supported binding formats
 
-### Native Vector Binding
+### Native vector binding
 
-C type: SQL_C_SS_VECTOR
+C type: `SQL_C_SS_VECTOR`
 
-This is the recommended format for performance-critical applications.
+This format is recommended for performance-critical applications.
 
-### Binary Binding
+### Binary binding
 
-C type: SQL_C_BINARY
+C type: `SQL_C_BINARY`
 
-The system returns vectors using the same layout as SQL_C_SS_VECTOR. Applications can use this format for low-level interoperability scenarios. The data pointer buffer can be contiguous or non-contiguous with the structure memory address.
+Vectors are returned using the same layout as `SQL_C_SS_VECTOR`. Applications can use this format for low-level interoperability scenarios. The data pointer buffer can be contiguous or noncontiguous with structure memory address.
 
 ### ODBC API guidance
 
-This section describes how ODBC APIs interact with SQL Server vector data, including buffer layout requirements, NULL handling, and supported data representations. All behaviors apply when vectorTypeSupport=v1 is enabled and the environment is configured for ODBC 3.8.
+This section describes how ODBC APIs interact with SQL Server vector data, including buffer layout requirements, `NULL` handling, and supported data representations. All behaviors apply when `vectorTypeSupport=v1` is enabled and the environment is configured for ODBC 3.8.
 
 ## SQLBindCol
 
-Use `SQLBindCol` to bind vector columns in a result set to application buffers.
+Use `SQLBindCol` to bind **vector** columns in a result set to application buffers.
 
 - Typical call:
 
 ```c
-    SQLRETURN SQLBindCol(  
-      SQLHSTMT       StatementHandle,  
-      SQLUSMALLINT   ColumnNumber,  
-      SQLSMALLINT    TargetType,  
-      SQLPOINTER     TargetValuePtr,  
-      SQLLEN         BufferLength,  
+    SQLRETURN SQLBindCol(
+      SQLHSTMT       StatementHandle,
+      SQLUSMALLINT   ColumnNumber,
+      SQLSMALLINT    TargetType,
+      SQLPOINTER     TargetValuePtr,
+      SQLLEN         BufferLength,
       SQLLEN *       StrLen_or_IndPtr);
 ```
 
 - `TargetType`: use `SQL_C_SS_VECTOR` or `SQL_C_BINARY`.
-- `TargetValuePtr`:  pointer to SQL_SS_VECTOR_STRUCT with float array when TargetType SQL_C_SS_VECTOR else pointer to buffer with size as the value in StrLen_or_IndPtr
-- `BufferLength`: sizeof(SQL_SS_VECTOR_STRUCT) + number of bytes allocated for the column buffer (dimension * 4).
-- `StrLen_or_IndPtr`: pointer that receives the byte length of the returned vector (`SQL_DESC_OCTET_LENGTH`). Its value is sizeof(SQL_SS_VECTOR_STRUCT) + float array size (dimension * 4)
+
+- `TargetValuePtr`: pointer to a `SQL_SS_VECTOR_STRUCT` with a **float** array when `TargetType` is `SQL_C_SS_VECTOR`; otherwise, pointer to a buffer with size as the value in `StrLen_or_IndPtr`.
+
+- `BufferLength`: `sizeof(SQL_SS_VECTOR_STRUCT)` + the number of bytes allocated for the column buffer (dimension * 4).
+
+- `StrLen_or_IndPtr`: pointer that receives the byte length of the returned vector (`SQL_DESC_OCTET_LENGTH`). Its value is `sizeof(SQL_SS_VECTOR_STRUCT)` + the **float** array size (dimension * 4).
 
 ### Buffer layout expectations
 
-Non‑contiguous buffer (recommended)
+Noncontiguous buffer (recommended)
 
 - The application allocates one `SQL_SS_VECTOR_STRUCT` per row.
 - The application allocates memory for `data.f32`.
-- The driver populates vector metadata and writes element values into the provided float buffer.
+- The driver populates vector metadata and writes element values into the provided **float** buffer.
 
 ```c
     SQLLEN numberOfRow = 1000; // set to SQL_ATTR_ROW_ARRAY_SIZE
@@ -123,8 +130,8 @@ Non‑contiguous buffer (recommended)
 
 Contiguous buffer
 
-- The application allocates a single buffer and ODBC will fill it accordingly.
-- The float array must begin immediately after the struct.
+- The application allocates a single buffer and ODBC fills it accordingly.
+- The **float** array must begin immediately after the struct.
 - The driver sets `data.f32` to point to this contiguous region.
 
 ```c
@@ -138,35 +145,38 @@ Contiguous buffer
 
 ### NULL handling for SQLBindCol
 
-When the column value is NULL, the driver sets *StrLen_or_IndPtr to SQL_NULL_DATA and does not populate the buffer. Always check the indicator before you access vector contents.
+When the column value is `NULL`, the driver sets `*StrLen_or_IndPtr` to `SQL_NULL_DATA` and doesn't populate the buffer. Always check the indicator before you access vector contents.
 
-> [!NOTE]
-> Reading and row-fetch behavior for vector columns is described in detail under `SQLFetch` and `SQLFetchScroll` (see those API reference for fetch semantics and array-fetch examples).
+> [!NOTE]  
+> Reading and row-fetch behavior for **vector** columns is described in detail under `SQLFetch` and `SQLFetchScroll` (see those API references for fetch semantics and array-fetch examples).
 
 ## SQLGetData
 
-Use SQLGetData to retrieve vector data from unbound columns.
+Use `SQLGetData` to retrieve vector data from unbound columns.
 
 - Typical call:
 
 ```c
-    SQLRETURN SQLGetData(  
-      SQLHSTMT       StatementHandle,  
-      SQLUSMALLINT   Col_or_Param_Num,  
-      SQLSMALLINT    TargetType,  
-      SQLPOINTER     TargetValuePtr,  
-      SQLLEN         BufferLength,  
+    SQLRETURN SQLGetData(
+      SQLHSTMT       StatementHandle,
+      SQLUSMALLINT   Col_or_Param_Num,
+      SQLSMALLINT    TargetType,
+      SQLPOINTER     TargetValuePtr,
+      SQLLEN         BufferLength,
       SQLLEN *       StrLen_or_IndPtr);
 ```
 
 - `TargetType`: use `SQL_C_SS_VECTOR` or `SQL_C_BINARY`.
-- `TargetValuePtr`: pointer to SQL_SS_VECTOR_STRUCT with a float array when TargetType is SQL_C_SS_VECTOR. Otherwise, pointer to a buffer with size as the value in StrLen_or_IndPtr.
-- `BufferLength`: sizeof(SQL_SS_VECTOR_STRUCT) + number of bytes allocated for the column buffer (dimension * 4).
-- `StrLen_or_IndPtr`: pointer that receives the byte length of the returned vector (`SQL_DESC_OCTET_LENGTH`). Its value is sizeof(SQL_SS_VECTOR_STRUCT) + float array size (dimension * 4).
 
-Chunked retrieval is not supported. You must retrieve the entire vector in one call.
+- `TargetValuePtr`: pointer to a `SQL_SS_VECTOR_STRUCT` with a **float** array when `TargetType` is `SQL_C_SS_VECTOR`; otherwise, pointer to a buffer with size as the value in `StrLen_or_IndPtr`.
 
-Example (native vector)
+- `BufferLength`: `sizeof(SQL_SS_VECTOR_STRUCT)` + the number of bytes allocated for the column buffer (dimension * 4).
+
+- `StrLen_or_IndPtr`: pointer that receives the byte length of the returned vector (`SQL_DESC_OCTET_LENGTH`). Its value is `sizeof(SQL_SS_VECTOR_STRUCT)` + the float array size (dimension * 4).
+
+Chunked retrieval isn't supported. You must retrieve the entire vector in one call.
+
+Example (native **vector**):
 
 ```c
     SQLLEN dataLen = 0;
@@ -181,25 +191,25 @@ Example (native vector)
 
 ### NULL handling for SQLGetData
 
-When the column value is NULL, the driver sets *StrLen_or_IndPtr to SQL_NULL_DATA and does not populate the buffer. Always check the indicator before you access vector contents.
+When the column value is `NULL`, the driver sets `*StrLen_or_IndPtr` to `SQL_NULL_DATA` and doesn't populate the buffer. Always check the indicator before you access vector contents.
 
-> [!NOTE]
-> Reading and row-fetch behavior for vector columns is described in detail under `SQLFetch` and `SQLFetchScroll` (see those API reference for fetch semantics and array-fetch examples).
+> [!NOTE]  
+> Reading and row-fetch behavior for **vector** columns is described in detail under `SQLFetch` and `SQLFetchScroll` (see those API references for fetch semantics and array-fetch examples).
 
 ## SQLFetch
 
-Use SQLFetch to fetch the next row and properly materialize any bound SqlVector columns.
+Use `SQLFetch` to fetch the next row and properly materialize any bound `SqlVector` columns.
 
 - Typical call:
 
 ```c
-    SQLRETURN SQLFetch(  
+    SQLRETURN SQLFetch(
      SQLHSTMT     StatementHandle);
 ```
 
-Call SQLFetch in the standard loop with SqlVector columns already bound via SQLBindCol, or use SQLGetData to retrieve data to the application buffer.
+Call `SQLFetch` in the standard loop with `SqlVector` columns already bound through `SQLBindCol`. Or, use `SQLGetData` to retrieve data to the application buffer.
 
-Example (native vector)
+Example (native **vector**):
 
 ```c
     while ((ret = SQLFetch(hStmt)) == SQL_SUCCESS || ret == SQL_SUCCESS_WITH_INFO) {
@@ -219,18 +229,18 @@ Example (native vector)
 
 ## SQLFetchScroll
 
-Use SQLFetchScroll to fetch rowsets according to a specified orientation (next, prior, absolute, relative, bookmark). The driver correctly copies vector data to application buffers.
+Use `SQLFetchScroll` to fetch rowsets according to a specified orientation (next, prior, absolute, relative, bookmark). The driver correctly copies vector data to application buffers.
 
 - Typical call:
 
 ```c
-    SQLRETURN SQLFetchScroll(  
-      SQLHSTMT      StatementHandle,  
-      SQLSMALLINT   FetchOrientation,  
+    SQLRETURN SQLFetchScroll(
+      SQLHSTMT      StatementHandle,
+      SQLSMALLINT   FetchOrientation,
       SQLLEN        FetchOffset);
 ```
 
-Example (native vector)
+Example (native **vector**):
 
 ```c
     // Fetch rows in batches
@@ -260,31 +270,31 @@ Example (native vector)
 
 ## SQLBindParameter
 
-Use SQLBindParameter to send vector values to SQL Server.
+Use `SQLBindParameter` to send vector values to SQL Server.
 
 - Typical call:
 
 ```c
-    SQLRETURN SQLBindParameter(  
-        SQLHSTMT        StatementHandle,  
-        SQLUSMALLINT    ParameterNumber,  
-        SQLSMALLINT     InputOutputType,  
-        SQLSMALLINT     ValueType,  
-        SQLSMALLINT     ParameterType,  
-        SQLULEN         ColumnSize,  
-        SQLSMALLINT     DecimalDigits,  
-        SQLPOINTER      ParameterValuePtr,  
-        SQLLEN          BufferLength,  
+    SQLRETURN SQLBindParameter(
+        SQLHSTMT        StatementHandle,
+        SQLUSMALLINT    ParameterNumber,
+        SQLSMALLINT     InputOutputType,
+        SQLSMALLINT     ValueType,
+        SQLSMALLINT     ParameterType,
+        SQLULEN         ColumnSize,
+        SQLSMALLINT     DecimalDigits,
+        SQLPOINTER      ParameterValuePtr,
+        SQLLEN          BufferLength,
         SQLLEN *        StrLen_or_IndPtr);
 ```
 
-- `ParameterValuePtr`: points to a populated SQL_SS_VECTOR_STRUCT
+- `ParameterValuePtr`: points to a populated `SQL_SS_VECTOR_STRUCT`
 - `ColumnSize`: ignored for vector data
 - `DecimalDigits`: ignored for vector data
-- `BufferLength`: ≥ sizeof(SQL_SS_VECTOR_STRUCT) + (dimension * sizeof(float))
+- `BufferLength`: ≥ `sizeof(SQL_SS_VECTOR_STRUCT)` + (dimension * `sizeof(float)`)
 - `*StrLen_or_IndPtr`: must contain the same total size
 
-Example (native vector)
+Example (native **vector**):
 
 ```c
     float values[3] = {1.0f, 2.0f, 3.0f};
@@ -303,36 +313,36 @@ Example (native vector)
 
 ### NULL handling for SQLBindParameter
 
-Applications can indicate a NULL vector using either supported approach:
+Applications can indicate a `NULL` vector using either supported approach:
 
-- Set *StrLen_or_IndPtr = SQL_NULL_DATA and pass NULL as ParameterValuePtr
-- Provide a SQL_SS_VECTOR_STRUCT with:
+- Set `*StrLen_or_IndPtr` to `SQL_NULL_DATA` and pass `NULL` as `ParameterValuePtr`
+- Provide a `SQL_SS_VECTOR_STRUCT` with:
 
-    dimension set
-    type = float32
-    data.f32 = NULL
+  dimension set
+  type = `float32`
+  `data.f32` = `NULL`
 
 ## SQLPutData
 
-SQLPutData is supported for vector parameters with the following constraints:
+The driver supports `SQLPutData` for vector parameters with these constraints:
 
-- The entire vector must be provided in the first call
-- Chunked or incremental vector transmission is not supported
-- NULL handling follows the same rules as SQLBindParameter
+- You must provide the entire vector in the first call.
+- The driver doesn't support chunked or incremental vector transmission.
+- `NULL` handling follows the same rules as `SQLBindParameter`.
 
 - Typical call:
 
 ```c
-    SQLRETURN SQLPutData(  
-        SQLHSTMT     StatementHandle,  
-        SQLPOINTER   DataPtr,  
+    SQLRETURN SQLPutData(
+        SQLHSTMT     StatementHandle,
+        SQLPOINTER   DataPtr,
         SQLLEN       StrLen_or_Ind);
 ```
 
-- `DataPtr`: points to a populated SQL_SS_VECTOR_STRUCT
-- `StrLen_or_Ind`: sizeof(SQL_SS_VECTOR_STRUCT) + (dimension * sizeof(float))
+- `DataPtr`: points to a populated `SQL_SS_VECTOR_STRUCT`
+- `StrLen_or_Ind`: `sizeof(SQL_SS_VECTOR_STRUCT)` + (dimension * `sizeof(float)`)
 
-Example (native vector)
+Example (native **vector**):
 
 ```c
     std::vector<float> floatArray = { 1.0f, 2.0f, 3.0f };
@@ -382,16 +392,16 @@ Example (native vector)
     }
 ```
 
-## Descriptor Metadata
+## Descriptor metadata
 
-When vector support is enabled, the Microsoft ODBC Driver for SQL Server exposes vector metadata through standard ODBC descriptor APIs. Applications can use descriptor information to discover vector schema details, compute buffer sizes, and correctly configure bindings for parameters and result sets.
+When you enable vector support, the Microsoft ODBC Driver for SQL Server exposes vector metadata through standard ODBC descriptor APIs. Applications can use descriptor information to discover vector schema details, compute buffer sizes, and correctly configure bindings for parameters and result sets.
 
-### Descriptor Field Values for VECTOR
+### Descriptor field values for vector
 
-The following table summarizes descriptor field values for SQL Server `VECTOR` columns and parameters.
+The following table summarizes descriptor field values for SQL Server **vector** columns and parameters.
 
 | Descriptor Field | Value | Description |
-| ----------------- | ------- | ------------- |
+| --- | --- | --- |
 | `SQL_DESC_TYPE` | `SQL_SS_VECTOR` (`-156`) | Base SQL data type identifier |
 | `SQL_DESC_CONCISE_TYPE` | `SQL_SS_VECTOR` | Concise SQL data type |
 | `SQL_DESC_TYPE_NAME` | `vector` | SQL type name |
@@ -402,44 +412,78 @@ The following table summarizes descriptor field values for SQL Server `VECTOR` c
 | `SQL_DESC_SCALE` | `SQL_VECTOR_TYPE_FLOAT32` | Vector base element type |
 | `SQL_DESC_DISPLAY_SIZE` | `dimension * VECTOR_FLOAT32_TO_CHAR_JSON_MAX_SIZE` | Maximum JSON display length |
 | `SQL_DESC_FIXED_PREC_SCALE` | `SQL_FALSE` | Vector has no fixed precision/scale |
-| `SQL_DESC_NULLABLE` | `SQL_NULLABLE` | Vector columns allow NULL values |
-| `SQL_DESC_NUM_PREC_RADIX` | `0` | Non‑numeric type |
+| `SQL_DESC_NULLABLE` | `SQL_NULLABLE` | Vector columns allow `NULL` values |
+| `SQL_DESC_NUM_PREC_RADIX` | `0` | Non-numeric type |
 | `SQL_DESC_SEARCHABLE` | `SQL_PRED_NONE` | Not usable in predicates |
 | `SQL_DESC_UNSIGNED` | `SQL_TRUE` | Element type is unsigned |
-| `SQL_DESC_AUTO_UNIQUE_VALUE` | `SQL_FALSE` | Not auto‑unique |
-| `SQL_DESC_CASE_SENSITIVE` | `SQL_FALSE` | Not case‑sensitive |
+| `SQL_DESC_AUTO_UNIQUE_VALUE` | `SQL_FALSE` | Not autounique |
+| `SQL_DESC_CASE_SENSITIVE` | `SQL_FALSE` | Not case-sensitive |
 | `SQL_DESC_UPDATABLE` | `SQL_ATTR_READWRITE_UNKNOWN` | Updatability unknown |
 
 ---
 
 ### SQLDescribeCol
 
-When `SQLDescribeCol` is called for a vector column:
+When you call `SQLDescribeCol` for a **vector** column:
 
 - `DataType` is `SQL_SS_VECTOR`
 - `ColumnSize` matches `SQL_DESC_PRECISION`
 - `DecimalDigits` is `0` (base type indicator, not numeric scale)
 - `Nullable` is `SQL_NULLABLE`
 
-The reported column size represents the native vector payload size: sizeof(SQL_SS_VECTOR_STRUCT) + (dimension * sizeof(float))
+The reported column size represents the native vector payload size: `sizeof(SQL_SS_VECTOR_STRUCT)` + (dimension * `sizeof(float)`)
 
 ### SQLDescribeParam
 
-When SQLDescribeParam is used for a vector parameter:
+When you use `SQLDescribeParam` for a **vector** parameter:
 
 - `DataType` is `SQL_SS_VECTOR`
 - `ColumnSize` equals the native vector payload size
 - `DecimalDigits` is `0` (base type indicator, not numeric scale)
 - `Nullable` is `SQL_NULLABLE`
 
-This allows applications to allocate parameter buffers correctly before binding.
+This information allows applications to allocate parameter buffers correctly before binding.
 
 ### SQLColAttribute
 
-- Use `SQLColAttribute(hstmt, ColumnNumber, SQL_DESC_OCTET_LENGTH, ...)` to obtain the exact byte length of the vector payload. `SQL_DESC_LENGTH` and `SQL_DESC_PRECISION` may carry driver-specific values; prefer `SQL_DESC_OCTET_LENGTH` for byte count.
+- Use `SQLColAttribute(hstmt, ColumnNumber, SQL_DESC_OCTET_LENGTH, ...)` to get the exact byte length of the vector payload. `SQL_DESC_LENGTH` and `SQL_DESC_PRECISION` might carry driver-specific values. For byte count, prefer `SQL_DESC_OCTET_LENGTH`.
 
-  - NULL handling: When a column is NULL, `SQLColAttribute` (or the `StrLen_or_IndPtr` used with `SQLBindCol`) returns `SQL_NULL_DATA`. Check for `SQL_NULL_DATA` before using returned lengths or buffers.
+  - `NULL` handling: When a column is `NULL`, `SQLColAttribute` (or the `StrLen_or_IndPtr` used with `SQLBindCol`) returns `SQL_NULL_DATA`. Check for `SQL_NULL_DATA` before using returned lengths or buffers.
+
+## Bulk copy (BCP)
+
+You can bulk import and export vector columns through BCP files and the `bcp_bind` API, just like other data types. Currently, vector import and export supports only native format (`SQLVECTOR`) or **varbinary** (`SQLBINARY`), but not character format. Conversion between the **vector** type and character type isn't supported.
+
+For more information about the type token, default prefix length, and default field length for **vector**, see [File Storage Type](../../relational-databases/import-export/specify-file-storage-type-by-using-bcp-sql-server.md), [Prefix Length](../../relational-databases/import-export/specify-prefix-length-in-data-files-by-using-bcp-sql-server.md), and [Field Length](../../relational-databases/import-export/specify-field-length-by-using-bcp-sql-server.md).
+
+### bcp_gettypename
+
+When you use `bcp_gettypename` to get the SQL type name of **vector**, it returns the BCP type token (`SQLVECTOR`) and `"vector"`.
+
+### bcp_bind
+
+Use `bcp_bind` to bulk insert program variables into a **vector** column.
+
+Typical call:
+
+```c
+RETCODE bcp_bind (
+        HDBC hdbc,
+        LPCBYTE pData,
+        INT cbIndicator,
+        DBINT cbData,
+        LPCBYTE pTerm,
+        INT cbTerm,
+        INT eDataType,
+        INT idxServerCol);
+```
+
+- `pData`: if `cbIndicator` is zero, contains a pointer to `SQL_SS_VECTOR_STRUCT` data, with **float** array data inside it (`vectorStruct.data.f32` field). If `cbIndicator` is nonzero, the indicator appears in memory directly before the data. So `pData` points to a buffer that first has `cbIndicator` bytes of length indicator, followed by the vector struct.
+- `cbData`: if provided, must have value exactly equal to - `sizeof(SQL_SS_VECTOR_STRUCT)` + (`sizeof(float32)` * dimension). If not, an error occurs.
+- `eDataType`: `SQLVECTOR` or `SQLBINARY`
+
+When you import data to a vector column through `bcp_bind`, set `eDataType` to `SQLVECTOR` or `SQLBINARY`. In both cases, you must provide data in the form of `SQL_SS_VECTOR_STRUCT`.
 
 ## Troubleshooting and tips
 
-- If `SQLGetTypeInfo` does not list `VECTOR`, fall back to storing vectors as `varchar`.
+- If `SQLGetTypeInfo` doesn't list `VECTOR`, fall back to storing vectors as **varchar**.
