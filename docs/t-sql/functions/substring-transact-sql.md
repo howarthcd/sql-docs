@@ -313,5 +313,4 @@ WHERE [Description] LIKE 'Replacement%';
 - [RTRIM (Transact-SQL)](rtrim-transact-sql.md)
 - [STRING_SPLIT (Transact-SQL)](string-split-transact-sql.md)
 - [TRIM (Transact-SQL)](trim-transact-sql.md)
-- [String Functions (Transact-SQL)](string-functions-transact-sql.md)
 

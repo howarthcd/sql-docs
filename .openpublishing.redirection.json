@@ -67735,9 +67735,35 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "docs/analytics-platform-system/tsql-language-elements.md",
+      "redirect_url": "/sql/analytics-platform-system/home-analytics-platform-system-aps-pdw?view=aps-pdw-2016-au7&preserve-view=true",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/analytics-platform-system/tsql-statements.md",
+      "redirect_url": "/sql/analytics-platform-system/home-analytics-platform-system-aps-pdw?view=aps-pdw-2016-au7&preserve-view=true",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/analytics-platform-system/tsql-system-views.md",
+      "redirect_url": "/sql/analytics-platform-system/home-analytics-platform-system-aps-pdw?view=aps-pdw-2016-au7&preserve-view=true",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/t-sql/functions/string-functions-transact-sql.md",
+      "redirect_url": "/sql/t-sql/functions/functions#string-functions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/t-sql/functions/configuration-functions-transact-sql.md",
+      "redirect_url": "/sql/t-sql/functions/functions#configuration-functions",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "docs/connect/jdbc/programming-guide-for-jdbc-sql-driver.md",
       "redirect_url": "/sql/connect/jdbc/connecting-to-sql-server-with-the-jdbc-driver",
       "redirect_document_id": false
     }
+    
   ]
 }
