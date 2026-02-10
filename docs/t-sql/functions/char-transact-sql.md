@@ -276,5 +276,4 @@ FROM enc;
 - [NCHAR (Transact-SQL)](nchar-transact-sql.md)
 - [UNICODE (Transact-SQL)](unicode-transact-sql.md)
 - [+ (String Concatenation) (Transact-SQL)](../language-elements/string-concatenation-transact-sql.md)
-- [String Functions (Transact-SQL)](string-functions-transact-sql.md)
 

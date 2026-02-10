@@ -15759,7 +15759,6 @@ items:
         - name: Collation - TERTIARY_WEIGHTS
           href: t-sql/functions/collation-functions-tertiary-weights-transact-sql.md
       - name: Configuration
-        href: t-sql/functions/configuration-functions-transact-sql.md
         items:
         - name: '@@DBTS'
           href: t-sql/functions/dbts-transact-sql.md
@@ -16221,7 +16220,6 @@ items:
         - name: USER_NAME
           href: t-sql/functions/user-name-transact-sql.md
       - name: String
-        href: t-sql/functions/string-functions-transact-sql.md
         items:
         - name: ASCII
           href: t-sql/functions/ascii-transact-sql.md
