@@ -29,10 +29,10 @@ dotnet tool install -g microsoft.sqlpackage --version 170.3.xx
 
 | Platform | Download |
 | --- | --- |
-| Windows .NET 10 | [.zip file](https://go.microsoft.com/fwlink/?linkid=) |
-| Windows | [.msi file](https://go.microsoft.com/fwlink/?linkid=) |
-| macOS .NET 10 | [.zip file](https://go.microsoft.com/fwlink/?linkid=) |
-| Linux .NET 10 | [.zip file](https://go.microsoft.com/fwlink/?linkid=) |
+| Windows .NET 10 | [.zip file](https://go.microsoft.com/fwlink/?linkid=2350827) |
+| Windows | [.msi file](https://go.microsoft.com/fwlink/?linkid=2350826) |
+| macOS .NET 10 | [.zip file](https://go.microsoft.com/fwlink/?linkid=2350828) |
+| Linux .NET 10 | [.zip file](https://go.microsoft.com/fwlink/?linkid=2350619) |
 
 ### Features
 
