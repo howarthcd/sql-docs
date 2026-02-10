@@ -50,12 +50,12 @@ dotnet tool install -g microsoft.sqlpackage --version 170.3.93
 
 | Feature | Details |
 | --- | --- |
-| SQL projects | Fixed an issue where building a SQL project with an inline clustered columnstore index definition on a table would fail with a syntax error. [GitHub issue](https://github.com/microsoft/DacFx/issues/719) |
-| SQL projects | Fixed an issue where a clustered columnstore index on a table with `NVARCHAR(MAX)` or other LOB-type columns would incorrectly report an error that columnstore indexes aren't supported with vector columns. [GitHub issue](https://github.com/microsoft/DacFx/issues/713) |
 | Deployment | Fixed a bug with deploying to SQL database in Microsoft Fabric when the target database includes a security policy. |
 | Export | Fixed an issue where exported `.dacpac` files would fail XSD schema validation due to boolean attribute values using `True`/`False` instead of lowercase `true`/`false`. [GitHub issue](https://github.com/microsoft/DacFx/issues/604) |
 | Import | Fixed an issue where importing a table with special characters in the name (such as `/`, `"`, or `$`) would silently fail to import data without warning the user. [GitHub issue](https://github.com/microsoft/DacFx/issues/637) |
 | Ledger | Fixed an issue where a ledger table with a computed column would cause a `NullReferenceException` during model validation and build. [GitHub issue](https://github.com/microsoft/DacFx/issues/735) |
+| SQL projects | Fixed an issue where building a SQL project with an inline clustered columnstore index definition on a table would fail with a syntax error. [GitHub issue](https://github.com/microsoft/DacFx/issues/719) |
+| SQL projects | Fixed an issue where a clustered columnstore index on a table with `NVARCHAR(MAX)` or other LOB-type columns would incorrectly report an error that columnstore indexes aren't supported with vector columns. [GitHub issue](https://github.com/microsoft/DacFx/issues/713) |
 | Vector | Fixed an issue where procedures using `VECTOR_SEARCH` would report a validation warning that the column reference couldn't be resolved. [GitHub issue](https://github.com/microsoft/DacFx/issues/706) |
 
 
