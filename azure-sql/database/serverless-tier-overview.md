@@ -209,7 +209,7 @@ Monitoring, management, or other solutions performing any of these operations tr
 
 #### Auto-resume trigger identification
 
-Auto-resume triggers are exposed in the [Azure Monitor activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) for **Resume Databases** operations under the `Caller` property in the JSON of the **Started** and **Succeeded** event.
+Auto-resume triggers are exposed in the [Azure Monitor activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) for **Resume Databases** operations under the `Caller` property in the JSON of the **Started** and **Succeeded** events.
 
 ### Connectivity
 
