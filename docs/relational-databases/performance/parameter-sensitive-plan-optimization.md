@@ -4,7 +4,7 @@ description: Learn about Parameter Sensitive Plan Optimization in the Query Stor
 author: MikeRayMSFT
 ms.author: mikeray
 ms.reviewer: derekw, maghan, randolphwest, wiassaf
-ms.date: 10/23/2025
+ms.date: 02/11/2026
 ms.service: sql
 ms.subservice: performance
 ms.topic: concept-article
@@ -332,12 +332,14 @@ PSP optimization provides audit data for the dispatcher plan statement, and any 
 
 | Issue | Date discovered | Status | Date resolved |
 | --- | --- | --- | --- |
-| Access Violation exception occurs in Query Store in [!INCLUDE [sssql22-md](../../includes/sssql22-md.md)] under certain conditions. You might encounter Access violation exceptions when PSP optimization Query Store integration is enabled. For more information, see the update in [Parameter Sensitive Plan Optimization, Why?](https://techcommunity.microsoft.com/blog/sqlserver/parameter-sensitive-plan-optimization-why/3836281) | March 2023 | Resolved | August 2023 (CU 7) |
-| Access violation exception can occur on readable secondary replicas under certain conditions in [!INCLUDE [sssql25-md](../../includes/sssql25-md.md)]. You might encounter access violation exceptions when PSP optimization is enabled on a readable secondary database that has been configured to use the [Query Store for readable secondary replicas](query-store-for-secondary-replicas.md) feature. | September 2025 | Has workaround | |
+| Access Violation exception occurs in Query Store in [!INCLUDE [sssql22-md](../../includes/sssql22-md.md)] under certain conditions. You might encounter Access violation exceptions when PSP optimization Query Store integration is enabled. For more information, see the update in [Parameter Sensitive Plan Optimization, Why?](https://techcommunity.microsoft.com/blog/sqlserver/parameter-sensitive-plan-optimization-why/3836281) | March 2023 | Resolved | August 2023 (SQL Server 2022 CU 7) |
+| Access violation exception can occur on readable secondary replicas under certain conditions in [!INCLUDE [sssql25-md](../../includes/sssql25-md.md)]. You might encounter access violation exceptions when PSP optimization is enabled on a readable secondary database that has been configured to use the [Query Store for readable secondary replicas](query-store-for-secondary-replicas.md) feature. | September 2025 | Resolved | January 2026 (SQL Server 2025 CU 1) |
 
-### Has workaround
+### Resolved
 
 #### Access violation exception can occur on readable secondary replicas under certain conditions
+
+(Resolved in January 2026)
 
 Queries that meet the following conditions could experience an access violation when a parameter sensitive plan (PSP) [query variant](#query-variant) can't determine the persisted state of its parent dispatcher statement:
 
@@ -345,16 +347,9 @@ Queries that meet the following conditions could experience an access violation 
 - Sensitive to parameter sniffing
 - Eligible for parameter sensitive plan (PSP) optimization
 
-**Workaround**: Disable parameter sensitive plan (PSP) optimization on secondary replicas for each database that was onboarded to use the Query Store for readable secondary replicas feature. From within the context of a specific database, issue the following Transact-SQL statement:
-
-```sql
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY
-    SET PARAMETER_SENSITIVE_PLAN_OPTIMIZATION = OFF;
-```
-
-### Resolved
-
 #### Access violation exception occurs in Query Store in SQL Server 2022 under certain conditions
+
+(Resolved in March 2023)
 
 > [!NOTE]  
 > [!INCLUDE [sssql22-md](../../includes/sssql22-md.md)] [Cumulative Update 7](/troubleshoot/sql/releases/sqlserver-2022/cumulativeupdate7) released several fixes for a race condition that can lead to an access violation.
