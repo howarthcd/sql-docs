@@ -152,7 +152,6 @@ The following diagram illustrates the architecture of [!INCLUDE [ssazurearc](../
 To use [!INCLUDE [ssazurearc](../../includes/ssazurearc.md)], the following minimum system requirements are recommended:
 
 - **Cores**: 2 cores minimum
-
 - **Memory**: 512 MB of RAM available
 
 ## Unsupported configurations
