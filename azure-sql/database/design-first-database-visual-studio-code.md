@@ -1,9 +1,9 @@
 ---
-title: "Tutorial: Design Your First Relational Database Using SSMS"
-description: Learn to design your first relational database in Azure SQL Database using SQL Server Management Studio.
-author: dzsquared
-ms.author: drskwier
-ms.reviewer: wiassaf, mathoma, v-masebo, randolphwest
+title: "Tutorial: Design Your First Relational Database Using Visual Studio Code"
+description: Learn to design your first relational database in Azure SQL Database using the MSSQL extension for Visual Studio Code.
+author: rwestMSFT
+ms.author: randolphwest
+ms.reviewer: timioshin, maghan, drskwier, mathoma
 ms.date: 02/17/2026
 ms.service: azure-sql-database
 ms.subservice: development
@@ -11,25 +11,28 @@ ms.topic: tutorial
 ms.custom:
   - sfi-image-nochange
 ---
-# Tutorial: Design a relational database in Azure SQL Database
+
+# Tutorial: Design a relational database in Azure SQL Database using Visual Studio Code
 
 [!INCLUDE [appliesto-sqldb](../includes/appliesto-sqldb.md)]
 
-Azure SQL Database is a relational database-as-a-service (DBaaS) in the Microsoft Azure. In this tutorial, you learn how to:
+Azure SQL Database is a relational database-as-a-service (DBaaS) in the Microsoft Cloud (Azure). In this tutorial, you learn how to use the Azure portal and the [MSSQL extension for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code) to:
 
 > [!div class="checklist"]
-> - Connect to the database
-> - Create tables with T-SQL commands
+> - Connect to the database with Visual Studio Code
+> - Create tables with Visual Studio Code
 > - Bulk load data with BCP
-> - Query data with T-SQL commands
+> - Query data with Visual Studio Code
 
 > [!NOTE]  
 > For the purpose of this tutorial, we are using Azure SQL Database. You could also use a pooled database in an elastic pool or a SQL Managed Instance. For connectivity to a SQL Managed Instance, see these SQL Managed Instance quickstarts: [Quickstart: Configure an Azure VM to connect to Azure SQL Managed Instance](../managed-instance/connect-vm-instance-configure.md) and [Quickstart: Configure a point-to-site connection to Azure SQL Managed Instance from on-premises](../managed-instance/point-to-site-p2s-configure.md).
 
 ## Prerequisites
 
-- Use [SQL Server Management Studio](/sql/ssms/sql-server-management-studio-ssms) (latest version) or the [Azure portal query editor for Azure SQL Database](query-editor.md).
-- [BCP and SQLCMD](https://www.microsoft.com/download/details.aspx?id=36433) (latest version).
+To complete this tutorial, make sure you've installed:
+
+- [Visual Studio Code](https://code.visualstudio.com/download) and [the MSSQL extension for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code)
+- [bcp utility](/sql/tools/bcp-utility) and [sqlcmd utility](/sql/tools/sqlcmd/sqlcmd-utility)
 - If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount) before you begin.
 - If you don't already have an Azure SQL Database created, visit [Quickstart: Create a single database - Azure SQL Database](single-database-create-quickstart.md). Look for the option to use your offer to [Deploy Azure SQL Database for free](free-offer.md).
 
@@ -65,69 +68,35 @@ Azure SQL Database creates an IP firewall at the server-level. This firewall pre
 Your IP address can now pass through the IP firewall. You can now connect to your database using SQL Server Management Studio or another tool of your choice. Be sure to use the server admin account you created previously.
 
 > [!IMPORTANT]  
-> By default, access through the SQL Database IP firewall is enabled for all Azure services. Select `OFF` on this page to disable for all Azure services.
+> By default, access through the SQL Database IP firewall is enabled for all Azure services. Select **OFF** on this page to disable for all Azure services.
 
 ## Connect to the database
 
-Azure SQL databases exist inside logical SQL servers. Can connect to the logical SQL server's `master` using a login, then connect to your database. Or, using a [contained user](/sql/relational-databases/security/contained-database-users-making-your-database-portable?view=azuresqldb-current&preserve-view=true#contained-database-user-model), you can connect directly to your Azure SQL database.
+Use the [MSSQL extension for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code) to establish a connection to your database.
 
-## [SQL Server Management Studio](#tab/ssms)
-
-Use [SQL Server Management Studio](/sql/ssms/sql-server-management-studio-ssms) to connect to your Azure SQL database.
-
-1. Open SQL Server Management Studio.
-1. In the **Connect to Server** dialog box, enter the following information. Leave other options as default.
+1. Open Visual Studio Code.
+1. In the **New Connection** from the Object Explorer to create a new connection and enter the following information. Leave other options as default.
 
    | Setting | Suggested value | Description |
    | --- | --- | --- |
-   | **Server type** | Database engine | This value is required. |
+   | **Connection type** | Microsoft SQL Server | This value is required. |
    | **Server name** | The fully qualified Azure SQL Database logical server name | For example, `your_logical_azure_sql_server.database.windows.net`. |
-   | **Authentication** | SQL Server Authentication | Use SQL Server Authentication to enter a user name and password. |
-   | | Microsoft Entra authentication | To connect using Microsoft Entra ID, if you're the Microsoft Entra server admin, choose **Microsoft Entra MFA**. For more information, see [Configure and manage Microsoft Entra authentication with Azure SQL](authentication-aad-configure.md). |
-   | **Login** | The server admin account | If using SQL Server Authentication, the account that you specified when you created the server. |
-   | **Password** | The password for your server admin account | If using SQL Server Authentication, the password that you specified when you created the server. |
+   | **Authentication type** | SQL Server Authentication | Use SQL Server Authentication to enter a user name and password. |
+   | | Microsoft Entra authentication | To connect using Microsoft Entra ID, if you're the Microsoft Entra server admin, choose **Microsoft Entra ID - Universal with MFA support**. For more information, see [Configure and manage Microsoft Entra authentication with Azure SQL](authentication-aad-configure.md). |
+   | **Login** | The server admin account | The account that you specified when you created the server. |
+   | **Password** | The password for your server admin account | The password that you specified when you created the server. |
 
-   :::image type="content" source="media/design-first-database-tutorial/connect.png" alt-text="Screenshot of the Connect to Server dialog box in SQL Server Management Studio (SSMS).":::
+   :::image type="content" source="media/design-first-database-visual-studio-code/connect-with-visual-studio-code.png" alt-text="Screenshot of connection dialog box in ADS.":::
 
-1. Select **Options** in the **Connect to server** dialog box. In the **Connect to database** section, enter *yourDatabase* to connect to this database.
-
-   :::image type="content" source="media/design-first-database-tutorial/options-connect-to-db.png" alt-text="Screenshot of the options tab of the connect to server dialog box in SQL Server Management Studio (SSMS).":::
-
-1. Select **Connect**. The **Object Explorer** window opens in SSMS.
+1. Select **Connect**. The **Object Explorer** window opens in ADS.
 
 1. In **Object Explorer**, expand **Databases** and then expand *yourDatabase* to view the objects in the sample database.
 
-   :::image type="content" source="media/design-first-database-tutorial/connected.png" alt-text="Screenshot of SQL Server Management Studio (SSMS) showing database objects in object explorer.":::
-
 1. In **Object Explorer**, right-click *yourDatabase* and select **New Query**. A blank query window opens that is connected to your database.
-
-## [Azure portal Query editor](#tab/queryeditor)
-
-Use the [Azure portal query editor for Azure SQL Database](query-editor.md) to connect to your Azure SQL database.
-
-1. Navigate to your SQL database in the Azure portal. For example, visit [your Azure SQL hub page](https://aka.ms/azuresqlhub), and select your Azure SQL Database.
-
-1. On your SQL database **Overview** page in the [Azure portal](https://portal.azure.com), select **Query editor (preview)** from the resource menu.
-
-   :::image type="content" source="media/design-first-database-tutorial/find-query-editor.png" alt-text="Screenshot that shows selecting query editor.":::
-
-1. On the sign-in screen under **Welcome to SQL Database Query Editor**, provide credentials to connect to the database. You can connect using SQL or Microsoft Entra authentication.
-
-   - To connect with SQL authentication, under **SQL server authentication**, enter a **Login** and **Password** for a user that has access to the database, and then select **OK**. You can always use the login and password for the server admin.
-
-     :::image type="content" source="media/design-first-database-tutorial/login-menu.png" alt-text="Screenshot from the Azure portal showing sign-in with SQL authentication." lightbox="media/design-first-database-tutorial/login-menu.png":::
-
-   - To connect using Microsoft Entra ID, if you're the Microsoft Entra server admin, select **Continue as \<your user or group ID>**. If sign-in is unsuccessful, try refreshing the page.
-
-     :::image type="content" source="media/design-first-database-tutorial/query-editor-entra-login.png" alt-text="Screenshot from the Azure portal showing sign-in with Microsoft Entra authentication." lightbox="media/design-first-database-tutorial/query-editor-entra-login.png":::
-
-1. A new query window opens, ready to accept T-SQL commands. In the object explorer, you can expand folders for **Tables**, **Views**, and **Stored procedures**.
-
----
 
 ## Create tables in your database
 
-Create four tables that model a student management system for universities using [Transact-SQL](/sql/t-sql/language-reference):
+Create a database schema with four tables that model a student management system for universities using the Table Designer:
 
 - `Person`
 - `Course`
@@ -136,12 +105,48 @@ Create four tables that model a student management system for universities using
 
 The following diagram shows how these tables are related to each other. Some of these tables reference columns in other tables. For example, the `Student` table references the `PersonId` column of the `Person` table. Study the diagram to understand how the tables in this tutorial are related to one another. For an in-depth look at how to create effective normalized database tables, see [Designing a Normalized Database](/previous-versions/tn-archive/cc505842(v=technet.10)). For information about choosing data types, see [Data types](/sql/t-sql/data-types/data-types-transact-sql?view=azuresqldb-current&preserve-view=true). By default, tables are created in the default `dbo` schema, meaning the two-part name of a table will be `dbo.Person`, for example.
 
-> [!NOTE]  
-> You can also use the [table designer in SQL Server Management Studio](/sql/ssms/visual-db-tools/design-database-diagrams-visual-database-tools) to create and design your tables.
+:::image type="content" source="media/design-first-database-visual-studio-code/tutorial-database-tables.png" alt-text="Screenshot of Table relationships.":::
 
-:::image type="content" source="media/design-first-database-tutorial/tutorial-database-tables.png" alt-text="Screenshot of the table designer in SQL Server Management Studio (SSMS) showing the table relationships.":::
+1. In **Object Explorer**, Select *yourDatabase* which expands the dropdown menu of all processes stored in this database, right-click the **Tables** folder, select **New Table**. A blank Table Designer opens that is connected to your database.
 
-1. In the query window, execute the following T-SQL query to create four tables in your database:
+1. Use the Table Designer interface to create these four tables in your database. To learn more about creating tables using the Table Designer, see [Table Designer](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code#table-designer):
+
+   - Person Table
+
+     :::image type="content" source="media/design-first-database-visual-studio-code/person-table-visual-studio-code.png" alt-text="Screenshot of Person Table in Table Designer." lightbox="media/design-first-database-visual-studio-code/person-table-visual-studio-code.png":::
+
+     Be sure to configure the Primary Key settings for the **Person** Table as shown below:
+
+     :::image type="content" source="media/design-first-database-visual-studio-code/person-table-primary-key-visual-studio-code.png" alt-text="Screenshot of Person table in Table Designer showing the Primary Key settings.":::
+
+   - Student Table
+
+     :::image type="content" source="media/design-first-database-visual-studio-code/student-table-visual-studio-code.png" alt-text="Screenshot of Student table in Table Designer." lightbox="media/design-first-database-visual-studio-code/student-table-visual-studio-code.png":::
+
+     Be sure to configure the Primary Key settings for the **Student** Table as shown below:
+         :::image type="content" source="media/design-first-database-visual-studio-code/student-table-primary-key-visual-studio-code.png" alt-text="Screenshot of Student table in Table Designer showing Primary Key settings." lightbox="media/design-first-database-visual-studio-code/student-table-primary-key-visual-studio-code.png":::
+
+     Be sure to configure the Foreign Key settings for the **Student** Table as shown below:
+         :::image type="content" source="media/design-first-database-visual-studio-code/student-table-foreign-key-visual-studio-code.png" alt-text="Screenshot of Student table in Table Designer showing Foreign Key settings." lightbox="media/design-first-database-visual-studio-code/student-table-foreign-key-visual-studio-code.png":::
+
+   - Course Table
+
+     :::image type="content" source="media/design-first-database-visual-studio-code/course-table-visual-studio-code.png" alt-text="Screenshot of Course Table in Table Designer." lightbox="media/design-first-database-visual-studio-code/course-table-visual-studio-code.png":::
+
+     Be sure to configure the Primary Key settings for the **Course** Table as shown below:
+        :::image type="content" source="media/design-first-database-visual-studio-code/course-table-primary-key-visual-studio-code.png" alt-text="Screenshot of Course table in Table Designer showing Primary Key settings." lightbox="media/design-first-database-visual-studio-code/course-table-primary-key-visual-studio-code.png":::
+
+   - Credit Table
+
+     :::image type="content" source="media/design-first-database-visual-studio-code/credit-table-visual-studio-code.png" alt-text="Screenshot of Credit Table in Table Designer." lightbox="media/design-first-database-visual-studio-code/credit-table-visual-studio-code.png":::
+
+     Be sure to configure the Foreign Key settings for the **Credit** Table as shown below:
+      :::image type="content" source="media/design-first-database-visual-studio-code/credit-table-foreign-key-visual-studio-code.png" alt-text="Screenshot of Credit Table in Table Designer showing Foreign Key settings." lightbox="media/design-first-database-visual-studio-code/credit-table-foreign-key-visual-studio-code.png":::
+
+     Be sure to configure the Check Constraint settings for the **Credit** Table as shown below:
+      :::image type="content" source="media/design-first-database-visual-studio-code/credit-table-check-constraint-visual-studio-code.png" alt-text="Screenshot of Credit Table in Table Designer showing Check Constraint settings." lightbox="media/design-first-database-visual-studio-code/credit-table-check-constraint-visual-studio-code.png":::
+
+   If you prefer to use T-SQL to create the four new tables, here's the T-SQL to execute in a new query window.
 
    ```sql
    -- Create Person table
@@ -177,14 +182,13 @@ The following diagram shows how these tables are related to each other. Some of 
        CourseId INT FOREIGN KEY REFERENCES Course (CourseId),
        Grade DECIMAL (5, 2) CHECK (Grade <= 100.00),
        Attempt TINYINT,
-       CONSTRAINT [UQ_studentgrades]
-           UNIQUE CLUSTERED (StudentId, CourseId, Grade, Attempt)
+       CONSTRAINT [UQ_studentgrades] UNIQUE CLUSTERED (StudentId, CourseId, Grade, Attempt)
    );
    ```
 
-   :::image type="content" source="media/design-first-database-tutorial/create-tables.png" alt-text="Screenshot from SSMS showing the create tables script has been successfully executed." lightbox="media/design-first-database-tutorial/create-tables.png":::
-
 1. Expand the **Tables** node under *yourDatabase* in the **Object Explorer** to see the four new tables you created.
+
+   :::image type="content" source="media/design-first-database-visual-studio-code/visual-studio-code-tables-created.png" alt-text="Screenshot of created tables in ADS.":::
 
 ## Load data into the tables
 
@@ -201,7 +205,7 @@ The following diagram shows how these tables are related to each other. Some of 
 
 1. Execute the following `bcp` commands to insert sample data into the tables replacing the values for *server*, *database*, *user*, and *password* with the values for your environment.
 
-   ```console
+   ```bash
    bcp Course in SampleCourseData -S <server>.database.windows.net -d <database> -U <user> -P <password> -q -c -t ","
    bcp Person in SamplePersonData -S <server>.database.windows.net -d <database> -U <user> -P <password> -q -c -t ","
    bcp Student in SampleStudentData -S <server>.database.windows.net -d <database> -U <user> -P <password> -q -c -t ","
@@ -254,15 +258,12 @@ This query joins all four tables and finds the courses in which 'Noe Coleman' ha
 > [!TIP]  
 > To learn more about writing SQL queries, visit [Tutorial: Write Transact-SQL statements](/sql/t-sql/tutorial-writing-transact-sql-statements).
 
-## Next step
-
-> [!div class="nextstepaction"]
-> [Tutorial: Design a relational database in Azure SQL Database C&#x23; and ADO.NET](design-first-database-csharp-tutorial.md)
-
 ## Related content
 
+- [Tutorial: Design a relational database in Azure SQL Database](design-first-database-tutorial.md)
 - [Deploy Azure SQL Database for free](free-offer.md)
 - [What's new in Azure SQL Database?](doc-changes-updates-release-notes-whats-new.md)
 - [Configure and manage content reference - Azure SQL Database](how-to-content-reference-guide.md)
 - [Plan and manage costs for Azure SQL Database](cost-management.md)
 - [Develop and configure an ASP.NET application that queries an Azure SQL Database](/training/modules/develop-app-that-queries-azure-sql/)
+- [Tutorial: Design a relational database in Azure SQL Database C&#x23; and ADO.NET](design-first-database-csharp-tutorial.md)
