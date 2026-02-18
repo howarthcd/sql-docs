@@ -50816,6 +50816,26 @@
       "redirect_document_id": true
     },
     {
+      "source_path": "docs/machine-learning/data-exploration/python-dataframe-pandas.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/data-exploration/python-dataframe-sql-server.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/data-exploration/python-plot-histogram.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-clustering-model.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "docs/machine-learning/tutorials/python-clustering-model-build.md",
       "redirect_url": "/sql/machine-learning/concepts/extension-python",
       "redirect_document_id": false
@@ -50826,7 +50846,22 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "docs/machine-learning/tutorials/python-clustering-model-prepare-data.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-ski-rental-linear-regression.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "docs/machine-learning/tutorials/python-ski-rental-linear-regression-deploy-model.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-ski-rental-linear-regression-prepare-data.md",
       "redirect_url": "/sql/machine-learning/concepts/extension-python",
       "redirect_document_id": false
     },
