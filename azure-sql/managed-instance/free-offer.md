@@ -254,7 +254,7 @@ The free Azure SQL Managed Instance offer is available on the following subscrip
       - [Visual Studio Enterprise subscribers (0063P)](https://azure.microsoft.com/pricing/offers/ms-azr-0063p/)
       - [Pay-As-You-Go Dev/Test (0023P)](https://azure.microsoft.com/pricing/offers/ms-azr-0023p/)
       - [Enterprise Dev/Test (0148P)](https://azure.microsoft.com/pricing/offers/ms-azr-0148p/)
-      - [Azure in Open Licensing (0111P)](https://azure.microsoft.com/pricing/offers/ms-azr-0111p/)
+      - [Azure in Open Licensing (0111P)](https://azure.microsoft.com/pricing/offers/ms-azr-0111p?cid=msft_learn)
     :::column-end:::
 :::row-end:::
 

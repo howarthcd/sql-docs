@@ -24,7 +24,7 @@ This quickstart describes how to connect an application to a database in Azure S
 
 ## Prerequisites
 
-- An [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccountpython/).
+- An [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure SQL database configured with Microsoft Entra authentication. You can create one using the [Quickstart: Create a single database - Azure SQL Database](single-database-create-quickstart.md). Alternatively, you can use a [SQL database in Microsoft Fabric](/fabric/database/sql/create).
 - Visual Studio Code with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 - Python 3.10 or later.

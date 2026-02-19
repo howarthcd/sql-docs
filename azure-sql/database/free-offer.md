@@ -31,7 +31,7 @@ You know the offer has been applied when the **Cost summary** card on the right 
 To create a free Azure SQL Database, you need:
 
 - An Azure account.
-  - If you're evaluating Azure, consider the [Azure free account, with many services available free for 12 months](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+  - If you're evaluating Azure, consider the [Azure free account, with many services available free for 12 months](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
   - While the [previous offer](free-sql-db-free-account-how-to-deploy.md) required an Azure Free subscription, this new offer is available regardless of your Azure subscription type.
 - An Azure subscription. There's a limit of 10 free offer databases per subscription.
 
@@ -125,7 +125,7 @@ You can use the Azure portal, PowerShell, or Azure CLI to create a free offer da
 - The ability to restore or convert an existing database to the free offer database, or data sync with other databases, isn't available.
 - Elastic Jobs and DNS Alias aren't available for this free offer.
 - The free offer Azure SQL Database can't be a part of an [elastic pool](elastic-pool-overview.md) or [failover group](failover-group-sql-db.md).
-- Currently, the Microsoft Azure for Students Starter offer is incompatible with this Azure SQL Database free offer. Instead, consider the [Azure for College Students offer](https://azure.microsoft.com/pricing/offers/ms-azr-0170p/) or the [Azure Free offer](https://azure.microsoft.com/pricing/offers/ms-azr-0044p/). If desired, the **Continue using database for additional charges** option can deduct from the starting credits.
+- Currently, the Microsoft Azure for Students Starter offer is incompatible with this Azure SQL Database free offer. Instead, consider the [Azure for College Students offer](https://azure.microsoft.com/pricing/offers/ms-azr-0170p/?cid=msft_learn) or the [Azure Free offer](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If desired, the **Continue using database for additional charges** option can deduct from the starting credits.
 - When setting an **Advanced configuration**, once a region is selected for a free database under a subscription, the same region applies to all free databases in that subscription, and cannot be changed.
 - When setting an **Advanced configuration**, if the free offer banner doesn't appear in the Azure portal as expected, choose the desired logical **Server** in the dropdown list again.
 

@@ -39,7 +39,7 @@ This tutorial assumes that you have a basic understanding of SQL Server Always O
 
 ## Create an Azure account
 
-You need an Azure account. You can [open a free Azure account](https://signup.azure.com/signup?offer=ms-azr-0044p&appId=102&ref=azureplat-generic) or [activate Visual Studio subscriber benefits](/visualstudio/subscriptions/subscriber-benefits).
+You need an Azure account. You can [open a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) or [activate Visual Studio subscriber benefits](/visualstudio/subscriptions/subscriber-benefits).
 
 ## Create a resource group
 

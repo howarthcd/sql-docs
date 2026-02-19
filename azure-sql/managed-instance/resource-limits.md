@@ -305,10 +305,10 @@ SQL Managed Instance currently supports deployment only on the following types o
 - [Enterprise Dev/Test](https://azure.microsoft.com/offers/ms-azr-0148p/)
 - [Pay-as-you-go Dev/Test](https://azure.microsoft.com/offers/ms-azr-0023p/)
 - [Subscriptions with monthly Azure credit for Visual Studio subscribers](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/)
-- [Free Trial](https://azure.microsoft.com/pricing/offers/ms-azr-0044p/)
-- [Azure For Students](https://azure.microsoft.com/pricing/offers/ms-azr-0170p/)
-- [Azure In Open](https://azure.microsoft.com/pricing/offers/ms-azr-0111p/)
-- [Azure plan](https://azure.microsoft.com/pricing/offers/ms-azr-0017g/)
+- [Free Trial](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+- [Azure For Students](https://azure.microsoft.com/pricing/offers/ms-azr-0170p?cid=msft_learn)
+- [Azure In Open](https://azure.microsoft.com/pricing/offers/ms-azr-0111p?cid=msft_learn)
+- [Azure plan](https://azure.microsoft.com/pricing/offers/ms-azr-0017g?cid=msft_learn)
 
 ## Regional resource limitations
 
