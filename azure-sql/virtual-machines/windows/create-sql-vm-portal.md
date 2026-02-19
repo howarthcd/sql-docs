@@ -21,7 +21,7 @@ This article provides a detailed description of the available configuration opti
 
 ## Prerequisites
 
-An Azure subscription. Create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount?WT.mc_id=A261C142F) to get started.
+An Azure subscription. Create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) to get started.
 
 <a id="select"></a>
 

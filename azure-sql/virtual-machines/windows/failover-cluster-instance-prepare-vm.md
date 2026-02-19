@@ -27,7 +27,7 @@ To learn more, see an overview of [FCI with SQL Server on Azure VMs](failover-cl
 
 ## Prerequisites
 
-- A Microsoft Azure subscription. Get started with a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+- A Microsoft Azure subscription. Get started with a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Windows domain on Azure virtual machines or an on-premises active directory extended to Azure with virtual network pairing.
 - An account that has permissions to create objects on Azure virtual machines and in Active Directory.
 - An Azure virtual network and one or more subnets with enough IP address space for the following components:
