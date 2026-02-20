@@ -274,5 +274,4 @@ SELECT FORMAT(1234567.89, 'N0') AS FormattedNumber;
 
 - [CAST and CONVERT (Transact-SQL)](cast-and-convert-transact-sql.md)
 - [STR (Transact-SQL)](str-transact-sql.md)
-- [String Functions (Transact-SQL)](string-functions-transact-sql.md)
 

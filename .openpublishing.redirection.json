@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "docs/odbc/reference/introduction-to-odbc.md",
+      "redirect_url": "/sql/odbc/reference/odbc-overview",
+      "redirect_document_id": true
+    },
+    {
       "source_path": "docs/sql-server/applies-to-includes.md",
       "redirect_url": "/sql/sql-server/sql-server-docs-contribute",
       "redirect_document_id": false
@@ -50811,6 +50816,106 @@
       "redirect_document_id": true
     },
     {
+      "source_path": "docs/machine-learning/data-exploration/python-dataframe-pandas.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/data-exploration/python-dataframe-sql-server.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/data-exploration/python-plot-histogram.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-clustering-model.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-clustering-model-build.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-clustering-model-deploy.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-clustering-model-prepare-data.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-ski-rental-linear-regression.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-ski-rental-linear-regression-deploy-model.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-ski-rental-linear-regression-prepare-data.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/python-ski-rental-linear-regression-train-model.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/r-clustering-model-build.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/r-clustering-model-deploy.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/r-clustering-model-introduction.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/r-clustering-model-prepare-data.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/r-predictive-model-deploy.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/r-predictive-model-introduction.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/r-predictive-model-prepare-data.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/tutorials/r-predictive-model-train.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/machine-learning/package-management/install-additional-python-packages-on-sql-server.md",
+      "redirect_url": "/sql/machine-learning/concepts/extension-python",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "docs/advanced-analytics/connect/loopback-connection.md",
       "redirect_url": "/sql/machine-learning/connect/loopback-connection",
       "redirect_document_id": true
@@ -67591,6 +67696,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "azure-sql/database/design-first-database-azure-data-studio.md",
+      "redirect_url": "/azure/azure-sql/database/design-first-database-visual-studio-code",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "docs/relational-databases/resource-governor/create-and-test-a-classifier-user-defined-function.md",
       "redirect_url": "/sql/relational-databases/resource-governor/resource-governor-walkthrough",
       "redirect_document_id": false
@@ -67727,6 +67837,36 @@
     {
       "source_path": "docs/connect/python/pymssql/python-sql-driver-pymssql-quickstart.md",
       "redirect_url": "/sql/connect/python/mssql-python/python-sql-driver-mssql-python-quickstart",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/analytics-platform-system/tsql-language-elements.md",
+      "redirect_url": "/sql/analytics-platform-system/home-analytics-platform-system-aps-pdw?view=aps-pdw-2016-au7&preserve-view=true",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/analytics-platform-system/tsql-statements.md",
+      "redirect_url": "/sql/analytics-platform-system/home-analytics-platform-system-aps-pdw?view=aps-pdw-2016-au7&preserve-view=true",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/analytics-platform-system/tsql-system-views.md",
+      "redirect_url": "/sql/analytics-platform-system/home-analytics-platform-system-aps-pdw?view=aps-pdw-2016-au7&preserve-view=true",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/t-sql/functions/string-functions-transact-sql.md",
+      "redirect_url": "/sql/t-sql/functions/functions#string-functions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/t-sql/functions/configuration-functions-transact-sql.md",
+      "redirect_url": "/sql/t-sql/functions/functions#configuration-functions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "docs/connect/jdbc/programming-guide-for-jdbc-sql-driver.md",
+      "redirect_url": "/sql/connect/jdbc/connecting-to-sql-server-with-the-jdbc-driver",
       "redirect_document_id": false
     }
   ]

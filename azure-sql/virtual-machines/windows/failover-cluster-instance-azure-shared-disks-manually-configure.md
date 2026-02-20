@@ -30,7 +30,7 @@ To learn more, see an overview of [FCI with SQL Server on Azure VMs](failover-cl
 
 Before you complete the instructions in this article, you should already have:
 
-- An Azure subscription. Get started with a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+- An Azure subscription. Get started with a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Two or more prepared Azure Windows virtual machines](failover-cluster-instance-prepare-vm.md) in an availability set, or availability zones.
 - An account that has permissions to create objects on both Azure virtual machines and in Active Directory.
 - The latest version of [Azure PowerShell](/powershell/azure/install-az-ps).

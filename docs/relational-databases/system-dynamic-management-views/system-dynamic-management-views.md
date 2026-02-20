@@ -3,7 +3,7 @@ title: "System Dynamic Management Views (Transact-SQL)"
 description: "Dynamic management views and functions return server state information that can be used to monitor the health of a server instance, diagnose problems, and tune performance."
 author: rwestMSFT
 ms.author: randolphwest
-ms.date: 01/27/2026
+ms.date: 02/09/2026
 ms.service: sql
 ms.subservice: system-objects
 ms.topic: "reference"
@@ -57,39 +57,6 @@ To query a dynamic management view or function requires `SELECT` permission on o
 
 > [!NOTE]  
 > Because `DENY` takes precedence, if a user has been granted VIEW SERVER STATE permissions but denied `VIEW DATABASE STATE` permission, the user can see server-level information, but not database-level information.
-
-## In this section
-
-Dynamic management views and functions have been organized into the following categories.
-
-- [Always On Availability Groups Dynamic Management Views - Functions](always-on-availability-groups-dynamic-management-views-functions.md)
-- [Change Data Capture - sys.dm_cdc_errors](change-data-capture-sys-dm-cdc-errors.md)
-- [Change tracking - sys.dm_tran_commit_table](change-tracking-sys-dm-tran-commit-table.md)
-- [Common Language Runtime Related Dynamic Management Views](common-language-runtime-related-dynamic-management-views-transact-sql.md)
-- [Database Mirroring - sys.dm_db_mirroring_auto_page_repair](database-mirroring-sys-dm-db-mirroring-auto-page-repair.md)
-- [Database related dynamic management views](database-related-dynamic-management-views-transact-sql.md)
-- [Execution Related Dynamic Management Views and Functions](execution-related-dynamic-management-views-and-functions-transact-sql.md)
-- [Extended Events Dynamic Management Views](extended-events-dynamic-management-views.md)
-- [FILESTREAM and FileTable dynamic management views](filestream-and-filetable-dynamic-management-views-transact-sql.md)
-- [Full-Text and Semantic Search Dynamic Management Views - Functions](full-text-and-semantic-search-dynamic-management-views-functions.md)
-- [Geo-replication dynamic management views and functions](geo-replication-dynamic-management-views-and-functions-azure-sql-database.md)
-- [I/O Related Dynamic Management Views and Functions](i-o-related-dynamic-management-views-and-functions-transact-sql.md)
-- [In-Memory OLTP System Views](memory-optimized-table-dynamic-management-views-transact-sql.md)
-- [Index Related Dynamic Management Views and Functions](index-related-dynamic-management-views-and-functions-transact-sql.md)
-- [Linux related dynamic management views and functions](linux-related-dynamic-management-views-and-functions-transact-sql.md)
-- [Monitor and troubleshoot PolyBase](../polybase/polybase-troubleshooting.md)
-- [Object Related Dynamic Management Views and Functions](object-related-dynamic-management-views-and-functions-transact-sql.md)
-- [Query Notifications - sys.dm_qn_subscriptions](query-notifications-sys-dm-qn-subscriptions.md)
-- [Replication Related Dynamic Management Views](replication-related-dynamic-management-views-transact-sql.md)
-- [Resource governor related dynamic management views](resource-governor-related-dynamic-management-views-transact-sql.md)
-- [Security-Related Dynamic Management Views and Functions](security-related-dynamic-management-views-and-functions-transact-sql.md)
-- [Server dynamic management views and functions](server-related-dynamic-management-views-and-functions-transact-sql.md)
-- [Service Broker related dynamic management views](service-broker-related-dynamic-management-views-transact-sql.md)
-- [Spatial Data - sys.dm_db_objects_disabled_on_compatibility_level_change](spatial-data-sys-dm-db-objects-disabled-on-compatibility-level-change.md)
-- [SQL and Parallel Data Warehouse Dynamic Management Views](sql-and-parallel-data-warehouse-dynamic-management-views.md)
-- [SQL Server Operating System related dynamic management views](sql-server-operating-system-related-dynamic-management-views-transact-sql.md)
-- [Stretch Database related dynamic management views](/previous-versions/sql/relational-databases/system-dynamic-management-views/stretch-database-related-dynamic-management-views-transact-sql)
-- [Transaction Related Dynamic Management Views and Functions](transaction-related-dynamic-management-views-and-functions-transact-sql.md)
 
 ## Related content
 

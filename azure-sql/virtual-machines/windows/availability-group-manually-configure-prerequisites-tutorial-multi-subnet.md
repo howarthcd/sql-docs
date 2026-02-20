@@ -32,7 +32,7 @@ The following diagram illustrates the resources you deploy in this tutorial:
 
 To complete this tutorial, you need the following:
 
-- An Azure subscription. You can [open a free Azure account](https://signup.azure.com/signup?offer=ms-azr-0044p&appId=102&ref=azureplat-generic) or [activate Visual Studio subscriber benefits](/visualstudio/subscriptions/subscriber-benefits).
+- An Azure subscription. You can [open a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) or [activate Visual Studio subscriber benefits](/visualstudio/subscriptions/subscriber-benefits).
 - A basic understanding of and familiarity with [Always On availability groups in SQL Server](/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server).
 
 ## Create resource group

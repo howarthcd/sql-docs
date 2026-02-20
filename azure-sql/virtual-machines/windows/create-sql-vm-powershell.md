@@ -21,7 +21,7 @@ This guide covers options for using PowerShell to create a SQL Server on Azure V
 
 To complete this guide, you should have the following: 
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount?WT.mc_id=A261C142F) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - The latest version of Azure PowerShell
 
 [!INCLUDE [updated-for-az.md](../../includes/updated-for-az.md)]

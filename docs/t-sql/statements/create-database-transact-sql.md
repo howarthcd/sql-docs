@@ -4,7 +4,7 @@ description: Create database syntax for SQL Server and all SQL Database Engine p
 author: markingmyname
 ms.author: maghan
 ms.reviewer: wiassaf, dnethi, randolphwest
-ms.date: 10/01/2025
+ms.date: 02/06/2026
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: reference
@@ -1081,7 +1081,7 @@ By default, the metadata catalog for system object names is collated to `SQL_Lat
 
 Specifies how the point-in-time restore and long-term retention backups for a database are replicated. Geo restore or ability to recover from regional outage is only available when database is created with `GEO` backup storage redundancy. Unless explicitly specified, databases created with T-SQL use geo-redundant backup storage.
 
-Use `GEOZONE` for geo-zone redundant storage. Geo-zone redundant storage (GZRS) offers the highest level of protection against zonal outages as well as regional outages for any workload.
+Use `GEOZONE` for geo-zone redundant storage. Geo-zone redundant storage (GZRS) offers the highest level of protection against zone outages as well as regional outages for any workload.
 
 To enforce data residency when you're creating a database by using T-SQL, use `LOCAL` or `ZONE` as input to the `BACKUP_STORAGE_REDUNDANCY` parameter.
 
@@ -1479,7 +1479,7 @@ CREATE DATABASE MyLedgerDB
 In Azure Synapse, this statement can be used with an Azure SQL Database server to create a dedicated SQL pool. With this statement, you specify the database name, collation, maximum size, edition, and service objective.
 
 - `CREATE DATABASE` is supported for standalone dedicated SQL pools (formerly SQL DW) using Gen2 service levels.
-- `CREATE DATABASE` isn't supported for dedicated SQL pools in an Azure Synapse Analytics workspace. Instead, [use the Azure portal](/azure-data-studio/quickstart-sql-dw).
+- `CREATE DATABASE` isn't supported for dedicated SQL pools in an Azure Synapse Analytics workspace. Instead, use the Azure portal.
 - `CREATE DATABASE` is supported for serverless SQL pools in Azure Synapse Analytics.
 
 ## Syntax

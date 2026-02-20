@@ -12,6 +12,9 @@ The following table identifies features available by [!INCLUDE [ssnoversion-md](
 
 ::: moniker range="<=sql-server-ver16 || <=sql-server-linux-ver16"
 
+> [!NOTE]
+> This table applies to SQL Server 2022 and earlier versions. To view features for later versions, use the version selector at the top of the page.
+
 | Feature | Enterprise | Standard | Web | Express | Developer | Evaluation |
 | --- | --- | --- | --- | --- | --- | --- |
 | [Azure pay-as-you-go billing](../manage-configuration.md) | Yes | Yes | Not applicable | Not applicable | Not applicable | Not applicable |
@@ -37,6 +40,9 @@ The following table identifies features available by [!INCLUDE [ssnoversion-md](
 
 ::: moniker range=">=sql-server-ver17 || >=sql-server-linux-ver17"
 
+> [!NOTE]
+> This table applies to versions beginning with SQL Server 2025 (17.x). To view earlier versions, use the version selector at the top of the page.
+
 | Feature | Enterprise <sup>1</sup> | Standard <sup>1</sup> | Express | Evaluation |
 | --- | --- | --- | --- | --- |
 | [Azure pay-as-you-go billing](../manage-configuration.md) | Yes | Yes | Not applicable | Not applicable |
@@ -55,7 +61,7 @@ The following table identifies features available by [!INCLUDE [ssnoversion-md](
 | [Client connection summary](../sql-connection-summary.md) | Yes | Yes | Yes | Yes |
 | [Operate with least privilege](../configure-least-privilege.md) | Yes | Yes | Yes | Yes |
 
-<sup>1</sup> SQL Server 2025 (17.x) introduces separate Enterprise Developer and Standard Developer editions of SQL Server.
+<sup>1</sup> SQL Server 2025 (17.x) introduces separate Enterprise Developer and Standard Developer editions of SQL Server. Enterprise Developer has the same features as Enterprise edition, and Standard Developer has the same features as Standard edition.
 
 <sup>2</sup> [Express LocalDB isn't supported.](/azure/purview/register-scan-on-premises-sql-server#supported-capabilities)
 

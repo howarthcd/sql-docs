@@ -33,7 +33,7 @@ To learn more, see an overview of [FCI with SQL Server on Azure VMs](failover-cl
 
 Before you complete the instructions in this article, you should already have:
 
-- An Azure subscription.
+- An Azure subscription. If you don't have one, get started with a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An account that has permissions to create objects on both Azure virtual machines and in Active Directory.
 - [Two or more prepared Azure Windows virtual machines](failover-cluster-instance-prepare-vm.md) in an [availability set](/azure/virtual-machines/windows/tutorial-availability-sets#create-an-availability-set) or different [availability zones](/azure/virtual-machines/windows/create-portal-availability-zone#confirm-zone-for-managed-disk-and-ip-address).
 - A [premium file share](/azure/storage/files/storage-how-to-create-file-share) to be used as the clustered drive, based on the storage quota of your database for your data files.

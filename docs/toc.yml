@@ -4835,7 +4835,7 @@ items:
   - name: Big data options on the Microsoft SQL Server platform
     href: big-data-cluster/big-data-options.md
   - name: Azure Migration Services >
-    displayName: DMS, Data Migration Service, Azure Data Migration Service
+    displayName: DMS, Data Migration Service, Azure Database Migration Service
     href: /azure/dms/dms-overview
   - name: Migration guides
     items:
@@ -8999,6 +8999,8 @@ items:
         href: tools/visual-studio-code-extensions/sql-database-projects/getting-started-sql-database-projects-extension.md
       - name: Build from the Command Line
         href: tools/visual-studio-code-extensions/sql-database-projects/build-database-project-from-command-line.md
+      - name: Add database objects using item templates
+        href: tools/visual-studio-code-extensions/sql-database-projects/add-item-templates.md
       - name: Publish database project
         href: tools/visual-studio-code-extensions/sql-database-projects/publish-database-project.md
 - name: Tutorials
@@ -15759,7 +15761,6 @@ items:
         - name: Collation - TERTIARY_WEIGHTS
           href: t-sql/functions/collation-functions-tertiary-weights-transact-sql.md
       - name: Configuration
-        href: t-sql/functions/configuration-functions-transact-sql.md
         items:
         - name: '@@DBTS'
           href: t-sql/functions/dbts-transact-sql.md
@@ -16221,7 +16222,6 @@ items:
         - name: USER_NAME
           href: t-sql/functions/user-name-transact-sql.md
       - name: String
-        href: t-sql/functions/string-functions-transact-sql.md
         items:
         - name: ASCII
           href: t-sql/functions/ascii-transact-sql.md

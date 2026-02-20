@@ -2780,7 +2780,7 @@
     - name: JDBC 4.3 compliance
       href: ../connect/jdbc/jdbc-4-3-compliance-for-the-jdbc-driver.md
   - name: Programming guide
-    href: ../connect/jdbc/programming-guide-for-jdbc-sql-driver.md
+    href: ../connect/jdbc/connecting-to-sql-server-with-the-jdbc-driver.md
     items:
     - name: Connecting to SQL
       href: ../connect/jdbc/connecting-to-sql-server-with-the-jdbc-driver.md
@@ -3038,6 +3038,8 @@
       href: ../connect/odbc/using-transparent-network-ip-resolution.md
     - name: Data Classification
       href: ../connect/odbc/data-classification.md
+    - name: Vector data type
+      href: ../connect/odbc/vector-data-type.md
     - name: Using XA Transactions
       href: ../connect/odbc/use-xa-with-dtc.md
     - name: Bug Fixes
@@ -3057,17 +3059,14 @@
         - name: Sample ODBC Program
           href: ../odbc/reference/sample-odbc-program.md
         - name: Introduction to ODBC
-          href: ../odbc/reference/introduction-to-odbc.md
+          href: ../odbc/reference/odbc-overview.md
           items:
-          - name: ODBC Overview
-            href: ../odbc/reference/odbc-overview.md
-            items:
-            - name: Why Was ODBC Created?
-              href: ../odbc/reference/why-was-odbc-created.md
-            - name: What Is ODBC?
-              href: ../odbc/reference/what-is-odbc.md
-            - name: ODBC and the Standard CLI
-              href: ../odbc/reference/odbc-and-the-standard-cli.md
+          - name: Why Was ODBC Created?
+            href: ../odbc/reference/why-was-odbc-created.md
+          - name: What Is ODBC?
+            href: ../odbc/reference/what-is-odbc.md
+          - name: ODBC and the Standard CLI
+            href: ../odbc/reference/odbc-and-the-standard-cli.md
           - name: Introduction to SQL and ODBC
             href: ../odbc/reference/introduction-to-sql-and-odbc.md
             items:

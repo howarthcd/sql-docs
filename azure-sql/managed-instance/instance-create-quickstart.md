@@ -3,8 +3,8 @@ title: "Quickstart: Create Azure SQL Managed Instance"
 description: Create Azure SQL Managed Instance by using the Azure portal, PowerShell, and the Azure CLI.
 author: vladai78
 ms.author: vladiv
-ms.reviewer: mathoma
-ms.date: 10/25/2025
+ms.reviewer: mathoma, randolphwest
+ms.date: 02/19/2026
 ms.service: azure-sql-managed-instance
 ms.subservice: deployment-configuration
 ms.topic: quickstart
@@ -25,7 +25,7 @@ This quickstart teaches you to create a deployment of [Azure SQL Managed Instanc
 
 To create a SQL managed instance, you need the following prerequisites:
 
-- An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount)
+- An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - In the general case, your user needs to have the role [SQL Managed Instance Contributor](/azure/role-based-access-control/built-in-roles#sql-managed-instance-contributor) assigned at subscription scope.
 - If provisioning in a subnet that is already delegated to Azure SQL Managed Instance, your user only needs the Microsoft.Sql/managedInstances/write permission assigned at subscription scope.
 - The latest version of the [Az.SQL](https://www.powershellgallery.com/packages/Az.Sql) PowerShell module or the latest version of the [Azure CLI](/cli/azure/install-azure-cli-windows). 
@@ -258,16 +258,13 @@ To connect to SQL Managed Instance, follow these steps to retrieve the host name
 > [!div class="nextstepaction"]
 > [Connect your application to Azure SQL Managed Instance](connect-application-instance.md)
 
-
 ## Related content
 
 To restore an existing SQL Server database from on-premises to SQL Managed Instance: 
 
-- [Azure Database Migration Service](/azure/dms/tutorial-sql-server-managed-instance-online-ads)
+- [SQL Server migration experience in Azure Arc](/sql/sql-server/azure-arc/migrate-to-azure-sql-managed-instance)
 - [Quickstart: Restore a database to Azure SQL Managed Instance with SSMS](restore-sample-database-quickstart.md)
-
 - [Quickstart: Configure an Azure VM to connect to Azure SQL Managed Instance](connect-vm-instance-configure.md)
 - [Migration overview: SQL Server to SQL Managed Instance](../migration-guides/managed-instance/sql-server-to-managed-instance-overview.md)
 - [Quickstart: Configure a point-to-site connection to Azure SQL Managed Instance from on-premises](point-to-site-p2s-configure.md)
 - [Monitor Azure SQL workloads with database watcher (preview)](../database-watcher-overview.md)
-

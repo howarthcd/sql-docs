@@ -4,7 +4,7 @@ description: The vector data type stores vector data optimized for machine learn
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: damauri, pookam, randolphwest
-ms.date: 11/18/2025
+ms.date: 02/18/2026
 ms.service: sql
 ms.subservice: t-sql
 ms.topic: quickstart
@@ -88,7 +88,7 @@ CREATE TABLE dbo.vectors
     v VECTOR(3) NOT NULL -- Uses default base type (`float32`)
 );
 
-CREATE TABLE dbo.vectors
+CREATE TABLE dbo.vectors_fp16
 (
     id INT PRIMARY KEY,
     v VECTOR(3, float16) -- Uses float16 for reduced storage and precision
@@ -112,6 +112,7 @@ The **vector** type can be used with variables:
 ```sql
 DECLARE @v AS VECTOR(3) = '[0.1, 2, 30]';
 SELECT @v;
+GO
 DECLARE @v AS VECTOR(3, float16) = '[0.1, 2, 30]';
 SELECT @v;
 ```
@@ -388,11 +389,9 @@ Example of selecting **vector** data from a table:
     }
 ```
 
-### [Python (mssql-python)](#tab/python)
+### [Python](#tab/python)
 
-With Python, applications can write and read vector data using `json.loads` and `json.dumps`:
-
-This sample is using Python with the latest [Microsoft official Python driver for SQL Server](https://github.com/microsoft/mssql-python/wiki). Applications can write and read vector data using `json.loads` and `json.dumps`:
+This sample is using Python with the [mssql-python driver](../../connect/python/mssql-python/python-sql-driver-mssql-python.md). Applications can write and read vector data using `json.loads` and `json.dumps`:
 
 ```python
 import json
@@ -417,43 +416,6 @@ cursor.close()
 
 conn.close()
 ```
-
-### [Python (PyODBC)](#tab/python-sample-pyodbc)
-
-This sample is using Python with popular [PyODBC](https://github.com/mkleehammer/pyodbc/wiki) driver from the community. Applications can write and read vector data using `json.loads` and `json.dumps`:
-
-```python
-import os, json
-from utilities import get_conn
-
-conn = get_conn()
-conn = get_conn(os.environ["MSSQL"])
-
-cursor = conn.cursor()
-query = "INSERT INTO dbo.vectors VALUES(100, ?)"
-cursor.execute(query, json.dumps([1,2,3]))
-cursor.commit()
-cursor.close()
-
-cursor = conn.cursor()
-query = "SELECT v FROM dbo.vectors"
-cursor.execute(query)
-rows = cursor.fetchall()
-for row in rows:
-    print(json.loads(row[0]))
-cursor.close()
-conn.close()
-```
-
-For more information on the `get_conn` function, see [Migrate a Python application to use passwordless connections with Azure SQL Database](/azure/azure-sql/database/azure-sql-passwordless-migration-python#update-the-local-connection-configuration).
-
-Make sure you add `LongAsMax=yes` in the connection string used with Python, to send data using the **nvarchar(max)** type instead of the obsolete **ntext**. This option avoids any conversion error messages, such as:
-
-```output
-DataError: ('22018', '[22018] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Operand type clash: ntext is incompatible with vector (206) (SQLExecDirectW)').
-```
-
-For more information, see [PyODBC - LongAsMax](https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Windows#longasmax).
 
 ---
 
