@@ -4,7 +4,7 @@ description: This guide teaches you to migrate your SQL Server databases to Azur
 author: rwestMSFT
 ms.author: randolphwest
 ms.reviewer: mathoma, danil
-ms.date: 12/10/2025
+ms.date: 02/19/2026
 ms.service: azure-sql-managed-instance
 ms.subservice: migration-guide
 ms.topic: how-to
@@ -42,7 +42,6 @@ To move SQL Server instances, you need to plan carefully:
 
 SQL Managed Instance is a managed service that allows you to delegate some of the regular database administration activities to the platform as they're built in. Therefore, you don't need to migrate some instance-level data, such as maintenance jobs for regular backups or Always On configuration, as [high availability](/azure/azure-sql/database/high-availability-sla-local-zone-redundancy) is built in.
 
-
 ### SQL Server migration in Azure Arc
 
 Migrate SQL Server instances enabled by Azure Arc to SQL Managed Instance through the Azure portal. SQL Managed Instance provides a fully managed PaaS solution for lift-and-shift migrations. The process includes assessing readiness, selecting a target, migrating data, and monitoring progress.
@@ -59,9 +58,9 @@ For more information, see [Migration to Azure SQL Managed Instance - SQL Server 
 
 ### Azure Database Migration Service (Azure DMS)
 
-This section provides high-level steps to migrate from SQL Server to SQL Managed Instance with minimal downtime by using Azure DMS. For detailed information, see [Tutorial: Migrate SQL Server to Azure SQL Managed Instance online](/azure/dms/tutorial-sql-server-managed-instance-online-ads).
+This section provides high-level steps to migrate from SQL Server to SQL Managed Instance with minimal downtime by using Azure DMS.
 
-To migrate using DMS from the **Azure portal,** follow these steps:
+To migrate using DMS from the **Azure portal**, follow these steps:
 
 1. Open the [Azure portal](https://portal.azure.com/).
 
@@ -91,37 +90,7 @@ To migrate using DMS from the **Azure portal,** follow these steps:
    1. Ensure all database backups have the status Restored in the monitoring details page.
    1. Select Complete cutover in the monitoring details page.
 
-      For detailed instructions, see [Tutorial: Migrate SQL Server to Azure SQL Managed Instance with DMS](database-migration-service.md).
-
-To migrate using DMS with Azure Data Studio, follow these steps:
-
-1. [Download and install Azure Data Studio](/azure-data-studio/download-azure-data-studio) and the [Azure SQL migration extension for Azure Data Studio](/azure-data-studio/extensions/azure-sql-migration-extension).
-
-1. Launch the **Migrate to Azure SQL Migration** wizard in the extension in Azure Data Studio.
-
-1. Select databases for assessment and view migration readiness or issues (if any). Additionally, collect performance data and get right-sized Azure recommendation.
-
-1. Select your Azure account and your target Azure SQL managed instance from your subscription.
-
-1. Select the location of your database backups. Your database backups can either be located on an on-premises network share or in Azure Blob Storage container.
-
-1. Create a new Azure DMS instance using the wizard in Azure Data Studio. If you previously created a DMS instance using Azure Data Studio, you can reuse the same instance if desired.
-
-1. *Optional*: If your backups are on an on-premises network share, download and install [self-hosted integration runtime](https://www.microsoft.com/download/details.aspx?id=39717) on a machine that can connect to the source SQL Server instance, and the location containing the backup files.
-
-1. Start the database migration and monitor the progress in Azure Data Studio. You can also monitor the progress under the DMS resource in the Azure portal.
-
-1. Complete the cutover.
-
-   1. Stop all incoming transactions to the source database.
-
-   1. Make application configuration changes to point to the target database in Azure SQL Managed Instance.
-
-   1. Take any tail log backups for the source database in the backup location you specify.
-
-   1. Ensure all database backups have the status Restored in the monitoring details page.
-
-   1. Select Complete cutover in the monitoring details page.
+For detailed instructions, see [Tutorial: Migrate SQL Server to Azure SQL Managed Instance with DMS](database-migration-service.md).
 
 ### Managed Instance link
 
@@ -249,7 +218,6 @@ Some SQL Server features are only available when you change the [database compat
 - [Services and tools available for data migration scenarios](/azure/dms/dms-tools-matrix)
 - [Service Tiers in Azure SQL Managed Instance](/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview#service-tiers)
 - [T-SQL differences between SQL Server and Azure SQL Managed Instance](/azure/azure-sql/managed-instance/transact-sql-tsql-differences-sql-server)
-- [Migrate databases with Azure SQL migration extension for Azure Data Studio](/azure/dms/dms-overview#migrate-databases-with-azure-sql-migration-extension-for-azure-data-studio)
 - [Tutorial: Migrate SQL Server to Azure SQL Managed Instance with DMS](database-migration-service.md)
 - [Cloud Adoption Framework for Azure](/azure/cloud-adoption-framework/migrate/azure-best-practices/contoso-migration-scale)
 - [Best practices for costing and sizing workloads migrate to Azure](/azure/cloud-adoption-framework/migrate/azure-best-practices/migrate-best-practices-costs)

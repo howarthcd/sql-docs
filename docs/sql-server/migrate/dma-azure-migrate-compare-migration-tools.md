@@ -2,10 +2,10 @@
 title: Compare SQL Data Migration Tools
 titleSuffix: SQL Server
 description: Compare SQL data migration tools to determine which tool best suits your business needs, such as Azure Migrate, Azure Database Migration Service (DMS), and SQL Server Migration Assistant (SSMA).
-author: croblesm
-ms.author: roblescarlos
-ms.reviewer: randolphwest, maghan
-ms.date: 11/26/2025
+author: rwestMSFT
+ms.author: randolphwest
+ms.reviewer: roblescarlos
+ms.date: 02/19/2026
 ms.service: sql
 ms.subservice: migration-guide
 ms.topic: product-comparison
@@ -22,7 +22,7 @@ This article provides a brief overview of the tools available to migrate to SQL 
 
 Azure Database Migration Service enables seamless migrations from SQL Server database sources to Azure SQL offerings with minimal downtime. The Database Migration Service provides a resilient and reliable migration pipeline that requires minimal user involvement during the overall migration process.
 
-Azure Database Migration Service can be accessed via [Azure SQL migration extension for Azure Data Studio](/azure/dms/migration-using-azure-data-studio), [Azure portal](https://portal.azure.com/#create/Microsoft.AzureDMS), PowerShell, and Azure CLI.
+Azure Database Migration Service can be accessed via the [Azure portal](https://portal.azure.com/#create/Microsoft.AzureDMS), PowerShell, and Azure CLI.
 
 Use the latest Azure Database Migration Service in the following scenarios:
 
@@ -61,14 +61,14 @@ For more information, visit [SQL Server Migration Assistant](../../ssma/sql-serv
 
 Use the following chart to compare capabilities of the SQL migration tools:
 
-| Capability | Azure Migrate | SQL migration component | SSMA | DMS (classic) | Azure Data Studio extension (DMS) |
-| --- | --- | --- | --- | --- | --- | --- |
-| Discover and assess SQL data estate | At scale | Yes | No | No | Yes |
-| Migrate SQL Server objects to SQL Database or SQL Managed Instance | No | No | No | NA (deprecated) | Yes |
-| Lift and shift SQL Server to SQL Server on Azure VM | Yes | No | No | No | No |
-| Migrate (and/or upgrade) SQL Server to SQL Server on Azure VM | No | Yes | No | No | Yes (Migrate only) |
+| Capability | Azure Migrate | SQL migration component | SSMA | Azure Arc | DMS (Azure Portal / PowerShell / `az` cmdlet) |
+| --- | --- | --- | --- | --- | --- |
+| Discover and assess SQL data estate | At scale | Yes | No | Yes | Using PS / cmdlet |
+| Migrate SQL Server objects to SQL Database or SQL Managed Instance | No | No | No | Yes | Yes |
+| Lift and shift SQL Server to SQL Server on Azure VM | Yes | No | No | No | Yes |
+| Migrate (and/or upgrade) SQL Server to SQL Server on Azure VM | No | Yes | No | Yes | Yes |
 | Migrate non-SQL objects<br />(Oracle, Access, Db2, etc.) | No | No | Yes | No | No |
-| Migrate open source databases<br />(MySQL, PostgreSQL, MariaDB, etc.) | No | No | No | Yes | No |
+| Migrate open source databases<br />(MySQL, PostgreSQL, MariaDB, etc.) | No | No | No | No | No |
 
 ## Related content
 
