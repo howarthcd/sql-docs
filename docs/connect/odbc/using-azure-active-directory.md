@@ -191,7 +191,7 @@ typedef struct AccessToken
 
 The `ACCESSTOKEN` is a variable-length structure consisting of a 4-byte _length_ followed by _length_ bytes of opaque data that form the access token. Because of how SQL Server handles access tokens, one obtained via an [OAuth 2.0](/azure/active-directory/develop/active-directory-authentication-scenarios) JSON response must be expanded so that each byte is followed by a zero padding byte, similar to a UCS-2 string containing only ASCII characters. However, the token is an opaque value and the length specified, in bytes, must NOT include any null terminator. Because of their considerable length and format constraints, this method of authentication is only available programmatically via the `SQL_COPT_SS_ACCESS_TOKEN` connection attribute.
 
-The `ACCESSTOKEN` must remain allocated for as long as the connection handle is allocated. Otherwise access violations may occur. The pointer is part of the connection pool key, so a new pointer will result in a new pool and new connections. You can renew the access token (if it expires, for example) by updating the data buffer directly with a new token, which allows you to continue using existing connections.
+The `ACCESSTOKEN` must remain allocated for as long as the connection handle is allocated. Otherwise access violations might occur. The pointer is part of the connection pool key, so a new pointer results in a new pool and new connections. If a token expires, you can renew the access token by updating the data buffer directly to continue using existing connections.
 
 There's no corresponding DSN or connection string keyword. The connection string must not contain `UID`, `PWD`, `Authentication`, or `Trusted_Connection` keywords.
 
