@@ -37,7 +37,7 @@ For the ARM64 driver: [Chinese (Simplified)](https://go.microsoft.com/fwlink/?li
 
 #### Terminator issue in bcp_bind
 
-When a "terminator" is used as the separator in `bcp_bind` for strings, two consecutive terminators in data can mean either a NULL value or an empty string. The ODBC driver doesn’t have a way to distinguish between empty strings and null strings.
+When you use a terminator as the separator in `bcp_bind` for strings, two consecutive terminators in data can mean either a `NULL` value or an empty string. The ODBC driver can't distinguish between empty strings and null strings.
 
 - Before the 18.6.1.1 release, the ODBC driver interpreted consecutive terminators (zero-length data) as empty strings.
 - In the 18.6.1.1 release, a change was made to interpret zero-length data as a NULL value instead of an empty string.
