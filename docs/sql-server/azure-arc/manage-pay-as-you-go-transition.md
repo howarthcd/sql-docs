@@ -111,7 +111,7 @@ An explicit consent is required to select the pay-as-you-go billing for SQL Serv
 
 Consent is recorded by adding a `ConsentToRecurringPAYG` property to the Azure extension for SQL Server resource. It consists of the two values:
 
-- `Consented`: Indicates that you agree to recurring billing.
+- `Consented`: You agree to recurring billing.
 - `ConsentTimestamp`: The UTC timestamp marking when the consent was granted. This timestamp is used by the Hybrid Data Service to determine when recurring billing goes into effect. After that time any disconnection longer than 30 days activates the recurring pay-as-you-go billing.  
 
 > [!IMPORTANT]
