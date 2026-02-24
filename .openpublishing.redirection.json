@@ -20286,6 +20286,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "docs/database-engine/log-shipping/upgrading-log-shipping-to-sql-server-2016-transact-sql.md",
+      "redirect_url": "/sql/database-engine/log-shipping/upgrade-sql-server-log-shipping-transact-sql",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "docs/2014/database-engine/log-shipping/view-the-log-shipping-report-sql-server-management-studio.md",
       "redirect_url": "/previous-versions/sql/2014/database-engine/log-shipping/view-the-log-shipping-report-sql-server-management-studio",
       "redirect_document_id": false
