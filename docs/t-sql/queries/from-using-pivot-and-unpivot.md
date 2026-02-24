@@ -102,6 +102,16 @@ If the column is combined with other columns, then a collate clause (`COLLATE DA
 
 In [!INCLUDE [fabric](../../includes/fabric.md)] and [!INCLUDE [ssazuresynapse_md](../../includes/ssazuresynapse-md.md)] pools, queries with `PIVOT` operator fail if there's a `GROUP BY` on the nonpivot column output by `PIVOT`. As a workaround, remove the nonpivot column from the `GROUP BY`. Query results are the same, as this `GROUP BY` clause is a duplicate.
 
+Column names are of type `sysname` or `NVARCHAR(128)`. Because `UNPIVOT` projects column names as values, the data type for an `UNPIVOT` column will also be `NVARCHAR(128)`, which is not a supported data type in [!INCLUDE [fabric](../../includes/fabric.md)]. If you want to save the results of `UNPIVOT` to a table in [!INCLUDE [fabric](../../includes/fabric.md)], you may first need to cast to a supported datatype. See [Data types in Fabric Data Warehouse](/fabric/data-warehouse/data-types).
+```sql
+CREATE TABLE myTable AS
+SELECT value,
+      CAST(columnNames as VARCHAR(128) ) columnNames
+  FROM myTableToUnpivot
+ UNPIVOT( value
+          FOR columnNames IN( col1, col2 )) unpvt;
+```
+
 ## Basic PIVOT example
 
 The following code example produces a two-column table that has four rows.
