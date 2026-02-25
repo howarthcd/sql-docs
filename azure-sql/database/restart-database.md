@@ -5,7 +5,7 @@ description: Learn about restarting a database or elastic pool in Azure SQL Data
 author: WilliamDAssafMSFT
 ms.author: wiassaf
 ms.reviewer: mahyon, randolphwest
-ms.date: 02/13/2026
+ms.date: 02/25/2026
 ms.service: azure-sql-database
 ms.subservice: high-availability
 ms.topic: how-to
@@ -26,7 +26,7 @@ The restart operation is designed to resolve transient issues that might affect 
 
 Only one failover call is allowed every 15 minutes for each database or elastic pool. 
 
-The restart operation is not recommended for use when there are wide-spread service issues. Before initiating a restart, check [Azure Service Health](https://learn.microsoft.com/en-us/azure/service-health/overview) for any ongoing issues.
+The restart operation is not recommended for use when there are wide-spread service issues. Before initiating a restart, check [Azure Service Health](/azure/service-health/overview) for any ongoing issues.
 
 ## Restart a database
 
