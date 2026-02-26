@@ -140,7 +140,7 @@ With a pay-as-you-go subscription, the health of the extensions becomes a critic
 
 ## Analyze costs
 
-After you transition to pay-as-you-go billing, you can view current and forecasted charges through [Azure Cost Management](/azure/cost-management-billing/cost-management-billing-overview). Upcoming charges for Azure Arc-enabled SQL Server pay-as-you-go aren't shown on SQL Server or Arc resource pages. All cost analysis and forecasting happens at the subscription level or higher.
+After you transition to pay-as-you-go billing, you can view current and forecasted charges through [Microsoft Cost Management](/azure/cost-management-billing/cost-management-billing-overview). Upcoming charges for Azure Arc-enabled SQL Server pay-as-you-go aren't shown on SQL Server or Arc resource pages. All cost analysis and forecasting happens at the subscription level or higher.
 
 ### View forecasted charges
 
@@ -153,7 +153,7 @@ To view forecasted pay-as-you-go charges:
    - Shaded extensions represent forecasted costs based on historical usage trends
 1. Set the date range to the current month to see projected month-end costs.
 
-:::image type="content" source="media/manage-pay-as-you-go-transition/cost-analysis-forecasted-charges.png" alt-text="Screenshot of Azure Cost Management showing actual and forecasted charges." lightbox="media/manage-pay-as-you-go-transition/cost-analysis-forecasted-charges.png":::
+:::image type="content" source="media/manage-pay-as-you-go-transition/cost-analysis-forecasted-charges.png" alt-text="Screenshot of Microsoft Cost Management showing actual and forecasted charges." lightbox="media/manage-pay-as-you-go-transition/cost-analysis-forecasted-charges.png":::
 
 ### Filter for Arc SQL Server usage
 
@@ -185,7 +185,7 @@ This breakdown helps you identify:
 
 To see which SQL Server related charge categories are driving costs, in **Cost analysis**, select **Group by** > **Meter**. This breakdown helps you identify:
 
-- Usage category breakdown (for example, ESU costs, PAYG costs)
+- Usage category breakdown (for example, ESU costs, pay-as-you-go costs)
 - Edition differences (meter names indicate the editions)
 - Unexpected charges
 
