@@ -67865,6 +67865,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "docs/analytics-platform-system/appliance-management-tasks.md",
+      "redirect_url": "/sql/analytics-platform-system/parallel-data-warehouse-overview?view=aps-pdw-2016-au7&preserve-view=true#management-tasks",
+      "redirect_document_id": false
+    },    
+    {
       "source_path": "docs/t-sql/functions/string-functions-transact-sql.md",
       "redirect_url": "/sql/t-sql/functions/functions#string-functions",
       "redirect_document_id": false
