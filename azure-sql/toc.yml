@@ -1657,7 +1657,7 @@
         items:
         - name: VM to a new region
           href: virtual-machines/windows/move-sql-vm-different-region.md
-        - name: Migrate storage to Ultradisk
+        - name: Migrate storage to Ultra Disk
           href: virtual-machines/windows/storage-migrate-to-ultradisk.md
       - name: Business continuity
         items:
