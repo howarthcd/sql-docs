@@ -5,7 +5,7 @@ description: Learn about the new features and documentation improvements for Azu
 author: MashaMSFT
 ms.author: mathoma
 ms.reviewer: wiassaf, randolphwest
-ms.date: 02/19/2026
+ms.date: 03/02/2026
 ms.service: azure-sql-managed-instance
 ms.subservice: service-overview
 ms.topic: whats-new
@@ -40,7 +40,6 @@ The following table lists the features of Azure SQL Managed Instance that are cu
 |[Modernization Advisor](../virtual-machines/modernization-advisor.md) | Use the Modernization Advisor in the Azure portal to help you determine if migrating to Azure SQL Managed Instance from a SQL Server VM saves you money or optimizes performance. |
 |[SDK-style SQL project](/sql/tools/sql-database-projects/sql-database-projects) | Use [Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql) for SDK-style SQL projects in the SQL Database Projects extension in Visual Studio Code. SDK-style SQL projects are especially advantageous for applications shipped through pipelines or built in cross-platform environments.|
 |[Service Broker](/sql/database-engine/configure-windows/sql-server-service-broker) | Support for cross-instance message exchange using Service Broker between instances of Azure SQL Managed Instance, and between SQL Server and Azure SQL Managed Instance. |
-|[SQL Server 2025 update policy](update-policy.md#sql-server-2025-update-policy) | Align your SQL managed instance database format with the SQL Server 2025 database engine. | 
 |[Vector data type and functions](/sql/t-sql/data-types/vector-data-type?view=azuresqlmi-current&preserve-view=true) | Working with vector data is now easier in Azure SQL Managed Instance with the introduction of a new [vector data type](/sql/t-sql/data-types/vector-data-type?view=azuresqlmi-current&preserve-view=true) and [vector functions](/sql/t-sql/functions/vector-functions-transact-sql?view=azuresqlmi-current&preserve-view=true). For more information, see [Intelligent applications with Azure SQL Managed Instance](ai-artificial-intelligence-intelligent-applications.md#vectors). |
 
 
@@ -50,6 +49,7 @@ The following table lists features of Azure SQL Managed Instance that have been 
 
 | Feature | GA Month | Details |
 | ---| --- |--- |
+|[SQL Server 2025 update policy](update-policy.md#sql-server-2025-update-policy) | March 2026 | Align your SQL managed instance database format with the SQL Server 2025 database engine. | 
 |[Regular expression functions](/sql/relational-databases/regular-expressions/overview) | November 2025 | Regular expression (REGEX) functions return text based on values in a search pattern. |
 |[Flexible memory](resource-limits.md#flexible-memory) | November 2025 | Save on cost by choosing the memory allocation for your [Next-gen General Purpose](service-tiers-next-gen-general-purpose-use.md) instance based on your workload needs.|
 |[Next-gen General Purpose](service-tiers-next-gen-general-purpose-use.md) | November 2025 | An architectural upgrade of the General Purpose service tier that uses [Elastic SAN storage](/azure/storage/elastic-san/elastic-san-introduction) for greater resource flexibility, and improved performance while maintaining the same baseline cost as the General Purpose service tier.  |
@@ -71,6 +71,12 @@ The following table lists features of Azure SQL Managed Instance that have been 
 ## Documentation changes
 
 Learn about significant changes to the Azure SQL Managed Instance documentation. For previous years, see the [What's new archive](doc-changes-updates-release-notes-whats-new-archive.md).
+
+### March 2026
+
+| Changes | Details |
+| --- | --- |
+| **SQL Server 2025 update policy GA** | Align your SQL managed instance database format with the SQL Server 2025 database engine. This update policy is now generally available. For more information, review [SQL Server 2025 update policy](update-policy.md#sql-server-2025-update-policy). |
 
 ### December 2025
 
