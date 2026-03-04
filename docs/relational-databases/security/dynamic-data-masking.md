@@ -140,6 +140,12 @@ It's important to properly manage the permissions on the database, and to always
 
 Starting with [!INCLUDE [sssql22-md](../../includes/sssql22-md.md)], you can prevent unauthorized access to sensitive data and gain control by masking it to an unauthorized user at different levels of the database. You can grant or revoke **UNMASK** permission at the database-level, schema-level, table-level or at the column-level to a user, database role, Microsoft Entra identity, or Microsoft Entra group. This enhancement provides a more granular way to control and limit unauthorized access to data stored in the database and improve data security management.
 
+## Dynamic Data Masking in Fabric SQL Database
+
+Dynamic Data Masking (DDM) is supported in SQL Database in Microsoft Fabric. The Dynamic Data Masking functionality in Fabric SQL Database is consistent with SQL Database.
+When validating Dynamic Data Masking in Fabric SQL Database, the EXECUTE AS USER clause is not supported. To test masking behavior, connect as a different user who does not have the UNMASK permission and verify that the masked data is returned as expected.
+Dynamic Data Masking configuration in Fabric SQL Database is supported only through T‑SQL. Masking functions must be defined explicitly on table columns using T‑SQL statements.
+
 ## Examples
 
 <a id="creating-a-dynamic-data-mask"></a>
