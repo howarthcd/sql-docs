@@ -7218,8 +7218,8 @@ items:
         href: relational-databases/search/configure-and-manage-stopwords-and-stoplists-for-full-text-search.md
       - name: Thesaurus files
         href: relational-databases/search/configure-and-manage-thesaurus-files-for-full-text-search.md
-      - name: Version 1 filters and word breakers
-        href: relational-databases/search/full-text-index-version-1-binaries.md
+      - name: Filters and word breakers
+        href: relational-databases/search/full-text-index-binaries.md
     - name: Manage & Monitor
       href: relational-databases/search/manage-and-monitor-full-text-search-for-a-server-instance.md
       items:
